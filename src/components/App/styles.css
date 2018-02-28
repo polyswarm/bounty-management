@@ -1,0 +1,32 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+}
+
+.BountyManager {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  text-align: center;
+  color: white;
+}
+
+.hex-background {
+  background-color: #8500ff;
+  background-image: url('/img/hexgrid_2x.png');
+  background-size: 129px 149px;
+}
+
+.BountyManager-Intro {
+  font-size: large;
+}
