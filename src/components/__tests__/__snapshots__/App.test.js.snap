@@ -7,13 +7,6 @@ exports[`renders without crashing 1`] = `
   <header
     class="App-header"
   >
-    <img
-      alt="logo"
-      class="App-logo"
-      src="logo.svg"
-    >
-      
-    </img>
     <h1
       class="App-title"
     >
