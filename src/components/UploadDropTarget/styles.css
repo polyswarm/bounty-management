@@ -1,0 +1,7 @@
+.Drop-Target {
+  border: 2px dashed rgb(46, 255, 109);
+  border-radius: 20px;
+  max-width: 33%;
+  min-height: 75%;
+  background: #eeeeee;
+}
