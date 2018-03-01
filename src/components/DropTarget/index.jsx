@@ -6,7 +6,7 @@ import React, {Component} from 'react';
 import strings from './strings'
 import './styles.css'
 
-class UploadDropTarget extends Component {
+class DropTarget extends Component {
   render() {
     return(
       <div className='Drop-Target'>
@@ -15,4 +15,4 @@ class UploadDropTarget extends Component {
     )
   }
 }
-export default UploadDropTarget;
+export default DropTarget;
