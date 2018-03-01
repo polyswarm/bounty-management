@@ -9,13 +9,11 @@
 
 .hidden + label {
   position: relative;
-  font-family: 'fabrick', sans-serif;
   display: inline-block;
   height: 40px;
+  max-width: 350px;
   margin-top: 20px;
   padding: 0 40px;
-  line-height: 40px;
-  font-size: 16px;
   background: rgb(46, 255, 109);
   color: #8500ff;
   border: 0;
@@ -23,6 +21,9 @@
   text-shadow: none;
   text-transform: uppercase;
   text-decoration: none;
+  line-height: 40px;
+  font-size: 16px;
+  font-family: 'fabrick', sans-serif;
   letter-spacing: 0.15em;
   transition: background-color 0.25s ease;
   cursor: pointer;
@@ -36,32 +37,5 @@
 }
 
 .hidden + label.selected:hover {
-  background: white;
-}
-
-button {
-  position: relative;
-  font-family: 'fabrick', sans-serif;
-  display: inline-block;
-  height: 40px;
-  margin-top: 20px;
-  margin-left: -40px;
-  padding: 0 20px 0 50px;
-  line-height: 40px;
-  font-size: 16px;
-  background: rgb(46, 255, 109);
-  color: #8500ff;
-  border: 0;
-  border-radius: 20px;
-  text-shadow: none;
-  text-transform: uppercase;
-  text-decoration: none;
-  letter-spacing: 0.15em;
-  transition: background-color 0.25s ease;
-  cursor: pointer;
-  z-index: 0;
-}
-
-button:hover {
   background: white;
 }

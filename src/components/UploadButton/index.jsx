@@ -16,15 +16,7 @@ class UploadButton extends Component {
     return(
       <form>
         <input id='file' className='hidden' type='file' onChange={this.onFileChanged} />
-        {file && (
-          <React.Fragment>
-            <label htmlFor='file' className='selected'>{file.split('\\').pop()}</label>
-            <button>{strings.send}</button>
-          </React.Fragment>
-        )}
-        {!file && (
-          <label htmlFor='file'>{strings.selectFile}</label>
-        )}
+        <label htmlFor='file'>{strings.selectFile}</label>
       </form>
     );
   }
