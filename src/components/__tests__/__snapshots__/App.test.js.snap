@@ -2,19 +2,10 @@
 
 exports[`renders without crashing 1`] = `
 <div
-  class="App"
+  class="BountyManager hex-background"
 >
-  <header
-    class="App-header"
-  >
-    <h1
-      class="App-title"
-    >
-      Welcome to React
-    </h1>
-  </header>
   <p
-    class="App-intro"
+    class="BountyManager-Intro"
   >
     To get started, edit 
     <code>
@@ -22,5 +13,19 @@ exports[`renders without crashing 1`] = `
     </code>
      and save to reload.
   </p>
+  <form>
+    <input
+      class="hidden"
+      id="file"
+      type="file"
+    >
+      
+    </input>
+    <label
+      for="file"
+    >
+      Select Files to Upload!
+    </label>
+  </form>
 </div>
 `;

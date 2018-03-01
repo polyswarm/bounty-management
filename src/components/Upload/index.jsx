@@ -15,16 +15,16 @@ class Upload extends Component {
     const {file} = this.state;
     return(
       <form>
-        <div>
-          <input id='file' className='hidden' type='file' onChange={this.onFileChanged} />
-          {file && (
-            <label htmlFor='file'>{file.split('\\').pop()}</label>
-          )}
-          {!file && (
-            <label htmlFor='file'>{strings.selectFile}</label>
-          )}
-        </div>
-        <button>Swarm It</button>
+        <input id='file' className='hidden' type='file' onChange={this.onFileChanged} />
+        {file && (
+          <React.Fragment>
+            <label htmlFor='file' className='selected'>{file.split('\\').pop()}</label>
+            <button>{strings.send}</button>
+          </React.Fragment>
+        )}
+        {!file && (
+          <label htmlFor='file'>{strings.selectFile}</label>
+        )}
       </form>
     );
   }
