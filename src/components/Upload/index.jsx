@@ -1,32 +1,38 @@
 import React, {Component} from 'react';
-import {Button, FormGroup, InputGroup, ControlLabel, FormControl} from 'react-bootstrap';
+import './styles.css';
+import strings from './strings';
 
 class Upload extends Component {
-  state ={
-    selected: null,
+  constructor(props) {
+    super(props);
+    this.state = {
+      file: null,
+    };
+    this.onFileChanged = this.onFileChanged.bind(this);
   }
+
   render() {
+    const {file} = this.state;
     return(
       <form>
-        <FormGroup bsSize='large'>
-          <ControlLabel>Choose a file to upload</ControlLabel>
-          <InputGroup>
-            <FormControl
-              type='text'
-              placeholder='Choose a file'
-              value={this.state.selected}
-              />
-            <InputGroup.Button>
-              <Button>Browse</Button>
-            </InputGroup.Button>
-          </InputGroup>
-        </FormGroup>
-        <input className='hidden' type='file' />
-        <FormGroup>
-          <Button>Swarm It</Button>
-        </FormGroup>
+        <div>
+          <input id='file' className='hidden' type='file' onChange={this.onFileChanged} />
+          {file && (
+            <label htmlFor='file'>{file.split('\\').pop()}</label>
+          )}
+          {!file && (
+            <label htmlFor='file'>{strings.selectFile}</label>
+          )}
+        </div>
+        <button>Swarm It</button>
       </form>
     );
+  }
+
+  onFileChanged(event) {
+    if (event.target.value) {
+        this.setState({file: event.target.value})
+    }
   }
 }
 export default Upload;
