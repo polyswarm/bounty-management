@@ -27,7 +27,17 @@
   cursor: pointer;
 }
 
-.hidden + label:hover,
-.hidden + label:active {
+.hidden + label:hover {
   background: #fafafa;
+}
+
+.hidden + label:active,
+.hidden + label.selected {
+  background: #e0e0e0;
+}
+
+.hidden:focus + label {
+  background: #fafafa;
+  outline: 1px solid rgb(46, 255, 109);
+  outline: -webkit-focus-ring-color auto 5px;
 }
