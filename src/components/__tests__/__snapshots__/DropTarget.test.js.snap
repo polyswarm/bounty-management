@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropTarget renders without crashing 1`] = `
+<div
+  class="Drop-Target"
+>
+  <p>
+    Drag and drop your files here, or use the button below.
+  </p>
+</div>
+`;

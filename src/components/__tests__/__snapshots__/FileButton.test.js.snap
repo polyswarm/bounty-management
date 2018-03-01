@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileButton renders without crashing 1`] = `
+<form>
+  <input
+    class="hidden"
+    id="file"
+    type="file"
+  >
+    
+  </input>
+  <label
+    for="file"
+  >
+    Select Files to Upload!
+  </label>
+</form>
+`;
