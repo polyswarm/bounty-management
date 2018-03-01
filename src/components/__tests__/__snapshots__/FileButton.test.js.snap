@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FileButton renders without crashing 1`] = `
+exports[`renders without crashing 1`] = `
 <form>
   <input
     class="hidden"

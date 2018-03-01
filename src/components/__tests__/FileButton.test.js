@@ -1,10 +1,29 @@
 import React from 'react';
 import Adapter from 'enzyme-adapter-react-16'
-import {render} from 'enzyme';
+import {render, mount} from 'enzyme';
 import {renderToJson} from 'enzyme-to-json'
 import FileButton from '../FileButton';
 
-it('FileButton renders without crashing', () => {
+it('renders without crashing', () => {
   const wrapper = render(<FileButton />);
   expect(renderToJson(wrapper)).toMatchSnapshot();
+});
+
+it('calls the provided fileSelected function', () => {
+  // arramnge
+  const fileSelected = jest.fn();
+  const wrapper = mount(
+    <FileButton onFileSelected={fileSelected}/>
+  );
+  const instance = wrapper.instance();
+  const event = {
+    target: {
+      value: 'fileName'
+    }
+  };
+  // act
+  instance.onFileChanged(event);
+
+  // assert
+  expect(fileSelected).toHaveBeenCalled();
 });

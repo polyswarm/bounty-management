@@ -5,14 +5,10 @@ import strings from './strings';
 class FileButton extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      file: null,
-    };
     this.onFileChanged = this.onFileChanged.bind(this);
   }
 
   render() {
-    const {file} = this.state;
     return(
       <form>
         <input id='file' className='hidden' type='file' onChange={this.onFileChanged} />
@@ -22,8 +18,9 @@ class FileButton extends Component {
   }
 
   onFileChanged(event) {
-    if (event.target.value) {
-        this.setState({file: event.target.value})
+    const {onFileSelected} = this.props;
+    if (onFileSelected && event.target.value) {
+        onFileSelected(event.target.value);
     }
   }
 }
