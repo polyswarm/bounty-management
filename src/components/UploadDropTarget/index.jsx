@@ -10,7 +10,7 @@ class UploadDropTarget extends Component {
   render() {
     return(
       <div className='Drop-Target'>
-        {strings.dragAndDrop}
+        <p>{strings.dragAndDrop}</p>
       </div>
     )
   }
