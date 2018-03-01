@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './styles.css';
 import strings from './strings';
 
-class UploadButton extends Component {
+class FileButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,4 +27,4 @@ class UploadButton extends Component {
     }
   }
 }
-export default UploadButton;
+export default FileButton;

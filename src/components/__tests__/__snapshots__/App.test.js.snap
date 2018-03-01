@@ -13,6 +13,13 @@ exports[`renders without crashing 1`] = `
     </code>
      and save to reload.
   </p>
+  <div
+    class="Drop-Target"
+  >
+    <p>
+      Drag and drop your files here, or use the button below.
+    </p>
+  </div>
   <form>
     <input
       class="hidden"

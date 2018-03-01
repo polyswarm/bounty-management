@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 // Bounty imports
 import DropTarget from '../DropTarget';
-import UploadButton from '../UploadButton';
+import FileButton from '../FileButton';
 // Misc
 import './styles.css';
 
@@ -14,7 +14,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <DropTarget />
-        <UploadButton />
+        <FileButton />
       </div>
     );
   }
