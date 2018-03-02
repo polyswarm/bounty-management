@@ -9,32 +9,32 @@
 }
 
 .Drop-Target {
-  position: relative;
+  animation-duration: 1s;
+  animation-name: darken;
+  background-color: #fafafa;
+  background-image: url('/img/gray_hexgrid_2x.png');
+  background-size: 48px 58px;
+  border: 2px dashed black;
+  border-radius: 20px;
+  color: black;
+  cursor: pointer;
   display: table;
   margin: 0 auto;
   max-width: 350px;
   min-height: 400px;
-  border: 2px dashed black;
-  border-radius: 20px;
-  background-color: #fafafa;
-  background-image: url('/img/gray_hexgrid_2x.png');
-  background-size: 48px 58px;
-  color: black;
-  cursor: pointer;
-  animation-name: darken;
-  animation-duration: 1s;
+  position: relative;
   vertical-align: middle;
 }
 
 .Drop-Target > p {
   display: table-cell;
-  vertical-align: middle;
   padding: 0 20px;
+  vertical-align: middle;
 }
 
 .drag {
-  cursor: copy;
-  background-image: url('/img/hexgrid_2x.png');
-  animation-name: lighten;
   animation-duration: 1s;
+  animation-name: lighten;
+  background-image: url('/img/hexgrid_2x.png');
+  cursor: copy;
 }

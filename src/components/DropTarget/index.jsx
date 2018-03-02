@@ -1,12 +1,12 @@
 // Vendor imports
 import React, {Component} from 'react';
 // Component imports
-import strings from './strings'
-import './styles.css'
+import strings from './strings';
+import './styles.css';
 
 class DropTarget extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.onDropHandler = this.onDropHandler.bind(this);
     this.onDragOverHandler = this.onDragOverHandler.bind(this);
     this.onDragEnterHandler = this.onDragEnterHandler.bind(this);
@@ -16,14 +16,14 @@ class DropTarget extends Component {
   render() {
     return(
       <div className='Drop-Target'
-        ref={(target) => {this.target = target}}
+        ref={(target) => {this.target = target;}}
         onDrop={this.onDropHandler}
         onDragOver={this.onDragOverHandler}
         onDragEnter={this.onDragEnterHandler}
         onDragLeave={this.onDragLeaveHandler}>
         <p>{strings.dragAndDrop}</p>
       </div>
-    )
+    );
   }
 
   onDropHandler(event) {
@@ -39,7 +39,7 @@ class DropTarget extends Component {
         for (var i = 0; i < items.length; i++) {
           const item = items[i];
           if (item.kind === 'file') {
-            files.push(item.getAsFile())
+            files.push(item.getAsFile());
           }
         }
       } else {
