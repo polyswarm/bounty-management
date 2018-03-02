@@ -10,6 +10,7 @@
 
 .Drop-Target {
   position: relative;
+  display: table;
   margin: 0 auto;
   max-width: 350px;
   min-height: 400px;
@@ -22,6 +23,13 @@
   cursor: pointer;
   animation-name: darken;
   animation-duration: 1s;
+  vertical-align: middle;
+}
+
+.Drop-Target > p {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 20px;
 }
 
 .drag {
