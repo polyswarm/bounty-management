@@ -22,7 +22,7 @@ class FileButton extends Component {
   onFileChanged(event) {
     const {onFileSelected} = this.props;
     if (onFileSelected && event.target.value) {
-        onFileSelected(event.target.value);
+      onFileSelected(event.target.value);
     }
   }
 }
