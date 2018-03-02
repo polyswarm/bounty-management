@@ -8,7 +8,7 @@ import './styles.css';
 
 class Upload extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.onFileSelected = this.onFileSelected.bind(this);
     this.onMultipleFilesSelected = this.onMultipleFilesSelected.bind(this);
   }
@@ -27,7 +27,7 @@ class Upload extends Component {
   }
 
   onMultipleFilesSelected(files) {
-
+    
   }
 }
 export default Upload;
