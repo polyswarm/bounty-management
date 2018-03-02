@@ -1,6 +1,6 @@
 import React from 'react';
 import {render, mount} from 'enzyme';
-import {renderToJson} from 'enzyme-to-json'
+import {renderToJson} from 'enzyme-to-json';
 import DropTarget from '../DropTarget';
 
 it('renders without crashing', () => {
@@ -67,7 +67,7 @@ it('should upload files from items when present', () => {
   instance.onDropHandler(event);
 
   // assert
-  expect(clear).toHaveBeenCalled()
+  expect(clear).toHaveBeenCalled();
   expect(filesSelected.mock.calls).toHaveLength(1);
   /*
     mock.calls is an array of the arguments. So, [0] is the first call.
@@ -97,7 +97,7 @@ it('should upload froms from files when items not present',() => {
   instance.onDropHandler(event);
 
   // assert
-  expect(clearData).toHaveBeenCalled()
+  expect(clearData).toHaveBeenCalled();
   expect(filesSelected.mock.calls).toHaveLength(1);
   /*
     mock.calls is an array of the arguments. So, [0] is the first call.

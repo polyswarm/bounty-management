@@ -1,6 +1,6 @@
 import React from 'react';
 import {render, mount} from 'enzyme';
-import {renderToJson} from 'enzyme-to-json'
+import {renderToJson} from 'enzyme-to-json';
 import FileButton from '../FileButton';
 
 it('renders without crashing', () => {
