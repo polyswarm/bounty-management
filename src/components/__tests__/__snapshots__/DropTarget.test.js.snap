@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DropTarget renders without crashing 1`] = `
+exports[`renders without crashing 1`] = `
 <div
   class="Drop-Target"
 >
@@ -8,4 +8,24 @@ exports[`DropTarget renders without crashing 1`] = `
     Drag and drop your files here, or use the button below.
   </p>
 </div>
+`;
+
+exports[`should upload files from items when present 1`] = `
+Array [
+  Array [
+    Array [
+      "item",
+    ],
+  ],
+]
+`;
+
+exports[`should upload froms from files when items not present 1`] = `
+Array [
+  Array [
+    Array [
+      "file",
+    ],
+  ],
+]
 `;

@@ -36,19 +36,21 @@ class DropTarget extends Component {
     let files = [];
 
     if (onFilesSelected) {
-      let items;
       if (event.dataTransfer.items) {
-        items = event.dataTransfer.items;
-      } else {
-        items = event.dataTransfer.files;
-      }
-      for (var i = 0; i < items.length; i++) {
-        const item = items[i];
-        if (item.kind === 'file') {
-          files.push(item.getAsFile())
+        const items = event.dataTransfer.items;
+        for (var i = 0; i < items.length; i++) {
+          const item = items[i];
+          if (item.kind === 'file') {
+            files.push(item.getAsFile())
+          }
         }
+      } else {
+        files = event.dataTransfer.files;
       }
-      onFilesSelected(files);
+
+      if (files.length > 0) {
+        onFilesSelected(files);
+      }
     }
 
     this.removeDragData(event);
