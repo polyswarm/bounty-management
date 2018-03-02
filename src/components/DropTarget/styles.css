@@ -1,3 +1,13 @@
+@keyframes lighten {
+  0% { background-image: url('/img/gray_hexgrid_2x.png'); }
+  100% { background-image: url('/img/hexgrid_2x.png'); }
+}
+
+@keyframes darken {
+  0% { background-image: url('/img/hexgrid_2x.png'); }
+  100% { background-image: url('/img/gray_hexgrid_2x.png'); }
+}
+
 .Drop-Target {
   position: relative;
   margin: 0 auto;
@@ -5,11 +15,18 @@
   min-height: 400px;
   border: 2px dashed black;
   border-radius: 20px;
-  background-color: #eee;
+  background-color: #fafafa;
   background-image: url('/img/gray_hexgrid_2x.png');
   background-size: 48px 58px;
   color: black;
+  cursor: pointer;
+  animation-name: darken;
+  animation-duration: 1s;
 }
-.Drop-Target p {
-  position: relative;
+
+.drag {
+  cursor: copy;
+  background-image: url('/img/hexgrid_2x.png');
+  animation-name: lighten;
+  animation-duration: 1s;
 }

@@ -7,16 +7,30 @@ import FileButton from '../FileButton';
 import './styles.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.onFileSelected = this.onFileSelected.bind(this);
+    this.onMultipleFilesSelected = this.onMultipleFilesSelected.bind(this);
+  }
+
   render() {
     return (
       <div className="BountyManager hex-background">
         <p className="BountyManager-Intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <DropTarget />
-        <FileButton />
+        <DropTarget onFilesSelected={this.onMultipleFilesSelected}/>
+        <FileButton onFileSelected={this.onFileSelected}/>
       </div>
     );
+  }
+
+  onFileSelected(file) {
+    this.onMultipleFilesSelected([file]);
+  }
+
+  onMultipleFilesSelected(files) {
+
   }
 }
 
