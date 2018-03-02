@@ -1,5 +1,7 @@
 // Vendor imports
 import React, {Component} from 'react';
+// Bounty imports
+import FileButton from '../FileButton';
 // Component imports
 import strings from './strings';
 import './styles.css';
@@ -11,6 +13,7 @@ class DropTarget extends Component {
     this.onDragOverHandler = this.onDragOverHandler.bind(this);
     this.onDragEnterHandler = this.onDragEnterHandler.bind(this);
     this.onDragLeaveHandler = this.onDragLeaveHandler.bind(this);
+    this.onFileSelectedHandler = this.onFileSelectedHandler.bind(this);
   }
 
   render() {
@@ -21,13 +24,16 @@ class DropTarget extends Component {
         onDragOver={this.onDragOverHandler}
         onDragEnter={this.onDragEnterHandler}
         onDragLeave={this.onDragLeaveHandler}>
-        <p>{strings.dragAndDrop}</p>
+        <div>
+          <p>{strings.dragAndDrop}</p>
+          <FileButton onFileSelected={this.onFileSelectedHandler}/>
+        </div>
       </div>
     );
   }
 
   onDropHandler(event) {
-    const {onFilesSelected} = this.props;
+    const { props: { onFilesSelected } } = this;
     // Don't want file to open
     event.preventDefault();
 
@@ -67,6 +73,13 @@ class DropTarget extends Component {
   onDragLeaveHandler(event) {
     event.preventDefault();
     this.target.classList.remove('drag');
+  }
+
+  onFileSelectedHandler(file) {
+    const { props: { onFilesSelected } } = this;
+    if (onFilesSelected) {
+      onFilesSelected([file]);
+    }
   }
 
   removeDragData(event) {

@@ -1,5 +1,4 @@
 const strings = {
-  selectFile: 'Select Files to Upload!',
-  send: 'Upload',
+  selectFile: 'click here.',
 };
 export default strings;

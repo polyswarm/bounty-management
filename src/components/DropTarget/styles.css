@@ -19,16 +19,21 @@
   color: black;
   cursor: pointer;
   display: table;
-  max-width: 350px;
-  min-height: 400px;
+  height: 100%;
+  min-width: 350px;
   position: relative;
   vertical-align: middle;
 }
 
-.Drop-Target > p {
+.Drop-Target > div {
   display: table-cell;
   padding: 0 20px;
   vertical-align: middle;
+}
+
+p {
+  display: inline-block;
+  margin: 5px auto;
 }
 
 .drag {
