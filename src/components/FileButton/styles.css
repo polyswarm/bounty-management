@@ -14,7 +14,7 @@
   max-width: 350px;
   margin-top: 20px;
   padding: 0 40px;
-  background: rgb(46, 255, 109);
+  background-color: rgb(46, 255, 109);
   color: #8500ff;
   border: 0;
   border-radius: 20px;
@@ -33,9 +33,12 @@
 .hidden + label:hover,
 .hidden + label:active,
 .hidden + label.selected {
-  background: #eeeeee;
+  background-color: #eeeeee;
+  animation-name: hover;
+  animation-duration: .5s;
 }
 
-.hidden + label.selected:hover {
-  background: white;
+@keyframes hover {
+  0% {background-color: rgb(46, 255, 109);}
+  100% {background-color: #eeeeee}
 }
