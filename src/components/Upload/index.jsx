@@ -16,8 +16,10 @@ class Upload extends Component {
   render() {
     return(
       <div className='Upload'>
-        <DropTarget onFilesSelected={this.onMultipleFilesSelected}/>
-        <FileButton onFileSelected={this.onFileSelected}/>
+        <div className='Upload-Form'>
+          <DropTarget onFilesSelected={this.onMultipleFilesSelected}/>
+          <FileButton onFileSelected={this.onFileSelected}/>
+        </div>
       </div>
     );
   }
@@ -27,7 +29,7 @@ class Upload extends Component {
   }
 
   onMultipleFilesSelected(files) {
-    
+
   }
 }
 export default Upload;
