@@ -1,8 +1,6 @@
 // Vendor imports
 import React, {Component} from 'react';
-// Bounty imports
-
-// Extra imports
+// Component imports
 import strings from './strings'
 import './styles.css'
 

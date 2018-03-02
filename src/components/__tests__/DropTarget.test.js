@@ -1,5 +1,4 @@
 import React from 'react';
-import Adapter from 'enzyme-adapter-react-16'
 import {render, mount} from 'enzyme';
 import {renderToJson} from 'enzyme-to-json'
 import DropTarget from '../DropTarget';

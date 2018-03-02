@@ -1,4 +1,6 @@
+// Vendor imports
 import React, {Component} from 'react';
+// Component imports
 import './styles.css';
 import strings from './strings';
 
