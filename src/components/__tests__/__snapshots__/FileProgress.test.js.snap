@@ -8,7 +8,7 @@ exports[`renders without crashing 1`] = `
     <p
       class="FileProgress-Name"
     >
-      
+      asdf
     </p>
     <progress>
       

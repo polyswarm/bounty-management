@@ -21,7 +21,7 @@ class FileList  extends React.Component {
           {strings.title}{' '}{files.length}
         </header>
         <div className='List'>
-          {files && (
+          {files && files.length > 0 && (
             files.map((f, index) => {
               const name = f.name;
               return(
