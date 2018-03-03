@@ -1,11 +1,12 @@
 .Upload {
   border-radius: 20px;
-  flex-wrap: wrap;
+  display: block;
   margin: 0 auto;
   max-width: 768px;
   position: relative;
 }
 
-.Upload-Form {
-  max-width: 350px;
+.Container {
+  display: inline-flex;
+  flex-wrap: wrap;
 }

@@ -25,8 +25,10 @@ class DropTarget extends Component {
         onDragEnter={this.onDragEnterHandler}
         onDragLeave={this.onDragLeaveHandler}>
         <div>
-          <p>{strings.dragAndDrop}</p>
-          <FileButton onFileSelected={this.onFileSelectedHandler}/>
+          <div className='center'>
+            <p>{strings.dragAndDrop}</p>
+            <FileButton onFileSelected={this.onFileSelectedHandler}/>
+          </div>
         </div>
       </div>
     );

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 // Bounty imports
 import DropTarget from '../DropTarget';
-import FileButton from '../FileButton';
+import FileList from '../FileList';
 // Component imports
 import './styles.css';
 
@@ -15,8 +15,9 @@ class Upload extends Component {
   render() {
     return(
       <div className='Upload'>
-        <div className='Upload-Form'>
+        <div className='Container'>
           <DropTarget onFilesSelected={this.onMultipleFilesSelected}/>
+          <FileList />
         </div>
       </div>
     );

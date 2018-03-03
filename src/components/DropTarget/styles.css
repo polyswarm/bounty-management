@@ -18,16 +18,22 @@
   border-radius: 20px;
   color: black;
   cursor: pointer;
-  display: table;
-  height: 100%;
-  min-width: 350px;
+  display: inline-block;
+  min-height: 400px;
+  width: 350px;
   position: relative;
   vertical-align: middle;
 }
 
 .Drop-Target > div {
-  display: table-cell;
+  display: table;
+  height: 400px;
   padding: 0 20px;
+  position: relative;
+}
+
+.center {
+  display: table-cell;
   vertical-align: middle;
 }
 
