@@ -15,12 +15,11 @@
   background-image: url('/img/gray_hexgrid_2x.png');
   background-size: 48px 58px;
   border: 2px dashed black;
-  border-radius: 20px;
   color: black;
   cursor: pointer;
   display: inline-block;
-  min-height: 400px;
-  width: 350px;
+  min-height: 396px;
+  width: 346px;
   position: relative;
   vertical-align: middle;
 }

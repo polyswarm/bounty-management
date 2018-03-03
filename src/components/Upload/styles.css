@@ -1,4 +1,5 @@
 .Upload {
+  background-color: #fafafa;
   border-radius: 20px;
   display: block;
   margin: 0 auto;
@@ -7,6 +8,9 @@
 }
 
 .Container {
-  display: inline-flex;
-  flex-wrap: wrap;
+  display: grid;
+  padding: 20px;
+  grid-column-gap: 28px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 400px 50px;
 }

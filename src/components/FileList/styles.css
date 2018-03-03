@@ -1,16 +1,18 @@
 header {
-  border-bottom: 1px solid gray;
-  color: #8500ff;
+  background-color: #8500ff;
+  border-bottom: 2px solid #350066;
+  color: #fafafa;
   font-size: 20px;
   line-height: 40px;
 }
 
-.FileList {
+.File-List {
   background-color: #fafafa;
-  border-radius: 20px;
+  border: 1px solid #8500ff;
+  border-radius: 10px;
   display: inline-block;
-  min-height: 400px;
-  min-width: 350px;
+  min-height: 398px;
+  min-width: 348px;
   overflow: auto;
   position: relative;
 }
