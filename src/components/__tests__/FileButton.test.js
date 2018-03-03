@@ -17,7 +17,7 @@ it('calls the provided fileSelected function', () => {
   const instance = wrapper.instance();
   const event = {
     target: {
-      value: 'fileName'
+      files: ['fileName']
     }
   };
   // act
