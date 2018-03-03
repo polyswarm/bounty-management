@@ -1,11 +1,130 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`calls remove when FileProgress remove button clicked 1`] = `
+<FileList
+  files={
+    Array [
+      Object {
+        "name": "asdf",
+      },
+    ]
+  }
+  removeFile={[Function]}
+>
+  <div
+    className="File-List"
+  >
+    <header>
+      Bounty Files
+       
+      1
+    </header>
+    <div
+      className="List"
+    >
+      <FileProgress
+        file={
+          Object {
+            "name": "asdf",
+          }
+        }
+        key="asdf"
+        remove={[Function]}
+      >
+        <span
+          className="FileProgress"
+        >
+          <div>
+            <p
+              className="FileProgress-Name"
+            >
+              asdf
+            </p>
+            <progress />
+          </div>
+          <button
+            onClick={[Function]}
+          >
+            Remove
+          </button>
+        </span>
+      </FileProgress>
+    </div>
+  </div>
+</FileList>
+`;
+
+exports[`contains 3 FileProgress when 3 added 1`] = `
+<div
+  class="File-List"
+>
+  <header>
+    Bounty Files 3
+  </header>
+  <div
+    class="List"
+  >
+    <span
+      class="FileProgress"
+    >
+      <div>
+        <p
+          class="FileProgress-Name"
+        >
+          asdf
+        </p>
+        <progress>
+          
+        </progress>
+      </div>
+      <button>
+        Remove
+      </button>
+    </span>
+    <span
+      class="FileProgress"
+    >
+      <div>
+        <p
+          class="FileProgress-Name"
+        >
+          demo
+        </p>
+        <progress>
+          
+        </progress>
+      </div>
+      <button>
+        Remove
+      </button>
+    </span>
+    <span
+      class="FileProgress"
+    >
+      <div>
+        <p
+          class="FileProgress-Name"
+        >
+          test
+        </p>
+        <progress>
+          
+        </progress>
+      </div>
+      <button>
+        Remove
+      </button>
+    </span>
+  </div>
+</div>
+`;
+
 exports[`renders without crashing 1`] = `
 <div
   class="File-List"
 >
   <header>
-    Bounty Files
+    Bounty Files 0
   </header>
   <div
     class="List"
