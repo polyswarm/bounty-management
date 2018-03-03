@@ -50,7 +50,7 @@ exports[`renders without crashing 1`] = `
         class="File-List"
       >
         <header>
-          Bounty Files
+          Bounty Files 0
         </header>
         <div
           class="List"
