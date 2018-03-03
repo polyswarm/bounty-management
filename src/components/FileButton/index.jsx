@@ -21,8 +21,8 @@ class FileButton extends Component {
 
   onFileChanged(event) {
     const {onFileSelected} = this.props;
-    if (onFileSelected && event.target.value) {
-      onFileSelected(event.target.value);
+    if (onFileSelected && event.target.files && event.target.files.length >= 1) {
+      onFileSelected(event.target.files[0]);
     }
   }
 }
