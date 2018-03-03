@@ -22,13 +22,13 @@ class FileList  extends React.Component {
         </header>
         <div className='List'>
           {files && (
-            files.map((f) => {
+            files.map((f, index) => {
               const name = f.name;
               return(
                 <FileProgress
                   key={name}
                   file={f}
-                  remove={() => {this.onRemoveClickHandler(f);}} />
+                  remove={() => {this.onRemoveClickHandler(index);}} />
               );
             })
           )}
@@ -37,17 +37,17 @@ class FileList  extends React.Component {
     );
   }
 
-  onRemoveClickHandler(file) {
-    const { props: { remove } } = this;
-    if (remove) {
-      remove(file);
+  onRemoveClickHandler(index) {
+    const { props: { removeFile } } = this;
+    if (removeFile) {
+      removeFile(index);
     }
   }
 }
 
 FileList.proptypes = {
   files: PropTypes.array.isRequired,
-  remove: PropTypes.func.isRequired,
+  removeFile: PropTypes.func.isRequired,
 };
 
 export default FileList;
