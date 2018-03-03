@@ -4,9 +4,25 @@ exports[`renders without crashing 1`] = `
 <div
   class="Drop-Target"
 >
-  <p>
-    Drag and drop your files here, or use the button below.
-  </p>
+  <div>
+    <p>
+      Drag and drop your files here, or 
+    </p>
+    <form>
+      <input
+        class="hidden"
+        id="file"
+        type="file"
+      >
+        
+      </input>
+      <label
+        for="file"
+      >
+        click here.
+      </label>
+    </form>
+  </div>
 </div>
 `;
 

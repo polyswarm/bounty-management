@@ -12,7 +12,7 @@ exports[`renders without crashing 1`] = `
   <label
     for="file"
   >
-    Select Files to Upload!
+    click here.
   </label>
 </form>
 `;
