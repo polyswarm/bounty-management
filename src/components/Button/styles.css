@@ -1,0 +1,54 @@
+.Button {
+  background: #8500ff;
+  border: 0;
+  border-radius: 20px;
+  color: white;
+  display: inline-block;
+  font-size: 16px;
+  height: 40px;
+  letter-spacing: 0.15em;
+  line-height: 40px;
+  margin-top: 20px;
+  padding: 0 40px;
+  text-decoration:none;
+  text-shadow: none;
+  text-transform: uppercase;
+  transition: background-color 0.25s ease;
+}
+
+button:hover,
+button:active {
+  background: darken(#8500ff, 5%);
+  cursor: pointer;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.small {
+  font-size: 12px;
+  padding: 0 30px;
+}
+
+.verySmall {
+  background: white;
+  color: #8500ff;
+  font-size: 12px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 20px;
+}
+
+.reverse {
+  background: white;
+  color: #8500ff;
+}
+
+button:disabled,
+button:disabled:hover {
+  background: white;
+  border: 1px solid darken(rgb(232, 233, 232), 10%);
+  color: darken(rgb(232, 233, 232), 10%);
+  cursor: not-allowed;
+}

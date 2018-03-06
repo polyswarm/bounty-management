@@ -46,6 +46,11 @@ exports[`renders without crashing 1`] = `
         
       </div>
     </div>
+    <button
+      class="Button"
+    >
+      Create Bounty
+    </button>
   </div>
 </div>
 `;
