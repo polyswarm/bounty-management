@@ -1,0 +1,34 @@
+.Remove-Button {
+  background: #fafafa;
+  border: 0;
+  color: #000;
+  display:inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  height: 100%;
+  line-height: 20px;
+  padding: 0 20px;
+  text-decoration:none;
+  text-shadow: none;
+  text-transform: uppercase;
+  transition: background-color 0.25s ease;
+}
+
+.Remove-Button:hover,
+.Remove-Button:active {
+  background: #fafafa;
+  color: red;
+  cursor: pointer;
+}
+
+.Remove-Button:focus {
+  outline: 0;
+}
+
+.Remove-Button:disabled,
+.Remove-Button:disabled:hover {
+  background: white;
+  border: 1px solid #eee;
+  color: #eee;
+  cursor: not-allowed;
+}

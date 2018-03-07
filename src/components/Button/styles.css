@@ -16,13 +16,13 @@
   transition: background-color 0.25s ease;
 }
 
-button:hover,
-button:active {
-  background: darken(#8500ff, 5%);
+.Button:hover,
+.Button:active {
+  background-color: #7500e1;
   cursor: pointer;
 }
 
-button:focus {
+.Button:focus {
   outline: 0;
 }
 
@@ -31,13 +31,22 @@ button:focus {
   padding: 0 30px;
 }
 
-.verySmall {
-  background: white;
-  color: #8500ff;
+.remove {
+  background: #fafafa;
+  border-radius: 0;
+  color: #000;
   font-size: 12px;
-  height: 30px;
-  line-height: 30px;
+  font-weight: bold;
+  height: 100%;
+  line-height: 20px;
+  margin-top: 0;
   padding: 0 20px;
+}
+
+.remove:hover,
+.remove:active {
+  background: #fafafa;
+  color: red;
 }
 
 .reverse {
@@ -45,10 +54,10 @@ button:focus {
   color: #8500ff;
 }
 
-button:disabled,
-button:disabled:hover {
+.Button:disabled,
+.Button:disabled:hover {
   background: white;
-  border: 1px solid darken(rgb(232, 233, 232), 10%);
-  color: darken(rgb(232, 233, 232), 10%);
+  border: 1px solid #eee;
+  color: #eee;
   cursor: not-allowed;
 }

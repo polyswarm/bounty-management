@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// Component Imports
+// Bounty imports
+import RemoveButton from '../RemoveButton';
+// Component imports
 import strings from './strings';
 import './styles.css';
 
@@ -11,17 +13,16 @@ class FileProgress extends Component {
   }
 
   render () {
-    const { props: { file, progress} } = this;
+    const { props: { file } } = this;
     return(
-      <span className='FileProgress'>
-        <div>
-          <p className='FileProgress-Name'>{file.name}</p>
-          <progress>{progress}</progress>
-        </div>
-        <button onClick={this.onClickHandler}>
-          {strings.remove}
-        </button>
-      </span>
+      <div className='FileProgress'>
+        <p className='FileProgress-Name'>{file.name}</p>
+        <span className='FileProgress-Remove'>
+          <RemoveButton onClick={this.onClickHandler}>
+            {strings.remove}
+          </RemoveButton>
+        </span>
+      </div>
     );
   }
 
@@ -35,7 +36,6 @@ class FileProgress extends Component {
 
 FileProgress.proptypes = {
   file: PropTypes.string.isRequired,
-  progress: PropTypes.number,
   remove: PropTypes.func.isRequired,
 };
 

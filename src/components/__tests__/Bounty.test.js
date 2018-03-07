@@ -118,7 +118,7 @@ it('calls uploadFiles when all parameters are met (files, trackBounty, url)', ()
   wrapper.setState({files: files});
 
   // act
-  wrapper.find('.Button').simulate('click');
+  wrapper.find('.Bounty-Create-Upload').simulate('click');
 
   // assert
   expect(mockUploadFiles).toHaveBeenCalledTimes(1);
@@ -128,7 +128,7 @@ it('doesn\'t call uploadFiles when parameters are missing', () => {
   const wrapper = mount(<BountyCreate />);
 
   // act
-  wrapper.find('.Button').simulate('click');
+  wrapper.find('.Bounty-Create-Upload').simulate('click');
   // assert
   expect(mockUploadFiles).toHaveBeenCalledTimes(0);
 });
@@ -158,7 +158,7 @@ it('doesn\'t call uploadBounty when uploadFiles fails', () => {
   wrapper.setState({files: files});
 
   // act
-  wrapper.find('.Button').simulate('click');
+  wrapper.find('.Bounty-Create-Upload').simulate('click');
 
   // assert
   expect(mockUploadBounty).toHaveBeenCalledTimes(0);
@@ -189,7 +189,7 @@ it('calls uploadBounty when uploadFiles succeeds', (done) => {
   wrapper.setState({files: files});
 
   // act
-  wrapper.find('.Button').simulate('click');
+  wrapper.find('.Bounty-Create-Upload').simulate('click');
 
   // assert
   setTimeout(() => {
@@ -233,7 +233,7 @@ it('calls trackBounty when upload bounty is a success', (done) => {
   wrapper.setState({files: files});
 
   // act
-  wrapper.find('.Button').simulate('click');
+  wrapper.find('.Bounty-Create-Upload').simulate('click');
 
   // assert
   setTimeout(() => {
@@ -260,7 +260,7 @@ it('sets uploading to false when uploads complete', (done) => {
   wrapper.setState({files});
   const setStateMock = jest.spyOn(BountyCreate.prototype, 'setState');
 
-  wrapper.find('.Button').simulate('click');
+  wrapper.find('.Bounty-Create-Upload').simulate('click');
 
   // assert
   setTimeout(() => {
@@ -288,7 +288,7 @@ it('has uploading true after clicking create button', () => {
   wrapper.setState({files});
   const setStateMock = jest.spyOn(BountyCreate.prototype, 'setState');
 
-  wrapper.find('.Button').simulate('click');
+  wrapper.find('.Bounty-Create-Upload').simulate('click');
 
   expect(setStateMock).toHaveBeenCalledWith({uploading: true});
 });
@@ -301,7 +301,7 @@ it('disables button when uploading', () => {
   ];
   wrapper.setState({files: files, uploading: true});
 
-  expect(wrapper.find('Button').props().disabled).toBeTruthy();
+  expect(wrapper.find('.Bounty-Create-Upload').props().disabled).toBeTruthy();
 });
 
 it('disables button when there is no supplied url', () => {
@@ -312,7 +312,7 @@ it('disables button when there is no supplied url', () => {
   ];
   wrapper.setState({files: files, uploading: false});
 
-  expect(wrapper.find('Button').props().disabled).toBeTruthy();
+  expect(wrapper.find('.Bounty-Create-Upload').props().disabled).toBeTruthy();
 });
 
 it('disables button when there are no files', () => {
@@ -321,7 +321,7 @@ it('disables button when there are no files', () => {
   ];
   wrapper.setState({files: files, uploading: false});
 
-  expect(wrapper.find('Button').props().disabled).toBeTruthy();
+  expect(wrapper.find('.Bounty-Create-Upload').props().disabled).toBeTruthy();
 });
 
 it('enables button when there are files, a url and not uploading ', () => {
@@ -331,6 +331,5 @@ it('enables button when there are files, a url and not uploading ', () => {
     {name: 'omed'},
   ];
   wrapper.setState({files: files, uploading: false});
-
-  expect(wrapper.find('Button').props().disabled).toBeFalsy();
+  expect(wrapper.find('.Bounty-Create-Upload').props().disabled).toBeFalsy();
 });

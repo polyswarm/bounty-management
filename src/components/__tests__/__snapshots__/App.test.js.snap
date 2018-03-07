@@ -60,6 +60,7 @@ exports[`renders without crashing 1`] = `
       </div>
       <button
         class="Button"
+        disabled=""
       >
         Create Bounty
       </button>

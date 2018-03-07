@@ -31,23 +31,29 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
         key="asdf"
         remove={[Function]}
       >
-        <span
+        <div
           className="FileProgress"
         >
-          <div>
-            <p
-              className="FileProgress-Name"
-            >
-              asdf
-            </p>
-            <progress />
-          </div>
-          <button
-            onClick={[Function]}
+          <p
+            className="FileProgress-Name"
           >
-            Remove
-          </button>
-        </span>
+            asdf
+          </p>
+          <span
+            className="FileProgress-Remove"
+          >
+            <RemoveButton
+              onClick={[Function]}
+            >
+              <button
+                className="Remove-Button"
+                onClick={[Function]}
+              >
+                x
+              </button>
+            </RemoveButton>
+          </span>
+        </div>
       </FileProgress>
     </div>
   </div>
@@ -64,57 +70,60 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
   <div
     class="List"
   >
-    <span
+    <div
       class="FileProgress"
     >
-      <div>
-        <p
-          class="FileProgress-Name"
+      <p
+        class="FileProgress-Name"
+      >
+        asdf
+      </p>
+      <span
+        class="FileProgress-Remove"
+      >
+        <button
+          class="Remove-Button"
         >
-          asdf
-        </p>
-        <progress>
-          
-        </progress>
-      </div>
-      <button>
-        Remove
-      </button>
-    </span>
-    <span
+          x
+        </button>
+      </span>
+    </div>
+    <div
       class="FileProgress"
     >
-      <div>
-        <p
-          class="FileProgress-Name"
+      <p
+        class="FileProgress-Name"
+      >
+        demo
+      </p>
+      <span
+        class="FileProgress-Remove"
+      >
+        <button
+          class="Remove-Button"
         >
-          demo
-        </p>
-        <progress>
-          
-        </progress>
-      </div>
-      <button>
-        Remove
-      </button>
-    </span>
-    <span
+          x
+        </button>
+      </span>
+    </div>
+    <div
       class="FileProgress"
     >
-      <div>
-        <p
-          class="FileProgress-Name"
+      <p
+        class="FileProgress-Name"
+      >
+        test
+      </p>
+      <span
+        class="FileProgress-Remove"
+      >
+        <button
+          class="Remove-Button"
         >
-          test
-        </p>
-        <progress>
-          
-        </progress>
-      </div>
-      <button>
-        Remove
-      </button>
-    </span>
+          x
+        </button>
+      </span>
+    </div>
   </div>
 </div>
 `;

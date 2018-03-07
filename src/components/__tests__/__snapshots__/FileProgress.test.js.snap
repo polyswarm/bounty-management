@@ -1,21 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders without crashing 1`] = `
-<span
+<div
   class="FileProgress"
 >
-  <div>
-    <p
-      class="FileProgress-Name"
+  <p
+    class="FileProgress-Name"
+  >
+    asdf
+  </p>
+  <span
+    class="FileProgress-Remove"
+  >
+    <button
+      class="Remove-Button"
     >
-      asdf
-    </p>
-    <progress>
-      
-    </progress>
-  </div>
-  <button>
-    Remove
-  </button>
-</span>
+      x
+    </button>
+  </span>
+</div>
 `;

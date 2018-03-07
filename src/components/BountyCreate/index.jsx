@@ -31,6 +31,7 @@ class BountyCreate extends Component {
           <FileList files={files}
             removeFile={this.onFileRemoved}/>
           <Button
+            className='Bounty-Create-Upload'
             disabled={!url || !files || files.length === 0 || uploading}
             onClick={this.onCreateBounty}>{strings.createBounty}</Button>
         </div>

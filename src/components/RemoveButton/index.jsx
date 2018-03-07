@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // Component Imports
 import './styles.css';
 
-class Button extends Component {
+class RemoveButton extends Component {
   constructor(props) {
     super(props);
     this.onClickHandler = this.onClickHandler.bind(this);
@@ -14,7 +14,7 @@ class Button extends Component {
   render () {
     const { props: { children } } = this;
     return (
-      <button { ...this.props} className='Button'
+      <button { ...this.props} className='Remove-Button'
         onClick={this.onClickHandler}>
         {children}
       </button>
@@ -29,8 +29,8 @@ class Button extends Component {
   }
 }
 
-Button.proptypes = {
+RemoveButton.proptypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-export default Button;
+export default RemoveButton;
