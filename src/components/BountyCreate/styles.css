@@ -1,4 +1,4 @@
-.Upload {
+.Bounty-Create {
   background-color: #fafafa;
   border-radius: 20px;
   display: block;
@@ -9,8 +9,13 @@
 
 .Container {
   display: grid;
-  padding: 20px;
   grid-column-gap: 28px;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 400px 50px;
+  padding: 20px;
+}
+
+.Button {
+  grid-column: 2;
+  grid-row: 2;
 }

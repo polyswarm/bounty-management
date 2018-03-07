@@ -14,7 +14,7 @@ exports[`renders without crashing 1`] = `
      and save to reload.
   </p>
   <div
-    class="Upload"
+    class="Bounty-Create"
   >
     <div
       class="Container"
@@ -58,6 +58,11 @@ exports[`renders without crashing 1`] = `
           
         </div>
       </div>
+      <button
+        class="Button"
+      >
+        Create Bounty
+      </button>
     </div>
   </div>
 </div>

@@ -1,29 +1,38 @@
 // Vendor imports
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 // Bounty imports
 import DropTarget from '../DropTarget';
 import FileList from '../FileList';
+import Button from '../Button';
 // Component imports
+import strings from './strings';
 import './styles.css';
+import Http from './http';
 
-class Upload extends Component {
+class BountyCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
       files: [],
+      uploading: false,
     };
     this.onMultipleFilesSelected = this.onMultipleFilesSelected.bind(this);
     this.onFileRemoved = this.onFileRemoved.bind(this);
+    this.onCreateBounty = this.onCreateBounty.bind(this);
   }
 
   render() {
-    const { state: { files } } = this;
+    const { state: { files, uploading }, props: { url } } = this;
     return(
-      <div className='Upload'>
+      <div className='Bounty-Create'>
         <div className='Container'>
           <DropTarget onFilesSelected={this.onMultipleFilesSelected}/>
           <FileList files={files}
             removeFile={this.onFileRemoved}/>
+          <Button
+            disabled={!url || !files || files.length == 0 || uploading}
+            onClick={this.onCreateBounty}>{strings.createBounty}</Button>
         </div>
       </div>
     );
@@ -37,8 +46,34 @@ class Upload extends Component {
 
   onFileRemoved(index) {
     const { state: { files } } = this;
-    delete files[index];
-    this.setState({ files: files });
+    if (index > 0 && index < files.length) {
+      files.splice(index, 1);
+      this.setState({ files: files });
+    }
+  }
+
+  onCreateBounty() {
+    const {
+      props: { url, trackBounty },
+      state: {files, uploading}
+    } = this;
+
+    const http = new Http(url);
+    if (url && trackBounty && !uploading && files && files.length > 0) {
+      this.setState({uploading: true});
+      http.uploadFiles(files)
+        .then((artifacts) => http.uploadBounty(10, artifacts, 300))
+        .then(guid => {
+          trackBounty(guid);
+        })
+        .catch(() => {})
+        .then(() => this.setState({uploading: false}));
+    }
   }
 }
-export default Upload;
+
+BountyCreate.propTypes = {
+  url: PropTypes.string,
+  trackBounty: PropTypes.func,
+};
+export default BountyCreate;
