@@ -4,15 +4,6 @@ exports[`renders without crashing 1`] = `
 <div
   class="BountyManager hex-background"
 >
-  <p
-    class="BountyManager-Intro"
-  >
-    To get started, edit 
-    <code>
-      src/App.js
-    </code>
-     and save to reload.
-  </p>
   <div
     class="Bounty-Create"
   >

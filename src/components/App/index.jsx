@@ -11,9 +11,6 @@ class App extends Component {
     const {url} = config;
     return (
       <div className='BountyManager hex-background'>
-        <p className='BountyManager-Intro'>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
         <BountyCreate url={url}/>
       </div>
     );
