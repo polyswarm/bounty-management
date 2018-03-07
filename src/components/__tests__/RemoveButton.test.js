@@ -1,16 +1,16 @@
 import React from 'react';
 import {render, mount} from 'enzyme';
 import {renderToJson} from 'enzyme-to-json';
-import Button from '../Button';
+import RemoveButton from '../RemoveButton';
 
 it('renders without crashing', () => {
-  const wrapper = render(<Button />);
+  const wrapper = render(<RemoveButton />);
   expect(renderToJson(wrapper)).toMatchSnapshot();
 });
 
 it('calls the onClick function passed as a property when clicked', () => {
   const onClickHandler = jest.fn();
-  const wrapper = mount(<Button onClick={onClickHandler} />);
+  const wrapper = mount(<RemoveButton onClick={onClickHandler} />);
 
   wrapper.simulate('click');
 
@@ -19,7 +19,7 @@ it('calls the onClick function passed as a property when clicked', () => {
 
 it('propogates disabled to actualy button element', () => {
   const onClickHandler = jest.fn();
-  const wrapper = mount(<Button disabled onClick={onClickHandler} />);
+  const wrapper = mount(<RemoveButton disabled onClick={onClickHandler} />);
 
   expect(wrapper.find('button').props().disabled).toBeTruthy();
 });
