@@ -47,7 +47,7 @@ class BountyCreate extends Component {
 
   onFileRemoved(index) {
     const { state: { files } } = this;
-    if (index > 0 && index < files.length) {
+    if (index >= 0 && index < files.length) {
       files.splice(index, 1);
       this.setState({ files: files });
     }

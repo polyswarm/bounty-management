@@ -37,6 +37,21 @@ it('renders without crashing', () => {
   expect(renderToJson(wrapper)).toMatchSnapshot();
 });
 
+it('deletes the index 0 when onFileRemoved called', () => {
+  const wrapper = shallow(<BountyCreate />);
+  const instance = wrapper.instance();
+  const files = [
+    {name: 'demo'},
+    {name: 'omed'},
+  ];
+  instance.setState({files});
+
+  //act
+  instance.onFileRemoved(0);
+  expect(instance.state.files).toHaveLength(1);
+  expect(instance.state.files).toEqual([{name: 'omed'}]);
+});
+
 it('deletes the file at index when onFileRemoved called', () => {
   const wrapper = shallow(<BountyCreate />);
   const instance = wrapper.instance();
