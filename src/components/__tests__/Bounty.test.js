@@ -280,7 +280,7 @@ it('sets uploading to false when uploads complete', (done) => {
   // assert
   setTimeout(() => {
     try {
-      expect(setStateMock).toHaveBeenCalledWith({uploading: true});
+      expect(setStateMock).toHaveBeenCalledWith({error: null, uploading: true});
       expect(setStateMock).toHaveBeenLastCalledWith({uploading: false});
       expect(setStateMock).toHaveBeenCalledTimes(2);
       done();
@@ -305,7 +305,7 @@ it('has uploading true after clicking create button', () => {
 
   wrapper.find('.Bounty-Create-Upload').simulate('click');
 
-  expect(setStateMock).toHaveBeenCalledWith({uploading: true});
+  expect(setStateMock).toHaveBeenCalledWith({error: null, uploading: true});
 });
 
 it('disables button when uploading', () => {
@@ -347,4 +347,11 @@ it('enables button when there are files, a url and not uploading ', () => {
   ];
   wrapper.setState({files: files, uploading: false});
   expect(wrapper.find('.Bounty-Create-Upload').props().disabled).toBeFalsy();
+});
+
+it('shows the error when state has an error', () => {
+  const wrapper = mount(<BountyCreate url={'url'}/>);
+  wrapper.setState({error: 'Error'});
+
+  expect(wrapper.find('.Bounty-Create-Error').props().children).toBe('Error');
 });

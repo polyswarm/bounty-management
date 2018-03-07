@@ -16,6 +16,7 @@ class BountyCreate extends Component {
     this.state = {
       files: [],
       uploading: false,
+      error: null,
     };
     this.onMultipleFilesSelected = this.onMultipleFilesSelected.bind(this);
     this.onFileRemoved = this.onFileRemoved.bind(this);
@@ -23,17 +24,22 @@ class BountyCreate extends Component {
   }
 
   render() {
-    const { state: { files, uploading }, props: { url } } = this;
+    const { state: { files, uploading, error }, props: { url } } = this;
     return(
       <div className='Bounty-Create'>
         <div className='Container'>
           <DropTarget onFilesSelected={this.onMultipleFilesSelected}/>
           <FileList files={files}
             removeFile={this.onFileRemoved}/>
+          {error && (
+            <p className='Bounty-Create-Error'>{error}</p>
+          )}
           <Button
             className='Bounty-Create-Upload'
             disabled={!url || !files || files.length === 0 || uploading}
-            onClick={this.onCreateBounty}>{strings.createBounty}</Button>
+            onClick={this.onCreateBounty}>
+            {strings.createBounty}
+          </Button>
         </div>
       </div>
     );
@@ -60,14 +66,24 @@ class BountyCreate extends Component {
     } = this;
 
     const http = new Http(url);
-    if (url && trackBounty && !uploading && files && files.length > 0) {
-      this.setState({uploading: true});
+    if (url && !uploading && files && files.length > 0) {
+      this.setState({uploading: true, error: null});
       http.uploadFiles(files)
         .then((artifacts) => http.uploadBounty(10, artifacts, 300))
         .then(guid => {
-          trackBounty(guid);
+          if (trackBounty) {
+            trackBounty(guid);
+          }
         })
-        .catch(() => {})
+        .catch((error) => {
+          let errorMessage;
+          if (!error || error.length === 0) {
+            errorMessage = strings.error;
+          } else {
+            errorMessage = error;
+          }
+          this.setState({error: errorMessage});
+        })
         .then(() => this.setState({uploading: false}));
     }
   }

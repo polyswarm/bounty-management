@@ -11,11 +11,20 @@
   display: grid;
   grid-column-gap: 28px;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 400px 50px;
+  grid-template-rows: 400px 35px 40px;
   padding: 20px;
 }
 
-.Button {
-  grid-column: 2;
+.Bounty-Create-Error {
+  color: red;
+  grid-column: 1 / 3 ;
   grid-row: 2;
+  width: 100%;
+}
+
+.Button {
+  grid-column: 1/ 3;
+  grid-row: 3;
+  margin-top: 0;
+  width: 100%;
 }

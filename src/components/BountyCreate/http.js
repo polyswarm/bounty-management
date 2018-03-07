@@ -1,5 +1,3 @@
-import fetch from 'react';
-
 class Http {
   constructor(url) {
     this.url = url;
@@ -16,7 +14,7 @@ class Http {
         });
 
         // open connection
-        const xhr = XMLHttpRequest();
+        const xhr = new XMLHttpRequest();
 
         // attach listeners
         xhr.onerror = () => reject(xhr.statusText);
@@ -30,8 +28,7 @@ class Http {
       }
     })
       .then(body => body.json)
-      .then(json => json.artifacts)
-      .catch(error =>  console.error(error));
+      .then(json => json.artifacts);
   }
 
   uploadBounty(amount, artifacts, duration) {
@@ -59,8 +56,7 @@ class Http {
         throw new Error('Error response was not ok');
       })
       .then(response => response.json())
-      .then(body => body.guid)
-      .catch((error) => console.error(error));
+      .then(body => body.guid);
   }
 }
 export default Http;
