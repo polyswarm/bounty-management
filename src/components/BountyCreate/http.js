@@ -27,7 +27,11 @@ class Http {
         // attach listeners
         xhr.onerror = () => reject(xhr.statusText);
         xhr.onload = () => resolve(xhr.response);
-        xhr.onprogress = (event) => progress(event.loaded/event.total);
+        xhr.onprogress = (event) => {
+          if (event && event.loaded && event.total) {
+            progress(event.loaded/event.total);
+          }
+        };
 
         // send to server
         xhr.open('post', url);
