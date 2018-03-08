@@ -26,32 +26,15 @@
   outline: 0;
 }
 
-.small {
-  font-size: 12px;
-  padding: 0 30px;
+.cancel {
+  background: #ff1a00;
+  color: white;
 }
 
-.remove {
-  background: #fafafa;
-  border-radius: 0;
-  color: #000;
-  font-size: 12px;
-  font-weight: bold;
-  height: 100%;
-  line-height: 20px;
-  margin-top: 0;
-  padding: 0 20px;
-}
-
-.remove:hover,
-.remove:active {
-  background: #fafafa;
-  color: red;
-}
-
-.reverse {
-  background: white;
-  color: #8500ff;
+.cancel:hover,
+.cancel:active {
+  background: #a81100;
+  color: white;
 }
 
 .Button:disabled,

@@ -20,7 +20,14 @@ class BountyCreate extends Component {
     };
     this.onMultipleFilesSelected = this.onMultipleFilesSelected.bind(this);
     this.onFileRemoved = this.onFileRemoved.bind(this);
-    this.onCreateBounty = this.onCreateBounty.bind(this);
+    this.createBounty = this.createBounty.bind(this);
+    this.onClickHandler = this.onClickHandler.bind(this);
+    this.cancel = this.cancel.bind(this);
+  }
+
+  componentDidMount() {
+    const { props: { url } } = this;
+    this.http = new Http(url);
   }
 
   render() {
@@ -35,10 +42,12 @@ class BountyCreate extends Component {
             <p className='Bounty-Create-Error'>{error}</p>
           )}
           <Button
+            cancel={uploading}
             className='Bounty-Create-Upload'
-            disabled={!url || !files || files.length === 0 || uploading}
-            onClick={this.onCreateBounty}>
-            {strings.createBounty}
+            disabled={!url || !files || files.length === 0 }
+            onClick={this.onClickHandler}>
+            {uploading && (strings.cancel)}
+            {!uploading && (strings.createBounty)}
           </Button>
         </div>
       </div>
@@ -55,17 +64,31 @@ class BountyCreate extends Component {
     const { state: { files } } = this;
     if (index >= 0 && index < files.length) {
       files.splice(index, 1);
-      this.setState({ files: files });
+      this.setState({ files: files, error: null, });
     }
   }
 
-  onCreateBounty() {
+  onClickHandler() {
+    const { state: { uploading } } = this;
+    if (uploading) {
+      this.cancel();
+    } else {
+      this.createBounty();
+    }
+  }
+
+  cancel() {
+    const { http } = this;
+    http.cancel();
+  }
+
+  createBounty() {
     const {
       props: { url, trackBounty },
       state: {files, uploading}
     } = this;
 
-    const http = new Http(url);
+    const http = this.http;
     if (url && !uploading && files && files.length > 0) {
       this.setState({uploading: true, error: null});
       http.uploadFiles(files)
@@ -84,7 +107,9 @@ class BountyCreate extends Component {
           }
           this.setState({error: errorMessage});
         })
-        .then(() => this.setState({uploading: false}));
+        .then(() => this.setState({
+          uploading: false,
+        }));
     }
   }
 }

@@ -12,9 +12,12 @@ class Button extends Component {
   }
 
   render () {
-    const { props: { children } } = this;
+    const { props: { disabled, children, cancel } } = this;
+    const cancelClass = cancel ? ' cancel' : '';
     return (
-      <button { ...this.props} className='Button'
+      <button
+        disabled={disabled}
+        className={`Button${cancelClass}`}
         onClick={this.onClickHandler}>
         {children}
       </button>
@@ -31,6 +34,7 @@ class Button extends Component {
 
 Button.proptypes = {
   onClick: PropTypes.func.isRequired,
+  cancel: PropTypes.bool,
 };
 
 export default Button;

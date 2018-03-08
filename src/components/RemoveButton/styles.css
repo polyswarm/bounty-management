@@ -17,7 +17,7 @@
 .Remove-Button:hover,
 .Remove-Button:active {
   background: #fafafa;
-  color: red;
+  color: #ff1a00;
   cursor: pointer;
 }
 

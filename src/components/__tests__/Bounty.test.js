@@ -308,7 +308,7 @@ it('has uploading true after clicking create button', () => {
   expect(setStateMock).toHaveBeenCalledWith({error: null, uploading: true});
 });
 
-it('disables button when uploading', () => {
+it('stays enabled button when uploading but changes text and color', () => {
   const wrapper = mount(<BountyCreate url={'url'}/>);
   const files = [
     {name: 'demo'},
@@ -316,7 +316,10 @@ it('disables button when uploading', () => {
   ];
   wrapper.setState({files: files, uploading: true});
 
-  expect(wrapper.find('.Bounty-Create-Upload').props().disabled).toBeTruthy();
+  const button = wrapper.find('.Bounty-Create-Upload');
+  expect(button.props().disabled).toBeFalsy();
+  expect(button.props().children[0]).toBe('Cancel');
+
 });
 
 it('disables button when there is no supplied url', () => {

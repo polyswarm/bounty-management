@@ -1,6 +1,14 @@
 class Http {
   constructor(url) {
     this.url = url;
+    this.xhr = null;
+  }
+
+  cancel() {
+    const { xhr } = this;
+    if (xhr) {
+      xhr.abort();
+    }
   }
 
   uploadFiles(files) {
@@ -23,6 +31,7 @@ class Http {
         // send to server
         xhr.open('post', url);
         xhr.send(formData);
+        this.xhr = xhr;
       } else {
         reject('No URL set');
       }
