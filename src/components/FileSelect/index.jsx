@@ -6,7 +6,7 @@ import RemoveButton from '../RemoveButton';
 import strings from './strings';
 import './styles.css';
 
-class FileProgress extends Component {
+class FileSelect extends Component {
   constructor(props) {
     super(props);
     this.onClickHandler = this.onClickHandler.bind(this);
@@ -34,9 +34,9 @@ class FileProgress extends Component {
   }
 }
 
-FileProgress.proptypes = {
+FileSelect.proptypes = {
   file: PropTypes.string.isRequired,
   remove: PropTypes.func.isRequired,
 };
 
-export default FileProgress;
+export default FileSelect;

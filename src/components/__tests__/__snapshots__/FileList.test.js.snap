@@ -22,7 +22,7 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
     <div
       className="List"
     >
-      <FileProgress
+      <FileSelect
         file={
           Object {
             "name": "asdf",
@@ -54,7 +54,7 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
             </RemoveButton>
           </span>
         </div>
-      </FileProgress>
+      </FileSelect>
     </div>
   </div>
 </FileList>

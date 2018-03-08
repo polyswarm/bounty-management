@@ -1,11 +1,11 @@
 import React from 'react';
 import {render} from 'enzyme';
 import {renderToJson} from 'enzyme-to-json';
-import FileProgress from '../FileProgress';
+import FileSelect from '../FileSelect';
 
 it('throws on render without files', () => {
   expect(() => {
-    render(<FileProgress />);
+    render(<FileSelect />);
   }).toThrow();
 });
 
@@ -13,7 +13,7 @@ it('renders without crashing', () => {
   const file = {
     name: 'asdf'
   };
-  const wrapper = render(<FileProgress file={file} />);
+  const wrapper = render(<FileSelect file={file} />);
   expect(renderToJson(wrapper)).toMatchSnapshot();
 });
 
@@ -22,7 +22,7 @@ if('calls the mock function when I click close', () => {
   const file = {
     name: 'asdf'
   };
-  const wrapper = render(<FileProgress file={file} remove={remove} />);
+  const wrapper = render(<FileSelect file={file} remove={remove} />);
   wrapper.find('button').simulate('click');
   expect(remove).toHaveBeenCalled();
 });
