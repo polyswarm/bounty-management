@@ -25,6 +25,7 @@ class BountyCreate extends Component {
     this.createBounty = this.createBounty.bind(this);
     this.onClickHandler = this.onClickHandler.bind(this);
     this.cancel = this.cancel.bind(this);
+    this.onProgress = this.onProgress.bind(this);
   }
 
   componentDidMount() {
@@ -82,6 +83,10 @@ class BountyCreate extends Component {
     }
   }
 
+  onProgress(progress) {
+    this.setState({progress: progress});
+  }
+
   cancel() {
     const { http } = this;
     http.cancel();
@@ -96,7 +101,7 @@ class BountyCreate extends Component {
     const http = this.http;
     if (url && !uploading && files && files.length > 0) {
       this.setState({uploading: true, error: null});
-      http.uploadFiles(files)
+      http.uploadFiles(files, this.onProgress)
         .then((artifacts) => http.uploadBounty(10, artifacts, 300))
         .then(guid => {
           if (trackBounty) {

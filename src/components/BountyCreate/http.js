@@ -11,7 +11,7 @@ class Http {
     }
   }
 
-  uploadFiles(files) {
+  uploadFiles(files, progress) {
     return new Promise((resolve, reject) => {
       const url = this.url+'/artifacts';
       if(this.url && files && files.length > 0) {
@@ -27,6 +27,7 @@ class Http {
         // attach listeners
         xhr.onerror = () => reject(xhr.statusText);
         xhr.onload = () => resolve(xhr.response);
+        xhr.onprogress = (event) => progress(event.loaded/event.total);
 
         // send to server
         xhr.open('post', url);
