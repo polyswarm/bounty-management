@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import DropTarget from '../DropTarget';
 import FileList from '../FileList';
 import Button from '../Button';
+import Progressbar from '../Progressbar';
 // Component imports
 import strings from './strings';
 import './styles.css';
@@ -17,6 +18,7 @@ class BountyCreate extends Component {
       files: [],
       uploading: false,
       error: null,
+      progress: 0,
     };
     this.onMultipleFilesSelected = this.onMultipleFilesSelected.bind(this);
     this.onFileRemoved = this.onFileRemoved.bind(this);
@@ -31,13 +33,16 @@ class BountyCreate extends Component {
   }
 
   render() {
-    const { state: { files, uploading, error }, props: { url } } = this;
+    const { state: { files, uploading, error, progress }, props: { url } } = this;
     return(
       <div className='Bounty-Create'>
         <div className='Container'>
           <DropTarget onFilesSelected={this.onMultipleFilesSelected}/>
           <FileList files={files}
             removeFile={this.onFileRemoved}/>
+          {uploading && !error && (
+            <Progressbar progress={progress}/>
+          )}
           {error && (
             <p className='Bounty-Create-Error'>{error}</p>
           )}
