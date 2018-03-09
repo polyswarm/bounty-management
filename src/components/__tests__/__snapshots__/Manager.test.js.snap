@@ -1,11 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders without crashing 1`] = `
-<div>
-  <a
-    href="/create"
-  >
-    Create Bounty
-  </a>
+<div
+  class="Manager"
+>
+  Placeholder
 </div>
 `;

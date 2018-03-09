@@ -1,13 +1,23 @@
 // Vendor imports
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+// Bounty Imports
+import ListItem from '../ListItem';
 // Component Imports
 import strings from './strings';
 import './styles.css';
 
 class Sidebar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: 0,
+    };
+    this.onSelectBounty = this.onSelectBounty.bind(this);
+  }
 
   render() {
-    const { props: { bounties } } = this;
+    const { props: { bounties }, state: { selected } } = this;
     return (
       <div className='Sidebar'>
         <header className='Sidebar-Header'>
@@ -15,15 +25,31 @@ class Sidebar extends Component {
             alt={strings.logo}/>
         </header>
         <div className='Sidebar-Content'>
-          {bounties && (
-            bounties.map((bounty) => {
-              return(<p>{bounty}</p>);
+          {bounties && bounties.length > 0 && (
+            bounties.map((bounty, index) => {
+              return(<ListItem
+                className={`item-${index} ${index === selected ? 'active' : ''}`}
+                key={bounty}
+                onClick={() => {this.onSelectBounty(index);}}
+                item={bounty}/>);
             })
           )}
         </div>
       </div>
     );
   }
+
+  onSelectBounty(index) {
+    const { props: { select } } = this;
+    if (select) {
+      select(index);
+      this.setState({selected: index});
+    }
+  }
 }
+Sidebar.defaultProps = {
+  bounties: PropTypes.array.isRequired,
+  select: PropTypes.func.isRequired,
+};
 
 export default Sidebar;

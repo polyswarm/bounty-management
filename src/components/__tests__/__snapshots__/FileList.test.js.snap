@@ -31,6 +31,7 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
       >
         <div
           className="ListItem"
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >

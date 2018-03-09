@@ -14,6 +14,7 @@ class ListItem extends Component {
     };
 
     this.onClickHandler = this.onClickHandler.bind(this);
+    this.onRemoveHandler = this.onRemoveHandler.bind(this);
     this.onMouseEnter = this.onMouseEnter.bind(this);
     this.onMouseLeave = this.onMouseLeave.bind(this);
   }
@@ -23,11 +24,12 @@ class ListItem extends Component {
     return(
       <div className='ListItem'
         onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}>
+        onMouseLeave={this.onMouseLeave}
+        onClick={this.onClickHandler}>
         <p className='ListItem-Name'>{item}</p>
         {remove && hover && (
           <span className='ListItem-Remove'>
-            <RemoveButton onClick={this.onClickHandler}>
+            <RemoveButton onClick={this.onRemoveHandler}>
               <img className='redx' src='/img/red-x.svg' alt={strings.remove}/>
             </RemoveButton>
           </span>
@@ -37,6 +39,13 @@ class ListItem extends Component {
   }
 
   onClickHandler() {
+    const { props: { onClick } } = this;
+    if (onClick) {
+      onClick();
+    }
+  }
+
+  onRemoveHandler() {
     const { props: { remove } } = this;
     if (remove) {
       remove();

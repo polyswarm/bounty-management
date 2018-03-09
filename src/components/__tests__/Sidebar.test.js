@@ -4,6 +4,7 @@ import {renderToJson} from 'enzyme-to-json';
 import Sidebar from '../Sidebar';
 
 it('renders without crashing', () => {
-  const wrapper = render(<Sidebar />);
+  const bounties = [];
+  const wrapper = render(<Sidebar bounties={bounties} />);
   expect(renderToJson(wrapper)).toMatchSnapshot();
 });

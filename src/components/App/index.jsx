@@ -1,6 +1,5 @@
 // Vendor imports
 import React, { Component } from 'react';
-import {Switch, Route} from 'react-router-dom';
 // Bounty imports
 import BountyCreate from '../BountyCreate';
 import Manager from '../Manager';
@@ -12,11 +11,12 @@ import './styles.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.renderManager = this.renderManager.bind(this);
-    this.renderCreate = this.renderCreate.bind(this);
     this.state = {
+      active: 0,
       bounties: [],
     };
+
+    this.onSelectBounty = this.onSelectBounty.bind(this);
   }
 
   // componentWillReceiveProps(nextProps) {
@@ -24,29 +24,25 @@ class App extends Component {
   // }
 
   render() {
+    const {url} = config;
+    const { state: { active, bounties } } = this;
     return (
       <div className='App hex-background'>
-        <Sidebar />
-        <Switch>
-          <Route exact path='/' render={this.renderManager}/>
-          <Route path='/create' render={this.renderCreate}/>
-        </Switch>
+        <Sidebar bounties={bounties} select={this.onSelectBounty}/>
+        { active >= bounties.length && (
+          <BountyCreate url={url}/>
+        )}
+        { active < bounties.length && (
+          <Manager bounty={bounties[active]}/>
+        )}
       </div>
     );
   }
 
-  renderCreate() {
-    const {url} = config;
-    return (
-      <BountyCreate url={url}/>
-    );
-  }
-
-  renderManager() {
-    const { state: { bounties } } = this;
-    return(
-      <Manager bounties={bounties}/>
-    );
+  onSelectBounty(index) {
+    if (index) {
+      this.setState({active: index});
+    }
   }
 }
 

@@ -23,12 +23,187 @@ exports[`renders without crashing 1`] = `
       
     </div>
   </div>
-  <div>
-    <a
-      href="/create"
+  <div
+    class="Bounty-Create"
+  >
+    <div
+      class="Container"
     >
-      Create Bounty
-    </a>
+      <div
+        class="Drop-Target"
+      >
+        <div>
+          <div
+            class="center"
+          >
+            <p>
+              Drag and drop your files here, or 
+            </p>
+            <form>
+              <input
+                class="hidden"
+                id="file"
+                type="file"
+              >
+                
+              </input>
+              <label
+                for="file"
+              >
+                click here.
+              </label>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div
+        class="File-List"
+      >
+        <header
+          class="File-List-Header"
+        >
+          Bounty Files 0
+        </header>
+        <div
+          class="List"
+        >
+          
+        </div>
+      </div>
+      <button
+        class="Button"
+        disabled=""
+      >
+        Create Bounty
+      </button>
+    </div>
   </div>
 </div>
+`;
+
+exports[`shows create when no bounties found 1`] = `null`;
+
+exports[`shows manager when at least one bounty & active is negative 1`] = `
+<App>
+  <div
+    className="App hex-background"
+  >
+    <Sidebar
+      bounties={
+        Array [
+          "asdf",
+        ]
+      }
+      select={[Function]}
+    >
+      <div
+        className="Sidebar"
+      >
+        <header
+          className="Sidebar-Header"
+        >
+          <img
+            alt="Polyswarm logo"
+            src="/img/polyswarm.svg"
+          />
+        </header>
+        <div
+          className="Sidebar-Content"
+        >
+          <ListItem
+            className="item-0 active"
+            item="asdf"
+            key="asdf"
+            onClick={[Function]}
+          >
+            <div
+              className="ListItem"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              <p
+                className="ListItem-Name"
+              >
+                asdf
+              </p>
+            </div>
+          </ListItem>
+        </div>
+      </div>
+    </Sidebar>
+    <Manager
+      bounties={[Function]}
+    >
+      <div
+        className="Manager"
+      >
+        Placeholder
+      </div>
+    </Manager>
+  </div>
+</App>
+`;
+
+exports[`shows manager when at least one bounty & active selects it 1`] = `
+<App>
+  <div
+    className="App hex-background"
+  >
+    <Sidebar
+      bounties={
+        Array [
+          "asdf",
+        ]
+      }
+      select={[Function]}
+    >
+      <div
+        className="Sidebar"
+      >
+        <header
+          className="Sidebar-Header"
+        >
+          <img
+            alt="Polyswarm logo"
+            src="/img/polyswarm.svg"
+          />
+        </header>
+        <div
+          className="Sidebar-Content"
+        >
+          <ListItem
+            className="item-0 active"
+            item="asdf"
+            key="asdf"
+            onClick={[Function]}
+          >
+            <div
+              className="ListItem"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              <p
+                className="ListItem-Name"
+              >
+                asdf
+              </p>
+            </div>
+          </ListItem>
+        </div>
+      </div>
+    </Sidebar>
+    <Manager
+      bounties={[Function]}
+      bounty="asdf"
+    >
+      <div
+        className="Manager"
+      >
+        Placeholder
+      </div>
+    </Manager>
+  </div>
+</App>
 `;
