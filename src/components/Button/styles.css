@@ -1,8 +1,8 @@
 .Button {
-  background: #8500ff;
+  background: rgb(46, 255, 109);
   border: 0;
   border-radius: 20px;
-  color: white;
+  color: #8500ff;
   display: inline-block;
   font-size: 16px;
   height: 40px;
@@ -18,7 +18,7 @@
 
 .Button:hover,
 .Button:active {
-  background-color: #7500e1;
+  background-color: #57e682;
   cursor: pointer;
 }
 

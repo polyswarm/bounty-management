@@ -1,7 +1,6 @@
 header {
-  background-color: #8500ff;
   border-bottom: 2px solid #350066;
-  color: #fafafa;
+  color: #7500ff;
   font-size: 20px;
   line-height: 40px;
 }
@@ -9,10 +8,7 @@ header {
 .File-List {
   background-color: #fafafa;
   border: 1px solid #8500ff;
-  border-radius: 10px;
   display: inline-block;
-  min-height: 398px;
-  min-width: 348px;
   overflow: auto;
   position: relative;
 }

@@ -18,8 +18,6 @@
   color: black;
   cursor: pointer;
   display: inline-block;
-  min-height: 396px;
-  width: 346px;
   position: relative;
   vertical-align: middle;
 }
@@ -27,6 +25,7 @@
 .Drop-Target > div {
   display: table;
   height: 400px;
+  margin: 0 auto;
   padding: 0 20px;
   position: relative;
 }
