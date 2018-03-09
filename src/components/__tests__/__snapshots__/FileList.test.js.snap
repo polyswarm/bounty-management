@@ -24,25 +24,21 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
     <div
       className="List"
     >
-      <FileSelect
-        file={
-          Object {
-            "name": "asdf",
-          }
-        }
+      <ListItem
+        item="asdf"
         key="asdf"
         remove={[Function]}
       >
         <div
-          className="FileProgress"
+          className="ListItem"
         >
           <p
-            className="FileProgress-Name"
+            className="ListItem-Name"
           >
             asdf
           </p>
           <span
-            className="FileProgress-Remove"
+            className="ListItem-Remove"
           >
             <RemoveButton
               onClick={[Function]}
@@ -56,7 +52,7 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
             </RemoveButton>
           </span>
         </div>
-      </FileSelect>
+      </ListItem>
     </div>
   </div>
 </FileList>
@@ -75,15 +71,15 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
     class="List"
   >
     <div
-      class="FileProgress"
+      class="ListItem"
     >
       <p
-        class="FileProgress-Name"
+        class="ListItem-Name"
       >
         asdf
       </p>
       <span
-        class="FileProgress-Remove"
+        class="ListItem-Remove"
       >
         <button
           class="Remove-Button"
@@ -93,15 +89,15 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
       </span>
     </div>
     <div
-      class="FileProgress"
+      class="ListItem"
     >
       <p
-        class="FileProgress-Name"
+        class="ListItem-Name"
       >
         demo
       </p>
       <span
-        class="FileProgress-Remove"
+        class="ListItem-Remove"
       >
         <button
           class="Remove-Button"
@@ -111,15 +107,15 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
       </span>
     </div>
     <div
-      class="FileProgress"
+      class="ListItem"
     >
       <p
-        class="FileProgress-Name"
+        class="ListItem-Name"
       >
         test
       </p>
       <span
-        class="FileProgress-Remove"
+        class="ListItem-Remove"
       >
         <button
           class="Remove-Button"

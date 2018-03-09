@@ -2,15 +2,15 @@
 
 exports[`renders without crashing 1`] = `
 <div
-  class="FileProgress"
+  class="ListItem"
 >
   <p
-    class="FileProgress-Name"
+    class="ListItem-Name"
   >
     asdf
   </p>
   <span
-    class="FileProgress-Remove"
+    class="ListItem-Remove"
   >
     <button
       class="Remove-Button"

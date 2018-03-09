@@ -1,18 +1,18 @@
-.FileProgress {
+.ListItem {
+  background-clip: border-box;
   border-bottom: 2px #eeeeee solid;
   box-sizing: border-box;
-  background-clip: border-box;
   height: 48px;
   line-height: 46px;
   margin: 0 10px;
   width: calc(100% - 20px);
 }
 
-.FileProgress-Name {
+.ListItem-Name {
   float: left;
   margin: 0;
 }
 
-.FileProgress-Remove {
+.ListItem-Remove {
   float: right;
 }

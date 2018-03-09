@@ -20,7 +20,7 @@ it('contains 3 FileProgress when 3 added', () => {
     {name: 'test'},
   ];
   const wrapper = render(<FileList files={files} />);
-  expect(wrapper.find('.FileProgress')).toHaveLength(3);
+  expect(wrapper.find('.ListItem')).toHaveLength(3);
   expect(renderToJson(wrapper)).toMatchSnapshot();
 });
 

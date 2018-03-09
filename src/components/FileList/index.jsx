@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // Bounty imports
-import FileSelect from '../FileSelect';
+import ListItem from '../ListItem';
 // Component Imports
 import strings from './strings';
 import './styles.css';
@@ -25,9 +25,9 @@ class FileList  extends React.Component {
             files.map((f, index) => {
               const name = f.name;
               return(
-                <FileSelect
+                <ListItem
                   key={name}
-                  file={f}
+                  item={f.name}
                   remove={() => {this.onRemoveClickHandler(index);}} />
               );
             })

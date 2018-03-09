@@ -6,18 +6,18 @@ import RemoveButton from '../RemoveButton';
 import strings from './strings';
 import './styles.css';
 
-class FileSelect extends Component {
+class ListItem extends Component {
   constructor(props) {
     super(props);
     this.onClickHandler = this.onClickHandler.bind(this);
   }
 
   render () {
-    const { props: { file } } = this;
+    const { props: { item } } = this;
     return(
-      <div className='FileProgress'>
-        <p className='FileProgress-Name'>{file.name}</p>
-        <span className='FileProgress-Remove'>
+      <div className='ListItem'>
+        <p className='ListItem-Name'>{item}</p>
+        <span className='ListItem-Remove'>
           <RemoveButton onClick={this.onClickHandler}>
             {strings.remove}
           </RemoveButton>
@@ -34,9 +34,9 @@ class FileSelect extends Component {
   }
 }
 
-FileSelect.proptypes = {
-  file: PropTypes.string.isRequired,
+ListItem.proptypes = {
+  item: PropTypes.string.isRequired,
   remove: PropTypes.func.isRequired,
 };
 
-export default FileSelect;
+export default ListItem;
