@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<div
+  class="Sidebar"
+>
+  <header
+    class="Sidebar-Header"
+  >
+    <img
+      alt="Polyswarm logo"
+      src="/img/polyswarm.svg"
+    >
+      
+    </img>
+  </header>
+  <div
+    class="Sidebar-Content"
+  >
+    
+  </div>
+</div>
+`;

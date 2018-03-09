@@ -4,6 +4,7 @@ import {Switch, Route} from 'react-router-dom';
 // Bounty imports
 import BountyCreate from '../BountyCreate';
 import Manager from '../Manager';
+import Sidebar from '../Sidebar';
 // Component imports
 import config from './config';
 import './styles.css';
@@ -24,7 +25,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className='BountyManager hex-background'>
+      <div className='App hex-background'>
+        <Sidebar />
         <Switch>
           <Route exact path='/' render={this.renderManager}/>
           <Route path='/create' render={this.renderCreate}/>

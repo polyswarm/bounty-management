@@ -14,7 +14,9 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
   <div
     className="File-List"
   >
-    <header>
+    <header
+      className="File-List-Header"
+    >
       Bounty Files
        
       1
@@ -64,7 +66,9 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
 <div
   class="File-List"
 >
-  <header>
+  <header
+    class="File-List-Header"
+  >
     Bounty Files 3
   </header>
   <div
@@ -132,7 +136,9 @@ exports[`renders without crashing 1`] = `
 <div
   class="File-List"
 >
-  <header>
+  <header
+    class="File-List-Header"
+  >
     Bounty Files 0
   </header>
   <div

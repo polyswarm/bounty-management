@@ -2,8 +2,27 @@
 
 exports[`renders without crashing 1`] = `
 <div
-  class="BountyManager hex-background"
+  class="App hex-background"
 >
+  <div
+    class="Sidebar"
+  >
+    <header
+      class="Sidebar-Header"
+    >
+      <img
+        alt="Polyswarm logo"
+        src="/img/polyswarm.svg"
+      >
+        
+      </img>
+    </header>
+    <div
+      class="Sidebar-Content"
+    >
+      
+    </div>
+  </div>
   <div>
     <a
       href="/create"

@@ -11,14 +11,26 @@ body {
   padding: 0;
 }
 
-.BountyManager {
+.App {
   color: white;
+  display: grid;
   height: 100%;
+  grid-template-columns: 300px 1fr;
+  grid-column-gap: 5px;
   left: 0;
   position: absolute;
   right: 0;
-  text-align: center;
   top: 0;
+}
+
+.Sidebar {
+  grid-column: 1;
+  height: 100%;
+}
+
+.Switch {
+  grid-column: 2;
+  height: 100%;
 }
 
 .hex-background {

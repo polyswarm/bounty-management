@@ -1,0 +1,29 @@
+.Sidebar {
+  box-shadow: 2px 0 6px black;
+  display: inline-block;
+  height: 100%;
+  left: 0;
+  max-width: 300px;
+  position: relative;
+  top: 0;
+}
+
+.Sidebar-Content {
+  background-color: #fafafa;
+  color: #000000;
+  height: 100%;
+}
+
+.Sidebar-Header > img {
+  box-sizing: border-box;
+  height: inherit;
+  left: 0;
+  padding: 0 10px;
+  width: 75%;
+}
+
+.Sidebar-Header {
+  background-color: #8500ff;
+  display: block;
+  height: 80px;
+}
