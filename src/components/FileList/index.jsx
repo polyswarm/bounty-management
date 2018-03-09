@@ -17,7 +17,7 @@ class FileList  extends React.Component {
     const { props: { files } } = this;
     return (
       <div className='File-List'>
-        <header>
+        <header className='File-List-Header'>
           {strings.title}{' '}{files.length}
         </header>
         <div className='List'>
