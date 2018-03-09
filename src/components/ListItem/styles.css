@@ -8,9 +8,12 @@
   width: 100%;
 }
 
-.ListItem:hover,
-.ListItem:active {
+.ListItem:hover {
   background-color: #eed1ff;
+}
+
+.active {
+  color: #8500ff;
 }
 
 .ListItem-Name {

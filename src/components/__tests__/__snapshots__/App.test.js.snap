@@ -111,13 +111,14 @@ exports[`shows manager when at least one bounty & active is negative 1`] = `
           className="Sidebar-Content"
         >
           <ListItem
-            className="item-0 active"
+            active={true}
+            className="item-0"
             item="asdf"
             key="asdf"
             onClick={[Function]}
           >
             <div
-              className="ListItem"
+              className="ListItem active"
               onClick={[Function]}
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
@@ -173,13 +174,14 @@ exports[`shows manager when at least one bounty & active selects it 1`] = `
           className="Sidebar-Content"
         >
           <ListItem
-            className="item-0 active"
+            active={true}
+            className="item-0"
             item="asdf"
             key="asdf"
             onClick={[Function]}
           >
             <div
-              className="ListItem"
+              className="ListItem active"
               onClick={[Function]}
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}

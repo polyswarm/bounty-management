@@ -28,7 +28,8 @@ class Sidebar extends Component {
           {bounties && bounties.length > 0 && (
             bounties.map((bounty, index) => {
               return(<ListItem
-                className={`item-${index} ${index === selected ? 'active' : ''}`}
+                className={`item-${index}`}
+                active={index === selected}
                 key={bounty}
                 onClick={() => {this.onSelectBounty(index);}}
                 item={bounty}/>);

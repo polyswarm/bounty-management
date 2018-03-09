@@ -1,5 +1,74 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`marks the selected row as .active 1`] = `
+<Sidebar
+  bounties={
+    Array [
+      "asdf",
+      "demo",
+    ]
+  }
+  select={[Function]}
+>
+  <div
+    className="Sidebar"
+  >
+    <header
+      className="Sidebar-Header"
+    >
+      <img
+        alt="Polyswarm logo"
+        src="/img/polyswarm.svg"
+      />
+    </header>
+    <div
+      className="Sidebar-Content"
+    >
+      <ListItem
+        active={false}
+        className="item-0"
+        item="asdf"
+        key="asdf"
+        onClick={[Function]}
+      >
+        <div
+          className="ListItem"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <p
+            className="ListItem-Name"
+          >
+            asdf
+          </p>
+        </div>
+      </ListItem>
+      <ListItem
+        active={true}
+        className="item-1"
+        item="demo"
+        key="demo"
+        onClick={[Function]}
+      >
+        <div
+          className="ListItem active"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <p
+            className="ListItem-Name"
+          >
+            demo
+          </p>
+        </div>
+      </ListItem>
+    </div>
+  </div>
+</Sidebar>
+`;
+
 exports[`renders without crashing 1`] = `
 <div
   class="Sidebar"

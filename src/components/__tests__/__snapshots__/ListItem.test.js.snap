@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`adds the active class when active property is true 1`] = `
+<div
+  class="ListItem active"
+>
+  <p
+    class="ListItem-Name"
+  >
+    asdf
+  </p>
+</div>
+`;
+
 exports[`renders without crashing 1`] = `
 <div
   class="ListItem"
@@ -10,4 +22,42 @@ exports[`renders without crashing 1`] = `
     asdf
   </p>
 </div>
+`;
+
+exports[`shows remove button when hovered 1`] = `
+<ListItem
+  item="asdf"
+  remove={[Function]}
+>
+  <div
+    className="ListItem"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <p
+      className="ListItem-Name"
+    >
+      asdf
+    </p>
+    <span
+      className="ListItem-Remove"
+    >
+      <RemoveButton
+        onClick={[Function]}
+      >
+        <button
+          className="Remove-Button"
+          onClick={[Function]}
+        >
+          <img
+            alt="remove"
+            className="redx"
+            src="/img/red-x.svg"
+          />
+        </button>
+      </RemoveButton>
+    </span>
+  </div>
+</ListItem>
 `;

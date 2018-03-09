@@ -20,9 +20,9 @@ class ListItem extends Component {
   }
 
   render () {
-    const { props: { item, remove }, state: { hover } } = this;
+    const { props: { item, remove, active }, state: { hover } } = this;
     return(
-      <div className='ListItem'
+      <div className={`ListItem${active ? ' active': ''}`}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClickHandler}>
