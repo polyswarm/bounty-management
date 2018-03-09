@@ -4,58 +4,12 @@ exports[`renders without crashing 1`] = `
 <div
   class="BountyManager hex-background"
 >
-  <div
-    class="Bounty-Create"
-  >
-    <div
-      class="Container"
+  <div>
+    <a
+      href="/create"
     >
-      <div
-        class="Drop-Target"
-      >
-        <div>
-          <div
-            class="center"
-          >
-            <p>
-              Drag and drop your files here, or 
-            </p>
-            <form>
-              <input
-                class="hidden"
-                id="file"
-                type="file"
-              >
-                
-              </input>
-              <label
-                for="file"
-              >
-                click here.
-              </label>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div
-        class="File-List"
-      >
-        <header>
-          Bounty Files 0
-        </header>
-        <div
-          class="List"
-        >
-          
-        </div>
-      </div>
-      <button
-        class="Button"
-        disabled=""
-      >
-        Create Bounty
-      </button>
-    </div>
+      Create Bounty
+    </a>
   </div>
 </div>
 `;

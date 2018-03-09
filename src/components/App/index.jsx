@@ -1,18 +1,49 @@
 // Vendor imports
 import React, { Component } from 'react';
+import {Switch, Route} from 'react-router-dom';
 // Bounty imports
 import BountyCreate from '../BountyCreate';
+import Manager from '../Manager';
 // Component imports
 import config from './config';
 import './styles.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.renderManager = this.renderManager.bind(this);
+    this.renderCreate = this.renderCreate.bind(this);
+    this.state = {
+      bounties: [],
+    };
+  }
+
+  // componentWillReceiveProps(nextProps) {
+  //   // load bounties
+  // }
+
   render() {
-    const {url} = config;
     return (
       <div className='BountyManager hex-background'>
-        <BountyCreate url={url}/>
+        <Switch>
+          <Route exact path='/' render={this.renderManager}/>
+          <Route path='/create' render={this.renderCreate}/>
+        </Switch>
       </div>
+    );
+  }
+
+  renderCreate() {
+    const {url} = config;
+    return (
+      <BountyCreate url={url}/>
+    );
+  }
+
+  renderManager() {
+    const { state: { bounties } } = this;
+    return(
+      <Manager bounties={bounties}/>
     );
   }
 }

@@ -1,6 +1,7 @@
 // Vendor imports
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 // Component Imports
 import strings from './strings';
 import './styles.css';
@@ -10,7 +11,7 @@ class Manager extends Component {
   render() {
     return (
       <div>
-        <a href='/create'>{strings.create}</a>
+        <Link to='/create'>{strings.create}</Link>
       </div>
     );
   }
