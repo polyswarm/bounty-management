@@ -34,6 +34,7 @@ it('calls remove when FileProgress remove button clicked',() => {
       removeFile={remove}
       files={files} />
   );
+  wrapper.find('.ListItem').simulate('mouseEnter');
   wrapper.find('button').simulate('click');
   expect(remove).toHaveBeenCalled();
   expect(mountToJson(wrapper)).toMatchSnapshot();

@@ -31,6 +31,8 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
       >
         <div
           className="ListItem"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <p
             className="ListItem-Name"
@@ -47,7 +49,11 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
                 className="Remove-Button"
                 onClick={[Function]}
               >
-                x
+                <img
+                  alt="remove"
+                  className="redx"
+                  src="/img/red-x.svg"
+                />
               </button>
             </RemoveButton>
           </span>
@@ -78,15 +84,6 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
       >
         asdf
       </p>
-      <span
-        class="ListItem-Remove"
-      >
-        <button
-          class="Remove-Button"
-        >
-          x
-        </button>
-      </span>
     </div>
     <div
       class="ListItem"
@@ -96,15 +93,6 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
       >
         demo
       </p>
-      <span
-        class="ListItem-Remove"
-      >
-        <button
-          class="Remove-Button"
-        >
-          x
-        </button>
-      </span>
     </div>
     <div
       class="ListItem"
@@ -114,15 +102,6 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
       >
         test
       </p>
-      <span
-        class="ListItem-Remove"
-      >
-        <button
-          class="Remove-Button"
-        >
-          x
-        </button>
-      </span>
     </div>
   </div>
 </div>

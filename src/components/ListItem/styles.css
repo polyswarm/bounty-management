@@ -4,8 +4,13 @@
   box-sizing: border-box;
   height: 48px;
   line-height: 46px;
-  margin: 0 10px;
-  width: calc(100% - 20px);
+  padding: 0 10px;
+  width: 100%;
+}
+
+.ListItem:hover,
+.ListItem:active {
+  background-color: #eed1ff;
 }
 
 .ListItem-Name {
@@ -15,4 +20,9 @@
 
 .ListItem-Remove {
   float: right;
+}
+
+.redx {
+  background: url('/img/red-x.svg');
+  height: 48px;
 }

@@ -1,22 +1,16 @@
 .Remove-Button {
-  background: #fafafa;
+  background: none;
   border: 0;
   color: #000;
   display:inline-block;
-  font-size: 12px;
-  font-weight: bold;
   height: 100%;
-  line-height: 20px;
-  padding: 0 20px;
   text-decoration:none;
   text-shadow: none;
   text-transform: uppercase;
-  transition: background-color 0.25s ease;
 }
 
 .Remove-Button:hover,
 .Remove-Button:active {
-  background: #fafafa;
   color: #ff1a00;
   cursor: pointer;
 }

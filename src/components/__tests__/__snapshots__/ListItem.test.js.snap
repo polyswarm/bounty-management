@@ -9,14 +9,5 @@ exports[`renders without crashing 1`] = `
   >
     asdf
   </p>
-  <span
-    class="ListItem-Remove"
-  >
-    <button
-      class="Remove-Button"
-    >
-      x
-    </button>
-  </span>
 </div>
 `;

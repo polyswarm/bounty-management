@@ -1,5 +1,5 @@
 const strings = {
-  remove: 'x'
+  remove: 'remove'
 };
 
 export default strings;
