@@ -13,16 +13,29 @@ class App extends Component {
     super(props);
     this.state = {
       active: 0,
-      bounties: [],
+      bounties: this.preloadLocalStorage(),
     };
 
+    this.onAddBounty = this.onAddBounty.bind(this);
+    this.onUpdateBounty = this.onUpdateBounty.bind(this);
     this.onRemoveBounty = this.onRemoveBounty.bind(this);
     this.onSelectBounty = this.onSelectBounty.bind(this);
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   // load bounties
-  // }
+  componentDidUpdate(_, prevState) {
+    const { state: { bounties } } = this;
+    const { bounties: prevBounties } = prevState;
+    const needsRefresh =  bounties.length === prevBounties.length
+        && bounties.every((current, index) => {
+          const keys = Object.keys(current);
+          const prev = prevBounties[index];
+          return keys.map((k) => current[k] === prev[k])
+            .reduce((accumulator, v) => accumulator && v);
+        });
+    if(needsRefresh) {
+      this.storeBounties(bounties);
+    }
+  }
 
   render() {
     const {url} = config;
@@ -33,13 +46,37 @@ class App extends Component {
           remove={this.onRemoveBounty}
           select={this.onSelectBounty}/>
         { active >= bounties.length && (
-          <BountyCreate url={url}/>
+          <BountyCreate url={url} addBounty={this.onAddBounty}/>
         )}
         { active < bounties.length && (
           <Manager bounty={bounties[active]}/>
         )}
       </div>
     );
+  }
+
+  onAddBounty(guid) {
+    const { state: { bounties } } = this;
+    const bounty = {
+      guid: guid,
+      update: false,
+      author: '',
+      amount: '',
+      artifactURI: '',
+      expirationBlock: '',
+      resolved: '',
+      verdicts: '',
+    };
+    bounties.push(bounty);
+    this.setState({bounties});
+  }
+
+  onRemoveBounty(index) {
+    const { state: { bounties } } = this;
+    if (index !== null && index >= 0 && index < bounties.length) {
+      bounties.splice(index, 1);
+      this.setState({bounties: bounties});
+    }
   }
 
   onSelectBounty(index) {
@@ -49,11 +86,45 @@ class App extends Component {
     }
   }
 
-  onRemoveBounty(index) {
+  onUpdateBounty(guid, author, amount, artifactURI, expirationBlock, resolved, verdicts) {
     const { state: { bounties } } = this;
-    if (index !== null && index >= 0 && index < bounties.length) {
-      bounties.splice(index, 1);
+    const index = bounties.findIndex((o) => o.guid === guid);
+    if (index >= 0) {
+      bounties[index] = {
+        guid: guid,
+        update: true,
+        author: author,
+        amount: amount,
+        artifactURI: artifactURI,
+        expirationBlock: expirationBlock,
+        resolved: resolved,
+        verdicts: verdicts,
+      };
       this.setState({bounties: bounties});
+    }
+  }
+
+  storeBounties(bounties) {
+    if (this.hasLocalStorage()) {
+      localStorage.setItem('bounties', bounties);
+    }
+  }
+
+  hasLocalStorage() {
+    try {
+      localStorage.setItem('x', 'y');
+      localStorage.removeItem('x');
+      return true;
+    } catch(e) {
+      return false;
+    }
+  }
+
+  preloadLocalStorage() {
+    if (this.hasLocalStorage) {
+      return  localStorage.getItem('bounties') || [];
+    } else {
+      return [];
     }
   }
 }

@@ -91,7 +91,9 @@ exports[`shows manager when at least one bounty & active is negative 1`] = `
     <Sidebar
       bounties={
         Array [
-          "asdf",
+          Object {
+            "guid": "asdf",
+          },
         ]
       }
       remove={[Function]}
@@ -156,7 +158,9 @@ exports[`shows manager when at least one bounty & active selects it 1`] = `
     <Sidebar
       bounties={
         Array [
-          "asdf",
+          Object {
+            "guid": "asdf",
+          },
         ]
       }
       remove={[Function]}
@@ -202,7 +206,11 @@ exports[`shows manager when at least one bounty & active selects it 1`] = `
     </Sidebar>
     <Manager
       bounties={[Function]}
-      bounty="asdf"
+      bounty={
+        Object {
+          "guid": "asdf",
+        }
+      }
     >
       <div
         className="Manager"
