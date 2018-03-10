@@ -25,6 +25,20 @@ it('marks the selected row as .active',() => {
   expect(mountToJson(wrapper)).toMatchSnapshot();
 });
 
+it('sets the state when onSelectBounty called',() => {
+  const select = jest.fn();
+  const setState = jest.spyOn(Sidebar.prototype, 'setState');
+  const bounties = ['asdf', 'demo'];
+
+  const wrapper = mount(<Sidebar select={select} bounties={bounties} />);
+  const instance = wrapper.instance();
+
+  instance.onSelectBounty(1);
+
+  expect(setState).toHaveBeenCalledWith({selected: 1});
+  expect(select).toHaveBeenCalledWith(1);
+});
+
 it('selects the row that was clicked',() => {
   const select = jest.fn();
   const bounties = ['asdf', 'demo'];
@@ -36,4 +50,28 @@ it('selects the row that was clicked',() => {
   expect(wrapper.find('.item-1').props().active).toBeTruthy();
   expect(wrapper.find('.item-0').props().active).toBeFalsy();
 });
-//TODO bounty drawing tests.
+
+it('calls remove when onBountyRemoved called',() => {
+  const remove = jest.fn();
+  const bounties = ['asdf', 'demo'];
+  const wrapper = mount(<Sidebar remove={remove} bounties={bounties} />);
+  const instance = wrapper.instance();
+
+  instance.onBountyRemoved(1);
+
+  expect(remove).toHaveBeenCalledWith(1);
+});
+
+it('calls remove when RemoveButton clicked for a row',() => {
+  const remove = jest.fn();
+  const select = jest.fn();
+  const bounties = ['asdf', 'demo'];
+
+  const wrapper = mount(<Sidebar select={select} remove={remove} bounties={bounties} />);
+
+  wrapper.find('.item-1').simulate('mouseEnter');
+  wrapper.find('.item-1').find('.Remove-Button').simulate('click');
+
+  expect(remove).toHaveBeenCalledWith(1);
+  expect(select).toHaveBeenCalledTimes(0);
+});

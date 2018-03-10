@@ -16,6 +16,7 @@ class App extends Component {
       bounties: [],
     };
 
+    this.onRemoveBounty = this.onRemoveBounty.bind(this);
     this.onSelectBounty = this.onSelectBounty.bind(this);
   }
 
@@ -28,7 +29,9 @@ class App extends Component {
     const { state: { active, bounties } } = this;
     return (
       <div className='App hex-background'>
-        <Sidebar bounties={bounties} select={this.onSelectBounty}/>
+        <Sidebar bounties={bounties}
+          remove={this.onRemoveBounty}
+          select={this.onSelectBounty}/>
         { active >= bounties.length && (
           <BountyCreate url={url}/>
         )}
@@ -40,8 +43,17 @@ class App extends Component {
   }
 
   onSelectBounty(index) {
-    if (index) {
+    const { state: { bounties } } = this;
+    if (index !== null && index >= 0 && index < bounties.length) {
       this.setState({active: index});
+    }
+  }
+
+  onRemoveBounty(index) {
+    const { state: { bounties } } = this;
+    if (index !== null && index >= 0 && index < bounties.length) {
+      bounties.splice(index, 1);
+      this.setState({bounties: bounties});
     }
   }
 }

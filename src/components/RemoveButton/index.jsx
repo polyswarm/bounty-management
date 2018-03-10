@@ -21,7 +21,8 @@ class RemoveButton extends Component {
     );
   }
 
-  onClickHandler() {
+  onClickHandler(e) {
+    e.stopPropagation();
     const { props: { onClick } } = this;
     if (onClick) {
       onClick();

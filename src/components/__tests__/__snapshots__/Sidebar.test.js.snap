@@ -8,6 +8,7 @@ exports[`marks the selected row as .active 1`] = `
       "demo",
     ]
   }
+  remove={[Function]}
   select={[Function]}
 >
   <div
@@ -30,6 +31,7 @@ exports[`marks the selected row as .active 1`] = `
         item="asdf"
         key="asdf"
         onClick={[Function]}
+        remove={[Function]}
       >
         <div
           className="ListItem"
@@ -50,6 +52,7 @@ exports[`marks the selected row as .active 1`] = `
         item="demo"
         key="demo"
         onClick={[Function]}
+        remove={[Function]}
       >
         <div
           className="ListItem active"

@@ -32,6 +32,7 @@ class Sidebar extends Component {
                 active={index === selected}
                 key={bounty}
                 onClick={() => {this.onSelectBounty(index);}}
+                remove={() => {this.onBountyRemoved(index);}}
                 item={bounty}/>);
             })
           )}
@@ -47,10 +48,20 @@ class Sidebar extends Component {
       this.setState({selected: index});
     }
   }
+
+  onBountyRemoved(index) {
+    const { props: { remove } } = this;
+    if (remove) {
+      remove(index);
+    }
+  }
+
 }
+
 Sidebar.defaultProps = {
   bounties: PropTypes.array.isRequired,
   select: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
 };
 
 export default Sidebar;

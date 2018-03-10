@@ -94,6 +94,7 @@ exports[`shows manager when at least one bounty & active is negative 1`] = `
           "asdf",
         ]
       }
+      remove={[Function]}
       select={[Function]}
     >
       <div
@@ -116,6 +117,7 @@ exports[`shows manager when at least one bounty & active is negative 1`] = `
             item="asdf"
             key="asdf"
             onClick={[Function]}
+            remove={[Function]}
           >
             <div
               className="ListItem active"
@@ -157,6 +159,7 @@ exports[`shows manager when at least one bounty & active selects it 1`] = `
           "asdf",
         ]
       }
+      remove={[Function]}
       select={[Function]}
     >
       <div
@@ -179,6 +182,7 @@ exports[`shows manager when at least one bounty & active selects it 1`] = `
             item="asdf"
             key="asdf"
             onClick={[Function]}
+            remove={[Function]}
           >
             <div
               className="ListItem active"
