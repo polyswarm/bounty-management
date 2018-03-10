@@ -30,10 +30,10 @@ class Sidebar extends Component {
               return(<ListItem
                 className={`item-${index}`}
                 active={index === selected}
-                key={bounty}
+                key={bounty.guid}
                 onClick={() => {this.onSelectBounty(index);}}
                 remove={() => {this.onBountyRemoved(index);}}
-                item={bounty}/>);
+                item={bounty.guid}/>);
             })
           )}
         </div>

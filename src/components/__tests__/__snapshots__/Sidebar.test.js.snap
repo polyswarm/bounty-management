@@ -4,8 +4,12 @@ exports[`marks the selected row as .active 1`] = `
 <Sidebar
   bounties={
     Array [
-      "asdf",
-      "demo",
+      Object {
+        "guid": "asdf",
+      },
+      Object {
+        "guid": "demo",
+      },
     ]
   }
   remove={[Function]}

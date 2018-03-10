@@ -10,13 +10,13 @@ it('renders without crashing', () => {
 });
 
 it('shows each bounty as a ListItem', () => {
-  const bounties = ['asdf', 'demo'];
+  const bounties = [{guid:'asdf'}, {guid:'demo'}];
   const wrapper = mount(<Sidebar bounties={bounties} />);
   expect(wrapper.find('.ListItem')).toHaveLength(2);
 });
 
 it('marks the selected row as .active',() => {
-  const bounties = ['asdf', 'demo'];
+  const bounties = [{guid:'asdf'}, {guid:'demo'}];
   const wrapper = mount(<Sidebar bounties={bounties} />);
   wrapper.setState({selected: 1});
 
@@ -28,7 +28,7 @@ it('marks the selected row as .active',() => {
 it('sets the state when onSelectBounty called',() => {
   const select = jest.fn();
   const setState = jest.spyOn(Sidebar.prototype, 'setState');
-  const bounties = ['asdf', 'demo'];
+  const bounties = [{guid:'asdf'}, {guid:'demo'}];
 
   const wrapper = mount(<Sidebar select={select} bounties={bounties} />);
   const instance = wrapper.instance();
@@ -41,7 +41,7 @@ it('sets the state when onSelectBounty called',() => {
 
 it('selects the row that was clicked',() => {
   const select = jest.fn();
-  const bounties = ['asdf', 'demo'];
+  const bounties = [{guid:'asdf'}, {guid:'demo'}];
   const wrapper = mount(<Sidebar select={select} bounties={bounties} />);
 
   wrapper.find('.item-1').simulate('click');
@@ -53,7 +53,7 @@ it('selects the row that was clicked',() => {
 
 it('calls remove when onBountyRemoved called',() => {
   const remove = jest.fn();
-  const bounties = ['asdf', 'demo'];
+  const bounties = [{guid:'asdf'}, {guid:'demo'}];
   const wrapper = mount(<Sidebar remove={remove} bounties={bounties} />);
   const instance = wrapper.instance();
 
@@ -65,7 +65,7 @@ it('calls remove when onBountyRemoved called',() => {
 it('calls remove when RemoveButton clicked for a row',() => {
   const remove = jest.fn();
   const select = jest.fn();
-  const bounties = ['asdf', 'demo'];
+  const bounties = [{guid:'asdf'}, {guid:'demo'}];
 
   const wrapper = mount(<Sidebar select={select} remove={remove} bounties={bounties} />);
 
