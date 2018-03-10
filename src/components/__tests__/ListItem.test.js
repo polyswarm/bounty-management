@@ -34,3 +34,10 @@ it('adds the active class when active property is true', () => {
   expect(wrapper.hasClass('active')).toBeTruthy();
   expect(renderToJson(wrapper)).toMatchSnapshot();
 });
+
+it('shows the badge when alert is set',() => {
+  const item = 'asdf';
+  const wrapper = render(<ListItem item={item} alert active/>);
+  expect(wrapper.find('.alert')).toHaveLength(1);
+  expect(renderToJson(wrapper)).toMatchSnapshot();
+});

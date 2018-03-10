@@ -4,7 +4,6 @@
   box-sizing: border-box;
   height: 48px;
   line-height: 46px;
-  padding: 0 10px;
   width: 100%;
 }
 
@@ -16,9 +15,17 @@
   color: #8500ff;
 }
 
+.alert {
+  background-color: rgb(46, 255, 109);
+  float: left;
+  height: 100%;
+  width: 10px;
+}
+
 .ListItem-Name {
   float: left;
   margin: 0;
+  padding-left: 10px;
 }
 
 .ListItem-Remove {

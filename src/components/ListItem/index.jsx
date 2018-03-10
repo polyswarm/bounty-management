@@ -20,12 +20,15 @@ class ListItem extends Component {
   }
 
   render () {
-    const { props: { item, remove, active }, state: { hover } } = this;
+    const { props: { item, remove, active, alert }, state: { hover } } = this;
     return(
       <div className={`ListItem${active ? ' active': ''}`}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClickHandler}>
+        {alert && (
+          <div className='alert'/>
+        )}
         <p className='ListItem-Name'>{item}</p>
         {remove && hover && (
           <span className='ListItem-Remove'>

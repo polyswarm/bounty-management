@@ -61,3 +61,20 @@ exports[`shows remove button when hovered 1`] = `
   </div>
 </ListItem>
 `;
+
+exports[`shows the badge when alert is set 1`] = `
+<div
+  class="ListItem active"
+>
+  <div
+    class="alert"
+  >
+    
+  </div>
+  <p
+    class="ListItem-Name"
+  >
+    asdf
+  </p>
+</div>
+`;
