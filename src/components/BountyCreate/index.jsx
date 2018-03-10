@@ -94,7 +94,7 @@ class BountyCreate extends Component {
 
   createBounty() {
     const {
-      props: { url, trackBounty },
+      props: { url, addBounty },
       state: {files, uploading}
     } = this;
 
@@ -104,8 +104,8 @@ class BountyCreate extends Component {
       http.uploadFiles(files, this.onProgress)
         .then((artifacts) => http.uploadBounty(10, artifacts, 300))
         .then(guid => {
-          if (trackBounty) {
-            trackBounty(guid);
+          if (addBounty) {
+            addBounty(guid);
           }
         })
         .catch((error) => {
@@ -126,6 +126,6 @@ class BountyCreate extends Component {
 
 BountyCreate.propTypes = {
   url: PropTypes.string,
-  trackBounty: PropTypes.func,
+  addBounty: PropTypes.func,
 };
 export default BountyCreate;

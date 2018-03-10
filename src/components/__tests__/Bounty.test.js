@@ -120,11 +120,11 @@ it('stores additional files in state.files', () => {
   expect(instance.state.files).toEqual([{name: 'demo'}, {name: 'omed'}, {name: 'asdf'}]);
 });
 
-it('calls uploadFiles when all parameters are met (files, trackBounty, url)', () => {
-  const trackBounty = jest.fn();
+it('calls uploadFiles when all parameters are met (files, addBounty, url)', () => {
+  const addBounty = jest.fn();
   const wrapper = mount(
     <BountyCreate url={'asdf'}
-      trackBounty={trackBounty}/>
+      addBounty={addBounty}/>
   );
   const files = [
     {name: 'demo'},
@@ -161,10 +161,10 @@ it('doesn\'t call uploadBounty when uploadFiles fails', () => {
     };
   });
 
-  const trackBounty = jest.fn();
+  const addBounty = jest.fn();
   const wrapper = mount(
     <BountyCreate url={'asdf'}
-      trackBounty={trackBounty}/>
+      addBounty={addBounty}/>
   );
   const files = [
     {name: 'demo'},
@@ -192,10 +192,10 @@ it('calls uploadBounty when uploadFiles succeeds', (done) => {
     };
   });
 
-  const trackBounty = jest.fn();
+  const addBounty = jest.fn();
   const wrapper = mount(
     <BountyCreate url={'asdf'}
-      trackBounty={trackBounty}/>
+      addBounty={addBounty}/>
   );
   const files = [
     {name: 'demo'},
@@ -218,7 +218,7 @@ it('calls uploadBounty when uploadFiles succeeds', (done) => {
   }, 0);
 });
 
-it('calls trackBounty when upload bounty is a success', (done) => {
+it('calls addBounty when upload bounty is a success', (done) => {
   const mockGoodUploadFiles = jest.fn().mockImplementation(() => {
     return new Promise((resolve) => {
       resolve(['demo', 'asdf']);
@@ -236,10 +236,10 @@ it('calls trackBounty when upload bounty is a success', (done) => {
     };
   });
 
-  const trackBounty = jest.fn();
+  const addBounty = jest.fn();
   const wrapper = mount(
     <BountyCreate url={'asdf'}
-      trackBounty={trackBounty}/>
+      addBounty={addBounty}/>
   );
   const files = [
     {name: 'demo'},
@@ -253,8 +253,8 @@ it('calls trackBounty when upload bounty is a success', (done) => {
   // assert
   setTimeout(() => {
     try {
-      expect(trackBounty).toHaveBeenCalledWith('asdf');
-      expect(trackBounty).toHaveBeenCalledTimes(1);
+      expect(addBounty).toHaveBeenCalledWith('asdf');
+      expect(addBounty).toHaveBeenCalledTimes(1);
       done();
     } catch (error) {
       done.fail(error);
@@ -263,10 +263,10 @@ it('calls trackBounty when upload bounty is a success', (done) => {
 });
 
 it('sets uploading to false when uploads complete', (done) => {
-  const trackBounty = jest.fn();
+  const addBounty = jest.fn();
   const wrapper = mount(
     <BountyCreate url={'asdf'}
-      trackBounty={trackBounty}/>
+      addBounty={addBounty}/>
   );
   const files = [
     {name: 'demo'},
@@ -291,10 +291,10 @@ it('sets uploading to false when uploads complete', (done) => {
 });
 
 it('has uploading true after clicking create button', () => {
-  const trackBounty = jest.fn();
+  const addBounty = jest.fn();
   const wrapper = mount(
     <BountyCreate url={'asdf'}
-      trackBounty={trackBounty}/>
+      addBounty={addBounty}/>
   );
   const files = [
     {name: 'demo'},
