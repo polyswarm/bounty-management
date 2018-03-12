@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from 'enzyme';
+import {render, mount} from 'enzyme';
 import {renderToJson} from 'enzyme-to-json';
 import Header from '../Header';
 
@@ -14,4 +14,13 @@ it('shows title props', () => {
   expect(wrapper.find('h1').text()).toBe('Title');
 
   expect(renderToJson(wrapper)).toMatchSnapshot();
+});
+
+it('should call onClick callback when clicked', () => {
+  const onClick = jest.fn();
+  const wrapper = mount(<Header title={'Title'} onClick={onClick}/>);
+
+  wrapper.find('button').simulate('click');
+
+  expect(onClick).toHaveBeenCalledTimes(1);
 });

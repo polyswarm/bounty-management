@@ -29,6 +29,11 @@ exports[`renders without crashing 1`] = `
     <h1>
       Polyswarm
     </h1>
+    <button
+      class="Button"
+    >
+      + Bounty
+    </button>
   </header>
   <div
     class="Bounty-Create"
@@ -153,6 +158,17 @@ exports[`shows manager when at least one bounty & active is negative 1`] = `
         <h1>
           Polyswarm
         </h1>
+        <Button
+          className="Header-Button"
+          onClick={[Function]}
+        >
+          <button
+            className="Button"
+            onClick={[Function]}
+          >
+            + Bounty
+          </button>
+        </Button>
       </header>
     </Header>
     <Manager
@@ -231,6 +247,17 @@ exports[`shows manager when at least one bounty & active selects it 1`] = `
         <h1>
           Polyswarm
         </h1>
+        <Button
+          className="Header-Button"
+          onClick={[Function]}
+        >
+          <button
+            className="Button"
+            onClick={[Function]}
+          >
+            + Bounty
+          </button>
+        </Button>
       </header>
     </Header>
     <Manager

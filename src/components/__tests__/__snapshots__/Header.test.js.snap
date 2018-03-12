@@ -7,6 +7,11 @@ exports[`renders without crashing 1`] = `
   <h1>
     
   </h1>
+  <button
+    class="Button"
+  >
+    + Bounty
+  </button>
 </header>
 `;
 
@@ -17,5 +22,10 @@ exports[`shows title props 1`] = `
   <h1>
     Title
   </h1>
+  <button
+    class="Button"
+  >
+    + Bounty
+  </button>
 </header>
 `;

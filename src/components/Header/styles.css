@@ -1,5 +1,19 @@
 .Header {
+  align-items: center;
+  display: flex;
   background-color: #8500ff;
   box-shadow: 0 1px 1px black;
   color: white;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.Header > h1 {
+  display: inline;
+}
+
+.Header > button {
+  border-radius: 2px;
+  max-width: 120px;
+  padding: 0;
 }
