@@ -9,3 +9,13 @@ exports[`renders without crashing 1`] = `
   </h1>
 </header>
 `;
+
+exports[`shows title props 1`] = `
+<header
+  class="Header"
+>
+  <h1>
+    Title
+  </h1>
+</header>
+`;

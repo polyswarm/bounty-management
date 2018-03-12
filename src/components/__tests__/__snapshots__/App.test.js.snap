@@ -23,6 +23,13 @@ exports[`renders without crashing 1`] = `
       
     </div>
   </div>
+  <header
+    class="Header"
+  >
+    <h1>
+      Polyswarm
+    </h1>
+  </header>
   <div
     class="Bounty-Create"
   >
@@ -137,6 +144,17 @@ exports[`shows manager when at least one bounty & active is negative 1`] = `
         </div>
       </div>
     </Sidebar>
+    <Header
+      title="Polyswarm"
+    >
+      <header
+        className="Header"
+      >
+        <h1>
+          Polyswarm
+        </h1>
+      </header>
+    </Header>
     <Manager
       bounties={[Function]}
     >
@@ -204,6 +222,17 @@ exports[`shows manager when at least one bounty & active selects it 1`] = `
         </div>
       </div>
     </Sidebar>
+    <Header
+      title="Polyswarm"
+    >
+      <header
+        className="Header"
+      >
+        <h1>
+          Polyswarm
+        </h1>
+      </header>
+    </Header>
     <Manager
       bounties={[Function]}
       bounty={
