@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import BountyCreate from '../BountyCreate';
 import Manager from '../Manager';
 import Sidebar from '../Sidebar';
+import Header from '../Header';
 // Component imports
 import config from './config';
 import './styles.css';
@@ -45,6 +46,7 @@ class App extends Component {
         <Sidebar bounties={bounties}
           remove={this.onRemoveBounty}
           select={this.onSelectBounty}/>
+        <Header title={'Polyswarm'} />
         { active >= bounties.length && (
           <BountyCreate url={url} addBounty={this.onAddBounty}/>
         )}

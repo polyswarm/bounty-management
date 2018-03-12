@@ -14,17 +14,33 @@ body {
 .App {
   color: white;
   display: grid;
-  height: 100%;
   grid-template-columns: 300px 1fr;
-  grid-column-gap: 5px;
+  grid-template-rows: 80px 1fr;
+  height: 100%;
   left: 0;
   position: absolute;
   right: 0;
   top: 0;
 }
 
+.Header {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.Bounty-Create {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.Manager {
+  grid-column: 2;
+  grid-row: 2;
+}
+
 .Sidebar {
   grid-column: 1;
+  grid-row: 1 / 3;
   height: 100%;
 }
 

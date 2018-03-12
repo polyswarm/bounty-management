@@ -1,5 +1,4 @@
 .Sidebar {
-  box-shadow: 2px 0 6px black;
   display: inline-block;
   height: 100%;
   left: 0;
@@ -10,6 +9,7 @@
 
 .Sidebar-Content {
   background-color: #fafafa;
+  box-shadow: 1px 3px 1px black;
   color: #000000;
   height: 100%;
   overflow: auto;
