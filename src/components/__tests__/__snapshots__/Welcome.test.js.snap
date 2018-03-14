@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<div
+  class="Welcome"
+>
+  <div
+    class="Welcome-Jumbo jumbotron"
+  >
+    <h1>
+      Welcome to Polyswarm,
+    </h1>
+    <p>
+      This preview faucet allows users to upload files onto the Rinkeby test network and see how simple it is to create a bounty that will be analyzed and judged by various micro-engines to determine the malicious or benign nature of your file.
+    </p>
+    <button
+      class="Button"
+    >
+      Get Started!
+    </button>
+  </div>
+</div>
+`;
