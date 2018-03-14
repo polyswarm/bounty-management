@@ -14,20 +14,23 @@ form {
 .hidden + label {
   background-color: rgb(46, 255, 109);
   border: 0;
-  border-radius: 10px;
+  border-radius: 2px;
   color: #8500ff;
   cursor: pointer;
   display: inline-block;
   font-family: 'fabrick', sans-serif;
   font-size: 14px;
+  font-weight: bold;
   height: 20px;
   letter-spacing: 0.15em;
   line-height: 20px;
+  margin-left: 5px;
   max-width: 350px;
-  padding: 0 20px;
+  padding: 0 3px;
   position: relative;
   text-decoration: none;
   text-shadow: none;
+  text-transform: uppercase;
   transition: background-color 0.25s ease;
   z-index: 1;
 }
@@ -37,10 +40,10 @@ form {
 .hidden + .selected {
   animation-duration: .5s;
   animation-name: hover;
-  background-color: #eeeeee;
+  background-color: rgb(166, 255, 202);
 }
 
 @keyframes hover {
   0% {background-color: rgb(46, 255, 109);}
-  100% {background-color: #eeeeee}
+  100% {background-color: rgb(133, 255, 182);}
 }
