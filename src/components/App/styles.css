@@ -64,3 +64,10 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+em {
+  background-color: rgb(46, 255, 109);
+  color: #8500ff;
+  font-style: normal;
+  padding: 0 5px;
+}

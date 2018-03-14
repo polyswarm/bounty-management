@@ -5,13 +5,20 @@ exports[`renders without crashing 1`] = `
   class="Welcome"
 >
   <div
-    class="Welcome-Jumbo jumbotron"
+    class="Welcome-Jumbo"
   >
     <h1>
       Welcome to Polyswarm,
     </h1>
+    <h2>
+      The first 
+      <em>
+        decentralized
+      </em>
+       antivirus marketplace.
+    </h2>
     <p>
-      This preview faucet allows users to upload files onto the Rinkeby test network and see how simple it is to create a bounty that will be analyzed and judged by various micro-engines to determine the malicious or benign nature of your file.
+      Simply upload files to create your own bounties and then let the microengines on polyswarm analyze your file.
     </p>
     <button
       class="Button"

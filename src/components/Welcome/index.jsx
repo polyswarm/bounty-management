@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Jumbotron} from 'react-bootstrap';
 import Button from '../Button';
 // Component Imports
 import strings from './strings';
@@ -14,13 +13,14 @@ class Welcome extends Component {
   render() {
     return (
       <div className='Welcome'>
-        <Jumbotron className='Welcome-Jumbo'>
+        <div className='Welcome-Jumbo'>
           <h1>{strings.welcome}</h1>
+          <h2>The first <em>decentralized</em> antivirus marketplace.</h2>
           <p>{strings.moreInfo}</p>
           <Button className='Welcome-Close' onClick={this.onClickHandler}>
             {strings.getStarted}
           </Button>
-        </Jumbotron>
+        </div>
       </div>
     );
   }

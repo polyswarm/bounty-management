@@ -1,0 +1,36 @@
+.Welcome {
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+  height: 100%;
+}
+
+.Welcome-Jumbo {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 850px;
+}
+
+.Welcome-Jumbo > h1 {
+  font-size: 5em;
+  margin: 0;
+}
+
+.Welcome-Jumbo > h2 {
+  font-size: 2em;
+}
+
+.Welcome-Jumbo > p {
+  font-size: 16px;
+  line-height: 16px;
+  margin: 0 5px;
+}
+
+.Welcome-Jumbo > button {
+  border-radius: 2px;
+  margin: 20px 0;
+  max-width: 180px;
+  padding: 0;
+}
