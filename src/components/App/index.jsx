@@ -117,7 +117,7 @@ class App extends Component {
 
   storeBounties(bounties) {
     if (this.hasLocalStorage()) {
-      localStorage.setItem('bounties', bounties);
+      localStorage.setItem('bounties', JSON.stringify(bounties));
     }
   }
 
@@ -133,7 +133,7 @@ class App extends Component {
 
   preloadLocalStorage() {
     if (this.hasLocalStorage) {
-      return  localStorage.getItem('bounties') || [];
+      return  JSON.parse(localStorage.getItem('bounties')) || [];
     } else {
       return [];
     }

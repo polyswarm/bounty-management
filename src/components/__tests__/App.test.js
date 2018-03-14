@@ -485,24 +485,24 @@ it('stores bounties into localstore when storeBounties is called', () => {
   instance.storeBounties(bounties);
 
   expect(setItem).toHaveBeenCalledTimes(2);
-  expect(setItem.mock.calls[1]).toEqual(['bounties', bounties]);
+  expect(setItem.mock.calls[1]).toEqual(['bounties', JSON.stringify(bounties)]);
 });
 
 it('reads bounties from localStorage and puts into state on startup', () => {
-  const bounties = [{
+  const bounties = JSON.stringify([{
     guid: 'existing',
     update: false,
-    author: '',
-    amount: '',
-    artifactURI: '',
-    expirationBlock: '',
-    resolved: '',
-    verdicts: '',
-  }];
+    author: 'asdf',
+    amount: 'asdf',
+    artifactURI: 'asdf',
+    expirationBlock: 'asdf',
+    resolved: 'asdf',
+    verdicts: 'asdf',
+  }]);
   localStorage.setItem('bounties', bounties);
 
   const wrapper = mount(<App />);
   const instance = wrapper.instance();
 
-  expect(instance.state.bounties).toBe(bounties);
+  expect(instance.state.bounties).toEqual(JSON.parse(bounties));
 });
