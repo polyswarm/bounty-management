@@ -2,6 +2,7 @@
 
 exports[`marks the selected row as .active 1`] = `
 <Sidebar
+  active={1}
   bounties={
     Array [
       Object {

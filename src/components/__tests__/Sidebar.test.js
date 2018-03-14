@@ -2,6 +2,7 @@ import React from 'react';
 import {render, mount} from 'enzyme';
 import {renderToJson, mountToJson} from 'enzyme-to-json';
 import Sidebar from '../Sidebar';
+import App from '../App';
 
 it('renders without crashing', () => {
   const bounties = [];
@@ -17,8 +18,7 @@ it('shows each bounty as a ListItem', () => {
 
 it('marks the selected row as .active',() => {
   const bounties = [{guid:'asdf'}, {guid:'demo'}];
-  const wrapper = mount(<Sidebar bounties={bounties} />);
-  wrapper.setState({selected: 1});
+  const wrapper = mount(<Sidebar bounties={bounties} active={1}/>);
 
   expect(wrapper.find('.item-1').props().active).toBeTruthy();
   expect(wrapper.find('.item-0').props().active).toBeFalsy();
@@ -27,7 +27,6 @@ it('marks the selected row as .active',() => {
 
 it('sets the state when onSelectBounty called',() => {
   const select = jest.fn();
-  const setState = jest.spyOn(Sidebar.prototype, 'setState');
   const bounties = [{guid:'asdf'}, {guid:'demo'}];
 
   const wrapper = mount(<Sidebar select={select} bounties={bounties} />);
@@ -35,20 +34,19 @@ it('sets the state when onSelectBounty called',() => {
 
   instance.onSelectBounty(1);
 
-  expect(setState).toHaveBeenCalledWith({selected: 1});
   expect(select).toHaveBeenCalledWith(1);
 });
 
 it('selects the row that was clicked',() => {
-  const select = jest.fn();
+  const select = jest.spyOn(App.prototype, 'onSelectBounty');
   const bounties = [{guid:'asdf'}, {guid:'demo'}];
-  const wrapper = mount(<Sidebar select={select} bounties={bounties} />);
+  const wrapper = mount(<App/>);
+  wrapper.setState({first: false, bounties: bounties, active: 0});
 
   wrapper.find('.item-1').simulate('click');
 
   expect(select).toHaveBeenCalledWith(1);
   expect(wrapper.find('.item-1').props().active).toBeTruthy();
-  expect(wrapper.find('.item-0').props().active).toBeFalsy();
 });
 
 it('calls remove when onBountyRemoved called',() => {

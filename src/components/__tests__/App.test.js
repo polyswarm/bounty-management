@@ -31,7 +31,7 @@ it('calls setState with create:true when onCreateBounty is called', () => {
 
   instance.onCreateBounty();
 
-  expect(setState).toHaveBeenCalledWith({create: true});
+  expect(setState).toHaveBeenCalledWith({active:-1, create: true});
 });
 
 it('shows create bounty when create is true.', () => {

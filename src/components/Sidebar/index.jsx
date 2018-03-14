@@ -10,14 +10,11 @@ import './styles.css';
 class Sidebar extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selected: 0,
-    };
     this.onSelectBounty = this.onSelectBounty.bind(this);
   }
 
   render() {
-    const { props: { bounties }, state: { selected } } = this;
+    const { props: { bounties, active } } = this;
     return (
       <div className='Sidebar'>
         <header className='Sidebar-Header'>
@@ -29,7 +26,7 @@ class Sidebar extends Component {
             bounties.map((bounty, index) => {
               return(<ListItem
                 className={`item-${index}`}
-                active={index === selected}
+                active={index === active}
                 key={bounty.guid}
                 onClick={() => {this.onSelectBounty(index);}}
                 remove={() => {this.onBountyRemoved(index);}}
@@ -45,7 +42,6 @@ class Sidebar extends Component {
     const { props: { select } } = this;
     if (select) {
       select(index);
-      this.setState({selected: index});
     }
   }
 

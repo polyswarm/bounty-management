@@ -105,6 +105,7 @@ exports[`shows manager when at least one bounty & active is negative 1`] = `
     className="App hex-background"
   >
     <Sidebar
+      active={-1}
       bounties={
         Array [
           Object {
@@ -130,7 +131,7 @@ exports[`shows manager when at least one bounty & active is negative 1`] = `
           className="Sidebar-Content"
         >
           <ListItem
-            active={true}
+            active={false}
             className="item-0"
             item="asdf"
             key="asdf"
@@ -138,7 +139,7 @@ exports[`shows manager when at least one bounty & active is negative 1`] = `
             remove={[Function]}
           >
             <div
-              className="ListItem active"
+              className="ListItem"
               onClick={[Function]}
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
@@ -199,6 +200,7 @@ exports[`shows manager when at least one bounty & active selects it 1`] = `
     className="App hex-background"
   >
     <Sidebar
+      active={0}
       bounties={
         Array [
           Object {

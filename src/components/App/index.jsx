@@ -46,6 +46,7 @@ class App extends Component {
     return (
       <div className='App hex-background'>
         <Sidebar bounties={bounties}
+          active={active}
           remove={this.onRemoveBounty}
           select={this.onSelectBounty}/>
         <Header title={'Polyswarm'} onClick={this.onCreateBounty}/>
@@ -78,7 +79,7 @@ class App extends Component {
   }
 
   onCreateBounty() {
-    this.setState({create: true});
+    this.setState({create: true, active: -1});
   }
 
   onRemoveBounty(index) {
