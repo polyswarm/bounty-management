@@ -21,7 +21,7 @@ exports[`renders without crashing 1`] = `
          antivirus marketplace.
       </h2>
       <p>
-        Simply upload files to create your own bounties and then let the microengines on polyswarm analyze your file.
+        Simply upload files to create your own bounties and then let the microengines on Polyswarm analyze your file.
       </p>
       <button
         class="Button"
