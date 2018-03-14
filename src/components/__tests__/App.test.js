@@ -86,17 +86,23 @@ it('shows manager when at least one bounty & active is negative', () => {
   expect(mountToJson(wrapper)).toMatchSnapshot();
 });
 
-// it('shows welcome screen on first load', () => {
-//   const wrapper = mount(<App />);
-//   expect(wrapper.find('.Welcome')).toHaveLength(1);
-// });
+it('shows welcome screen on first load', () => {
+  const wrapper = mount(<App />);
+  expect(wrapper.find('.Welcome')).toHaveLength(1);
+});
+
+it('stores seen true when welcome closed', () => {
+  const wrapper = mount(<App />);
+  wrapper.find('.Welcome').find('button').simulate('click');
+  expect(JSON.parse(localStorage.getItem('seen'))).toBeTruthy();
+});
 
 it('calls select when a sidebar item is clicked', () => {
   const select = spyOn(App.prototype, 'onSelectBounty');
   const wrapper = mount(<App />);
   const bounties = [{guid:'asdf'}, {guid:'demo'}];
   const active = 0;
-  wrapper.setState({bounties: bounties, active: active});
+  wrapper.setState({first: false, bounties: bounties, active: active});
   wrapper.find('.item-0').simulate('click');
   expect(select).toHaveBeenCalledTimes(1);
   expect(select).toHaveBeenCalledWith(0);
@@ -159,7 +165,7 @@ it('calls remove when a sidebar item remove is clicked', () => {
   const wrapper = mount(<App />);
   const bounties = [{guid:'asdf'}, {guid:'demo'}];
   const active = 0;
-  wrapper.setState({bounties: bounties, active: active});
+  wrapper.setState({first: false, bounties: bounties, active: active});
   wrapper.find('.item-0').simulate('mouseEnter');
   wrapper.find('.Remove-Button').simulate('click');
   expect(remove).toHaveBeenCalledTimes(1);
@@ -170,7 +176,7 @@ it('updates the state when onRemoveBounty called',() => {
   const wrapper = mount(<App />);
   const bounties = [{guid:'asdf'}, {guid:'demo'}];
   const active = 0;
-  wrapper.setState({bounties: bounties, active: active});
+  wrapper.setState({first: false, bounties: bounties, active: active});
 
   const setState = spyOn(App.prototype, 'setState');
   const instance = wrapper.instance();
@@ -505,4 +511,12 @@ it('reads bounties from localStorage and puts into state on startup', () => {
   const instance = wrapper.instance();
 
   expect(instance.state.bounties).toEqual(JSON.parse(bounties));
+});
+
+it('reads seen from localStorage and puts it into state as first on startup', () => {
+  localStorage.setItem('seen', JSON.stringify(true));
+  const wrapper = mount(<App />);
+  const instance = wrapper.instance();
+
+  expect(instance.state.first).toBeFalsy();
 });

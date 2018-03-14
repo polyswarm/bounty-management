@@ -5,103 +5,22 @@ exports[`renders without crashing 1`] = `
   class="App hex-background"
 >
   <div
-    class="Sidebar"
-  >
-    <header
-      class="Sidebar-Header"
-    >
-      <img
-        alt="Polyswarm logo"
-        src="/img/polyswarm.svg"
-      >
-        
-      </img>
-    </header>
-    <ul
-      class="Sidebar-Content"
-    >
-      
-    </ul>
-  </div>
-  <header
-    class="Header"
-  >
-    <h1>
-      Polyswarm
-    </h1>
-    <button
-      class="Button"
-    >
-      + Bounty
-    </button>
-  </header>
-  <div
-    class="App-Content"
+    class="Welcome"
   >
     <div
-      class="Bounty-Create"
+      class="Welcome-Jumbo jumbotron"
     >
-      <div
-        class="Container"
+      <h1>
+        Welcome to Polyswarm,
+      </h1>
+      <p>
+        This preview faucet allows users to upload files onto the Rinkeby test network and see how simple it is to create a bounty that will be analyzed and judged by various micro-engines to determine the malicious or benign nature of your file.
+      </p>
+      <button
+        class="Button"
       >
-        <div
-          class="Drop-Target"
-        >
-          <div>
-            <div
-              class="center"
-            >
-              <p>
-                Drag and drop your files here, or 
-              </p>
-              <form>
-                <input
-                  class="hidden"
-                  id="file"
-                  type="file"
-                >
-                  
-                </input>
-                <label
-                  for="file"
-                >
-                  click here.
-                </label>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div
-          class="File-List"
-        >
-          <header
-            class="File-List-Header"
-          >
-            <p
-              class="File-List-Title"
-            >
-              Bounty Files 0
-            </p>
-            <button
-              class="Button"
-              disabled=""
-            >
-              Clear All
-            </button>
-          </header>
-          <ul
-            class="List"
-          >
-            
-          </ul>
-        </div>
-        <button
-          class="Button"
-          disabled=""
-        >
-          Create Bounty
-        </button>
-      </div>
+        Get Started!
+      </button>
     </div>
   </div>
 </div>

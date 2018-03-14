@@ -5,6 +5,7 @@ import BountyCreate from '../BountyCreate';
 import Manager from '../Manager';
 import Sidebar from '../Sidebar';
 import Header from '../Header';
+import Welcome from '../Welcome';
 // Component imports
 import config from './config';
 import './styles.css';
@@ -12,10 +13,12 @@ import './styles.css';
 class App extends Component {
   constructor(props) {
     super(props);
+    const {bounties, first} = this.preloadLocalStorage();
     this.state = {
       active: 0,
-      bounties: this.preloadLocalStorage(),
+      bounties: bounties,
       create: false,
+      first: first,
     };
 
     this.onAddBounty = this.onAddBounty.bind(this);
@@ -23,6 +26,7 @@ class App extends Component {
     this.onRemoveBounty = this.onRemoveBounty.bind(this);
     this.onSelectBounty = this.onSelectBounty.bind(this);
     this.onCreateBounty = this.onCreateBounty.bind(this);
+    this.onCloseWelcome = this.onCloseWelcome.bind(this);
   }
 
   componentDidUpdate(_, prevState) {
@@ -42,22 +46,29 @@ class App extends Component {
 
   render() {
     const {url} = config;
-    const { state: { active, bounties, create } } = this;
+    const { state: { active, bounties, create, first } } = this;
     return (
       <div className='App hex-background'>
-        <Sidebar bounties={bounties}
-          active={active}
-          remove={this.onRemoveBounty}
-          select={this.onSelectBounty}/>
-        <Header title={'Polyswarm'} onClick={this.onCreateBounty}/>
-        <div className='App-Content'>
-          { (bounties.length === 0 || create) && (
-            <BountyCreate url={url} addBounty={this.onAddBounty}/>
-          )}
-          { !create && active < bounties.length && (
-            <Manager bounty={bounties[active]}/>
-          )}
-        </div>
+        {first && (
+          <Welcome onClick={this.onCloseWelcome}/>
+        )}
+        {!first && (
+          <React.Fragment>
+            <Sidebar bounties={bounties}
+              active={active}
+              remove={this.onRemoveBounty}
+              select={this.onSelectBounty}/>
+            <Header title={'Polyswarm'} onClick={this.onCreateBounty}/>
+            <div className='App-Content'>
+              { (bounties.length === 0 || create) && (
+                <BountyCreate url={url} addBounty={this.onAddBounty}/>
+              )}
+              { !create && active < bounties.length && (
+                <Manager bounty={bounties[active]}/>
+              )}
+            </div>
+          </React.Fragment>
+        )}
       </div>
     );
   }
@@ -80,6 +91,11 @@ class App extends Component {
 
   onCreateBounty() {
     this.setState({create: true, active: -1});
+  }
+
+  onCloseWelcome() {
+    this.setState({first: false});
+    this.markSeen();
   }
 
   onRemoveBounty(index) {
@@ -131,11 +147,19 @@ class App extends Component {
     }
   }
 
+  markSeen() {
+    if (this.hasLocalStorage()) {
+      localStorage.setItem('seen', JSON.stringify(true));
+    }
+  }
+
   preloadLocalStorage() {
     if (this.hasLocalStorage) {
-      return  JSON.parse(localStorage.getItem('bounties')) || [];
+      const bounties = JSON.parse(localStorage.getItem('bounties')) || [];
+      const first = !JSON.parse(localStorage.getItem('seen'));
+      return {bounties, first};
     } else {
-      return [];
+      return {bounties: [], first: true};
     }
   }
 }
