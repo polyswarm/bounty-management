@@ -8,6 +8,7 @@ import Header from '../Header';
 import Welcome from '../Welcome';
 // Component imports
 import config from './config';
+import strings from './strings';
 import './styles.css';
 
 class App extends Component {
@@ -58,7 +59,8 @@ class App extends Component {
               active={active}
               remove={this.onRemoveBounty}
               select={this.onSelectBounty}/>
-            <Header title={'Polyswarm'} onClick={this.onCreateBounty}/>
+            <Header title={create ? strings.create : bounties[active].guid}
+              onClick={this.onCreateBounty}/>
             <div className='App-Content'>
               { (bounties.length === 0 || create) && (
                 <BountyCreate url={url} addBounty={this.onAddBounty}/>
