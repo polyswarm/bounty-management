@@ -15,12 +15,14 @@ class App extends Component {
     this.state = {
       active: 0,
       bounties: this.preloadLocalStorage(),
+      create: false,
     };
 
     this.onAddBounty = this.onAddBounty.bind(this);
     this.onUpdateBounty = this.onUpdateBounty.bind(this);
     this.onRemoveBounty = this.onRemoveBounty.bind(this);
     this.onSelectBounty = this.onSelectBounty.bind(this);
+    this.onCreateBounty = this.onCreateBounty.bind(this);
   }
 
   componentDidUpdate(_, prevState) {
@@ -40,18 +42,18 @@ class App extends Component {
 
   render() {
     const {url} = config;
-    const { state: { active, bounties } } = this;
+    const { state: { active, bounties, create } } = this;
     return (
       <div className='App hex-background'>
         <Sidebar bounties={bounties}
           remove={this.onRemoveBounty}
           select={this.onSelectBounty}/>
-        <Header title={'Polyswarm'} />
+        <Header title={'Polyswarm'} onClick={this.onCreateBounty}/>
         <div className='App-Content'>
-          { active >= bounties.length && (
+          { (bounties.length == 0 || create) && (
             <BountyCreate url={url} addBounty={this.onAddBounty}/>
           )}
-          { active < bounties.length && (
+          { !create && active < bounties.length && (
             <Manager bounty={bounties[active]}/>
           )}
         </div>
@@ -75,6 +77,10 @@ class App extends Component {
     this.setState({bounties});
   }
 
+  onCreateBounty() {
+    this.setState({create: true});
+  }
+
   onRemoveBounty(index) {
     const { state: { bounties } } = this;
     if (index !== null && index >= 0 && index < bounties.length) {
@@ -86,7 +92,7 @@ class App extends Component {
   onSelectBounty(index) {
     const { state: { bounties } } = this;
     if (index !== null && index >= 0 && index < bounties.length) {
-      this.setState({active: index});
+      this.setState({active: index, create: false});
     }
   }
 

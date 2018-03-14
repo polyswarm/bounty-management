@@ -154,6 +154,7 @@ exports[`shows manager when at least one bounty & active is negative 1`] = `
       </div>
     </Sidebar>
     <Header
+      onClick={[Function]}
       title="Polyswarm"
     >
       <header
@@ -247,6 +248,7 @@ exports[`shows manager when at least one bounty & active selects it 1`] = `
       </div>
     </Sidebar>
     <Header
+      onClick={[Function]}
       title="Polyswarm"
     >
       <header

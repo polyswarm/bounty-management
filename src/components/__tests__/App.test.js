@@ -6,6 +6,7 @@ import App from '../App';
 
 beforeEach(() => {
   localStorage.clear();
+  jest.clearAllMocks();
 });
 
 it('renders without crashing', () => {
@@ -18,6 +19,53 @@ it('shows create when no bounties found', () => {
   wrapper.setState({first: false});
   expect(wrapper.find('.Bounty-Create')).toHaveLength(1);
   expect(renderToJson(wrapper)).toMatchSnapshot();
+});
+
+it('calls setState with create:true when onCreateBounty is called', () => {
+  const wrapper = mount(<App />);
+  const instance = wrapper.instance();
+  const bounties = [{guid:'asdf'}];
+  const active = 0;
+  wrapper.setState({first: false, bounties: bounties, active: active});
+  const setState = jest.spyOn(App.prototype, 'setState');
+
+  instance.onCreateBounty();
+
+  expect(setState).toHaveBeenCalledWith({create: true});
+});
+
+it('shows create bounty when create is true.', () => {
+  const wrapper = mount(<App />);
+  const bounties = [{guid:'asdf'}];
+  const active = 0;
+
+  wrapper.setState({first: false, create: true, bounties: bounties, active: active});
+
+  expect(wrapper.find('.Bounty-Create')).toHaveLength(1);
+});
+
+it('calls onCreateBounty when header button is clicked.', () => {
+  const onCreateBounty = jest.spyOn(App.prototype, 'onCreateBounty');
+  const wrapper = mount(<App />);
+  const bounties = [{guid:'asdf'}];
+  const active = 0;
+  wrapper.setState({first: false, bounties: bounties, active: active});
+
+  wrapper.find('.Header-Button').simulate('click');
+
+  expect(onCreateBounty).toHaveBeenCalledTimes(1);
+});
+
+it('shows create when header "+ Bounty" is clicked', () => {
+  const wrapper = mount(<App />);
+  const bounties = [{guid:'asdf'}];
+  const active = 0;
+  wrapper.setState({first: false, bounties: bounties, active: active});
+
+  wrapper.find('.Header-Button').simulate('click');
+
+  expect(wrapper.find('.Bounty-Create')).toHaveLength(1);
+  expect(wrapper.find('.Manager')).toHaveLength(0);
 });
 
 it('shows manager when at least one bounty & active selects it', () => {
@@ -64,7 +112,7 @@ it('updates the state when onSelectBounty called',() => {
   const instance = wrapper.instance();
   instance.onSelectBounty(1);
 
-  expect(setState).toHaveBeenCalledWith({active: 1});
+  expect(setState).toHaveBeenCalledWith({active: 1, create: false});
 });
 
 it('does not update the state when onSelectBounty called with negative',() => {
