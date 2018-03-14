@@ -15,27 +15,22 @@
   background-image: url('/img/gray_hexgrid_2x.png');
   background-size: 48px 58px;
   border: 2px dashed black;
+  box-sizing: border-box;
   color: black;
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: center;
   position: relative;
-  vertical-align: middle;
 }
 
 .Drop-Target > div {
-  display: table;
-  height: 400px;
   margin: 0 auto;
   padding: 0 20px;
-  position: relative;
 }
 
-.center {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-p {
+.Drop-Target > div > p {
   display: inline-block;
   margin: 5px auto;
 }
