@@ -48,7 +48,7 @@ class App extends Component {
     const {url} = config;
     const { state: { active, bounties, create, first } } = this;
     return (
-      <div className='App hex-background'>
+      <div className='App'>
         {first && (
           <Welcome onClick={this.onCloseWelcome}/>
         )}
