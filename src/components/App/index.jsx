@@ -51,7 +51,7 @@ class App extends Component {
           select={this.onSelectBounty}/>
         <Header title={'Polyswarm'} onClick={this.onCreateBounty}/>
         <div className='App-Content'>
-          { (bounties.length == 0 || create) && (
+          { (bounties.length === 0 || create) && (
             <BountyCreate url={url} addBounty={this.onAddBounty}/>
           )}
           { !create && active < bounties.length && (
