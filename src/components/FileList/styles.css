@@ -1,7 +1,7 @@
 .File-List-Header {
   align-items: center;
-  border-bottom: 2px solid #e8c9ff;
-  color: #7500ff;
+  border-bottom: 2px solid #8500ff;
+  color: #8500ff;
   display: flex;
   flex-direction: row;
   font-size: 20px;
@@ -24,7 +24,7 @@
 }
 
 .File-List-Header > button {
-  background-color: #fbf2ff;
+  background-color: #ff1a00;
   color: white;
   float: right;
   margin-right: 15px;
