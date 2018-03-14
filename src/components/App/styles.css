@@ -23,6 +23,10 @@ body {
   top: 0;
 }
 
+.App-Content {
+  overflow: auto;
+}
+
 .Header {
   grid-column: 2;
   grid-row: 1;

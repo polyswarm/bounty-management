@@ -36,58 +36,62 @@ exports[`renders without crashing 1`] = `
     </button>
   </header>
   <div
-    class="Bounty-Create"
+    class="App-Content"
   >
     <div
-      class="Container"
+      class="Bounty-Create"
     >
       <div
-        class="Drop-Target"
+        class="Container"
       >
-        <div>
-          <div
-            class="center"
-          >
-            <p>
-              Drag and drop your files here, or 
-            </p>
-            <form>
-              <input
-                class="hidden"
-                id="file"
-                type="file"
-              >
-                
-              </input>
-              <label
-                for="file"
-              >
-                click here.
-              </label>
-            </form>
+        <div
+          class="Drop-Target"
+        >
+          <div>
+            <div
+              class="center"
+            >
+              <p>
+                Drag and drop your files here, or 
+              </p>
+              <form>
+                <input
+                  class="hidden"
+                  id="file"
+                  type="file"
+                >
+                  
+                </input>
+                <label
+                  for="file"
+                >
+                  click here.
+                </label>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-      <div
-        class="File-List"
-      >
-        <header
-          class="File-List-Header"
-        >
-          Bounty Files 0
-        </header>
         <div
-          class="List"
+          class="File-List"
         >
-          
+          <header
+            class="File-List-Header"
+          >
+            Bounty Files 0
+          </header>
+          <div
+            class="List"
+          >
+            
+          </div>
         </div>
+        <button
+          class="Button"
+          disabled=""
+        >
+          Create Bounty
+        </button>
       </div>
-      <button
-        class="Button"
-        disabled=""
-      >
-        Create Bounty
-      </button>
     </div>
   </div>
 </div>
@@ -171,15 +175,19 @@ exports[`shows manager when at least one bounty & active is negative 1`] = `
         </Button>
       </header>
     </Header>
-    <Manager
-      bounties={[Function]}
+    <div
+      className="App-Content"
     >
-      <div
-        className="Manager"
+      <Manager
+        bounties={[Function]}
       >
-        Placeholder
-      </div>
-    </Manager>
+        <div
+          className="Manager"
+        >
+          Placeholder
+        </div>
+      </Manager>
+    </div>
   </div>
 </App>
 `;
@@ -260,20 +268,24 @@ exports[`shows manager when at least one bounty & active selects it 1`] = `
         </Button>
       </header>
     </Header>
-    <Manager
-      bounties={[Function]}
-      bounty={
-        Object {
-          "guid": "asdf",
-        }
-      }
+    <div
+      className="App-Content"
     >
-      <div
-        className="Manager"
+      <Manager
+        bounties={[Function]}
+        bounty={
+          Object {
+            "guid": "asdf",
+          }
+        }
       >
-        Placeholder
-      </div>
-    </Manager>
+        <div
+          className="Manager"
+        >
+          Placeholder
+        </div>
+      </Manager>
+    </div>
   </div>
 </App>
 `;

@@ -7,7 +7,7 @@
 .Container {
   display: grid;
   grid-row-gap: 10px;
-  grid-template-rows: 50vh 30vh 5vh 15vh;
+  grid-template-rows: 400px 300px 30px 50px;
   height: 100%;
   padding: 20px;
 }

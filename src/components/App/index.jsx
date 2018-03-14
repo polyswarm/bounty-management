@@ -47,12 +47,14 @@ class App extends Component {
           remove={this.onRemoveBounty}
           select={this.onSelectBounty}/>
         <Header title={'Polyswarm'} />
-        { active >= bounties.length && (
-          <BountyCreate url={url} addBounty={this.onAddBounty}/>
-        )}
-        { active < bounties.length && (
-          <Manager bounty={bounties[active]}/>
-        )}
+        <div className='App-Content'>
+          { active >= bounties.length && (
+            <BountyCreate url={url} addBounty={this.onAddBounty}/>
+          )}
+          { active < bounties.length && (
+            <Manager bounty={bounties[active]}/>
+          )}
+        </div>
       </div>
     );
   }
