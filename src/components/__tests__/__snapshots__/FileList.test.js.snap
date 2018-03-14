@@ -17,9 +17,26 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
     <header
       className="File-List-Header"
     >
-      Bounty Files
-       
-      1
+      <p
+        className="File-List-Title"
+      >
+        Bounty Files
+         
+        1
+      </p>
+      <Button
+        className="Clear-Button"
+        disabled={false}
+        onClick={[Function]}
+      >
+        <button
+          className="Button"
+          disabled={false}
+          onClick={[Function]}
+        >
+          Clear All
+        </button>
+      </Button>
     </header>
     <div
       className="List"
@@ -72,7 +89,16 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
   <header
     class="File-List-Header"
   >
-    Bounty Files 3
+    <p
+      class="File-List-Title"
+    >
+      Bounty Files 3
+    </p>
+    <button
+      class="Button"
+    >
+      Clear All
+    </button>
   </header>
   <div
     class="List"
@@ -115,7 +141,17 @@ exports[`renders without crashing 1`] = `
   <header
     class="File-List-Header"
   >
-    Bounty Files 0
+    <p
+      class="File-List-Title"
+    >
+      Bounty Files 0
+    </p>
+    <button
+      class="Button"
+      disabled=""
+    >
+      Clear All
+    </button>
   </header>
   <div
     class="List"

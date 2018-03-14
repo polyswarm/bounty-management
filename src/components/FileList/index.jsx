@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // Bounty imports
 import ListItem from '../ListItem';
+import Button from '../Button';
 // Component Imports
 import strings from './strings';
 import './styles.css';
@@ -11,6 +12,7 @@ class FileList  extends React.Component {
   constructor(props) {
     super(props);
     this.onRemoveClickHandler = this.onRemoveClickHandler.bind(this);
+    this.onClearClickHandler = this.onClearClickHandler.bind(this);
   }
 
   render () {
@@ -18,7 +20,12 @@ class FileList  extends React.Component {
     return (
       <div className='File-List'>
         <header className='File-List-Header'>
-          {strings.title}{' '}{files.length}
+          <p className='File-List-Title'>{strings.title}{' '}{files.length}</p>
+          <Button className='Clear-Button'
+            disabled={files.length === 0}
+            onClick={this.onClearClickHandler}>
+            {strings.clearAll}
+          </Button>
         </header>
         <div className='List'>
           {files && files.length > 0 && (
@@ -41,6 +48,13 @@ class FileList  extends React.Component {
     const { props: { removeFile } } = this;
     if (removeFile) {
       removeFile(index);
+    }
+  }
+
+  onClearClickHandler() {
+    const { props: { clear } } = this;
+    if (clear) {
+      clear();
     }
   }
 }

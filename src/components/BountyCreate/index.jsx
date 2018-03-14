@@ -24,6 +24,7 @@ class BountyCreate extends Component {
     this.onFileRemoved = this.onFileRemoved.bind(this);
     this.createBounty = this.createBounty.bind(this);
     this.onClickHandler = this.onClickHandler.bind(this);
+    this.onClearAll = this.onClearAll.bind(this);
     this.cancel = this.cancel.bind(this);
     this.onProgress = this.onProgress.bind(this);
   }
@@ -40,6 +41,7 @@ class BountyCreate extends Component {
         <div className='Container'>
           <DropTarget onFilesSelected={this.onMultipleFilesSelected}/>
           <FileList files={files}
+            clear={this.onClearAll}
             removeFile={this.onFileRemoved}/>
           {uploading && !error && (
             <Progressbar progress={progress}/>
@@ -85,6 +87,10 @@ class BountyCreate extends Component {
 
   onProgress(progress) {
     this.setState({progress: progress});
+  }
+
+  onClearAll() {
+    this.setState({ files: [], error: null, });
   }
 
   cancel() {

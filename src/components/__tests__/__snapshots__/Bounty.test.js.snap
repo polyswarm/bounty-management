@@ -40,7 +40,17 @@ exports[`renders without crashing 1`] = `
       <header
         class="File-List-Header"
       >
-        Bounty Files 0
+        <p
+          class="File-List-Title"
+        >
+          Bounty Files 0
+        </p>
+        <button
+          class="Button"
+          disabled=""
+        >
+          Clear All
+        </button>
       </header>
       <div
         class="List"

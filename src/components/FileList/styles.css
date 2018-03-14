@@ -1,8 +1,10 @@
 .File-List-Header {
   border-bottom: 2px solid #350066;
   color: #7500ff;
+  display: flex;
   font-size: 20px;
   line-height: 40px;
+  align-items: center;
 }
 
 .File-List {
@@ -13,6 +15,24 @@
   position: relative;
 }
 
+.File-List-Title {
+  display: inline-block;
+}
+
 .List {
   color: #000;
+}
+
+.File-List-Header > button {
+  background-color: #ff1a00;
+  border-radius: 2px;
+  color: white;
+  float: right;
+  margin-right: 15px;
+  max-width: 120px;
+  padding: 0;
+}
+
+.File-List-Header > button:hover {
+  background-color: #ff8c75;
 }

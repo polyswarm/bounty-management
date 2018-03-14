@@ -1,4 +1,5 @@
 const strings = {
-  title: 'Bounty Files'
+  title: 'Bounty Files',
+  clearAll: 'Clear All',
 };
 export default strings;

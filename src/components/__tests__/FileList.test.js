@@ -35,7 +35,24 @@ it('calls remove when FileProgress remove button clicked',() => {
       files={files} />
   );
   wrapper.find('.ListItem').simulate('mouseEnter');
-  wrapper.find('button').simulate('click');
+  wrapper.find('.ListItem').find('button').simulate('click');
   expect(remove).toHaveBeenCalled();
   expect(mountToJson(wrapper)).toMatchSnapshot();
+});
+
+it('calls clearAll when clearAll button is clicked', () => {
+  const clearAll = jest.fn();
+  const files = [
+    {name: 'asdf'},
+  ];
+  const wrapper = mount(
+    <FileList
+      clear={clearAll}
+      files={files} />
+  );
+
+  //act
+  wrapper.find('.Clear-Button').simulate('click');
+
+  expect(clearAll).toHaveBeenCalledTimes(1);
 });

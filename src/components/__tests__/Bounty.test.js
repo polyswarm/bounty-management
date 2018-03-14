@@ -67,6 +67,22 @@ it('deletes the file at index when onFileRemoved called', () => {
   expect(instance.state.files).toEqual([{name: 'demo'}]);
 });
 
+it('deletes all files when onClearAll is called', () => {
+  const wrapper = shallow(<BountyCreate />);
+  const instance = wrapper.instance();
+  const files = [
+    {name: 'demo'},
+    {name: 'omed'},
+  ];
+  instance.setState({files});
+
+  //act
+  instance.onClearAll();
+
+  expect(instance.state.files).toHaveLength(0);
+  expect(instance.state.files).toEqual([]);
+});
+
 it('doesn\'t delete the file at index when out of bounds', () => {
   const wrapper = shallow(<BountyCreate />);
   const instance = wrapper.instance();
