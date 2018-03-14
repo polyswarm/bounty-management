@@ -11,8 +11,8 @@
 .Drop-Target {
   animation-duration: 1s;
   animation-name: darken;
-  background-size: 48px 58px;
   background-color: #fbf2ff;
+  background-size: 48px 58px;
   border: 2px dashed #8500ff;
   border-radius: 5px;
   box-sizing: border-box;

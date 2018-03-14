@@ -1,12 +1,12 @@
 .File-List-Header {
+  align-items: center;
   border-bottom: 2px solid #e8c9ff;
   color: #7500ff;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   font-size: 20px;
+  justify-content: space-between;
   line-height: 20px;
-  align-items: center;
 }
 
 .File-List {
