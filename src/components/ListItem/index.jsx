@@ -22,7 +22,7 @@ class ListItem extends Component {
   render () {
     const { props: { item, remove, active, alert }, state: { hover } } = this;
     return(
-      <div className={`ListItem${active ? ' active': ''}`}
+      <li className={`ListItem${active ? ' active': ''}`}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClickHandler}>
@@ -37,7 +37,7 @@ class ListItem extends Component {
             </RemoveButton>
           </span>
         )}
-      </div>
+      </li>
     );
   }
 

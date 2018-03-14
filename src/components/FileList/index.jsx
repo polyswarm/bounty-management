@@ -27,7 +27,7 @@ class FileList  extends React.Component {
             {strings.clearAll}
           </Button>
         </header>
-        <div className='List'>
+        <ul className='List'>
           {files && files.length > 0 && (
             files.map((f, index) => {
               const name = f.name;
@@ -39,7 +39,7 @@ class FileList  extends React.Component {
               );
             })
           )}
-        </div>
+        </ul>
       </div>
     );
   }

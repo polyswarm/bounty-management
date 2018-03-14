@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`adds the active class when active property is true 1`] = `
-<div
+<li
   class="ListItem active"
 >
   <p
@@ -9,11 +9,11 @@ exports[`adds the active class when active property is true 1`] = `
   >
     asdf
   </p>
-</div>
+</li>
 `;
 
 exports[`renders without crashing 1`] = `
-<div
+<li
   class="ListItem"
 >
   <p
@@ -21,7 +21,7 @@ exports[`renders without crashing 1`] = `
   >
     asdf
   </p>
-</div>
+</li>
 `;
 
 exports[`shows remove button when hovered 1`] = `
@@ -29,7 +29,7 @@ exports[`shows remove button when hovered 1`] = `
   item="asdf"
   remove={[Function]}
 >
-  <div
+  <li
     className="ListItem"
     onClick={[Function]}
     onMouseEnter={[Function]}
@@ -58,12 +58,12 @@ exports[`shows remove button when hovered 1`] = `
         </button>
       </RemoveButton>
     </span>
-  </div>
+  </li>
 </ListItem>
 `;
 
 exports[`shows the badge when alert is set 1`] = `
-<div
+<li
   class="ListItem active"
 >
   <div
@@ -76,5 +76,5 @@ exports[`shows the badge when alert is set 1`] = `
   >
     asdf
   </p>
-</div>
+</li>
 `;

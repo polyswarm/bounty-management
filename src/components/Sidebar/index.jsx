@@ -21,7 +21,7 @@ class Sidebar extends Component {
           <img src='/img/polyswarm.svg'
             alt={strings.logo}/>
         </header>
-        <div className='Sidebar-Content'>
+        <ul className='Sidebar-Content'>
           {bounties && bounties.length > 0 && (
             bounties.map((bounty, index) => {
               return(<ListItem
@@ -33,7 +33,7 @@ class Sidebar extends Component {
                 item={bounty.guid}/>);
             })
           )}
-        </div>
+        </ul>
       </div>
     );
   }

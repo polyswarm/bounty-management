@@ -27,7 +27,7 @@ exports[`marks the selected row as .active 1`] = `
         src="/img/polyswarm.svg"
       />
     </header>
-    <div
+    <ul
       className="Sidebar-Content"
     >
       <ListItem
@@ -38,7 +38,7 @@ exports[`marks the selected row as .active 1`] = `
         onClick={[Function]}
         remove={[Function]}
       >
-        <div
+        <li
           className="ListItem"
           onClick={[Function]}
           onMouseEnter={[Function]}
@@ -49,7 +49,7 @@ exports[`marks the selected row as .active 1`] = `
           >
             asdf
           </p>
-        </div>
+        </li>
       </ListItem>
       <ListItem
         active={true}
@@ -59,7 +59,7 @@ exports[`marks the selected row as .active 1`] = `
         onClick={[Function]}
         remove={[Function]}
       >
-        <div
+        <li
           className="ListItem active"
           onClick={[Function]}
           onMouseEnter={[Function]}
@@ -70,9 +70,9 @@ exports[`marks the selected row as .active 1`] = `
           >
             demo
           </p>
-        </div>
+        </li>
       </ListItem>
-    </div>
+    </ul>
   </div>
 </Sidebar>
 `;
@@ -91,10 +91,10 @@ exports[`renders without crashing 1`] = `
       
     </img>
   </header>
-  <div
+  <ul
     class="Sidebar-Content"
   >
     
-  </div>
+  </ul>
 </div>
 `;

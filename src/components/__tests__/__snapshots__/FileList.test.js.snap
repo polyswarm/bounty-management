@@ -38,7 +38,7 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
         </button>
       </Button>
     </header>
-    <div
+    <ul
       className="List"
     >
       <ListItem
@@ -46,7 +46,7 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
         key="asdf"
         remove={[Function]}
       >
-        <div
+        <li
           className="ListItem"
           onClick={[Function]}
           onMouseEnter={[Function]}
@@ -75,9 +75,9 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
               </button>
             </RemoveButton>
           </span>
-        </div>
+        </li>
       </ListItem>
-    </div>
+    </ul>
   </div>
 </FileList>
 `;
@@ -100,10 +100,10 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
       Clear All
     </button>
   </header>
-  <div
+  <ul
     class="List"
   >
-    <div
+    <li
       class="ListItem"
     >
       <p
@@ -111,8 +111,8 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
       >
         asdf
       </p>
-    </div>
-    <div
+    </li>
+    <li
       class="ListItem"
     >
       <p
@@ -120,8 +120,8 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
       >
         demo
       </p>
-    </div>
-    <div
+    </li>
+    <li
       class="ListItem"
     >
       <p
@@ -129,8 +129,8 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
       >
         test
       </p>
-    </div>
-  </div>
+    </li>
+  </ul>
 </div>
 `;
 
@@ -153,10 +153,10 @@ exports[`renders without crashing 1`] = `
       Clear All
     </button>
   </header>
-  <div
+  <ul
     class="List"
   >
     
-  </div>
+  </ul>
 </div>
 `;

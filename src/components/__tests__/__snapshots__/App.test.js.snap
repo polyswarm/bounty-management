@@ -17,11 +17,11 @@ exports[`renders without crashing 1`] = `
         
       </img>
     </header>
-    <div
+    <ul
       class="Sidebar-Content"
     >
       
-    </div>
+    </ul>
   </div>
   <header
     class="Header"
@@ -89,11 +89,11 @@ exports[`renders without crashing 1`] = `
               Clear All
             </button>
           </header>
-          <div
+          <ul
             class="List"
           >
             
-          </div>
+          </ul>
         </div>
         <button
           class="Button"
@@ -137,7 +137,7 @@ exports[`shows manager when at least one bounty & active is negative 1`] = `
             src="/img/polyswarm.svg"
           />
         </header>
-        <div
+        <ul
           className="Sidebar-Content"
         >
           <ListItem
@@ -148,7 +148,7 @@ exports[`shows manager when at least one bounty & active is negative 1`] = `
             onClick={[Function]}
             remove={[Function]}
           >
-            <div
+            <li
               className="ListItem"
               onClick={[Function]}
               onMouseEnter={[Function]}
@@ -159,9 +159,9 @@ exports[`shows manager when at least one bounty & active is negative 1`] = `
               >
                 asdf
               </p>
-            </div>
+            </li>
           </ListItem>
-        </div>
+        </ul>
       </div>
     </Sidebar>
     <Header
@@ -232,7 +232,7 @@ exports[`shows manager when at least one bounty & active selects it 1`] = `
             src="/img/polyswarm.svg"
           />
         </header>
-        <div
+        <ul
           className="Sidebar-Content"
         >
           <ListItem
@@ -243,7 +243,7 @@ exports[`shows manager when at least one bounty & active selects it 1`] = `
             onClick={[Function]}
             remove={[Function]}
           >
-            <div
+            <li
               className="ListItem active"
               onClick={[Function]}
               onMouseEnter={[Function]}
@@ -254,9 +254,9 @@ exports[`shows manager when at least one bounty & active selects it 1`] = `
               >
                 asdf
               </p>
-            </div>
+            </li>
           </ListItem>
-        </div>
+        </ul>
       </div>
     </Sidebar>
     <Header

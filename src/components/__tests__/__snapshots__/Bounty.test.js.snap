@@ -52,11 +52,11 @@ exports[`renders without crashing 1`] = `
           Clear All
         </button>
       </header>
-      <div
+      <ul
         class="List"
       >
         
-      </div>
+      </ul>
     </div>
     <button
       class="Button"
