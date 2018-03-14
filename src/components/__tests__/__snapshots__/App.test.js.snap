@@ -2,7 +2,7 @@
 
 exports[`renders without crashing 1`] = `
 <div
-  class="App hex-background"
+  class="App"
 >
   <div
     class="Welcome"
@@ -38,7 +38,7 @@ exports[`shows create when no bounties found 1`] = `null`;
 exports[`shows manager when at least one bounty & active is negative 1`] = `
 <App>
   <div
-    className="App hex-background"
+    className="App"
   >
     <Sidebar
       active={-1}
@@ -133,7 +133,7 @@ exports[`shows manager when at least one bounty & active is negative 1`] = `
 exports[`shows manager when at least one bounty & active selects it 1`] = `
 <App>
   <div
-    className="App hex-background"
+    className="App"
   >
     <Sidebar
       active={0}
