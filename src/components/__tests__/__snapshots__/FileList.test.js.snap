@@ -20,9 +20,9 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
       <p
         className="File-List-Title"
       >
-        Bounty Files
-         
         1
+         
+        Files
       </p>
       <Button
         className="Clear-Button"
@@ -34,7 +34,7 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
           disabled={false}
           onClick={[Function]}
         >
-          Clear All
+          - Clear
         </button>
       </Button>
     </header>
@@ -92,12 +92,12 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
     <p
       class="File-List-Title"
     >
-      Bounty Files 3
+      3 Files
     </p>
     <button
       class="Button"
     >
-      Clear All
+      - Clear
     </button>
   </header>
   <ul
@@ -144,13 +144,13 @@ exports[`renders without crashing 1`] = `
     <p
       class="File-List-Title"
     >
-      Bounty Files 0
+      0 Files
     </p>
     <button
       class="Button"
       disabled=""
     >
-      Clear All
+      - Clear
     </button>
   </header>
   <ul

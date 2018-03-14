@@ -39,13 +39,13 @@ exports[`renders without crashing 1`] = `
         <p
           class="File-List-Title"
         >
-          Bounty Files 0
+          0 Files
         </p>
         <button
           class="Button"
           disabled=""
         >
-          Clear All
+          - Clear
         </button>
       </header>
       <ul

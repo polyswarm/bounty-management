@@ -20,7 +20,7 @@ class FileList  extends React.Component {
     return (
       <div className='File-List'>
         <header className='File-List-Header'>
-          <p className='File-List-Title'>{strings.title}{' '}{files.length}</p>
+          <p className='File-List-Title'>{files.length}{' '}{strings.title}</p>
           <Button className='Clear-Button'
             disabled={files.length === 0}
             onClick={this.onClearClickHandler}>
