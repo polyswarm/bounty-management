@@ -1,4 +1,5 @@
 .Sidebar {
+  background-color: #8500ff;
   border-right: 2px solid #9c38ff;
   display: inline-block;
   height: 100%;
@@ -9,8 +10,7 @@
 }
 
 .Sidebar-Content {
-  background-color: #fafafa;
-  color: #000000;
+  color: white;
   height: 100%;
   overflow: auto;
 }
@@ -24,7 +24,9 @@
 }
 
 .Sidebar-Header {
-  background-color: #8500ff;
+  background-image: url('/img/hexgrid_2x.png');
+  background-size: 129px 149px;
+  border-bottom: 2px solid #9c38ff;
   display: block;
   height: 132px;
 }

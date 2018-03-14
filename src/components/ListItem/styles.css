@@ -1,6 +1,6 @@
 .ListItem {
   background-clip: border-box;
-  border-bottom: 2px #eeeeee solid;
+  border-bottom: 2px #9c38ff solid;
   box-sizing: border-box;
   height: 48px;
   line-height: 46px;
@@ -12,7 +12,8 @@
 }
 
 .active {
-  color: #8500ff;
+  color: rgb(46, 255, 109);
+  font-weight: bold;
 }
 
 .alert {
