@@ -1,9 +1,9 @@
 .Header {
   align-items: center;
-  display: flex;
   background-color: #8500ff;
   box-shadow: 0 1px 1px black;
   color: white;
+  display: flex;
   justify-content: space-between;
   padding: 0 20px;
 }
