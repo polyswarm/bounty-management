@@ -187,13 +187,13 @@ exports[`shows manager when at least one bounty & active selects it 1`] = `
     </Sidebar>
     <Header
       onClick={[Function]}
-      title="Polyswarm"
+      title="asdf"
     >
       <header
         className="Header"
       >
         <h1>
-          Polyswarm
+          asdf
         </h1>
         <Button
           className="Header-Button"
