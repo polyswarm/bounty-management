@@ -48,6 +48,7 @@ class App extends Component {
   render() {
     const {url} = config;
     const { state: { active, bounties, create, first } } = this;
+
     return (
       <div className='App'>
         {first && (
@@ -59,7 +60,7 @@ class App extends Component {
               active={active}
               remove={this.onRemoveBounty}
               select={this.onSelectBounty}/>
-            <Header title={create ? strings.create : bounties[active].guid}
+            <Header title={(bounties.length === 0 || create || active < 0) ? strings.create : bounties[active].guid}
               onClick={this.onCreateBounty}/>
             <div className='App-Content'>
               { (bounties.length === 0 || create) && (

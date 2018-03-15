@@ -92,13 +92,13 @@ exports[`shows manager when at least one bounty & active is negative 1`] = `
     </Sidebar>
     <Header
       onClick={[Function]}
-      title="Polyswarm"
+      title="Create a Bounty"
     >
       <header
         className="Header"
       >
         <h1>
-          Polyswarm
+          Create a Bounty
         </h1>
         <Button
           className="Header-Button"
