@@ -16,7 +16,7 @@ class FileList  extends React.Component {
   }
 
   render () {
-    const { props: { files } } = this;
+    const { props: { files, immutable } } = this;
     return (
       <div className='File-List'>
         <header className='File-List-Header'>
@@ -31,11 +31,15 @@ class FileList  extends React.Component {
           {files && files.length > 0 && (
             files.map((f, index) => {
               const name = f.name;
+              let remove = () => {this.onRemoveClickHandler(index);};
+              if (immutable) {
+                remove = null;
+              }
               return(
                 <ListItem
                   key={name}
                   item={f.name}
-                  remove={() => {this.onRemoveClickHandler(index);}} />
+                  remove={remove} />
               );
             })
           )}
@@ -62,6 +66,7 @@ class FileList  extends React.Component {
 FileList.proptypes = {
   files: PropTypes.array.isRequired,
   removeFile: PropTypes.func.isRequired,
+  immutable: PropTypes.bool,
 };
 
 export default FileList;

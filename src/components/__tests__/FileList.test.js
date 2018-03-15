@@ -56,3 +56,19 @@ it('calls clearAll when clearAll button is clicked', () => {
 
   expect(clearAll).toHaveBeenCalledTimes(1);
 });
+
+it('prevents the remove button from showing when FileList has immutable property', () => {
+  const files = [
+    {name: 'asdf'},
+  ];
+  const wrapper = mount(
+    <FileList
+      immutable
+      files={files} />
+  );
+
+  wrapper.find('.ListItem').simulate('mouseEnter');
+
+  expect(wrapper.find('.ListItem').find('button')).toHaveLength(0);
+  expect(mountToJson(wrapper)).toMatchSnapshot();
+});

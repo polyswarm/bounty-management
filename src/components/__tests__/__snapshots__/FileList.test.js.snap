@@ -134,6 +134,70 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
 </div>
 `;
 
+exports[`prevents the remove button from showing when FileList has immutable property 1`] = `
+<FileList
+  files={
+    Array [
+      Object {
+        "name": "asdf",
+      },
+    ]
+  }
+  immutable={true}
+>
+  <div
+    className="File-List"
+  >
+    <header
+      className="File-List-Header"
+    >
+      <p
+        className="File-List-Title"
+      >
+        1
+         
+        Files
+      </p>
+      <Button
+        className="Clear-Button"
+        disabled={false}
+        onClick={[Function]}
+      >
+        <button
+          className="Button"
+          disabled={false}
+          onClick={[Function]}
+        >
+          - Clear
+        </button>
+      </Button>
+    </header>
+    <ul
+      className="List"
+    >
+      <ListItem
+        item="asdf"
+        key="asdf"
+        remove={null}
+      >
+        <li
+          className="ListItem"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <p
+            className="ListItem-Name"
+          >
+            asdf
+          </p>
+        </li>
+      </ListItem>
+    </ul>
+  </div>
+</FileList>
+`;
+
 exports[`renders without crashing 1`] = `
 <div
   class="File-List"
