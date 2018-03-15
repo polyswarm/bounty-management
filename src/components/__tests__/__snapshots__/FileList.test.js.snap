@@ -134,7 +134,7 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
 </div>
 `;
 
-exports[`prevents the remove button from showing when FileList has immutable property 1`] = `
+exports[`prevents the remove button from showing when FileList has readonly property 1`] = `
 <FileList
   files={
     Array [
@@ -143,7 +143,7 @@ exports[`prevents the remove button from showing when FileList has immutable pro
       },
     ]
   }
-  immutable={true}
+  readonly={true}
 >
   <div
     className="File-List"

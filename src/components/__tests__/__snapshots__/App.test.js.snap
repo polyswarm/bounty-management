@@ -314,7 +314,7 @@ exports[`shows BountyInfo when at least one bounty & active selects it 1`] = `
             <FileList
               className="Bounty-Info-Files"
               files={Array []}
-              immutable={true}
+              readonly={true}
             >
               <div
                 className="File-List"

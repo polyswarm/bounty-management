@@ -57,13 +57,13 @@ it('calls clearAll when clearAll button is clicked', () => {
   expect(clearAll).toHaveBeenCalledTimes(1);
 });
 
-it('prevents the remove button from showing when FileList has immutable property', () => {
+it('prevents the remove button from showing when FileList has readonly property', () => {
   const files = [
     {name: 'asdf'},
   ];
   const wrapper = mount(
     <FileList
-      immutable
+      readonly
       files={files} />
   );
 

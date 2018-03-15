@@ -16,7 +16,7 @@ class BountyInfo extends Component {
     return (
       <div className='Bounty-Info'>
         <div className='Bounty-Info-Container'>
-          <FileList className='Bounty-Info-Files' files={files} immutable />
+          <FileList className='Bounty-Info-Files' files={files} readonly />
         </div>
       </div>
     );
