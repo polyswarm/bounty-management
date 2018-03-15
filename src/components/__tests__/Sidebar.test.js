@@ -73,3 +73,14 @@ it('calls remove when RemoveButton clicked for a row',() => {
   expect(remove).toHaveBeenCalledWith(1);
   expect(select).toHaveBeenCalledTimes(0);
 });
+
+it('shows alert when bounty has updated: true', () => {
+  const remove = jest.fn();
+  const select = jest.fn();
+  const bounties = [{guid:'asdf', updated: true}, {guid:'demo'}];
+
+  const wrapper = mount(<Sidebar select={select} remove={remove} bounties={bounties} />);
+
+  expect(wrapper.find('.item-0').find('.alert')).toHaveLength(1);
+  expect(mountToJson(wrapper)).toMatchSnapshot();
+});
