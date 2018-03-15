@@ -1,5 +1,6 @@
 // Vendor imports
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 // Bounty imports
 import FileButton from '../FileButton';
 // Component imports
@@ -90,4 +91,8 @@ class DropTarget extends Component {
     }
   }
 }
+
+DropTarget.propTypes = {
+  onFilesSelected: PropTypes.func,
+};
 export default DropTarget;

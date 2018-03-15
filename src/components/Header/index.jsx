@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // Bounty imports
 import Button from '../Button';
+import PropTypes from 'prop-types';
 // Component imports
 import strings from './strings';
 import './styles.css';
@@ -31,4 +32,8 @@ class Header extends Component {
   }
 }
 
+Header.propTypes = {
+  title: PropTypes.string,
+  onClick: PropTypes.func,
+};
 export default Header;

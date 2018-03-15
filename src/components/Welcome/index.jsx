@@ -1,4 +1,7 @@
+// Vendor imports
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+// Bounty imports
 import Button from '../Button';
 // Component Imports
 import strings from './strings';
@@ -33,4 +36,7 @@ class Welcome extends Component {
   }
 }
 
+Welcome.propTypes = {
+  onClick: PropTypes.func,
+};
 export default Welcome;
