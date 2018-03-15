@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 // Bounty imports
 import BountyCreate from '../BountyCreate';
-import Manager from '../Manager';
+import BountyInfo from '../BountyInfo';
 import Sidebar from '../Sidebar';
 import Header from '../Header';
 import Welcome from '../Welcome';
@@ -63,11 +63,11 @@ class App extends Component {
             <Header title={(bounties.length === 0 || create || active < 0) ? strings.create : bounties[active].guid}
               onClick={this.onCreateBounty}/>
             <div className='App-Content'>
-              { (bounties.length === 0 || create) && (
+              { (bounties.length === 0 || create || active < 0 ) && (
                 <BountyCreate url={url} addBounty={this.onAddBounty}/>
               )}
-              { !create && active < bounties.length && (
-                <Manager bounty={bounties[active]}/>
+              { !create && active >=0 && active < bounties.length && (
+                <BountyInfo bounty={bounties[active]}/>
               )}
             </div>
           </React.Fragment>

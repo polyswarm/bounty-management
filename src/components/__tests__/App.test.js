@@ -65,24 +65,25 @@ it('shows create when header "+ Bounty" is clicked', () => {
   wrapper.find('.Header-Button').simulate('click');
 
   expect(wrapper.find('.Bounty-Create')).toHaveLength(1);
-  expect(wrapper.find('.Manager')).toHaveLength(0);
+  expect(wrapper.find('.Bounty-Info')).toHaveLength(0);
 });
 
-it('shows manager when at least one bounty & active selects it', () => {
+it('shows BountyInfo when at least one bounty & active selects it', () => {
   const wrapper = mount(<App />);
   const bounties = [{guid:'asdf'}];
   const active = 0;
   wrapper.setState({first: false, bounties: bounties, active: active});
-  expect(wrapper.find('.Manager')).toHaveLength(1);
+  expect(wrapper.find('.Bounty-Info')).toHaveLength(1);
   expect(mountToJson(wrapper)).toMatchSnapshot();
 });
 
-it('shows manager when at least one bounty & active is negative', () => {
+it('shows BountyInfo when at least one bounty & active is negative', () => {
   const wrapper = mount(<App />);
   const bounties = [{guid:'asdf'}];
   const active = -1;
   wrapper.setState({first: false, bounties: bounties, active: active});
-  expect(wrapper.find('.Manager')).toHaveLength(1);
+
+  expect(wrapper.find('.Bounty-Create')).toHaveLength(1);
   expect(mountToJson(wrapper)).toMatchSnapshot();
 });
 

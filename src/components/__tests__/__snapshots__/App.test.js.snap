@@ -33,9 +33,7 @@ exports[`renders without crashing 1`] = `
 </div>
 `;
 
-exports[`shows create when no bounties found 1`] = `null`;
-
-exports[`shows manager when at least one bounty & active is negative 1`] = `
+exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
 <App>
   <div
     className="App"
@@ -116,21 +114,110 @@ exports[`shows manager when at least one bounty & active is negative 1`] = `
     <div
       className="App-Content"
     >
-      <Manager
-        bounties={[Function]}
+      <BountyCreate
+        addBounty={[Function]}
+        url="https://localhost:8080"
       >
         <div
-          className="Manager"
+          className="Bounty-Create"
         >
-          Placeholder
+          <div
+            className="Container"
+          >
+            <DropTarget
+              onFilesSelected={[Function]}
+            >
+              <div
+                className="Drop-Target"
+                onDragEnter={[Function]}
+                onDragLeave={[Function]}
+                onDragOver={[Function]}
+                onDrop={[Function]}
+              >
+                <div>
+                  <p>
+                    Drag and drop your files here, or 
+                  </p>
+                  <FileButton
+                    onFileSelected={[Function]}
+                  >
+                    <form>
+                      <input
+                        className="hidden"
+                        id="file"
+                        onChange={[Function]}
+                        type="file"
+                      />
+                      <label
+                        htmlFor="file"
+                      >
+                        click here.
+                      </label>
+                    </form>
+                  </FileButton>
+                </div>
+              </div>
+            </DropTarget>
+            <FileList
+              clear={[Function]}
+              files={Array []}
+              removeFile={[Function]}
+            >
+              <div
+                className="File-List"
+              >
+                <header
+                  className="File-List-Header"
+                >
+                  <p
+                    className="File-List-Title"
+                  >
+                    0
+                     
+                    Files
+                  </p>
+                  <Button
+                    className="Clear-Button"
+                    disabled={true}
+                    onClick={[Function]}
+                  >
+                    <button
+                      className="Button"
+                      disabled={true}
+                      onClick={[Function]}
+                    >
+                      - Clear
+                    </button>
+                  </Button>
+                </header>
+                <ul
+                  className="List"
+                />
+              </div>
+            </FileList>
+            <Button
+              cancel={false}
+              className="Bounty-Create-Upload"
+              disabled={true}
+              onClick={[Function]}
+            >
+              <button
+                className="Button"
+                disabled={true}
+                onClick={[Function]}
+              >
+                Create Bounty
+              </button>
+            </Button>
+          </div>
         </div>
-      </Manager>
+      </BountyCreate>
     </div>
   </div>
 </App>
 `;
 
-exports[`shows manager when at least one bounty & active selects it 1`] = `
+exports[`shows BountyInfo when at least one bounty & active selects it 1`] = `
 <App>
   <div
     className="App"
@@ -211,8 +298,7 @@ exports[`shows manager when at least one bounty & active selects it 1`] = `
     <div
       className="App-Content"
     >
-      <Manager
-        bounties={[Function]}
+      <BountyInfo
         bounty={
           Object {
             "guid": "asdf",
@@ -220,12 +306,50 @@ exports[`shows manager when at least one bounty & active selects it 1`] = `
         }
       >
         <div
-          className="Manager"
+          className="Bounty-Info"
         >
-          Placeholder
+          <FileList
+            className="Bount-Info-Files"
+            files={Array []}
+            immutable={true}
+          >
+            <div
+              className="File-List"
+            >
+              <header
+                className="File-List-Header"
+              >
+                <p
+                  className="File-List-Title"
+                >
+                  0
+                   
+                  Files
+                </p>
+                <Button
+                  className="Clear-Button"
+                  disabled={true}
+                  onClick={[Function]}
+                >
+                  <button
+                    className="Button"
+                    disabled={true}
+                    onClick={[Function]}
+                  >
+                    - Clear
+                  </button>
+                </Button>
+              </header>
+              <ul
+                className="List"
+              />
+            </div>
+          </FileList>
         </div>
-      </Manager>
+      </BountyInfo>
     </div>
   </div>
 </App>
 `;
+
+exports[`shows create when no bounties found 1`] = `null`;

@@ -2,8 +2,31 @@
 
 exports[`renders without crashing 1`] = `
 <div
-  class="Info"
+  class="Bounty-Info"
 >
-  
+  <div
+    class="File-List"
+  >
+    <header
+      class="File-List-Header"
+    >
+      <p
+        class="File-List-Title"
+      >
+        0 Files
+      </p>
+      <button
+        class="Button"
+        disabled=""
+      >
+        - Clear
+      </button>
+    </header>
+    <ul
+      class="List"
+    >
+      
+    </ul>
+  </div>
 </div>
 `;
