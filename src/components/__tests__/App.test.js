@@ -110,7 +110,7 @@ it('calls select when a sidebar item is clicked', () => {
 
 it('updates the state when onSelectBounty called',() => {
   const wrapper = mount(<App />);
-  const bounties = [{guid:'asdf'}, {guid:'demo'}];
+  const bounties = [{guid:'asdf', updated: true}, {guid:'demo', updated: true}];
   const active = 0;
   wrapper.setState({bounties: bounties, active: active});
 
@@ -118,7 +118,22 @@ it('updates the state when onSelectBounty called',() => {
   const instance = wrapper.instance();
   instance.onSelectBounty(1);
 
-  expect(setState).toHaveBeenCalledWith({active: 1, create: false});
+  expect(setState).toHaveBeenCalledWith({
+    active: 1,
+    create: false,
+    bounties: [{
+      guid:'asdf',
+      updated: true
+    },
+    {
+      guid:'demo',
+      updated: false
+    }],
+  });
+});
+
+it('sets updated to false on bounty when onSelectBounty clicked', () => {
+
 });
 
 it('does not update the state when onSelectBounty called with negative',() => {

@@ -112,7 +112,10 @@ class App extends Component {
   onSelectBounty(index) {
     const { state: { bounties } } = this;
     if (index !== null && index >= 0 && index < bounties.length) {
-      this.setState({active: index, create: false});
+      const bounty = bounties[index];
+      bounty.updated = false;
+      bounties[index] = bounty;
+      this.setState({active: index, create: false, bounties: bounties});
     }
   }
 
