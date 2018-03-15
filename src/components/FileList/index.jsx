@@ -20,7 +20,9 @@ class FileList  extends React.Component {
     return (
       <div className='File-List'>
         <header className='File-List-Header'>
-          <p className='File-List-Title'>{files.length}{' '}{strings.title}</p>
+          <p className='File-List-Title'>
+            {files.length}{' '}{strings.title}
+          </p>
           {!readonly && (
             <Button className='Clear-Button'
               disabled={files.length === 0}
@@ -34,14 +36,17 @@ class FileList  extends React.Component {
             files.map((f, index) => {
               const name = f.name;
               let remove = () => {this.onRemoveClickHandler(index);};
+              const onClick = () => {this.onClickHandler(index);};
               if (readonly) {
                 remove = null;
               }
               return(
                 <ListItem
+                  alternate
                   className={`item-${index}`}
                   key={name}
-                  item={f.name}
+                  item={name}
+                  onClick={onClick}
                   remove={remove} />
               );
             })
@@ -49,6 +54,13 @@ class FileList  extends React.Component {
         </ul>
       </div>
     );
+  }
+
+  onClickHandler(index) {
+    const { props: { onClick } } = this;
+    if (onClick) {
+      onClick(index);
+    }
   }
 
   onRemoveClickHandler(index) {

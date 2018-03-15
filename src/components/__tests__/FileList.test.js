@@ -72,3 +72,21 @@ it('prevents the remove button from showing when FileList has readonly property'
   expect(wrapper.find('.ListItem').find('button')).toHaveLength(0);
   expect(mountToJson(wrapper)).toMatchSnapshot();
 });
+
+it('calls onClick when a row is clicked', () => {
+  const onClick = jest.fn();
+  const files = [
+    {name: 'asdf'},
+  ];
+  const wrapper = mount(
+    <FileList
+      onClick={onClick}
+      files={files} />
+  );
+
+  //act
+  wrapper.find('.item-0').simulate('click');
+
+  expect(onClick).toHaveBeenCalledTimes(1);
+  expect(onClick).toHaveBeenCalledWith(0);
+});

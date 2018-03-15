@@ -15,6 +15,12 @@
   font-weight: bold;
 }
 
+.alternate {
+  color: #8500ff;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, .2);
+}
+
 .alert {
   background-color: rgb(46, 255, 109);
   float: left;

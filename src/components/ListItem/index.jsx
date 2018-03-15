@@ -20,9 +20,10 @@ class ListItem extends Component {
   }
 
   render () {
-    const { props: { item, remove, active, alert }, state: { hover } } = this;
+    const { props: { item, remove, active, alert, alternate }, state: { hover } } = this;
+    const className = this.computeClassName(active, alternate);
     return(
-      <li className={`ListItem${active ? ' active': ''}`}
+      <li className={className}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClickHandler}>
@@ -61,6 +62,16 @@ class ListItem extends Component {
 
   onMouseLeave() {
     this.setState({hover: false});
+  }
+
+  computeClassName(active, alternate) {
+    if (active && !alternate) {
+      return 'ListItem active';
+    } else if (alternate && active) {
+      return 'ListItem alternate';
+    } else {
+      return 'ListItem';
+    }
   }
 }
 

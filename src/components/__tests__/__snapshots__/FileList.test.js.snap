@@ -42,9 +42,11 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
       className="List"
     >
       <ListItem
+        alternate={true}
         className="item-0"
         item="asdf"
         key="asdf"
+        onClick={[Function]}
         remove={[Function]}
       >
         <li
@@ -164,9 +166,11 @@ exports[`prevents the remove button from showing when FileList has readonly prop
       className="List"
     >
       <ListItem
+        alternate={true}
         className="item-0"
         item="asdf"
         key="asdf"
+        onClick={[Function]}
         remove={null}
       >
         <li
