@@ -24,22 +24,14 @@ body {
 }
 
 .App-Content {
+  grid-column: 2;
+  grid-row: 2;
   overflow: auto;
 }
 
 .Header {
   grid-column: 2;
   grid-row: 1;
-}
-
-.Bounty-Create {
-  grid-column: 2;
-  grid-row: 2;
-}
-
-.Manager {
-  grid-column: 2;
-  grid-row: 2;
 }
 
 .Sidebar {

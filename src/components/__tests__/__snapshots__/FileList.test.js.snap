@@ -158,19 +158,6 @@ exports[`prevents the remove button from showing when FileList has immutable pro
          
         Files
       </p>
-      <Button
-        className="Clear-Button"
-        disabled={false}
-        onClick={[Function]}
-      >
-        <button
-          className="Button"
-          disabled={false}
-          onClick={[Function]}
-        >
-          - Clear
-        </button>
-      </Button>
     </header>
     <ul
       className="List"

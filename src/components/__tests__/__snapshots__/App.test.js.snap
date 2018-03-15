@@ -308,43 +308,34 @@ exports[`shows BountyInfo when at least one bounty & active selects it 1`] = `
         <div
           className="Bounty-Info"
         >
-          <FileList
-            className="Bount-Info-Files"
-            files={Array []}
-            immutable={true}
+          <div
+            className="Bounty-Info-Container"
           >
-            <div
-              className="File-List"
+            <FileList
+              className="Bounty-Info-Files"
+              files={Array []}
+              immutable={true}
             >
-              <header
-                className="File-List-Header"
+              <div
+                className="File-List"
               >
-                <p
-                  className="File-List-Title"
+                <header
+                  className="File-List-Header"
                 >
-                  0
-                   
-                  Files
-                </p>
-                <Button
-                  className="Clear-Button"
-                  disabled={true}
-                  onClick={[Function]}
-                >
-                  <button
-                    className="Button"
-                    disabled={true}
-                    onClick={[Function]}
+                  <p
+                    className="File-List-Title"
                   >
-                    - Clear
-                  </button>
-                </Button>
-              </header>
-              <ul
-                className="List"
-              />
-            </div>
-          </FileList>
+                    0
+                     
+                    Files
+                  </p>
+                </header>
+                <ul
+                  className="List"
+                />
+              </div>
+            </FileList>
+          </div>
         </div>
       </BountyInfo>
     </div>

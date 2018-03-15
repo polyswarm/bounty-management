@@ -1,3 +1,16 @@
-.Info {
+.Bounty-Info {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
 
+.Bounty-Info-Container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
+  padding: 20px;
+}
+
+.Bounty-Info-Files {
+  grid-column: 0;
 }

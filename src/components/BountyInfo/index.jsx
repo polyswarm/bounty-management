@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // Bounty imports
 import FileList from '../FileList';
+// Component Imports
+import './styles.css';
 
 class BountyInfo extends Component {
 
@@ -13,12 +15,14 @@ class BountyInfo extends Component {
     const files = [];
     return (
       <div className='Bounty-Info'>
-        <FileList className='Bount-Info-Files' files={files} immutable/>
+        <div className='Bounty-Info-Container'>
+          <FileList className='Bounty-Info-Files' files={files} immutable />
+        </div>
       </div>
     );
   }
-
 }
+
 BountyInfo.propTypes = {
   bounty: PropTypes.object.isRequired,
 };

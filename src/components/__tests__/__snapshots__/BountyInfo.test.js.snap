@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<div
+  class="Bounty-Info"
+>
+  <div
+    class="Bounty-Info-Container"
+  >
+    <div
+      class="File-List"
+    >
+      <header
+        class="File-List-Header"
+      >
+        <p
+          class="File-List-Title"
+        >
+          0 Files
+        </p>
+      </header>
+      <ul
+        class="List"
+      >
+        
+      </ul>
+    </div>
+  </div>
+</div>
+`;

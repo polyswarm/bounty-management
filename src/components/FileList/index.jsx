@@ -21,11 +21,13 @@ class FileList  extends React.Component {
       <div className='File-List'>
         <header className='File-List-Header'>
           <p className='File-List-Title'>{files.length}{' '}{strings.title}</p>
-          <Button className='Clear-Button'
-            disabled={files.length === 0}
-            onClick={this.onClearClickHandler}>
-            {strings.clearAll}
-          </Button>
+          {!immutable && (
+            <Button className='Clear-Button'
+              disabled={files.length === 0}
+              onClick={this.onClearClickHandler}>
+              {strings.clearAll}
+            </Button>
+          )}
         </header>
         <ul className='List'>
           {files && files.length > 0 && (
