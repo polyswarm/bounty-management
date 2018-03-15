@@ -39,6 +39,7 @@ class FileList  extends React.Component {
               }
               return(
                 <ListItem
+                  className={`item-${index}`}
                   key={name}
                   item={f.name}
                   remove={remove} />
