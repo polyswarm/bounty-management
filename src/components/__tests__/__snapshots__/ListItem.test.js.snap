@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`adds neither extra class when just alternate property is true 1`] = `
+<li
+  class="ListItem"
+>
+  <span
+    class="ListItem-Child"
+  >
+    asdf
+  </span>
+</li>
+`;
+
 exports[`adds the active class when active property is true 1`] = `
 <li
   class="ListItem active"
@@ -7,7 +19,31 @@ exports[`adds the active class when active property is true 1`] = `
   <span
     class="ListItem-Child"
   >
-    
+    asdf
+  </span>
+</li>
+`;
+
+exports[`adds the alternate class when active and alternate properties are true 1`] = `
+<li
+  class="ListItem alternate"
+>
+  <span
+    class="ListItem-Child"
+  >
+    asdf
+  </span>
+</li>
+`;
+
+exports[`renders the child I pass 1`] = `
+<li
+  class="ListItem"
+>
+  <span
+    class="ListItem-Child"
+  >
+    asdf
   </span>
 </li>
 `;
@@ -19,14 +55,13 @@ exports[`renders without crashing 1`] = `
   <span
     class="ListItem-Child"
   >
-    
+    asdf
   </span>
 </li>
 `;
 
 exports[`shows remove button when hovered 1`] = `
 <ListItem
-  item="asdf"
   remove={[Function]}
 >
   <li
@@ -37,7 +72,9 @@ exports[`shows remove button when hovered 1`] = `
   >
     <span
       className="ListItem-Child"
-    />
+    >
+      asdf
+    </span>
     <span
       className="ListItem-Remove"
     >
@@ -72,7 +109,7 @@ exports[`shows the badge when alert is set 1`] = `
   <span
     class="ListItem-Child"
   >
-    
+    asdf
   </span>
 </li>
 `;

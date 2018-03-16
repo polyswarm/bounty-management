@@ -21,7 +21,7 @@ class ListItem extends Component {
 
   render () {
     const { props: { children, remove, active, alert, alternate }, state: { hover } } = this;
-    const className = this.computeClassName(active, alternate);
+    const className = ListItem.computeClassName(active, alternate);
     return(
       <li className={className}
         onMouseEnter={this.onMouseEnter}
@@ -66,7 +66,7 @@ class ListItem extends Component {
     this.setState({hover: false});
   }
 
-  computeClassName(active, alternate) {
+  static computeClassName(active, alternate) {
     if (active && !alternate) {
       return 'ListItem active';
     } else if (alternate && active) {
