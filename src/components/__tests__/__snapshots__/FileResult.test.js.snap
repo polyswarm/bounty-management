@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`doesnt show any Indicator if good is null 1`] = `
+<FileResult
+  good={null}
+  total={100}
+>
+  <div
+    className="FileResult"
+  >
+    asdf
+  </div>
+</FileResult>
+`;
+
+exports[`doesnt show any Indicator if good isn't used 1`] = `
+<FileResult
+  total={100}
+>
+  <div
+    className="FileResult"
+  >
+    asdf
+  </div>
+</FileResult>
+`;
+
+exports[`doesnt show any Indicator if total is null 1`] = `
+<FileResult
+  good={10}
+  total={null}
+>
+  <div
+    className="FileResult"
+  >
+    asdf
+  </div>
+</FileResult>
+`;
+
+exports[`doesnt show any Indicator if total isn't used 1`] = `
+<FileResult
+  good={100}
+>
+  <div
+    className="FileResult"
+  >
+    asdf
+  </div>
+</FileResult>
+`;
+
+exports[`renders without crashing 1`] = `
+<div
+  class="FileResult"
+>
+  
+</div>
+`;
+
+exports[`shows bad when ratio at 49% 1`] = `
+<FileResult
+  good={49}
+  total={100}
+>
+  <div
+    className="FileResult"
+  >
+    asdf
+    <p
+      className="FileResult-Indicator-Bad"
+    >
+      49
+       / 
+      100
+    </p>
+  </div>
+</FileResult>
+`;
+
+exports[`shows bad when ratio is 0% 1`] = `
+<FileResult
+  good={0}
+  total={100}
+>
+  <div
+    className="FileResult"
+  >
+    asdf
+    <p
+      className="FileResult-Indicator-Bad"
+    >
+      0
+       / 
+      100
+    </p>
+  </div>
+</FileResult>
+`;
+
+exports[`shows good when ratio > 70% 1`] = `
+<FileResult
+  good={70}
+  total={100}
+>
+  <div
+    className="FileResult"
+  >
+    asdf
+    <p
+      className="FileResult-Indicator-Good"
+    >
+      70
+       / 
+      100
+    </p>
+  </div>
+</FileResult>
+`;
+
+exports[`shows warning when ratio at 50% 1`] = `
+<FileResult
+  good={50}
+  total={100}
+>
+  <div
+    className="FileResult"
+  >
+    asdf
+    <p
+      className="FileResult-Indicator-Warning"
+    >
+      50
+       / 
+      100
+    </p>
+  </div>
+</FileResult>
+`;
+
+exports[`shows warning when ratio at 69% 1`] = `
+<FileResult
+  good={69}
+  total={100}
+>
+  <div
+    className="FileResult"
+  >
+    asdf
+    <p
+      className="FileResult-Indicator-Warning"
+    >
+      69
+       / 
+      100
+    </p>
+  </div>
+</FileResult>
+`;

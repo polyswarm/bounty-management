@@ -1,0 +1,11 @@
+.FileResult-Indicator-Good {
+  color: rgb(46, 255, 109);
+}
+
+.FileResult-Indicator-Warning {
+  color: yellow;
+}
+
+.FileResult-Indicator-Bad {
+  color: #ff1a00;
+}
