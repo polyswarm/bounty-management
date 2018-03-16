@@ -42,6 +42,7 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
       className="List"
     >
       <ListItem
+        active={false}
         alternate={true}
         className="item-0"
         key="asdf"
@@ -170,6 +171,450 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
 </div>
 `;
 
+exports[`does not mark the ListItem as alternate when active is negative. 1`] = `
+<FileList
+  active={-1}
+  files={
+    Array [
+      Object {
+        "name": "asdf",
+      },
+      Object {
+        "name": "demo",
+      },
+    ]
+  }
+>
+  <div
+    className="File-List"
+  >
+    <header
+      className="File-List-Header"
+    >
+      <p
+        className="File-List-Title"
+      >
+        2
+         
+        Files
+      </p>
+      <Button
+        className="Clear-Button"
+        disabled={false}
+        onClick={[Function]}
+      >
+        <button
+          className="Button"
+          disabled={false}
+          onClick={[Function]}
+        >
+          - Clear
+        </button>
+      </Button>
+    </header>
+    <ul
+      className="List"
+    >
+      <ListItem
+        active={false}
+        alternate={true}
+        className="item-0"
+        key="asdf"
+        onClick={[Function]}
+        remove={[Function]}
+      >
+        <li
+          className="ListItem"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <span
+            className="ListItem-Child"
+          >
+            <FileResult>
+              <div
+                className="FileResult"
+              >
+                <span
+                  className="FileResult-Name"
+                >
+                  asdf
+                </span>
+              </div>
+            </FileResult>
+          </span>
+        </li>
+      </ListItem>
+      <ListItem
+        active={false}
+        alternate={true}
+        className="item-1"
+        key="demo"
+        onClick={[Function]}
+        remove={[Function]}
+      >
+        <li
+          className="ListItem"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <span
+            className="ListItem-Child"
+          >
+            <FileResult>
+              <div
+                className="FileResult"
+              >
+                <span
+                  className="FileResult-Name"
+                >
+                  demo
+                </span>
+              </div>
+            </FileResult>
+          </span>
+        </li>
+      </ListItem>
+    </ul>
+  </div>
+</FileList>
+`;
+
+exports[`does not mark the ListItem as alternate when active is out of bounds. 1`] = `
+<FileList
+  active={3}
+  files={
+    Array [
+      Object {
+        "name": "asdf",
+      },
+      Object {
+        "name": "demo",
+      },
+    ]
+  }
+>
+  <div
+    className="File-List"
+  >
+    <header
+      className="File-List-Header"
+    >
+      <p
+        className="File-List-Title"
+      >
+        2
+         
+        Files
+      </p>
+      <Button
+        className="Clear-Button"
+        disabled={false}
+        onClick={[Function]}
+      >
+        <button
+          className="Button"
+          disabled={false}
+          onClick={[Function]}
+        >
+          - Clear
+        </button>
+      </Button>
+    </header>
+    <ul
+      className="List"
+    >
+      <ListItem
+        active={false}
+        alternate={true}
+        className="item-0"
+        key="asdf"
+        onClick={[Function]}
+        remove={[Function]}
+      >
+        <li
+          className="ListItem"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <span
+            className="ListItem-Child"
+          >
+            <FileResult>
+              <div
+                className="FileResult"
+              >
+                <span
+                  className="FileResult-Name"
+                >
+                  asdf
+                </span>
+              </div>
+            </FileResult>
+          </span>
+        </li>
+      </ListItem>
+      <ListItem
+        active={false}
+        alternate={true}
+        className="item-1"
+        key="demo"
+        onClick={[Function]}
+        remove={[Function]}
+      >
+        <li
+          className="ListItem"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <span
+            className="ListItem-Child"
+          >
+            <FileResult>
+              <div
+                className="FileResult"
+              >
+                <span
+                  className="FileResult-Name"
+                >
+                  demo
+                </span>
+              </div>
+            </FileResult>
+          </span>
+        </li>
+      </ListItem>
+    </ul>
+  </div>
+</FileList>
+`;
+
+exports[`marks the ListItem as alternate when active is set. 1`] = `
+<FileList
+  active={0}
+  files={
+    Array [
+      Object {
+        "name": "asdf",
+      },
+      Object {
+        "name": "demo",
+      },
+    ]
+  }
+>
+  <div
+    className="File-List"
+  >
+    <header
+      className="File-List-Header"
+    >
+      <p
+        className="File-List-Title"
+      >
+        2
+         
+        Files
+      </p>
+      <Button
+        className="Clear-Button"
+        disabled={false}
+        onClick={[Function]}
+      >
+        <button
+          className="Button"
+          disabled={false}
+          onClick={[Function]}
+        >
+          - Clear
+        </button>
+      </Button>
+    </header>
+    <ul
+      className="List"
+    >
+      <ListItem
+        active={true}
+        alternate={true}
+        className="item-0"
+        key="asdf"
+        onClick={[Function]}
+        remove={[Function]}
+      >
+        <li
+          className="ListItem alternate"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <span
+            className="ListItem-Child"
+          >
+            <FileResult>
+              <div
+                className="FileResult"
+              >
+                <span
+                  className="FileResult-Name"
+                >
+                  asdf
+                </span>
+              </div>
+            </FileResult>
+          </span>
+        </li>
+      </ListItem>
+      <ListItem
+        active={false}
+        alternate={true}
+        className="item-1"
+        key="demo"
+        onClick={[Function]}
+        remove={[Function]}
+      >
+        <li
+          className="ListItem"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <span
+            className="ListItem-Child"
+          >
+            <FileResult>
+              <div
+                className="FileResult"
+              >
+                <span
+                  className="FileResult-Name"
+                >
+                  demo
+                </span>
+              </div>
+            </FileResult>
+          </span>
+        </li>
+      </ListItem>
+    </ul>
+  </div>
+</FileList>
+`;
+
+exports[`marks the ListItem as alternate when active is set. 2`] = `
+<FileList
+  active={1}
+  files={
+    Array [
+      Object {
+        "name": "asdf",
+      },
+      Object {
+        "name": "demo",
+      },
+    ]
+  }
+>
+  <div
+    className="File-List"
+  >
+    <header
+      className="File-List-Header"
+    >
+      <p
+        className="File-List-Title"
+      >
+        2
+         
+        Files
+      </p>
+      <Button
+        className="Clear-Button"
+        disabled={false}
+        onClick={[Function]}
+      >
+        <button
+          className="Button"
+          disabled={false}
+          onClick={[Function]}
+        >
+          - Clear
+        </button>
+      </Button>
+    </header>
+    <ul
+      className="List"
+    >
+      <ListItem
+        active={false}
+        alternate={true}
+        className="item-0"
+        key="asdf"
+        onClick={[Function]}
+        remove={[Function]}
+      >
+        <li
+          className="ListItem"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <span
+            className="ListItem-Child"
+          >
+            <FileResult>
+              <div
+                className="FileResult"
+              >
+                <span
+                  className="FileResult-Name"
+                >
+                  asdf
+                </span>
+              </div>
+            </FileResult>
+          </span>
+        </li>
+      </ListItem>
+      <ListItem
+        active={true}
+        alternate={true}
+        className="item-1"
+        key="demo"
+        onClick={[Function]}
+        remove={[Function]}
+      >
+        <li
+          className="ListItem alternate"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <span
+            className="ListItem-Child"
+          >
+            <FileResult>
+              <div
+                className="FileResult"
+              >
+                <span
+                  className="FileResult-Name"
+                >
+                  demo
+                </span>
+              </div>
+            </FileResult>
+          </span>
+        </li>
+      </ListItem>
+    </ul>
+  </div>
+</FileList>
+`;
+
 exports[`prevents the remove button from showing when FileList has readonly property 1`] = `
 <FileList
   files={
@@ -199,6 +644,7 @@ exports[`prevents the remove button from showing when FileList has readonly prop
       className="List"
     >
       <ListItem
+        active={false}
         alternate={true}
         className="item-0"
         key="asdf"

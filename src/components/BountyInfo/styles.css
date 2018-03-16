@@ -7,7 +7,7 @@
 .Bounty-Info-Container {
   display: grid;
   box-sizing: border-box;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 5fr;
   height: 100%;
   padding: 20px;
 }

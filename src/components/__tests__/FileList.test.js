@@ -90,3 +90,67 @@ it('calls onClick when a row is clicked', () => {
   expect(onClick).toHaveBeenCalledTimes(1);
   expect(onClick).toHaveBeenCalledWith(0);
 });
+
+it('marks the ListItem as alternate when active is set.', () => {
+  const files = [
+    {name: 'asdf'},
+    {name: 'demo'},
+  ];
+  const wrapper = mount(
+    <FileList
+      active={0}
+      files={files} />
+  );
+
+  expect(wrapper.find('.item-0').find('li').hasClass('alternate')).toBeTruthy();
+  expect(wrapper.find('.item-1').find('li').hasClass('alternate')).toBeFalsy();
+  expect(mountToJson(wrapper)).toMatchSnapshot();
+});
+
+it('marks the ListItem as alternate when active is set.', () => {
+  const files = [
+    {name: 'asdf'},
+    {name: 'demo'},
+  ];
+  const wrapper = mount(
+    <FileList
+      active={1}
+      files={files} />
+  );
+
+  expect(wrapper.find('.item-0').find('li').hasClass('alternate')).toBeFalsy();
+  expect(wrapper.find('.item-1').find('li').hasClass('alternate')).toBeTruthy();
+  expect(mountToJson(wrapper)).toMatchSnapshot();
+});
+
+it('does not mark the ListItem as alternate when active is negative.', () => {
+  const files = [
+    {name: 'asdf'},
+    {name: 'demo'},
+  ];
+  const wrapper = mount(
+    <FileList
+      active={-1}
+      files={files} />
+  );
+
+  expect(wrapper.find('.item-0').find('li').hasClass('alternate')).toBeFalsy();
+  expect(wrapper.find('.item-1').find('li').hasClass('alternate')).toBeFalsy();
+  expect(mountToJson(wrapper)).toMatchSnapshot();
+});
+
+it('does not mark the ListItem as alternate when active is out of bounds.', () => {
+  const files = [
+    {name: 'asdf'},
+    {name: 'demo'},
+  ];
+  const wrapper = mount(
+    <FileList
+      active={3}
+      files={files} />
+  );
+
+  expect(wrapper.find('.item-0').find('li').hasClass('alternate')).toBeFalsy();
+  expect(wrapper.find('.item-1').find('li').hasClass('alternate')).toBeFalsy();
+  expect(mountToJson(wrapper)).toMatchSnapshot();
+});

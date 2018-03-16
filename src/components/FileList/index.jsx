@@ -17,7 +17,7 @@ class FileList  extends React.Component {
   }
 
   render () {
-    const { props: { files, readonly } } = this;
+    const { props: { files, readonly, active } } = this;
     return (
       <div className='File-List'>
         <header className='File-List-Header'>
@@ -44,6 +44,7 @@ class FileList  extends React.Component {
               return(
                 <ListItem
                   alternate
+                  active={index === active}
                   className={`item-${index}`}
                   key={name}
                   onClick={onClick}
