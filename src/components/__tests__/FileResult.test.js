@@ -9,53 +9,32 @@ it('renders without crashing', () => {
 });
 
 it('returns Good when given 70 over 100', () => {
-  const wrapper = mount(<FileResult />);
-  const instance = wrapper.instance();
-
-  expect(instance.computeIndicator(70, 100)).toEqual('Good');
+  expect(FileResult.computeIndicator(70, 100)).toEqual('Good');
 });
 
 it('returns Good when given 1000 over 100', () => {
-  const wrapper = mount(<FileResult />);
-  const instance = wrapper.instance();
-
-  expect(instance.computeIndicator(1000, 100)).toEqual('Good');
+  expect(FileResult.computeIndicator(1000, 100)).toEqual('Good');
 });
 
 it('returns Warning when given 699 over 1000 ', () => {
-  const wrapper = mount(<FileResult />);
-  const instance = wrapper.instance();
-
-  expect(instance.computeIndicator(699, 1000)).toEqual('Warning');
+  expect(FileResult.computeIndicator(699, 1000)).toEqual('Warning');
 });
 
 it('returns Bad when given 49 over 100 ', () => {
-  const wrapper = mount(<FileResult />);
-  const instance = wrapper.instance();
-
-  expect(instance.computeIndicator(49, 100)).toEqual('Bad');
+  expect(FileResult.computeIndicator(49, 100)).toEqual('Bad');
 });
 
 it('returns Bad when given 0 over 1', () => {
-  const wrapper = mount(<FileResult />);
-  const instance = wrapper.instance();
-
-  expect(instance.computeIndicator(0, 1)).toEqual('Bad');
+  expect(FileResult.computeIndicator(0, 1)).toEqual('Bad');
 });
 
 it('returns Bad when given a negative number', () => {
-  const wrapper = mount(<FileResult />);
-  const instance = wrapper.instance();
-
-  expect(instance.computeIndicator(-1, 10)).toEqual('Bad');
-  expect(instance.computeIndicator(10, -1)).toEqual('Bad');
+  expect(FileResult.computeIndicator(-1, 10)).toEqual('Bad');
+  expect(FileResult.computeIndicator(10, -1)).toEqual('Bad');
 });
 
 it('returns null when given 1 over 0', () => {
-  const wrapper = mount(<FileResult />);
-  const instance = wrapper.instance();
-
-  expect(instance.computeIndicator(1, 0)).toEqual(null);
+  expect(FileResult.computeIndicator(1, 0)).toEqual(null);
 });
 
 it('doesnt show any Indicator if good isn\'t used', () => {

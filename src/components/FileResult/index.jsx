@@ -7,7 +7,7 @@ class FileResult extends Component {
 
   render() {
     const { props: { children, good, total } } = this;
-    const indicator = this.computeIndicator(good, total);
+    const indicator = FileResult.computeIndicator(good, total);
     return (
       <div className='FileResult'>
         <span className='FileResult-Name'>
@@ -20,7 +20,7 @@ class FileResult extends Component {
     );
   }
 
-  computeIndicator(good, total) {
+  static computeIndicator(good, total) {
     const ratio = good / total;
     if ( good == null || total == null || total === 0) {
       return null;
