@@ -24,14 +24,16 @@ class Sidebar extends Component {
         <ul className='Sidebar-Content'>
           {bounties && bounties.length > 0 && (
             bounties.map((bounty, index) => {
-              return(<ListItem
-                className={`item-${index}`}
-                active={index === active}
-                alert={bounty.updated}
-                key={bounty.guid}
-                onClick={() => {this.onSelectBounty(index);}}
-                remove={() => {this.onBountyRemoved(index);}}
-                item={bounty.guid}/>);
+              return(
+                <ListItem className={`item-${index}`}
+                  active={index === active}
+                  alert={bounty.updated}
+                  key={bounty.guid}
+                  onClick={() => {this.onSelectBounty(index);}}
+                  remove={() => {this.onBountyRemoved(index);}}>
+                  {bounty.guid}
+                </ListItem>
+              );
             })
           )}
         </ul>

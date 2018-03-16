@@ -67,7 +67,6 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
           <ListItem
             active={false}
             className="item-0"
-            item="asdf"
             key="asdf"
             onClick={[Function]}
             remove={[Function]}
@@ -78,11 +77,11 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
-              <p
-                className="ListItem-Name"
+              <div
+                className="ListItem-Child"
               >
                 asdf
-              </p>
+              </div>
             </li>
           </ListItem>
         </ul>
@@ -251,7 +250,6 @@ exports[`shows BountyInfo when at least one bounty & active selects it 1`] = `
           <ListItem
             active={true}
             className="item-0"
-            item="asdf"
             key="asdf"
             onClick={[Function]}
             remove={[Function]}
@@ -262,11 +260,11 @@ exports[`shows BountyInfo when at least one bounty & active selects it 1`] = `
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
-              <p
-                className="ListItem-Name"
+              <div
+                className="ListItem-Child"
               >
                 asdf
-              </p>
+              </div>
             </li>
           </ListItem>
         </ul>

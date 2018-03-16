@@ -16,9 +16,9 @@
 }
 
 .alternate {
+  background-color: rgba(0, 0, 0, .2);
   color: #8500ff;
   font-weight: bold;
-  background-color: rgba(0, 0, 0, .2);
 }
 
 .alert {
@@ -28,7 +28,7 @@
   width: 10px;
 }
 
-.ListItem-Name {
+.ListItem-Child {
   float: left;
   margin: 0;
   padding-left: 10px;

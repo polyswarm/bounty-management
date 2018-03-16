@@ -20,7 +20,7 @@ class ListItem extends Component {
   }
 
   render () {
-    const { props: { item, remove, active, alert, alternate }, state: { hover } } = this;
+    const { props: { children, remove, active, alert, alternate }, state: { hover } } = this;
     const className = this.computeClassName(active, alternate);
     return(
       <li className={className}
@@ -30,7 +30,9 @@ class ListItem extends Component {
         {alert && (
           <div className='alert'/>
         )}
-        <p className='ListItem-Name'>{item}</p>
+        <div className='ListItem-Child'>
+          {children}
+        </div>
         {remove && hover && (
           <span className='ListItem-Remove'>
             <RemoveButton onClick={this.onRemoveHandler}>

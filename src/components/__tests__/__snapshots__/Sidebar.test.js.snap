@@ -33,7 +33,6 @@ exports[`marks the selected row as .active 1`] = `
       <ListItem
         active={false}
         className="item-0"
-        item="asdf"
         key="asdf"
         onClick={[Function]}
         remove={[Function]}
@@ -44,17 +43,16 @@ exports[`marks the selected row as .active 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <p
-            className="ListItem-Name"
+          <div
+            className="ListItem-Child"
           >
             asdf
-          </p>
+          </div>
         </li>
       </ListItem>
       <ListItem
         active={true}
         className="item-1"
-        item="demo"
         key="demo"
         onClick={[Function]}
         remove={[Function]}
@@ -65,11 +63,11 @@ exports[`marks the selected row as .active 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <p
-            className="ListItem-Name"
+          <div
+            className="ListItem-Child"
           >
             demo
-          </p>
+          </div>
         </li>
       </ListItem>
     </ul>
@@ -133,7 +131,6 @@ exports[`shows alert when bounty has updated: true 1`] = `
         active={false}
         alert={true}
         className="item-0"
-        item="asdf"
         key="asdf"
         onClick={[Function]}
         remove={[Function]}
@@ -147,17 +144,16 @@ exports[`shows alert when bounty has updated: true 1`] = `
           <div
             className="alert"
           />
-          <p
-            className="ListItem-Name"
+          <div
+            className="ListItem-Child"
           >
             asdf
-          </p>
+          </div>
         </li>
       </ListItem>
       <ListItem
         active={false}
         className="item-1"
-        item="demo"
         key="demo"
         onClick={[Function]}
         remove={[Function]}
@@ -168,11 +164,11 @@ exports[`shows alert when bounty has updated: true 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <p
-            className="ListItem-Name"
+          <div
+            className="ListItem-Child"
           >
             demo
-          </p>
+          </div>
         </li>
       </ListItem>
     </ul>

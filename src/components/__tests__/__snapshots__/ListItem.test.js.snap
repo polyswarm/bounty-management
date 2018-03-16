@@ -4,11 +4,11 @@ exports[`adds the active class when active property is true 1`] = `
 <li
   class="ListItem active"
 >
-  <p
-    class="ListItem-Name"
+  <div
+    class="ListItem-Child"
   >
-    asdf
-  </p>
+    
+  </div>
 </li>
 `;
 
@@ -16,11 +16,11 @@ exports[`renders without crashing 1`] = `
 <li
   class="ListItem"
 >
-  <p
-    class="ListItem-Name"
+  <div
+    class="ListItem-Child"
   >
-    asdf
-  </p>
+    
+  </div>
 </li>
 `;
 
@@ -35,11 +35,9 @@ exports[`shows remove button when hovered 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <p
-      className="ListItem-Name"
-    >
-      asdf
-    </p>
+    <div
+      className="ListItem-Child"
+    />
     <span
       className="ListItem-Remove"
     >
@@ -71,10 +69,10 @@ exports[`shows the badge when alert is set 1`] = `
   >
     
   </div>
-  <p
-    class="ListItem-Name"
+  <div
+    class="ListItem-Child"
   >
-    asdf
-  </p>
+    
+  </div>
 </li>
 `;

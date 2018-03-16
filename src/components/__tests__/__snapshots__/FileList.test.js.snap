@@ -44,7 +44,6 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
       <ListItem
         alternate={true}
         className="item-0"
-        item="asdf"
         key="asdf"
         onClick={[Function]}
         remove={[Function]}
@@ -55,11 +54,11 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <p
-            className="ListItem-Name"
+          <div
+            className="ListItem-Child"
           >
             asdf
-          </p>
+          </div>
           <span
             className="ListItem-Remove"
           >
@@ -109,29 +108,29 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
     <li
       class="ListItem"
     >
-      <p
-        class="ListItem-Name"
+      <div
+        class="ListItem-Child"
       >
         asdf
-      </p>
+      </div>
     </li>
     <li
       class="ListItem"
     >
-      <p
-        class="ListItem-Name"
+      <div
+        class="ListItem-Child"
       >
         demo
-      </p>
+      </div>
     </li>
     <li
       class="ListItem"
     >
-      <p
-        class="ListItem-Name"
+      <div
+        class="ListItem-Child"
       >
         test
-      </p>
+      </div>
     </li>
   </ul>
 </div>
@@ -168,7 +167,6 @@ exports[`prevents the remove button from showing when FileList has readonly prop
       <ListItem
         alternate={true}
         className="item-0"
-        item="asdf"
         key="asdf"
         onClick={[Function]}
         remove={null}
@@ -179,11 +177,11 @@ exports[`prevents the remove button from showing when FileList has readonly prop
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <p
-            className="ListItem-Name"
+          <div
+            className="ListItem-Child"
           >
             asdf
-          </p>
+          </div>
         </li>
       </ListItem>
     </ul>
