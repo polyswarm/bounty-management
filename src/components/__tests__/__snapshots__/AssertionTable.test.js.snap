@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders the correct number of children 1`] = `
-<table>
+<table
+  class="AssertionTable"
+>
   <tbody>
     <tr>
       <th>
@@ -76,7 +78,9 @@ exports[`renders the correct number of children 1`] = `
 `;
 
 exports[`renders without crashing 1`] = `
-<table>
+<table
+  class="AssertionTable"
+>
   <tbody>
     <tr>
       <th>
