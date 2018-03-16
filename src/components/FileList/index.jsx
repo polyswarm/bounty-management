@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 // Bounty imports
 import ListItem from '../ListItem';
 import Button from '../Button';
+import FileResult from '../FileResult';
 // Component Imports
 import strings from './strings';
 import './styles.css';
@@ -47,7 +48,9 @@ class FileList  extends React.Component {
                   key={name}
                   onClick={onClick}
                   remove={remove}>
-                  {name}
+                  <FileResult good={f.good} total={f.total}>
+                    {name}
+                  </FileResult>
                 </ListItem>
               );
             })

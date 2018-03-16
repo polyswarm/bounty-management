@@ -57,7 +57,13 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
           <div
             className="ListItem-Child"
           >
-            asdf
+            <FileResult>
+              <div
+                className="FileResult"
+              >
+                asdf
+              </div>
+            </FileResult>
           </div>
           <span
             className="ListItem-Remove"
@@ -111,7 +117,11 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
       <div
         class="ListItem-Child"
       >
-        asdf
+        <div
+          class="FileResult"
+        >
+          asdf
+        </div>
       </div>
     </li>
     <li
@@ -120,7 +130,11 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
       <div
         class="ListItem-Child"
       >
-        demo
+        <div
+          class="FileResult"
+        >
+          demo
+        </div>
       </div>
     </li>
     <li
@@ -129,7 +143,11 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
       <div
         class="ListItem-Child"
       >
-        test
+        <div
+          class="FileResult"
+        >
+          test
+        </div>
       </div>
     </li>
   </ul>
@@ -180,7 +198,13 @@ exports[`prevents the remove button from showing when FileList has readonly prop
           <div
             className="ListItem-Child"
           >
-            asdf
+            <FileResult>
+              <div
+                className="FileResult"
+              >
+                asdf
+              </div>
+            </FileResult>
           </div>
         </li>
       </ListItem>
