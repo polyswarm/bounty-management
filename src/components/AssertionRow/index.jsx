@@ -11,7 +11,7 @@ class AssertionRow extends Component {
     const verdictClass = `Assertion-${AssertionRow.computeClass(assertion.verdict)}`;
     const verdictString = assertion.verdict ? strings.bad : strings.good;
     return (
-      <tr>
+      <tr className='AssertionRow'>
         <td>{assertion.author}</td>
         <td className={verdictClass}>{verdictString}</td>
         <td>{assertion.metadata}</td>

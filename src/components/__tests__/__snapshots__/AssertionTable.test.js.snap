@@ -1,38 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders without crashing 1`] = `
+exports[`renders the correct number of children 1`] = `
 <table>
   <tbody>
+    <tr>
+      <th>
+        Author
+      </th>
+      <th>
+        Verdict
+      </th>
+      <th>
+        Metadata
+      </th>
+      <th>
+        Bid
+      </th>
+    </tr>
     <tr
       class="AssertionRow"
     >
       <td>
-        
+        asdf
       </td>
       <td
-        class="Assertion-Malignant"
+        class="Assertion-Benign"
       >
-        Malignant
+        Benign
       </td>
       <td>
-        Some virus
+        Nothing
       </td>
       <td>
-        10
+        5
       </td>
     </tr>
-  </tbody>
-</table>
-`;
-
-exports[`shows Benign in the veridict column with false verdict 1`] = `
-<table>
-  <tbody>
     <tr
       class="AssertionRow"
     >
       <td>
-        
+        demo
       </td>
       <td
         class="Assertion-Benign"
@@ -43,21 +50,14 @@ exports[`shows Benign in the veridict column with false verdict 1`] = `
         
       </td>
       <td>
-        10
+        5
       </td>
     </tr>
-  </tbody>
-</table>
-`;
-
-exports[`shows Malignant in the veridict column with true verdict 1`] = `
-<table>
-  <tbody>
     <tr
       class="AssertionRow"
     >
       <td>
-        
+        fdsa
       </td>
       <td
         class="Assertion-Malignant"
@@ -65,11 +65,32 @@ exports[`shows Malignant in the veridict column with true verdict 1`] = `
         Malignant
       </td>
       <td>
-        Some virus
+        VIRUS
       </td>
       <td>
-        10
+        1000
       </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`renders without crashing 1`] = `
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Author
+      </th>
+      <th>
+        Verdict
+      </th>
+      <th>
+        Metadata
+      </th>
+      <th>
+        Bid
+      </th>
     </tr>
   </tbody>
 </table>
