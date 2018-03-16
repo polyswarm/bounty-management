@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<table>
+  <tbody>
+    <tr>
+      <td>
+        
+      </td>
+      <td
+        class="Assertion-Malignant"
+      >
+        Malignant
+      </td>
+      <td>
+        Some virus
+      </td>
+      <td>
+        10
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`shows Benign in the veridict column with false verdict 1`] = `
+<table>
+  <tbody>
+    <tr>
+      <td>
+        
+      </td>
+      <td
+        class="Assertion-Benign"
+      >
+        Benign
+      </td>
+      <td>
+        
+      </td>
+      <td>
+        10
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`shows Malignant in the veridict column with true verdict 1`] = `
+<table>
+  <tbody>
+    <tr>
+      <td>
+        
+      </td>
+      <td
+        class="Assertion-Malignant"
+      >
+        Malignant
+      </td>
+      <td>
+        Some virus
+      </td>
+      <td>
+        10
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
