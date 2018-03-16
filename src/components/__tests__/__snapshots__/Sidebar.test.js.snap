@@ -43,11 +43,11 @@ exports[`marks the selected row as .active 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
+          <span
             className="ListItem-Child"
           >
             asdf
-          </div>
+          </span>
         </li>
       </ListItem>
       <ListItem
@@ -63,11 +63,11 @@ exports[`marks the selected row as .active 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
+          <span
             className="ListItem-Child"
           >
             demo
-          </div>
+          </span>
         </li>
       </ListItem>
     </ul>
@@ -144,11 +144,11 @@ exports[`shows alert when bounty has updated: true 1`] = `
           <div
             className="alert"
           />
-          <div
+          <span
             className="ListItem-Child"
           >
             asdf
-          </div>
+          </span>
         </li>
       </ListItem>
       <ListItem
@@ -164,11 +164,11 @@ exports[`shows alert when bounty has updated: true 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
+          <span
             className="ListItem-Child"
           >
             demo
-          </div>
+          </span>
         </li>
       </ListItem>
     </ul>

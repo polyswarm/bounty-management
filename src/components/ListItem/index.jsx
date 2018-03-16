@@ -30,9 +30,9 @@ class ListItem extends Component {
         {alert && (
           <div className='alert'/>
         )}
-        <div className='ListItem-Child'>
+        <span className='ListItem-Child'>
           {children}
-        </div>
+        </span>
         {remove && hover && (
           <span className='ListItem-Remove'>
             <RemoveButton onClick={this.onRemoveHandler}>

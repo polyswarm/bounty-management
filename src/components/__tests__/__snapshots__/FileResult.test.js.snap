@@ -8,7 +8,11 @@ exports[`doesnt show any Indicator if good is null 1`] = `
   <div
     className="FileResult"
   >
-    asdf
+    <span
+      className="FileResult-Name"
+    >
+      asdf
+    </span>
   </div>
 </FileResult>
 `;
@@ -20,7 +24,11 @@ exports[`doesnt show any Indicator if good isn't used 1`] = `
   <div
     className="FileResult"
   >
-    asdf
+    <span
+      className="FileResult-Name"
+    >
+      asdf
+    </span>
   </div>
 </FileResult>
 `;
@@ -33,7 +41,11 @@ exports[`doesnt show any Indicator if total is null 1`] = `
   <div
     className="FileResult"
   >
-    asdf
+    <span
+      className="FileResult-Name"
+    >
+      asdf
+    </span>
   </div>
 </FileResult>
 `;
@@ -45,7 +57,11 @@ exports[`doesnt show any Indicator if total isn't used 1`] = `
   <div
     className="FileResult"
   >
-    asdf
+    <span
+      className="FileResult-Name"
+    >
+      asdf
+    </span>
   </div>
 </FileResult>
 `;
@@ -54,7 +70,11 @@ exports[`renders without crashing 1`] = `
 <div
   class="FileResult"
 >
-  
+  <span
+    class="FileResult-Name"
+  >
+    
+  </span>
 </div>
 `;
 
@@ -66,14 +86,18 @@ exports[`shows bad when ratio at 49% 1`] = `
   <div
     className="FileResult"
   >
-    asdf
-    <p
+    <span
+      className="FileResult-Name"
+    >
+      asdf
+    </span>
+    <span
       className="FileResult-Indicator-Bad"
     >
       49
        / 
       100
-    </p>
+    </span>
   </div>
 </FileResult>
 `;
@@ -86,14 +110,18 @@ exports[`shows bad when ratio is 0% 1`] = `
   <div
     className="FileResult"
   >
-    asdf
-    <p
+    <span
+      className="FileResult-Name"
+    >
+      asdf
+    </span>
+    <span
       className="FileResult-Indicator-Bad"
     >
       0
        / 
       100
-    </p>
+    </span>
   </div>
 </FileResult>
 `;
@@ -106,14 +134,18 @@ exports[`shows good when ratio > 70% 1`] = `
   <div
     className="FileResult"
   >
-    asdf
-    <p
+    <span
+      className="FileResult-Name"
+    >
+      asdf
+    </span>
+    <span
       className="FileResult-Indicator-Good"
     >
       70
        / 
       100
-    </p>
+    </span>
   </div>
 </FileResult>
 `;
@@ -126,14 +158,18 @@ exports[`shows warning when ratio at 50% 1`] = `
   <div
     className="FileResult"
   >
-    asdf
-    <p
+    <span
+      className="FileResult-Name"
+    >
+      asdf
+    </span>
+    <span
       className="FileResult-Indicator-Warning"
     >
       50
        / 
       100
-    </p>
+    </span>
   </div>
 </FileResult>
 `;
@@ -146,14 +182,18 @@ exports[`shows warning when ratio at 69% 1`] = `
   <div
     className="FileResult"
   >
-    asdf
-    <p
+    <span
+      className="FileResult-Name"
+    >
+      asdf
+    </span>
+    <span
       className="FileResult-Indicator-Warning"
     >
       69
        / 
       100
-    </p>
+    </span>
   </div>
 </FileResult>
 `;

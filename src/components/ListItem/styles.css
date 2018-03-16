@@ -3,6 +3,7 @@
   box-sizing: border-box;
   height: 48px;
   line-height: 46px;
+  position: relative;
   width: 100%;
 }
 
@@ -29,13 +30,17 @@
 }
 
 .ListItem-Child {
-  float: left;
+  box-sizing: border-box;
+  display: inline-block;
   margin: 0;
-  padding-left: 10px;
+  padding: 0 10px;
+  width: 100%;
 }
 
 .ListItem-Remove {
-  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .redx {

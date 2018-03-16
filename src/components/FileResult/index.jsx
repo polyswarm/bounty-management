@@ -10,9 +10,11 @@ class FileResult extends Component {
     const indicator = this.computeIndicator(good, total);
     return (
       <div className='FileResult'>
-        {children}
+        <span className='FileResult-Name'>
+          {children}
+        </span>
         { indicator && (
-          <p className={`FileResult-Indicator-${indicator}`}>{good}{' / '}{total}</p>
+          <span className={`FileResult-Indicator-${indicator}`}>{good}{' / '}{total}</span>
         )}
       </div>
     );
@@ -20,7 +22,7 @@ class FileResult extends Component {
 
   computeIndicator(good, total) {
     const ratio = good / total;
-    if ( good == null || total == null || total == 0) {
+    if ( good == null || total == null || total === 0) {
       return null;
     }else if (ratio >= .7) {
       return 'Good';

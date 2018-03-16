@@ -54,17 +54,21 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
+          <span
             className="ListItem-Child"
           >
             <FileResult>
               <div
                 className="FileResult"
               >
-                asdf
+                <span
+                  className="FileResult-Name"
+                >
+                  asdf
+                </span>
               </div>
             </FileResult>
-          </div>
+          </span>
           <span
             className="ListItem-Remove"
           >
@@ -114,41 +118,53 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
     <li
       class="ListItem"
     >
-      <div
+      <span
         class="ListItem-Child"
       >
         <div
           class="FileResult"
         >
-          asdf
+          <span
+            class="FileResult-Name"
+          >
+            asdf
+          </span>
         </div>
-      </div>
+      </span>
     </li>
     <li
       class="ListItem"
     >
-      <div
+      <span
         class="ListItem-Child"
       >
         <div
           class="FileResult"
         >
-          demo
+          <span
+            class="FileResult-Name"
+          >
+            demo
+          </span>
         </div>
-      </div>
+      </span>
     </li>
     <li
       class="ListItem"
     >
-      <div
+      <span
         class="ListItem-Child"
       >
         <div
           class="FileResult"
         >
-          test
+          <span
+            class="FileResult-Name"
+          >
+            test
+          </span>
         </div>
-      </div>
+      </span>
     </li>
   </ul>
 </div>
@@ -195,17 +211,21 @@ exports[`prevents the remove button from showing when FileList has readonly prop
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
+          <span
             className="ListItem-Child"
           >
             <FileResult>
               <div
                 className="FileResult"
               >
-                asdf
+                <span
+                  className="FileResult-Name"
+                >
+                  asdf
+                </span>
               </div>
             </FileResult>
-          </div>
+          </span>
         </li>
       </ListItem>
     </ul>

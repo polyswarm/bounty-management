@@ -4,11 +4,11 @@ exports[`adds the active class when active property is true 1`] = `
 <li
   class="ListItem active"
 >
-  <div
+  <span
     class="ListItem-Child"
   >
     
-  </div>
+  </span>
 </li>
 `;
 
@@ -16,11 +16,11 @@ exports[`renders without crashing 1`] = `
 <li
   class="ListItem"
 >
-  <div
+  <span
     class="ListItem-Child"
   >
     
-  </div>
+  </span>
 </li>
 `;
 
@@ -35,7 +35,7 @@ exports[`shows remove button when hovered 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
+    <span
       className="ListItem-Child"
     />
     <span
@@ -69,10 +69,10 @@ exports[`shows the badge when alert is set 1`] = `
   >
     
   </div>
-  <div
+  <span
     class="ListItem-Child"
   >
     
-  </div>
+  </span>
 </li>
 `;
