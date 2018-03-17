@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // Bounty imports
 import FileList from '../FileList';
+import AssertionTable from '../AssertionTable';
 // Component Imports
 import './styles.css';
 
@@ -19,7 +20,7 @@ class BountyInfo extends Component {
   render() {
     const { props: { bounty }, state: { active } } = this;
     const files = bounty.files || [];
-    const assertions = bounty.assertions || [];
+    const assertions = files[active].assertions || [];
     return (
       <div className='Bounty-Info'>
         <div className='Bounty-Info-Container'>
@@ -28,7 +29,8 @@ class BountyInfo extends Component {
             onClick={this.onFileClickHandler}
             active={active}
             readonly />
-
+          <AssertionTable className='Bounty-Info-Assertions'
+            assertions={assertions} />
         </div>
       </div>
     );

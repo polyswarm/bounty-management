@@ -7,11 +7,15 @@
 .Bounty-Info-Container {
   display: grid;
   box-sizing: border-box;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 2fr;
   height: 100%;
   padding: 20px;
 }
 
 .Bounty-Info-Files {
   grid-column: 0;
+}
+
+.Bounty-Info-Assertions {
+  grid-column: 1;
 }
