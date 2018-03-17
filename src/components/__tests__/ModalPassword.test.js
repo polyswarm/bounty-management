@@ -166,6 +166,38 @@ it('closes the modal when unlock succeeds', (done) => {
   }, 0);
 });
 
+it('sets uploading:true, error: false when unlock starts', () => {
+  const url = 'https://localhost:8080';
+  const wrapper = mount(<ModalPassword url={url}/>);
+  wrapper.setState({store: true});
+  const setState = spyOn(ModalPassword.prototype, 'setState');
+  const instance = wrapper.instance();
+
+  instance.onUnlock('address', 'password');
+
+  expect(setState).toHaveBeenCalledWith({uploading: true, error: false});
+});
+
+it('sets uploading:false, error:false when unlock succeeds', (done) => {
+  const url = 'https://localhost:8080';
+  const wrapper = mount(<ModalPassword url={url}/>);
+  wrapper.setState({store: true});
+  const setState = spyOn(ModalPassword.prototype, 'setState');
+  const instance = wrapper.instance();
+
+  instance.onUnlock('address', 'password');
+
+  setTimeout(() => {
+    try{
+      expect(setState).toHaveBeenCalledTimes(3);
+      expect(setState.calls.argsFor(1)[0]).toEqual({uploading: false, error: false});
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  }, 0);
+});
+
 it('does not call accountSet when unlock fails', (done) => {
   const mockBadUnlock = jest.fn().mockImplementation(() => {
     return new Promise((resolve) => {
@@ -200,7 +232,7 @@ it('does not call accountSet when unlock fails', (done) => {
   }, 0);
 });
 
-it('does not close when unlock fails', () => {
+it('does not close when unlock fails', (done) => {
   const mockBadUnlock = jest.fn().mockImplementation(() => {
     return new Promise((resolve) => {
       resolve(false);
@@ -222,7 +254,37 @@ it('does not close when unlock fails', () => {
   setTimeout(() => {
     try {
       expect(mockBadUnlock).toHaveBeenCalledTimes(1);
-      expect(close).toHaveBeenCalledTimes(1);
+      expect(close).toHaveBeenCalledTimes(0);
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  }, 0);
+});
+
+it('sets uploading:false, error:true when unlock fails', (done) => {
+  const mockBadUnlock = jest.fn().mockImplementation(() => {
+    return new Promise((resolve) => {
+      resolve(false);
+    });
+  });
+  HttpAccount.mockImplementation(() => {
+    return {
+      unlockAccount: mockBadUnlock,
+    };
+  });
+  const url = 'https://localhost:8080';
+  const wrapper = mount(<ModalPassword url={url}/>);
+  wrapper.setState({store: true});
+  const setState = spyOn(ModalPassword.prototype, 'setState');
+  const instance = wrapper.instance();
+
+  instance.onUnlock('address', 'password');
+
+  setTimeout(() => {
+    try{
+      expect(setState).toHaveBeenCalledTimes(2);
+      expect(setState.calls.argsFor(1)[0]).toEqual({uploading: false, error: true});
       done();
     } catch (error) {
       done.fail(error);

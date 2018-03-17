@@ -10,6 +10,8 @@ class ModalPassword extends Component {
     this.state = {
       store: false,
       open: false,
+      uploading: false,
+      error: false,
     };
 
     this.onBackgroundClick = this.onBackgroundClick.bind(this);
@@ -44,9 +46,11 @@ class ModalPassword extends Component {
   onUnlock(address, password) {
     const { props: { url } } = this;
     if (url) {
+      this.setState({uploading: true, error: false});
       const http = HttpAccount(url);
       http.unlockAccount(address, password)
         .then(success => {
+          this.setState({uploading: false, error: !success});
           if (success) {
             this.onAccountSet();
             this.close();
