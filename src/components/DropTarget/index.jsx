@@ -79,7 +79,7 @@ class DropTarget extends Component {
   onFileSelectedHandler(file) {
     const { props: { onFilesSelected } } = this;
     if (onFilesSelected) {
-      onFilesSelected([file]);
+      onFilesSelected(file);
     }
   }
 

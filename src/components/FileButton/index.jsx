@@ -14,7 +14,11 @@ class FileButton extends Component {
   render() {
     return(
       <form>
-        <input id='file' className='hidden' type='file' onChange={this.onFileChanged} />
+        <input id='file'
+          className='hidden'
+          type='file'
+          onChange={this.onFileChanged}
+          multiple/>
         <label htmlFor='file'>{strings.selectFile}</label>
       </form>
     );
@@ -23,7 +27,11 @@ class FileButton extends Component {
   onFileChanged(event) {
     const {onFileSelected} = this.props;
     if (onFileSelected && event.target.files && event.target.files.length >= 1) {
-      onFileSelected(event.target.files[0]);
+      const files = [];
+      for (var i = 0; i < event.target.files.length; i++) {
+        files.push(event.target.files[i]);
+      }
+      onFileSelected(files);
     }
   }
 }
