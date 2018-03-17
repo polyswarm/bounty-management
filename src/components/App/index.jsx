@@ -61,6 +61,7 @@ class App extends Component {
               remove={this.onRemoveBounty}
               select={this.onSelectBounty}/>
             <Header title={(bounties.length === 0 || create || active < 0) ? strings.create : bounties[active].guid}
+              create={create}
               onClick={this.onCreateBounty}/>
             <div className='App-Content'>
               { (bounties.length === 0 || create || active < 0 ) && (

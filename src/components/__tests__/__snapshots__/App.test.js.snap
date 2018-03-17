@@ -88,6 +88,7 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
       </div>
     </Sidebar>
     <Header
+      create={false}
       onClick={[Function]}
       title="Create a Bounty"
     >
@@ -272,6 +273,7 @@ exports[`shows BountyInfo when at least one bounty & active selects it 1`] = `
       </div>
     </Sidebar>
     <Header
+      create={false}
       onClick={[Function]}
       title="asdf"
     >

@@ -13,13 +13,15 @@ class Header extends Component {
   }
 
   render() {
-    const { props: { title } } = this;
+    const { props: { title, create } } = this;
     return (
       <header className='Header'>
         <h1>{title}</h1>
-        <Button className='Header-Button' onClick={this.onClickHandler}>
-          {strings.newBounty}
-        </Button>
+        {!create && (
+          <Button className='Header-Button' onClick={this.onClickHandler}>
+            {strings.newBounty}
+          </Button>
+        )}
       </header>
     );
   }
@@ -35,5 +37,6 @@ class Header extends Component {
 Header.propTypes = {
   title: PropTypes.string,
   onClick: PropTypes.func,
+  create: PropTypes.bool,
 };
 export default Header;

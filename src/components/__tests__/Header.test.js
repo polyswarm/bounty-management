@@ -24,3 +24,14 @@ it('should call onClick callback when clicked', () => {
 
   expect(onClick).toHaveBeenCalledTimes(1);
 });
+
+it('should not show the button if create set', () => {
+  const onClick = jest.fn();
+  const wrapper = mount(
+    <Header title={'Title'}
+      create
+      onClick={onClick}/>
+  );
+
+  expect(wrapper.find('button')).toHaveLength(0);
+});
