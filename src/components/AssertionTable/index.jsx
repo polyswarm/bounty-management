@@ -12,21 +12,25 @@ class AssertionTable extends Component {
     const { props: { assertions } } = this;
     return (
       <table className='AssertionTable'>
-        <tr>
-          <th>{strings.author}</th>
-          <th>{strings.verdict}</th>
-          <th>{strings.metadata}</th>
-          <th>{strings.bid}</th>
-        </tr>
-        {
-          assertions.map((assertion) => {
-            return (
-              <AssertionRow
-                key={assertion.author}
-                assertion={assertion}/>
-            );
-          })
-        }
+        <thead>
+          <tr>
+            <th>{strings.author}</th>
+            <th>{strings.verdict}</th>
+            <th>{strings.metadata}</th>
+            <th>{strings.bid}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            assertions.map((assertion) => {
+              return (
+                <AssertionRow
+                  key={assertion.author}
+                  assertion={assertion}/>
+              );
+            })
+          }
+        </tbody>
       </table>
     );
   }

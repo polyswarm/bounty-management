@@ -1,3 +1,24 @@
 .AssertionTable {
+  color: black;
   overflow: auto;
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #8500ff;
+  color: white;
+}
+
+tr {
+  border-bottom: 1px solid #a5a5a5;
+  min-height: 50px;
+}
+
+td, th {
+  height: 40px;
+  text-align: left;
 }
