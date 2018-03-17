@@ -11,14 +11,22 @@ table {
 thead {
   background-color: #8500ff;
   color: white;
+  height: 60px;
 }
 
 tr {
   border-bottom: 1px solid #a5a5a5;
-  min-height: 50px;
 }
 
-td, th {
+td {
   height: 40px;
   text-align: left;
+}
+
+th {
+  box-sizing: border-box;
+  height: 60px;
+  padding-bottom: 5px;
+  text-align: left;
+  vertical-align: bottom;
 }
