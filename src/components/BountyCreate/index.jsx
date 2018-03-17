@@ -39,10 +39,10 @@ class BountyCreate extends Component {
     return(
       <div className='Bounty-Create'>
         <div className='Container'>
-          <DropTarget onFilesSelected={this.onMultipleFilesSelected}/>
           <FileList files={files}
             clear={this.onClearAll}
             removeFile={this.onFileRemoved}/>
+          <DropTarget onFilesSelected={this.onMultipleFilesSelected}/>
           {uploading && !error && (
             <Progressbar progress={progress}/>
           )}

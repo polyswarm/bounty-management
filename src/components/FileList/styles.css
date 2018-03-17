@@ -1,6 +1,6 @@
 .File-List-Header {
   align-items: center;
-  border-bottom: 2px solid #8500ff;
+  border-bottom: 2px solid #dfdfdf;
   color: #8500ff;
   display: flex;
   flex-direction: row;
@@ -10,8 +10,11 @@
 }
 
 .File-List {
+  background-color: #f5f5f5;
+  border-right: 2px solid #dfdfdf;
   display: inline-block;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   position: relative;
 }
 

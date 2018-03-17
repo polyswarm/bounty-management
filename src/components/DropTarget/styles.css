@@ -1,16 +1,4 @@
-@keyframes lighten {
-  0% { background-image: url('/img/gray_hexgrid_2x.png'); }
-  100% { background-image: url('/img/hexgrid_2x.png'); }
-}
-
-@keyframes darken {
-  0% { background-image: url('/img/hexgrid_2x.png'); }
-  100% { background-image: url('/img/gray_hexgrid_2x.png'); }
-}
-
 .Drop-Target {
-  animation-duration: 1s;
-  animation-name: darken;
   background-color: #fbf2ff;
   background-size: 48px 58px;
   border: 2px dashed #8500ff;
@@ -20,7 +8,6 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  height: 400px;
   justify-content: center;
   position: relative;
 }
@@ -36,8 +23,6 @@
 }
 
 .drag {
-  animation-duration: 1s;
-  animation-name: lighten;
   background-image: url('/img/hexgrid_2x.png');
   cursor: copy;
 }
