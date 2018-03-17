@@ -56,3 +56,25 @@ it('closes the modal on click outside the main content', () => {
 
   expect(wrapper.find('.ModalBackground')).toHaveLength(0);
 });
+
+it('calls accountSet when store is true', () => {
+  const accountSet = jest.fn();
+  const wrapper = mount(<ModalPassword accountSet={accountSet} />);
+  wrapper.setState({store: true});
+  const instance = wrapper.instance();
+
+  instance.onAccountSet();
+
+  expect(accountSet).toHaveBeenCalledTimes(1);
+});
+
+it('does not call accountSet when store is false', () => {
+  const accountSet = jest.fn();
+  const wrapper = mount(<ModalPassword accountSet={accountSet} />);
+  wrapper.setState({store: false});
+  const instance = wrapper.instance();
+
+  instance.onAccountSet();
+
+  expect(accountSet).toHaveBeenCalledTimes(0);
+});

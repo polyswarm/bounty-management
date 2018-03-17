@@ -7,6 +7,7 @@ class ModalPassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      store: false,
       open: false,
     };
 
@@ -28,6 +29,13 @@ class ModalPassword extends Component {
     );
   }
 
+  onAccountSet() {
+    const { props: { accountSet }, state: {store} } = this;
+    if (accountSet && store) {
+      accountSet();
+    }
+  }
+
   onBackgroundClick() {
     this.close();
   }
@@ -43,5 +51,6 @@ class ModalPassword extends Component {
 
 ModalPassword.proptypes = {
   accounts: PropTypes.array,
+  accountSet: PropTypes.func,
 };
 export default ModalPassword;
