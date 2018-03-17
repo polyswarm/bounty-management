@@ -1,6 +1,6 @@
 import React from 'react';
 import {render, mount} from 'enzyme';
-import {renderToJson} from 'enzyme-to-json';
+import {renderToJson, mountToJson} from 'enzyme-to-json';
 import ModalPassword from '../ModalPassword';
 import HttpAccount from '../ModalPassword/http';
 
@@ -26,12 +26,14 @@ beforeEach(() => {
 });
 
 it('renders without crashing', () => {
-  const wrapper = render(<ModalPassword />);
+  const accounts = [];
+  const wrapper = render(<ModalPassword accounts={accounts}/>);
   expect(renderToJson(wrapper)).toMatchSnapshot();
 });
 
 it('sets state open to true when open is called', () => {
-  const wrapper = mount(<ModalPassword />);
+  const accounts = [];
+  const wrapper = mount(<ModalPassword accounts={accounts} />);
   const instance = wrapper.instance();
   const setState = jest.spyOn(ModalPassword.prototype, 'setState');
 
@@ -42,7 +44,8 @@ it('sets state open to true when open is called', () => {
 });
 
 it('sets state open to false when close is called', () => {
-  const wrapper = mount(<ModalPassword />);
+  const accounts = [];
+  const wrapper = mount(<ModalPassword accounts={accounts} />);
   const instance = wrapper.instance();
   const setState = jest.spyOn(ModalPassword.prototype, 'setState');
 
@@ -53,21 +56,24 @@ it('sets state open to false when close is called', () => {
 });
 
 it('hides the Modal when closed', () => {
-  const wrapper = mount(<ModalPassword />);
+  const accounts = [];
+  const wrapper = mount(<ModalPassword accounts={accounts} />);
   wrapper.setState({open: false});
 
   expect(wrapper.find('.ModalBackground')).toHaveLength(0);
 });
 
 it('shows the Modal when open', () => {
-  const wrapper = mount(<ModalPassword />);
+  const accounts = [];
+  const wrapper = mount(<ModalPassword accounts={accounts} />);
   wrapper.setState({open: true});
 
   expect(wrapper.find('.ModalBackground')).toHaveLength(1);
 });
 
 it('closes the modal on click outside the main content', () => {
-  const wrapper = mount(<ModalPassword />);
+  const accounts = [];
+  const wrapper = mount(<ModalPassword accounts={accounts} />);
   wrapper.setState({open: true});
 
   wrapper.find('.ModalBackground').simulate('click');
@@ -77,7 +83,11 @@ it('closes the modal on click outside the main content', () => {
 
 it('calls accountSet when store is true', () => {
   const accountSet = jest.fn();
-  const wrapper = mount(<ModalPassword accountSet={accountSet} />);
+  const accounts = [];
+  const wrapper = mount(
+    <ModalPassword accounts={accounts}
+      accountSet={accountSet} />
+  );
   wrapper.setState({store: true});
   const instance = wrapper.instance();
 
@@ -88,7 +98,11 @@ it('calls accountSet when store is true', () => {
 
 it('does not call accountSet when store is false', () => {
   const accountSet = jest.fn();
-  const wrapper = mount(<ModalPassword accountSet={accountSet} />);
+  const accounts = [];
+  const wrapper = mount(
+    <ModalPassword accounts={accounts}
+      accountSet={accountSet} />
+  );
   wrapper.setState({store: false});
   const instance = wrapper.instance();
 
@@ -98,7 +112,8 @@ it('does not call accountSet when store is false', () => {
 });
 
 it('it does not call upload when url not set', () => {
-  const wrapper = mount(<ModalPassword />);
+  const accounts = [];
+  const wrapper = mount(<ModalPassword accounts={accounts} />);
   wrapper.setState({store: false});
   const instance = wrapper.instance();
 
@@ -107,11 +122,111 @@ it('it does not call upload when url not set', () => {
   expect(mockUnlockAccount).toHaveBeenCalledTimes(0);
 });
 
+it('shows given accounts as options in dropdown', () => {
+  const accounts = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword accounts={accounts}/>);
+  wrapper.setState({store: false, open: true});
+
+  expect(wrapper.find('option')).toHaveLength(3);
+});
+
+it('updates account when option is selected', () => {
+  const accounts = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword accounts={accounts}/>);
+  wrapper.setState({open: true});
+  const setState = jest.spyOn(ModalPassword.prototype, 'setState');
+  setState.mockClear();
+
+  wrapper.find('#address').simulate('change', {target:{value: 'asdf'}});
+
+  expect(setState).toHaveBeenCalledWith({address:'asdf'});
+});
+
+it('updates the password when typed', () => {
+  const accounts = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword accounts={accounts}/>);
+  wrapper.setState({open: true});
+  const setState = jest.spyOn(ModalPassword.prototype, 'setState');
+  setState.mockClear();
+
+  wrapper.find('#password').simulate('change', {target:{value: 'asdf'}});
+
+  expect(setState).toHaveBeenCalledWith({password:'asdf'});
+});
+
+it('updates store when checkbox is checked', () => {
+  const accounts = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword accounts={accounts}/>);
+  wrapper.setState({open: true});
+  const setState = jest.spyOn(ModalPassword.prototype, 'setState');
+  setState.mockClear();
+
+  wrapper.find('#store').simulate('change', {checked: true});
+
+  expect(setState).toHaveBeenCalledWith({store:true});
+});
+
+it('updates store when checkbox is unchecked', () => {
+  const accounts = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword accounts={accounts}/>);
+  wrapper.setState({open: true});
+  const setState = jest.spyOn(ModalPassword.prototype, 'setState');
+  setState.mockClear();
+
+  wrapper.find('#store').simulate('change', {checked: false});
+
+  expect(setState).toHaveBeenCalledWith({store:false});
+});
+
+it('shows error message when error is true', () => {
+  const accounts = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword accounts={accounts}/>);
+  wrapper.setState({open: true, error: true});
+
+  expect(wrapper.find('.ModalError')).toHaveLength(1);
+  expect(wrapper.find('.ModalError').text()).toEqual('Unabled to login. Check your password.');
+});
+
+it('does not show error message when error is false', () => {
+  const accounts = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword accounts={accounts}/>);
+  wrapper.setState({open: true, error: false});
+
+  expect(wrapper.find('.ModalError').text()).toHaveLength(0);
+});
+
+it('closes the modal when Cancel is pressed', () => {
+  const accounts = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword accounts={accounts}/>);
+  wrapper.setState({open: true, error: false});
+  const setState = jest.spyOn(ModalPassword.prototype, 'setState');
+  setState.mockClear();
+
+  wrapper.find('.Remove-Button').simulate('click');
+
+  expect(setState).toHaveBeenCalledWith({open: false});
+});
+
+it('starts uploading when Unlock is pressed', () => {
+  const url = 'https://localhost:8080';
+  const accounts = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword url={url} accounts={accounts}/>);
+  wrapper.setState({open: true, error: false});
+  const setState = jest.spyOn(ModalPassword.prototype, 'setState');
+  setState.mockClear();
+
+  wrapper.find('.Button').simulate('click');
+
+  expect(setState).toHaveBeenCalledWith({uploading: true, error: false});
+});
+
 it('does not call accountSet when store is false after unlocking', () => {
   const url = 'https://localhost:8080';
   const accountSet = jest.fn();
+  const accounts = [];
   const wrapper = mount(
     <ModalPassword accountSet={accountSet}
+      accounts={accounts}
       url={url}/>
   );
   wrapper.setState({store: false});
@@ -126,8 +241,10 @@ it('does not call accountSet when store is false after unlocking', () => {
 it('does call accountSet when store is true after unlocking', (done) => {
   const url = 'https://localhost:8080';
   const accountSet = jest.fn();
+  const accounts = [];
   const wrapper = mount(
     <ModalPassword accountSet={accountSet}
+      accounts={accounts}
       url={url}/>
   );
   wrapper.setState({store: true});
@@ -149,7 +266,8 @@ it('does call accountSet when store is true after unlocking', (done) => {
 it('closes the modal when unlock succeeds', (done) => {
   const url = 'https://localhost:8080';
   const close = spyOn(ModalPassword.prototype, 'close');
-  const wrapper = mount(<ModalPassword url={url}/>);
+  const accounts = [];
+  const wrapper = mount(<ModalPassword accounts={accounts} url={url}/>);
   wrapper.setState({store: true});
   const instance = wrapper.instance();
 
@@ -168,7 +286,8 @@ it('closes the modal when unlock succeeds', (done) => {
 
 it('sets uploading:true, error: false when unlock starts', () => {
   const url = 'https://localhost:8080';
-  const wrapper = mount(<ModalPassword url={url}/>);
+  const accounts = [];
+  const wrapper = mount(<ModalPassword accounts={accounts} url={url}/>);
   wrapper.setState({store: true});
   const setState = spyOn(ModalPassword.prototype, 'setState');
   const instance = wrapper.instance();
@@ -180,7 +299,8 @@ it('sets uploading:true, error: false when unlock starts', () => {
 
 it('sets uploading:false, error:false when unlock succeeds', (done) => {
   const url = 'https://localhost:8080';
-  const wrapper = mount(<ModalPassword url={url}/>);
+  const accounts = [];
+  const wrapper = mount(<ModalPassword accounts={accounts} url={url}/>);
   wrapper.setState({store: true});
   const setState = spyOn(ModalPassword.prototype, 'setState');
   const instance = wrapper.instance();
@@ -212,8 +332,10 @@ it('does not call accountSet when unlock fails', (done) => {
 
   const url = 'https://localhost:8080';
   const accountSet = jest.fn();
+  const accounts = [];
   const wrapper = mount(
     <ModalPassword accountSet={accountSet}
+      accounts={accounts}
       url={url}/>
   );
   wrapper.setState({store: true});
@@ -245,7 +367,8 @@ it('does not close when unlock fails', (done) => {
   });
   const url = 'https://localhost:8080';
   const close = spyOn(ModalPassword.prototype, 'close');
-  const wrapper = mount(<ModalPassword url={url}/>);
+  const accounts = [];
+  const wrapper = mount(<ModalPassword accounts={accounts} url={url}/>);
   wrapper.setState({store: true});
   const instance = wrapper.instance();
 
@@ -274,7 +397,8 @@ it('sets uploading:false, error:true when unlock fails', (done) => {
     };
   });
   const url = 'https://localhost:8080';
-  const wrapper = mount(<ModalPassword url={url}/>);
+  const accounts = [];
+  const wrapper = mount(<ModalPassword accounts={accounts} url={url}/>);
   wrapper.setState({store: true});
   const setState = spyOn(ModalPassword.prototype, 'setState');
   const instance = wrapper.instance();

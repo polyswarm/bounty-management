@@ -12,4 +12,9 @@
   background-color: white;
   height: 400px;
   width: 600px;
+  z-index: 2;
+}
+
+.ModalError {
+  color: #ff1a00;
 }
