@@ -4,7 +4,7 @@ exports[`renders the correct number of children 1`] = `
 <table
   class="AssertionTable"
 >
-  <tbody>
+  <thead>
     <tr>
       <th>
         Author
@@ -19,6 +19,8 @@ exports[`renders the correct number of children 1`] = `
         Bid
       </th>
     </tr>
+  </thead>
+  <tbody>
     <tr
       class="AssertionRow"
     >
@@ -81,7 +83,7 @@ exports[`renders without crashing 1`] = `
 <table
   class="AssertionTable"
 >
-  <tbody>
+  <thead>
     <tr>
       <th>
         Author
@@ -96,6 +98,9 @@ exports[`renders without crashing 1`] = `
         Bid
       </th>
     </tr>
+  </thead>
+  <tbody>
+    
   </tbody>
 </table>
 `;

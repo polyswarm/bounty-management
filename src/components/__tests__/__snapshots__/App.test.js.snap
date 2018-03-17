@@ -123,40 +123,6 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
           <div
             className="Container"
           >
-            <DropTarget
-              onFilesSelected={[Function]}
-            >
-              <div
-                className="Drop-Target"
-                onDragEnter={[Function]}
-                onDragLeave={[Function]}
-                onDragOver={[Function]}
-                onDrop={[Function]}
-              >
-                <div>
-                  <p>
-                    Drag and drop your files here, or 
-                  </p>
-                  <FileButton
-                    onFileSelected={[Function]}
-                  >
-                    <form>
-                      <input
-                        className="hidden"
-                        id="file"
-                        onChange={[Function]}
-                        type="file"
-                      />
-                      <label
-                        htmlFor="file"
-                      >
-                        click here.
-                      </label>
-                    </form>
-                  </FileButton>
-                </div>
-              </div>
-            </DropTarget>
             <FileList
               clear={[Function]}
               files={Array []}
@@ -194,6 +160,41 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
                 />
               </div>
             </FileList>
+            <DropTarget
+              onFilesSelected={[Function]}
+            >
+              <div
+                className="Drop-Target"
+                onDragEnter={[Function]}
+                onDragLeave={[Function]}
+                onDragOver={[Function]}
+                onDrop={[Function]}
+              >
+                <div>
+                  <p>
+                    Drag and drop your files here, or 
+                  </p>
+                  <FileButton
+                    onFileSelected={[Function]}
+                  >
+                    <form>
+                      <input
+                        className="hidden"
+                        id="file"
+                        multiple={true}
+                        onChange={[Function]}
+                        type="file"
+                      />
+                      <label
+                        htmlFor="file"
+                      >
+                        click here.
+                      </label>
+                    </form>
+                  </FileButton>
+                </div>
+              </div>
+            </DropTarget>
             <Button
               cancel={false}
               className="Bounty-Create-Upload"
@@ -335,6 +336,32 @@ exports[`shows BountyInfo when at least one bounty & active selects it 1`] = `
                 />
               </div>
             </FileList>
+            <AssertionTable
+              assertions={Array []}
+              className="Bounty-Info-Assertions"
+            >
+              <table
+                className="AssertionTable"
+              >
+                <thead>
+                  <tr>
+                    <th>
+                      Author
+                    </th>
+                    <th>
+                      Verdict
+                    </th>
+                    <th>
+                      Metadata
+                    </th>
+                    <th>
+                      Bid
+                    </th>
+                  </tr>
+                </thead>
+                <tbody />
+              </table>
+            </AssertionTable>
           </div>
         </div>
       </BountyInfo>

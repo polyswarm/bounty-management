@@ -20,7 +20,11 @@ class BountyInfo extends Component {
   render() {
     const { props: { bounty }, state: { active } } = this;
     const files = bounty.files || [];
-    const assertions = files[active].assertions || [];
+    let assertions = [];
+    if (files[active] && files[active].assertions) {
+      assertions = files[active].assertions;
+    }
+
     return (
       <div className='Bounty-Info'>
         <div className='Bounty-Info-Container'>

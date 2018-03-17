@@ -5,6 +5,7 @@ exports[`renders without crashing 1`] = `
   <input
     class="hidden"
     id="file"
+    multiple=""
     type="file"
   >
     

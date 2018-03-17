@@ -25,6 +25,29 @@ exports[`renders without crashing 1`] = `
         
       </ul>
     </div>
+    <table
+      class="AssertionTable"
+    >
+      <thead>
+        <tr>
+          <th>
+            Author
+          </th>
+          <th>
+            Verdict
+          </th>
+          <th>
+            Metadata
+          </th>
+          <th>
+            Bid
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
   </div>
 </div>
 `;

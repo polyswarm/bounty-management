@@ -8,29 +8,6 @@ exports[`renders without crashing 1`] = `
     class="Container"
   >
     <div
-      class="Drop-Target"
-    >
-      <div>
-        <p>
-          Drag and drop your files here, or 
-        </p>
-        <form>
-          <input
-            class="hidden"
-            id="file"
-            type="file"
-          >
-            
-          </input>
-          <label
-            for="file"
-          >
-            click here.
-          </label>
-        </form>
-      </div>
-    </div>
-    <div
       class="File-List"
     >
       <header
@@ -53,6 +30,30 @@ exports[`renders without crashing 1`] = `
       >
         
       </ul>
+    </div>
+    <div
+      class="Drop-Target"
+    >
+      <div>
+        <p>
+          Drag and drop your files here, or 
+        </p>
+        <form>
+          <input
+            class="hidden"
+            id="file"
+            multiple=""
+            type="file"
+          >
+            
+          </input>
+          <label
+            for="file"
+          >
+            click here.
+          </label>
+        </form>
+      </div>
     </div>
     <button
       class="Button"
