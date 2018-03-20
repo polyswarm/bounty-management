@@ -5,6 +5,11 @@ exports[`renders without crashing 1`] = `
   class="Bounty-Create"
 >
   <div
+    class="ModalPassword"
+  >
+    
+  </div>
+  <div
     class="Container"
   >
     <div

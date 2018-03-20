@@ -81,7 +81,7 @@ it('closes the modal on click outside the main content', () => {
   expect(wrapper.find('.ModalBackground')).toHaveLength(0);
 });
 
-it('calls accountSet when store is true', () => {
+it('calls accountSet with true when store is true', () => {
   const accountSet = jest.fn();
   const accounts = [];
   const wrapper = mount(
@@ -94,9 +94,10 @@ it('calls accountSet when store is true', () => {
   instance.onAccountSet();
 
   expect(accountSet).toHaveBeenCalledTimes(1);
+  expect(accountSet).toHaveBeenCalledWith(true);
 });
 
-it('does not call accountSet when store is false', () => {
+it('call accountSet with false when store is false', () => {
   const accountSet = jest.fn();
   const accounts = [];
   const wrapper = mount(
@@ -108,7 +109,8 @@ it('does not call accountSet when store is false', () => {
 
   instance.onAccountSet();
 
-  expect(accountSet).toHaveBeenCalledTimes(0);
+  expect(accountSet).toHaveBeenCalledTimes(1);
+  expect(accountSet).toHaveBeenCalledWith(false);
 });
 
 it('it does not call upload when url not set', () => {

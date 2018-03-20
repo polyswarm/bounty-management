@@ -97,8 +97,8 @@ class ModalPassword extends Component {
 
   onAccountSet() {
     const { props: { accountSet }, state: {store} } = this;
-    if (accountSet && store) {
-      accountSet();
+    if (accountSet) {
+      accountSet(store);
     }
   }
 

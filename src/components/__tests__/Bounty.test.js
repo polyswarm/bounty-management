@@ -27,6 +27,7 @@ jest.mock('../BountyCreate/http', () => {
 });
 
 beforeEach(() => {
+  jest.clearAllMocks();
   Http.mockClear();
   mockUploadFiles.mockClear();
   mockUploadBounty.mockClear();
@@ -138,9 +139,12 @@ it('stores additional files in state.files', () => {
 
 it('calls uploadFiles when all parameters are met (files, addBounty, url)', () => {
   const addBounty = jest.fn();
+  const accountList = [];
   const wrapper = mount(
-    <BountyCreate url={'asdf'}
-      addBounty={addBounty}/>
+    <BountyCreate url={'url'}
+      accountList={accountList}
+      addBounty={addBounty}
+      account={true}/>
   );
   const files = [
     {name: 'demo'},
@@ -178,9 +182,12 @@ it('doesn\'t call uploadBounty when uploadFiles fails', () => {
   });
 
   const addBounty = jest.fn();
+  const accountList = [];
   const wrapper = mount(
-    <BountyCreate url={'asdf'}
-      addBounty={addBounty}/>
+    <BountyCreate url={'url'}
+      accountList={accountList}
+      addBounty={addBounty}
+      account={true}/>
   );
   const files = [
     {name: 'demo'},
@@ -209,9 +216,12 @@ it('calls uploadBounty when uploadFiles succeeds', (done) => {
   });
 
   const addBounty = jest.fn();
+  const accountList = [];
   const wrapper = mount(
-    <BountyCreate url={'asdf'}
-      addBounty={addBounty}/>
+    <BountyCreate url={'url'}
+      accountList={accountList}
+      addBounty={addBounty}
+      account={true}/>
   );
   const files = [
     {name: 'demo'},
@@ -253,9 +263,12 @@ it('calls addBounty when upload bounty is a success', (done) => {
   });
 
   const addBounty = jest.fn();
+  const accountList = [];
   const wrapper = mount(
-    <BountyCreate url={'asdf'}
-      addBounty={addBounty}/>
+    <BountyCreate url={'url'}
+      accountList={accountList}
+      addBounty={addBounty}
+      account={true}/>
   );
   const files = [
     {name: 'demo'},
@@ -280,9 +293,14 @@ it('calls addBounty when upload bounty is a success', (done) => {
 
 it('sets uploading to false when uploads complete', (done) => {
   const addBounty = jest.fn();
+  const accountSet = jest.fn();
+  const accountList = [];
   const wrapper = mount(
-    <BountyCreate url={'asdf'}
-      addBounty={addBounty}/>
+    <BountyCreate url={'url'}
+      accountSet={accountSet}
+      accountList={accountList}
+      addBounty={addBounty}
+      account={true}/>
   );
   const files = [
     {name: 'demo'},
@@ -308,9 +326,12 @@ it('sets uploading to false when uploads complete', (done) => {
 
 it('has uploading true after clicking create button', () => {
   const addBounty = jest.fn();
+  const accountList = [];
   const wrapper = mount(
-    <BountyCreate url={'asdf'}
-      addBounty={addBounty}/>
+    <BountyCreate url={'url'}
+      accountList={accountList}
+      addBounty={addBounty}
+      account={true}/>
   );
   const files = [
     {name: 'demo'},
@@ -373,4 +394,104 @@ it('shows the error when state has an error', () => {
   wrapper.setState({error: 'Error'});
 
   expect(wrapper.find('.Bounty-Create-Error').props().children).toBe('Error');
+});
+
+it('opens the modal if account not set on create click', () => {
+  const accountSet = jest.fn();
+  const accountList = [];
+  const wrapper = mount(
+    <BountyCreate url={'url'}
+      accountSet={accountSet}
+      accountList={accountList}
+      account={false}/>
+  );
+  const files = [
+    {name: 'demo'},
+    {name: 'omed'},
+  ];
+  wrapper.setState({files: files, uploading: false});
+
+  wrapper.find('.Bounty-Create-Upload').simulate('click');
+
+  expect(wrapper.find('.ModalContent')).toHaveLength(1);
+});
+
+it('calls create if account is set on create click', () => {
+  const createBounty = jest.spyOn(BountyCreate.prototype, 'createBounty');
+  const wrapper = mount(<BountyCreate url={'url'} account={true}/>);
+  const files = [
+    {name: 'demo'},
+    {name: 'omed'},
+  ];
+  wrapper.setState({files: files, uploading: false});
+
+  wrapper.find('.Bounty-Create-Upload').simulate('click');
+
+  expect(createBounty).toHaveBeenCalledTimes(1);
+});
+
+it('calls create after modal is successfully closed', () => {
+  const createBounty = jest.spyOn(BountyCreate.prototype, 'createBounty');
+  const accountSet = jest.fn();
+  const accountList = [];
+  const wrapper = mount(
+    <BountyCreate url={'url'}
+      accountSet={accountSet}
+      accountList={accountList}
+      account={false}/>
+  );
+  const files = [
+    {name: 'demo'},
+    {name: 'omed'},
+  ];
+  wrapper.setState({files: files, uploading: false});
+  const instance = wrapper.instance();
+
+  instance.onAccountSetHandler(false);
+
+  expect(createBounty).toHaveBeenCalledTimes(1);
+});
+
+it('calls accountSet when modal closed and password checked', () => {
+  const accountSet = jest.fn();
+  const accountList = [];
+  const wrapper = mount(
+    <BountyCreate url={'url'}
+      accountSet={accountSet}
+      accountList={accountList}
+      account={false}/>
+  );
+  const files = [
+    {name: 'demo'},
+    {name: 'omed'},
+  ];
+  wrapper.setState({files: files, uploading: false});
+  const instance = wrapper.instance();
+
+  instance.onAccountSetHandler(true);
+
+  expect(accountSet).toHaveBeenCalledTimes(1);
+  expect(accountSet).toHaveBeenCalledWith(true);
+});
+
+it('calls accountSet when modal closed and password not checked', () => {
+  const accountSet = jest.fn();
+  const accountList = [];
+  const wrapper = mount(
+    <BountyCreate url={'url'}
+      accountSet={accountSet}
+      accountList={accountList}
+      account={false}/>
+  );
+  const files = [
+    {name: 'demo'},
+    {name: 'omed'},
+  ];
+  wrapper.setState({files: files, uploading: false});
+  const instance = wrapper.instance();
+
+  instance.onAccountSetHandler(false);
+
+  expect(accountSet).toHaveBeenCalledTimes(1);
+  expect(accountSet).toHaveBeenCalledWith(false);
 });

@@ -6,6 +6,7 @@ import DropTarget from '../DropTarget';
 import FileList from '../FileList';
 import Button from '../Button';
 import Progressbar from '../Progressbar';
+import ModalPassword from '../ModalPassword';
 // Component imports
 import strings from './strings';
 import './styles.css';
@@ -35,9 +36,13 @@ class BountyCreate extends Component {
   }
 
   render() {
-    const { state: { files, uploading, error, progress }, props: { url } } = this;
+    const { state: { files, uploading, error, progress } } = this;
+    const { props: { url, accountList } } = this;
     return(
       <div className='Bounty-Create'>
+        <ModalPassword ref={(modal) => this.modal = modal}
+          accounts={accountList}
+          accountSet={this.onAccountSetHandler} />
         <div className='Container'>
           <FileList files={files}
             clear={this.onClearAll}
@@ -77,12 +82,24 @@ class BountyCreate extends Component {
   }
 
   onClickHandler() {
-    const { state: { uploading } } = this;
+    const { state: { uploading }, props: { account } } = this;
     if (uploading) {
       this.cancel();
     } else {
-      this.createBounty();
+      if (!account) {
+        this.modal.open();
+      } else {
+        this.createBounty();
+      }
     }
+  }
+
+  onAccountSetHandler(store) {
+    const { props: { accountSet } } = this;
+    if (accountSet) {
+      accountSet(store);
+    }
+    this.createBounty();
   }
 
   onProgress(progress) {
@@ -116,7 +133,11 @@ class BountyCreate extends Component {
         })
         .catch((error) => {
           let errorMessage;
-          if (!error || error.length === 0) {
+          if (error && error.status && error.status === 401) {
+            const { props: { accountSet } } = this;
+            accountSet(false);
+            errorMessage = strings.locked;
+          } else if (!error || error.length === 0) {
             errorMessage = strings.error;
           } else {
             errorMessage = error;
@@ -131,7 +152,10 @@ class BountyCreate extends Component {
 }
 
 BountyCreate.propTypes = {
-  url: PropTypes.string,
+  account: PropTypes.bool,
+  accountList: PropTypes.array,
+  accountSet: PropTypes.func,
   addBounty: PropTypes.func,
+  url: PropTypes.string,
 };
 export default BountyCreate;
