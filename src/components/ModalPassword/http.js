@@ -24,7 +24,7 @@ class HttpAccount {
         });
       })
       .then(response => response.ok)
-      .catch(false);
+      .catch(() => false);
   }
 
   createWallet(password) {
@@ -40,7 +40,7 @@ class HttpAccount {
       }
     })
       .then(response => response.ok)
-      .catch(false);
+      .catch(() => false);
   }
 }
 export default HttpAccount;
