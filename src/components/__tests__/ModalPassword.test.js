@@ -204,12 +204,12 @@ it('closes the modal when Cancel is pressed', () => {
   const setState = jest.spyOn(ModalPassword.prototype, 'setState');
   setState.mockClear();
 
-  wrapper.find('.Remove-Button').simulate('click');
+  wrapper.find('.flat-cancel').simulate('click');
 
   expect(setState).toHaveBeenCalledWith({open: false});
 });
 
-it('starts uploading when Unlock is pressed', () => {
+it('starts unlocking when Unlock is pressed', () => {
   const url = 'https://localhost:8080';
   const accounts = ['asdf','demo','omed'];
   const wrapper = mount(<ModalPassword url={url} accounts={accounts}/>);
@@ -219,7 +219,7 @@ it('starts uploading when Unlock is pressed', () => {
 
   wrapper.find('.Button').simulate('click');
 
-  expect(setState).toHaveBeenCalledWith({uploading: true, error: false});
+  expect(setState).toHaveBeenCalledWith({unlocking: true, error: false});
 });
 
 it('does not call accountSet when store is false after unlocking', () => {
@@ -286,7 +286,7 @@ it('closes the modal when unlock succeeds', (done) => {
   }, 0);
 });
 
-it('sets uploading:true, error: false when unlock starts', () => {
+it('sets unlocking:true, error: false when unlock starts', () => {
   const url = 'https://localhost:8080';
   const accounts = [];
   const wrapper = mount(<ModalPassword accounts={accounts} url={url}/>);
@@ -296,10 +296,10 @@ it('sets uploading:true, error: false when unlock starts', () => {
 
   instance.onUnlock('address', 'password');
 
-  expect(setState).toHaveBeenCalledWith({uploading: true, error: false});
+  expect(setState).toHaveBeenCalledWith({unlocking: true, error: false});
 });
 
-it('sets uploading:false, error:false when unlock succeeds', (done) => {
+it('sets unlocking:false, error:false when unlock succeeds', (done) => {
   const url = 'https://localhost:8080';
   const accounts = [];
   const wrapper = mount(<ModalPassword accounts={accounts} url={url}/>);
@@ -312,7 +312,7 @@ it('sets uploading:false, error:false when unlock succeeds', (done) => {
   setTimeout(() => {
     try{
       expect(setState).toHaveBeenCalledTimes(3);
-      expect(setState.calls.argsFor(1)[0]).toEqual({uploading: false, error: false});
+      expect(setState.calls.argsFor(1)[0]).toEqual({unlocking: false, error: false});
       done();
     } catch (error) {
       done.fail(error);
@@ -387,7 +387,7 @@ it('does not close when unlock fails', (done) => {
   }, 0);
 });
 
-it('sets uploading:false, error:true when unlock fails', (done) => {
+it('sets unlocking:false, error:true when unlock fails', (done) => {
   const mockBadUnlock = jest.fn().mockImplementation(() => {
     return new Promise((resolve) => {
       resolve(false);
@@ -410,7 +410,7 @@ it('sets uploading:false, error:true when unlock fails', (done) => {
   setTimeout(() => {
     try{
       expect(setState).toHaveBeenCalledTimes(2);
-      expect(setState.calls.argsFor(1)[0]).toEqual({uploading: false, error: true});
+      expect(setState.calls.argsFor(1)[0]).toEqual({unlocking: false, error: true});
       done();
     } catch (error) {
       done.fail(error);

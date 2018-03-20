@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // Bounty imports
-import RemoveButton from '../RemoveButton';
 import Button from '../Button';
 // Component imports
 import HttpAccount from './http';
@@ -15,7 +14,7 @@ class ModalPassword extends Component {
     this.state = {
       store: false,
       open: false,
-      uploading: false,
+      unlocking: false,
       error: false,
       password: '',
       address: '',
@@ -31,8 +30,8 @@ class ModalPassword extends Component {
   }
 
   render() {
-    const { props: { accounts },
-      state: { open, uploading, error, password, address, store } } = this;
+    const { props: { accounts } } = this;
+    const { state: { open, unlocking, error, password, address, store } } = this;
     return (
       <div className='ModalPassword'>
         {open && (
@@ -75,19 +74,22 @@ class ModalPassword extends Component {
                     strings.error
                   )}
                 </div>
-                <span>
-                  <RemoveButton
-                    disabled={uploading}
-                    onClick={this.onCloseClick}>
-                    {strings.cancel}
-                  </RemoveButton>
-                  <Button
-                    disabled={uploading}
-                    onClick={this.onUnlockClick}>
-                    {strings.unlock}
-                  </Button>
-                </span>
               </form>
+              <span className='Modal-Button-Bar'>
+                <Button
+                  flat
+                  disabled={unlocking}
+                  onClick={this.onUnlockClick}>
+                  {strings.unlock}
+                </Button>
+                <Button
+                  flat
+                  cancel
+                  disabled={unlocking}
+                  onClick={this.onCloseClick}>
+                  {strings.cancel}
+                </Button>
+              </span>
             </div>
           </React.Fragment>
         )}
@@ -115,8 +117,8 @@ class ModalPassword extends Component {
   }
 
   onCloseClick() {
-    const { state: { uploading } } = this;
-    if (!uploading) {
+    const { state: { unlocking } } = this;
+    if (!unlocking) {
       this.close();
     }
   }
@@ -129,11 +131,11 @@ class ModalPassword extends Component {
   onUnlock(address, password) {
     const { props: { url } } = this;
     if (url) {
-      this.setState({uploading: true, error: false});
+      this.setState({unlocking: true, error: false});
       const http = HttpAccount(url);
       http.unlockAccount(address, password)
         .then(success => {
-          this.setState({uploading: false, error: !success});
+          this.setState({unlocking: false, error: !success});
           if (success) {
             this.onAccountSet();
             this.close();
