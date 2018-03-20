@@ -11,7 +11,7 @@ it('renders without crashing', () => {
 
 it('shows files as passed in though the bounty object', () => {
   const bounty = {
-    files: [{name: 'asdf'},{name: 'demo'}],
+    artifacts: [{name: 'asdf'},{name: 'demo'}],
   };
   const wrapper = mount(<BountyInfo bounty={bounty}/>);
 

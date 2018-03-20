@@ -19,7 +19,7 @@ class BountyInfo extends Component {
 
   render() {
     const { props: { bounty }, state: { active } } = this;
-    const files = bounty.files || [];
+    const files = bounty.artifacts || [];
     let assertions = [];
     if (files[active] && files[active].assertions) {
       assertions = files[active].assertions;
