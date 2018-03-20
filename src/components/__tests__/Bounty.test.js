@@ -495,3 +495,50 @@ it('calls accountSet when modal closed and password not checked', () => {
   expect(accountSet).toHaveBeenCalledTimes(1);
   expect(accountSet).toHaveBeenCalledWith(false);
 });
+
+it('calls accountSet with false when upload bounty returns 401', (done) => {
+  const mockBadUploadBounty = jest.fn().mockImplementation(() => {
+    return new Promise((resolve, reject) => {
+      const error = {
+        status: 401,
+      }
+      reject(error);
+    });
+  });
+  Http.mockImplementation(() => {
+    return {
+      uploadFiles: mockUploadFiles,
+      uploadBounty: mockBadUploadBounty,
+    };
+  });
+
+  const addBounty = jest.fn();
+  const accountSet = jest.fn();
+  const accountList = [];
+  const wrapper = mount(
+    <BountyCreate url={'url'}
+      accountList={accountList}
+      accountSet={accountSet}
+      addBounty={addBounty}
+      account={true}/>
+  );
+  const files = [
+    {name: 'demo'},
+    {name: 'omed'},
+  ];
+  wrapper.setState({files: files});
+
+  // act
+  wrapper.find('.Bounty-Create-Upload').simulate('click');
+
+  // assert
+  setTimeout(() => {
+    try {
+      expect(accountSet).toHaveBeenCalledTimes(1);
+      expect(accountSet).toHaveBeenCalledWith(false);
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  }, 0);
+});
