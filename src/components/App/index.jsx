@@ -16,6 +16,8 @@ class App extends Component {
     super(props);
     const {bounties, first} = this.preloadLocalStorage();
     this.state = {
+      account: false,
+      accountList: [],
       active: 0,
       bounties: bounties,
       create: false,
@@ -28,6 +30,7 @@ class App extends Component {
     this.onSelectBounty = this.onSelectBounty.bind(this);
     this.onCreateBounty = this.onCreateBounty.bind(this);
     this.onCloseWelcome = this.onCloseWelcome.bind(this);
+    this.onAccountSet = this.onAccountSet.bind(this);
   }
 
   componentDidUpdate(_, prevState) {
@@ -47,7 +50,7 @@ class App extends Component {
 
   render() {
     const {url} = config;
-    const { state: { active, bounties, create, first } } = this;
+    const { state: { active, bounties, create, first, account, accountList } } = this;
 
     return (
       <div className='App'>
@@ -65,7 +68,11 @@ class App extends Component {
               onClick={this.onCreateBounty}/>
             <div className='App-Content'>
               { (bounties.length === 0 || create || active < 0 ) && (
-                <BountyCreate url={url} addBounty={this.onAddBounty}/>
+                <BountyCreate url={url}
+                  account={account}
+                  accountList={accountList}
+                  accountSet={this.onAccountSet}
+                  addBounty={this.onAddBounty}/>
               )}
               { !create && active >=0 && active < bounties.length && (
                 <BountyInfo bounty={bounties[active]}/>
@@ -75,6 +82,10 @@ class App extends Component {
         )}
       </div>
     );
+  }
+
+  onAccountSet(store) {
+    this.setState({account: store});
   }
 
   onAddBounty(guid) {

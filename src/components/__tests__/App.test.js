@@ -536,3 +536,27 @@ it('reads seen from localStorage and puts it into state as first on startup', ()
 
   expect(instance.state.first).toBeFalsy();
 });
+
+it('calls setState with account: true when calling onAccountSet(true)', () => {
+  const setState = jest.spyOn(App.prototype, 'setState');
+  const wrapper = mount(<App />);
+  const instance = wrapper.instance();
+  setState.mockClear();
+
+  instance.onAccountSet(true);
+
+  expect(setState).toHaveBeenCalledTimes(1);
+  expect(setState).toHaveBeenCalledWith({account: true});
+});
+
+it('calls setState with account: false when calling onAccountSet(false)', () => {
+  const setState = jest.spyOn(App.prototype, 'setState');
+  const wrapper = mount(<App />);
+  const instance = wrapper.instance();
+  setState.mockClear();
+
+  instance.onAccountSet(false);
+
+  expect(setState).toHaveBeenCalledTimes(1);
+  expect(setState).toHaveBeenCalledWith({account: false});
+});
