@@ -501,7 +501,7 @@ it('calls accountSet with false when upload bounty returns 401', (done) => {
     return new Promise((resolve, reject) => {
       const error = {
         status: 401,
-      }
+      };
       reject(error);
     });
   });
