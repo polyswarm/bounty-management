@@ -12,12 +12,12 @@ class Button extends Component {
   }
 
   render () {
-    const { props: { disabled, children, cancel } } = this;
-    const cancelClass = cancel ? ' cancel' : '';
+    const { props: { disabled, children, cancel, flat } } = this;
+    const computedClass = this.computeClass(cancel, flat);
     return (
       <button
         disabled={disabled}
-        className={`Button${cancelClass}`}
+        className={`Button${computedClass}`}
         onClick={this.onClickHandler}>
         {children}
       </button>
@@ -28,6 +28,18 @@ class Button extends Component {
     const { props: { onClick } } = this;
     if (onClick) {
       onClick();
+    }
+  }
+
+  computeClass(cancel, flat) {
+    if (cancel && flat) {
+      return ' flat-cancel';
+    } else if (flat) {
+      return ' flat';
+    } else if (cancel) {
+      return ' cancel';
+    } else {
+      return '';
     }
   }
 }

@@ -23,3 +23,24 @@ it('propogates disabled to actualy button element', () => {
 
   expect(wrapper.find('button').props().disabled).toBeTruthy();
 });
+
+it('sets the class as flat when flat property added', () => {
+  const onClickHandler = jest.fn();
+  const wrapper = mount(<Button flat onClick={onClickHandler} />);
+
+  expect(wrapper.hasClass('flat')).toBeTruthy();
+});
+
+it('sets the class as cancel when cancel is added', () => {
+  const onClickHandler = jest.fn();
+  const wrapper = mount(<Button cancel onClick={onClickHandler} />);
+
+  expect(wrapper.hasClass('cancel')).toBeTruthy();
+});
+
+it('sets the flat-cancel class when both cancel and flat are added', () => {
+  const onClickHandler = jest.fn();
+  const wrapper = mount(<Button flat cancel onClick={onClickHandler} />);
+
+  expect(wrapper.hasClass('flat-cancel')).toBeTruthy();
+});
