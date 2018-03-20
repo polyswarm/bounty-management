@@ -33,7 +33,6 @@ form {
   text-shadow: none;
   text-transform: uppercase;
   transition: background-color 0.25s ease;
-  z-index: 1;
 }
 
 .hidden + label:hover,
