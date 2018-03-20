@@ -1,6 +1,6 @@
 import React from 'react';
 import {render, mount} from 'enzyme';
-import {renderToJson} from 'enzyme-to-json';
+import {renderToJson, mountToJson} from 'enzyme-to-json';
 import ModalPassword from '../ModalPassword';
 import HttpAccount from '../ModalPassword/http';
 
@@ -43,7 +43,22 @@ beforeEach(() => {
 it('renders without crashing', () => {
   const walletList = [];
   const wrapper = render(<ModalPassword walletList={walletList}/>);
+
   expect(renderToJson(wrapper)).toMatchSnapshot();
+});
+
+it('opens without crashing', () => {
+  const walletList = [];
+  const wrapper = mount(<ModalPassword walletList={walletList}/>);
+  wrapper.setState({open: true});
+  expect(mountToJson(wrapper)).toMatchSnapshot();
+});
+
+it('opens with some wallets without crashing', () => {
+  const walletList = ['asdf', 'demo'];
+  const wrapper = mount(<ModalPassword walletList={walletList}/>);
+  wrapper.setState({open: true});
+  expect(mountToJson(wrapper)).toMatchSnapshot();
 });
 
 it('sets state open to true when open is called', () => {

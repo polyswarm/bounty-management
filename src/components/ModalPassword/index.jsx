@@ -44,7 +44,7 @@ class ModalPassword extends Component {
             </div>
             <div className='ModalContent'>
               <header className='ModalContentHeader'>
-                {strings.header}
+                {walletList.length > 0 ? strings.header : strings.createHeader}
               </header>
               <form>
                 {walletList.length > 0 && (
@@ -95,7 +95,7 @@ class ModalPassword extends Component {
                   flat
                   disabled={unlocking}
                   onClick={this.onUnlockClick}>
-                  {strings.unlock}
+                  {walletList.length > 0 ? strings.unlock : strings.create}
                 </Button>
                 <Button
                   flat

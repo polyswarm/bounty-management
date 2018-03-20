@@ -5,6 +5,8 @@ const strings = {
   cancel: 'Cancel',
   unlock: 'Unlock',
   header: 'Unlock your wallet.',
+  createHeader: 'Create a wallet',
+  create: 'Create',
   address: 'Wallet Address'
 };
 
