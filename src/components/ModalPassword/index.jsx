@@ -27,6 +27,9 @@ class ModalPassword extends Component {
     this.onCloseClick = this.onCloseClick.bind(this);
     this.onUnlockClick = this.onUnlockClick.bind(this);
     this.onUnlock = this.onUnlock.bind(this);
+    this.createWallet = this.createWallet.bind(this);
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
   }
 
   render() {
@@ -44,23 +47,27 @@ class ModalPassword extends Component {
                 {strings.header}
               </header>
               <form>
-                <label htmlFor='address'>
-                  {strings.address}
-                </label>
-                <select id='address'
-                  value={address}
-                  onChange={this.onChangeAddress}>
-                  {
-                    walletList.map((wallet) => {
-                      return(
-                        <option key={wallet}
-                          value={wallet}>
-                          {wallet}
-                        </option>
-                      );
-                    })
-                  }
-                </select>
+                {walletList.length > 0 && (
+                  <React.Fragment>
+                    <label htmlFor='address'>
+                      {strings.address}
+                    </label>
+                    <select id='address'
+                      value={address}
+                      onChange={this.onChangeAddress}>
+                      {
+                        walletList.map((wallet) => {
+                          return(
+                            <option key={wallet}
+                              value={wallet}>
+                              {wallet}
+                            </option>
+                          );
+                        })
+                      }
+                    </select>
+                  </React.Fragment>
+                )}
                 <label htmlFor='password'>
                   {strings.password}
                 </label>
@@ -132,8 +139,14 @@ class ModalPassword extends Component {
   }
 
   onUnlockClick() {
-    const { props: { address, password } } = this;
-    this.onUnlock(address, password);
+    const { state: { address, password } } = this;
+    const { props: { walletList } } = this;
+    if (walletList && walletList.length > 0) {
+      this.onUnlock(address, password);
+    } else {
+      this.createWallet(password);
+    }
+
   }
 
   onUnlock(address, password) {
@@ -141,7 +154,23 @@ class ModalPassword extends Component {
     if (url) {
       this.setState({unlocking: true, error: false});
       const http = HttpAccount(url);
-      http.unlockAccount(address, password)
+      http.unlockWallet(address, password)
+        .then(success => {
+          this.setState({unlocking: false, error: !success});
+          if (success) {
+            this.onWalletChangeHandler();
+            this.close();
+          }
+        });
+    }
+  }
+
+  createWallet(password) {
+    const { props: { url } } = this;
+    if (url) {
+      this.setState({unlocking: true, error: false});
+      const http = HttpAccount(url);
+      http.createWallet(password)
         .then(success => {
           this.setState({unlocking: false, error: !success});
           if (success) {

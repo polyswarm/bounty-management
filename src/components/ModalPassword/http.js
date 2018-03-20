@@ -3,7 +3,7 @@ class HttpAccount {
     this.url = url;
   }
 
-  unlockAccount(address, password) {
+  unlockWallet(address, password) {
     const url = this.url;
     return new Promise((resolve, reject) => {
       if (!url) {
@@ -23,6 +23,22 @@ class HttpAccount {
           }
         });
       })
+      .then(response => response.ok)
+      .catch(false);
+  }
+
+  createWallet(password) {
+    const url = this.url;
+    return fetch(url + '/accounts', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: {
+        password: password
+      }
+    })
       .then(response => response.ok)
       .catch(false);
   }
