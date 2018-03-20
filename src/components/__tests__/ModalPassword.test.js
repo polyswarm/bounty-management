@@ -217,7 +217,7 @@ it('starts unlocking when Unlock is pressed', () => {
   const setState = jest.spyOn(ModalPassword.prototype, 'setState');
   setState.mockClear();
 
-  wrapper.find('.Button').simulate('click');
+  wrapper.find('.flat').simulate('click');
 
   expect(setState).toHaveBeenCalledWith({unlocking: true, error: false});
 });

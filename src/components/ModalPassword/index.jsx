@@ -40,7 +40,13 @@ class ModalPassword extends Component {
               onClick={this.onCloseClick}>
             </div>
             <div className='ModalContent'>
+              <header className='ModalContentHeader'>
+                {strings.header}
+              </header>
               <form>
+                <label htmlFor='address'>
+                  {strings.address}
+                </label>
                 <select id='address'
                   value={address}
                   onChange={this.onChangeAddress}>
@@ -62,13 +68,15 @@ class ModalPassword extends Component {
                   type='password'
                   value={password}
                   onChange={this.onChangePassword}/>
-                <label htmlFor='store'>
-                  {strings.store}
-                </label>
-                <input id='store'
-                  type='checkbox'
-                  value={store}
-                  onChange={this.onChangeStore}/>
+                <span>
+                  <input id='store'
+                    type='checkbox'
+                    value={store}
+                    onChange={this.onChangeStore}/>
+                  <label htmlFor='store'>
+                    {strings.store}
+                  </label>
+                </span>
                 <div className='ModalError'>
                   {error && (
                     strings.error

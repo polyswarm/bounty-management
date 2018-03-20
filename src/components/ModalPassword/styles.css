@@ -15,31 +15,76 @@
   background-color: white;
   box-shadow: 0 0 10px black;
   box-sizing: border-box;
+  color: black;
   display: flex;
   flex-direction: column;
-  height: 400px;
-  justify-content: space-between;
+  height: 350px;
+  justify-content: flex-start;
   left: 50%;
   margin: auto;
-  padding: 20px;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 600px;
+  width: 300px;
   z-index: 2;
 }
 
 .ModalContent > form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+.ModalContentHeader {
+  background-color: #8500ff;
+  box-sizing: border-box;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+  font-weight: 900;
+  height: 60px;
+  justify-content: center;
+  padding: 0 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.Modal-Button-Bar {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
 }
 
 .Modal-Button-Bar > button{
   float: right;
+  margin-bottom: 5px;
   width: 110px;
 }
 
 .ModalError {
   color: #ff1a00;
+}
+
+select {
+  background-color: white;
+  font-size: 16px;
+  margin-bottom: 10px;
+  padding: 4px 12px;
+}
+
+select:focus {
+  outline-color: #8500ff;
+}
+
+input[type=password] {
+  box-sizing: border-box;
+  font-size: 16px;
+  margin-bottom: 10px;
+  padding: 4px 12px;
+}
+
+input[type=password]:focus {
+  outline-color: #8500ff;
 }
