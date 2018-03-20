@@ -15,6 +15,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     const {bounties, first} = this.preloadLocalStorage();
+    this.http = new HttpApp(config.url);
     this.state = {
       isUnlocked: false,
       walletList: [],
@@ -31,6 +32,7 @@ class App extends Component {
     this.onCreateBounty = this.onCreateBounty.bind(this);
     this.onCloseWelcome = this.onCloseWelcome.bind(this);
     this.onWalletChangeHandler = this.onWalletChangeHandler.bind(this);
+    this.getData = this.getData.bind(this);
   }
 
   componentDidUpdate(_, prevState) {
@@ -46,6 +48,10 @@ class App extends Component {
     if(storageOutOfSync) {
       this.storeBounties(bounties);
     }
+  }
+
+  componentDidMount() {
+    this.getData();
   }
 
   render() {
@@ -147,6 +153,24 @@ class App extends Component {
       };
       this.setState({bounties: bounties});
     }
+  }
+
+  getData() {
+    const http = this.http;
+    const { state: { bounties } } = this;
+    const promises = bounties.map((bounty) => {
+      return http.getBounty(bounty)
+        .then(b => {
+          if (Object.keys(b) !== Object.keys(bounty)) {
+            b.update = true;
+          }
+          return b;
+        })
+        .catch(bounty);
+    });
+    Promise.all(promises).then((values) => {
+      this.setState({bounties: values});
+    });
   }
 
   storeBounties(bounties) {
