@@ -33,6 +33,7 @@ class App extends Component {
     this.onCloseWelcome = this.onCloseWelcome.bind(this);
     this.onWalletChangeHandler = this.onWalletChangeHandler.bind(this);
     this.getData = this.getData.bind(this);
+    this.getWallets = this.getWallets.bind(this);
   }
 
   componentDidUpdate(_, prevState) {
@@ -51,6 +52,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.getWallets();
     this.getData();
   }
 
@@ -166,11 +168,21 @@ class App extends Component {
           }
           return b;
         })
-        .catch(bounty);
+        .catch(() => bounty);
     });
     Promise.all(promises).then((values) => {
       this.setState({bounties: values});
     });
+  }
+
+  getWallets() {
+    const http = this.http;
+    http.getWallets()
+      .then(accounts => {
+        this.setState({walletList, accounts});
+      });
+    http.getUnlockedWallet()
+      .then(this.setState({isUnlocked: true}));
   }
 
   storeBounties(bounties) {
