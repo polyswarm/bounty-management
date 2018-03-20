@@ -16,8 +16,8 @@ class App extends Component {
     super(props);
     const {bounties, first} = this.preloadLocalStorage();
     this.state = {
-      account: false,
-      accountList: [],
+      isUnlocked: false,
+      walletList: [],
       active: 0,
       bounties: bounties,
       create: false,
@@ -30,7 +30,7 @@ class App extends Component {
     this.onSelectBounty = this.onSelectBounty.bind(this);
     this.onCreateBounty = this.onCreateBounty.bind(this);
     this.onCloseWelcome = this.onCloseWelcome.bind(this);
-    this.onAccountSet = this.onAccountSet.bind(this);
+    this.onWalletChangeHandler = this.onWalletChangeHandler.bind(this);
   }
 
   componentDidUpdate(_, prevState) {
@@ -50,7 +50,7 @@ class App extends Component {
 
   render() {
     const {url} = config;
-    const { state: { active, bounties, create, first, account, accountList } } = this;
+    const { state: { active, bounties, create, first, isUnlocked, walletList } } = this;
 
     return (
       <div className='App'>
@@ -69,9 +69,9 @@ class App extends Component {
             <div className='App-Content'>
               { (bounties.length === 0 || create || active < 0 ) && (
                 <BountyCreate url={url}
-                  account={account}
-                  accountList={accountList}
-                  accountSet={this.onAccountSet}
+                  isUnlocked={isUnlocked}
+                  walletList={walletList}
+                  onWalletChange={this.onWalletChangeHandler}
                   addBounty={this.onAddBounty}/>
               )}
               { !create && active >=0 && active < bounties.length && (
@@ -84,8 +84,8 @@ class App extends Component {
     );
   }
 
-  onAccountSet(store) {
-    this.setState({account: store});
+  onWalletChangeHandler(store) {
+    this.setState({isUnlocked: store});
   }
 
   onAddBounty(guid) {

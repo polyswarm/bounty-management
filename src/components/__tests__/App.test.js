@@ -543,10 +543,10 @@ it('calls setState with account: true when calling onAccountSet(true)', () => {
   const instance = wrapper.instance();
   setState.mockClear();
 
-  instance.onAccountSet(true);
+  instance.onWalletChangeHandler(true);
 
   expect(setState).toHaveBeenCalledTimes(1);
-  expect(setState).toHaveBeenCalledWith({account: true});
+  expect(setState).toHaveBeenCalledWith({isUnlocked: true});
 });
 
 it('calls setState with account: false when calling onAccountSet(false)', () => {
@@ -555,8 +555,8 @@ it('calls setState with account: false when calling onAccountSet(false)', () => 
   const instance = wrapper.instance();
   setState.mockClear();
 
-  instance.onAccountSet(false);
+  instance.onWalletChangeHandler(false);
 
   expect(setState).toHaveBeenCalledTimes(1);
-  expect(setState).toHaveBeenCalledWith({account: false});
+  expect(setState).toHaveBeenCalledWith({isUnlocked: false});
 });

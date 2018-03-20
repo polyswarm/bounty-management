@@ -26,14 +26,14 @@ beforeEach(() => {
 });
 
 it('renders without crashing', () => {
-  const accounts = [];
-  const wrapper = render(<ModalPassword accounts={accounts}/>);
+  const walletList = [];
+  const wrapper = render(<ModalPassword walletList={walletList}/>);
   expect(renderToJson(wrapper)).toMatchSnapshot();
 });
 
 it('sets state open to true when open is called', () => {
-  const accounts = [];
-  const wrapper = mount(<ModalPassword accounts={accounts} />);
+  const walletList = [];
+  const wrapper = mount(<ModalPassword walletList={walletList} />);
   const instance = wrapper.instance();
   const setState = jest.spyOn(ModalPassword.prototype, 'setState');
 
@@ -44,8 +44,8 @@ it('sets state open to true when open is called', () => {
 });
 
 it('sets state open to false when close is called', () => {
-  const accounts = [];
-  const wrapper = mount(<ModalPassword accounts={accounts} />);
+  const walletList = [];
+  const wrapper = mount(<ModalPassword walletList={walletList} />);
   const instance = wrapper.instance();
   const setState = jest.spyOn(ModalPassword.prototype, 'setState');
 
@@ -56,24 +56,24 @@ it('sets state open to false when close is called', () => {
 });
 
 it('hides the Modal when closed', () => {
-  const accounts = [];
-  const wrapper = mount(<ModalPassword accounts={accounts} />);
+  const walletList = [];
+  const wrapper = mount(<ModalPassword walletList={walletList} />);
   wrapper.setState({open: false});
 
   expect(wrapper.find('.ModalBackground')).toHaveLength(0);
 });
 
 it('shows the Modal when open', () => {
-  const accounts = [];
-  const wrapper = mount(<ModalPassword accounts={accounts} />);
+  const walletList = [];
+  const wrapper = mount(<ModalPassword walletList={walletList} />);
   wrapper.setState({open: true});
 
   expect(wrapper.find('.ModalBackground')).toHaveLength(1);
 });
 
 it('closes the modal on click outside the main content', () => {
-  const accounts = [];
-  const wrapper = mount(<ModalPassword accounts={accounts} />);
+  const walletList = [];
+  const wrapper = mount(<ModalPassword walletList={walletList} />);
   wrapper.setState({open: true});
 
   wrapper.find('.ModalBackground').simulate('click');
@@ -81,41 +81,41 @@ it('closes the modal on click outside the main content', () => {
   expect(wrapper.find('.ModalBackground')).toHaveLength(0);
 });
 
-it('calls accountSet with true when store is true', () => {
-  const accountSet = jest.fn();
-  const accounts = [];
+it('calls onWalletChange with true when store is true', () => {
+  const onWalletChange = jest.fn();
+  const walletList = [];
   const wrapper = mount(
-    <ModalPassword accounts={accounts}
-      accountSet={accountSet} />
+    <ModalPassword walletList={walletList}
+      onWalletChange={onWalletChange} />
   );
   wrapper.setState({store: true});
   const instance = wrapper.instance();
 
-  instance.onAccountSet();
+  instance.onWalletChangeHandler();
 
-  expect(accountSet).toHaveBeenCalledTimes(1);
-  expect(accountSet).toHaveBeenCalledWith(true);
+  expect(onWalletChange).toHaveBeenCalledTimes(1);
+  expect(onWalletChange).toHaveBeenCalledWith(true);
 });
 
-it('call accountSet with false when store is false', () => {
-  const accountSet = jest.fn();
-  const accounts = [];
+it('call onWalletChange with false when store is false', () => {
+  const onWalletChange = jest.fn();
+  const walletList = [];
   const wrapper = mount(
-    <ModalPassword accounts={accounts}
-      accountSet={accountSet} />
+    <ModalPassword walletList={walletList}
+      onWalletChange={onWalletChange} />
   );
   wrapper.setState({store: false});
   const instance = wrapper.instance();
 
-  instance.onAccountSet();
+  instance.onWalletChangeHandler();
 
-  expect(accountSet).toHaveBeenCalledTimes(1);
-  expect(accountSet).toHaveBeenCalledWith(false);
+  expect(onWalletChange).toHaveBeenCalledTimes(1);
+  expect(onWalletChange).toHaveBeenCalledWith(false);
 });
 
 it('it does not call upload when url not set', () => {
-  const accounts = [];
-  const wrapper = mount(<ModalPassword accounts={accounts} />);
+  const walletList = [];
+  const wrapper = mount(<ModalPassword walletList={walletList} />);
   wrapper.setState({store: false});
   const instance = wrapper.instance();
 
@@ -124,17 +124,17 @@ it('it does not call upload when url not set', () => {
   expect(mockUnlockAccount).toHaveBeenCalledTimes(0);
 });
 
-it('shows given accounts as options in dropdown', () => {
-  const accounts = ['asdf','demo','omed'];
-  const wrapper = mount(<ModalPassword accounts={accounts}/>);
+it('shows given walletList as options in dropdown', () => {
+  const walletList = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword walletList={walletList}/>);
   wrapper.setState({store: false, open: true});
 
   expect(wrapper.find('option')).toHaveLength(3);
 });
 
 it('updates account when option is selected', () => {
-  const accounts = ['asdf','demo','omed'];
-  const wrapper = mount(<ModalPassword accounts={accounts}/>);
+  const walletList = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword walletList={walletList}/>);
   wrapper.setState({open: true});
   const setState = jest.spyOn(ModalPassword.prototype, 'setState');
   setState.mockClear();
@@ -145,8 +145,8 @@ it('updates account when option is selected', () => {
 });
 
 it('updates the password when typed', () => {
-  const accounts = ['asdf','demo','omed'];
-  const wrapper = mount(<ModalPassword accounts={accounts}/>);
+  const walletList = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword walletList={walletList}/>);
   wrapper.setState({open: true});
   const setState = jest.spyOn(ModalPassword.prototype, 'setState');
   setState.mockClear();
@@ -157,8 +157,8 @@ it('updates the password when typed', () => {
 });
 
 it('updates store when checkbox is checked', () => {
-  const accounts = ['asdf','demo','omed'];
-  const wrapper = mount(<ModalPassword accounts={accounts}/>);
+  const walletList = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword walletList={walletList}/>);
   wrapper.setState({open: true});
   const setState = jest.spyOn(ModalPassword.prototype, 'setState');
   setState.mockClear();
@@ -169,8 +169,8 @@ it('updates store when checkbox is checked', () => {
 });
 
 it('updates store when checkbox is unchecked', () => {
-  const accounts = ['asdf','demo','omed'];
-  const wrapper = mount(<ModalPassword accounts={accounts}/>);
+  const walletList = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword walletList={walletList}/>);
   wrapper.setState({open: true});
   const setState = jest.spyOn(ModalPassword.prototype, 'setState');
   setState.mockClear();
@@ -181,8 +181,8 @@ it('updates store when checkbox is unchecked', () => {
 });
 
 it('shows error message when error is true', () => {
-  const accounts = ['asdf','demo','omed'];
-  const wrapper = mount(<ModalPassword accounts={accounts}/>);
+  const walletList = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword walletList={walletList}/>);
   wrapper.setState({open: true, error: true});
 
   expect(wrapper.find('.ModalError')).toHaveLength(1);
@@ -190,16 +190,16 @@ it('shows error message when error is true', () => {
 });
 
 it('does not show error message when error is false', () => {
-  const accounts = ['asdf','demo','omed'];
-  const wrapper = mount(<ModalPassword accounts={accounts}/>);
+  const walletList = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword walletList={walletList}/>);
   wrapper.setState({open: true, error: false});
 
   expect(wrapper.find('.ModalError').text()).toHaveLength(0);
 });
 
 it('closes the modal when Cancel is pressed', () => {
-  const accounts = ['asdf','demo','omed'];
-  const wrapper = mount(<ModalPassword accounts={accounts}/>);
+  const walletList = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword walletList={walletList}/>);
   wrapper.setState({open: true, error: false});
   const setState = jest.spyOn(ModalPassword.prototype, 'setState');
   setState.mockClear();
@@ -211,8 +211,8 @@ it('closes the modal when Cancel is pressed', () => {
 
 it('starts unlocking when Unlock is pressed', () => {
   const url = 'https://localhost:8080';
-  const accounts = ['asdf','demo','omed'];
-  const wrapper = mount(<ModalPassword url={url} accounts={accounts}/>);
+  const walletList = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword url={url} walletList={walletList}/>);
   wrapper.setState({open: true, error: false});
   const setState = jest.spyOn(ModalPassword.prototype, 'setState');
   setState.mockClear();
@@ -222,13 +222,13 @@ it('starts unlocking when Unlock is pressed', () => {
   expect(setState).toHaveBeenCalledWith({unlocking: true, error: false});
 });
 
-it('does not call accountSet when store is false after unlocking', () => {
+it('does not call onWalletChange when store is false after unlocking', () => {
   const url = 'https://localhost:8080';
-  const accountSet = jest.fn();
-  const accounts = [];
+  const onWalletChange = jest.fn();
+  const walletList = [];
   const wrapper = mount(
-    <ModalPassword accountSet={accountSet}
-      accounts={accounts}
+    <ModalPassword onWalletChange={onWalletChange}
+      walletList={walletList}
       url={url}/>
   );
   wrapper.setState({store: false});
@@ -236,17 +236,17 @@ it('does not call accountSet when store is false after unlocking', () => {
 
   instance.onUnlock('address', 'password');
 
-  expect(accountSet).toHaveBeenCalledTimes(0);
+  expect(onWalletChange).toHaveBeenCalledTimes(0);
   expect(mockUnlockAccount).toHaveBeenCalledTimes(1);
 });
 
-it('does call accountSet when store is true after unlocking', (done) => {
+it('does call onWalletChange when store is true after unlocking', (done) => {
   const url = 'https://localhost:8080';
-  const accountSet = jest.fn();
-  const accounts = [];
+  const onWalletChange = jest.fn();
+  const walletList = [];
   const wrapper = mount(
-    <ModalPassword accountSet={accountSet}
-      accounts={accounts}
+    <ModalPassword onWalletChange={onWalletChange}
+      walletList={walletList}
       url={url}/>
   );
   wrapper.setState({store: true});
@@ -257,7 +257,7 @@ it('does call accountSet when store is true after unlocking', (done) => {
   setTimeout(() => {
     try {
       expect(mockUnlockAccount).toHaveBeenCalledTimes(1);
-      expect(accountSet).toHaveBeenCalledTimes(1);
+      expect(onWalletChange).toHaveBeenCalledTimes(1);
       done();
     } catch (error) {
       done.fail(error);
@@ -268,8 +268,8 @@ it('does call accountSet when store is true after unlocking', (done) => {
 it('closes the modal when unlock succeeds', (done) => {
   const url = 'https://localhost:8080';
   const close = spyOn(ModalPassword.prototype, 'close');
-  const accounts = [];
-  const wrapper = mount(<ModalPassword accounts={accounts} url={url}/>);
+  const walletList = [];
+  const wrapper = mount(<ModalPassword walletList={walletList} url={url}/>);
   wrapper.setState({store: true});
   const instance = wrapper.instance();
 
@@ -288,8 +288,8 @@ it('closes the modal when unlock succeeds', (done) => {
 
 it('sets unlocking:true, error: false when unlock starts', () => {
   const url = 'https://localhost:8080';
-  const accounts = [];
-  const wrapper = mount(<ModalPassword accounts={accounts} url={url}/>);
+  const walletList = [];
+  const wrapper = mount(<ModalPassword walletList={walletList} url={url}/>);
   wrapper.setState({store: true});
   const setState = spyOn(ModalPassword.prototype, 'setState');
   const instance = wrapper.instance();
@@ -301,8 +301,8 @@ it('sets unlocking:true, error: false when unlock starts', () => {
 
 it('sets unlocking:false, error:false when unlock succeeds', (done) => {
   const url = 'https://localhost:8080';
-  const accounts = [];
-  const wrapper = mount(<ModalPassword accounts={accounts} url={url}/>);
+  const walletList = [];
+  const wrapper = mount(<ModalPassword walletList={walletList} url={url}/>);
   wrapper.setState({store: true});
   const setState = spyOn(ModalPassword.prototype, 'setState');
   const instance = wrapper.instance();
@@ -320,7 +320,7 @@ it('sets unlocking:false, error:false when unlock succeeds', (done) => {
   }, 0);
 });
 
-it('does not call accountSet when unlock fails', (done) => {
+it('does not call onWalletChange when unlock fails', (done) => {
   const mockBadUnlock = jest.fn().mockImplementation(() => {
     return new Promise((resolve) => {
       resolve(false);
@@ -333,11 +333,11 @@ it('does not call accountSet when unlock fails', (done) => {
   });
 
   const url = 'https://localhost:8080';
-  const accountSet = jest.fn();
-  const accounts = [];
+  const onWalletChange = jest.fn();
+  const walletList = [];
   const wrapper = mount(
-    <ModalPassword accountSet={accountSet}
-      accounts={accounts}
+    <ModalPassword onWalletChange={onWalletChange}
+      walletList={walletList}
       url={url}/>
   );
   wrapper.setState({store: true});
@@ -348,7 +348,7 @@ it('does not call accountSet when unlock fails', (done) => {
   setTimeout(() => {
     try {
       expect(mockBadUnlock).toHaveBeenCalledTimes(1);
-      expect(accountSet).toHaveBeenCalledTimes(0);
+      expect(onWalletChange).toHaveBeenCalledTimes(0);
       done();
     } catch (error) {
       done.fail(error);
@@ -369,8 +369,8 @@ it('does not close when unlock fails', (done) => {
   });
   const url = 'https://localhost:8080';
   const close = spyOn(ModalPassword.prototype, 'close');
-  const accounts = [];
-  const wrapper = mount(<ModalPassword accounts={accounts} url={url}/>);
+  const walletList = [];
+  const wrapper = mount(<ModalPassword walletList={walletList} url={url}/>);
   wrapper.setState({store: true});
   const instance = wrapper.instance();
 
@@ -399,8 +399,8 @@ it('sets unlocking:false, error:true when unlock fails', (done) => {
     };
   });
   const url = 'https://localhost:8080';
-  const accounts = [];
-  const wrapper = mount(<ModalPassword accounts={accounts} url={url}/>);
+  const walletList = [];
+  const wrapper = mount(<ModalPassword walletList={walletList} url={url}/>);
   wrapper.setState({store: true});
   const setState = spyOn(ModalPassword.prototype, 'setState');
   const instance = wrapper.instance();

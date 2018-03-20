@@ -115,18 +115,18 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
       className="App-Content"
     >
       <BountyCreate
-        account={false}
-        accountList={Array []}
-        accountSet={[Function]}
         addBounty={[Function]}
+        isUnlocked={false}
+        onWalletChange={[Function]}
         url="https://localhost:8080"
+        walletList={Array []}
       >
         <div
           className="Bounty-Create"
         >
           <ModalPassword
-            accountSet={[Function]}
-            accounts={Array []}
+            onWalletChange={[Function]}
+            walletList={Array []}
           >
             <div
               className="ModalPassword"

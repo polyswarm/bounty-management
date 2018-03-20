@@ -20,7 +20,7 @@ class ModalPassword extends Component {
       address: '',
     };
 
-    this.onAccountSet = this.onAccountSet.bind(this);
+    this.onWalletChangeHandler = this.onWalletChangeHandler.bind(this);
     this.onChangeStore = this.onChangeStore.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangeAddress = this.onChangeAddress.bind(this);
@@ -30,7 +30,7 @@ class ModalPassword extends Component {
   }
 
   render() {
-    const { props: { accounts } } = this;
+    const { props: { walletList } } = this;
     const { state: { open, unlocking, error, password, address, store } } = this;
     return (
       <div className='ModalPassword'>
@@ -51,11 +51,11 @@ class ModalPassword extends Component {
                   value={address}
                   onChange={this.onChangeAddress}>
                   {
-                    accounts.map((account) => {
+                    walletList.map((wallet) => {
                       return(
-                        <option key={account}
-                          value={account}>
-                          {account}
+                        <option key={wallet}
+                          value={wallet}>
+                          {wallet}
                         </option>
                       );
                     })
@@ -105,10 +105,10 @@ class ModalPassword extends Component {
     );
   }
 
-  onAccountSet() {
-    const { props: { accountSet }, state: {store} } = this;
-    if (accountSet) {
-      accountSet(store);
+  onWalletChangeHandler() {
+    const { props: { onWalletChange }, state: {store} } = this;
+    if (onWalletChange) {
+      onWalletChange(store);
     }
   }
 
@@ -145,7 +145,7 @@ class ModalPassword extends Component {
         .then(success => {
           this.setState({unlocking: false, error: !success});
           if (success) {
-            this.onAccountSet();
+            this.onWalletChangeHandler();
             this.close();
           }
         });
@@ -163,7 +163,7 @@ class ModalPassword extends Component {
 
 ModalPassword.proptypes = {
   url: PropTypes.string,
-  accounts: PropTypes.array,
-  accountSet: PropTypes.func,
+  walletList: PropTypes.array,
+  onWalletChange: PropTypes.func,
 };
 export default ModalPassword;

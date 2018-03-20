@@ -28,6 +28,7 @@ class BountyCreate extends Component {
     this.onClearAll = this.onClearAll.bind(this);
     this.cancel = this.cancel.bind(this);
     this.onProgress = this.onProgress.bind(this);
+    this.onWalletChangeHandler = this.onWalletChangeHandler.bind(this);
   }
 
   componentDidMount() {
@@ -37,12 +38,12 @@ class BountyCreate extends Component {
 
   render() {
     const { state: { files, uploading, error, progress } } = this;
-    const { props: { url, accountList } } = this;
+    const { props: { url, walletList } } = this;
     return(
       <div className='Bounty-Create'>
         <ModalPassword ref={(modal) => this.modal = modal}
-          accounts={accountList}
-          accountSet={this.onAccountSetHandler} />
+          walletList={walletList}
+          onWalletChange={this.onWalletChangeHandler} />
         <div className='Container'>
           <FileList files={files}
             clear={this.onClearAll}
@@ -82,11 +83,11 @@ class BountyCreate extends Component {
   }
 
   onClickHandler() {
-    const { state: { uploading }, props: { account } } = this;
+    const { state: { uploading }, props: { isUnlocked } } = this;
     if (uploading) {
       this.cancel();
     } else {
-      if (!account) {
+      if (!isUnlocked) {
         this.modal.open();
       } else {
         this.createBounty();
@@ -94,10 +95,10 @@ class BountyCreate extends Component {
     }
   }
 
-  onAccountSetHandler(store) {
-    const { props: { accountSet } } = this;
-    if (accountSet) {
-      accountSet(store);
+  onWalletChangeHandler(store) {
+    const { props: { onWalletChange } } = this;
+    if (onWalletChange) {
+      onWalletChange(store);
     }
     this.createBounty();
   }
@@ -134,8 +135,8 @@ class BountyCreate extends Component {
         .catch((error) => {
           let errorMessage;
           if (error && error.status && error.status === 401) {
-            const { props: { accountSet } } = this;
-            accountSet(false);
+            const { props: { onWalletChange } } = this;
+            onWalletChange(false);
             errorMessage = strings.locked;
           } else if (!error || error.length === 0) {
             errorMessage = strings.error;
@@ -152,9 +153,9 @@ class BountyCreate extends Component {
 }
 
 BountyCreate.propTypes = {
-  account: PropTypes.bool,
-  accountList: PropTypes.array,
-  accountSet: PropTypes.func,
+  isUnlocked: PropTypes.bool,
+  walletList: PropTypes.array,
+  onWalletChange: PropTypes.func,
   addBounty: PropTypes.func,
   url: PropTypes.string,
 };

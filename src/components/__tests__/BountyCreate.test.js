@@ -139,12 +139,12 @@ it('stores additional files in state.files', () => {
 
 it('calls uploadFiles when all parameters are met (files, addBounty, url)', () => {
   const addBounty = jest.fn();
-  const accountList = [];
+  const walletList = [];
   const wrapper = mount(
     <BountyCreate url={'url'}
-      accountList={accountList}
+      walletList={walletList}
       addBounty={addBounty}
-      account={true}/>
+      isUnlocked={true}/>
   );
   const files = [
     {name: 'demo'},
@@ -182,12 +182,12 @@ it('doesn\'t call uploadBounty when uploadFiles fails', () => {
   });
 
   const addBounty = jest.fn();
-  const accountList = [];
+  const walletList = [];
   const wrapper = mount(
     <BountyCreate url={'url'}
-      accountList={accountList}
+      walletList={walletList}
       addBounty={addBounty}
-      account={true}/>
+      isUnlocked={true}/>
   );
   const files = [
     {name: 'demo'},
@@ -216,12 +216,12 @@ it('calls uploadBounty when uploadFiles succeeds', (done) => {
   });
 
   const addBounty = jest.fn();
-  const accountList = [];
+  const walletList = [];
   const wrapper = mount(
     <BountyCreate url={'url'}
-      accountList={accountList}
+      walletList={walletList}
       addBounty={addBounty}
-      account={true}/>
+      isUnlocked={true}/>
   );
   const files = [
     {name: 'demo'},
@@ -263,12 +263,12 @@ it('calls addBounty when upload bounty is a success', (done) => {
   });
 
   const addBounty = jest.fn();
-  const accountList = [];
+  const walletList = [];
   const wrapper = mount(
     <BountyCreate url={'url'}
-      accountList={accountList}
+      walletList={walletList}
       addBounty={addBounty}
-      account={true}/>
+      isUnlocked={true}/>
   );
   const files = [
     {name: 'demo'},
@@ -293,14 +293,14 @@ it('calls addBounty when upload bounty is a success', (done) => {
 
 it('sets uploading to false when uploads complete', (done) => {
   const addBounty = jest.fn();
-  const accountSet = jest.fn();
-  const accountList = [];
+  const onWalletChange = jest.fn();
+  const walletList = [];
   const wrapper = mount(
     <BountyCreate url={'url'}
-      accountSet={accountSet}
-      accountList={accountList}
+      onWalletChange={onWalletChange}
+      walletList={walletList}
       addBounty={addBounty}
-      account={true}/>
+      isUnlocked={true}/>
   );
   const files = [
     {name: 'demo'},
@@ -326,12 +326,12 @@ it('sets uploading to false when uploads complete', (done) => {
 
 it('has uploading true after clicking create button', () => {
   const addBounty = jest.fn();
-  const accountList = [];
+  const walletList = [];
   const wrapper = mount(
     <BountyCreate url={'url'}
-      accountList={accountList}
+      walletList={walletList}
       addBounty={addBounty}
-      account={true}/>
+      isUnlocked={true}/>
   );
   const files = [
     {name: 'demo'},
@@ -396,14 +396,14 @@ it('shows the error when state has an error', () => {
   expect(wrapper.find('.Bounty-Create-Error').props().children).toBe('Error');
 });
 
-it('opens the modal if account not set on create click', () => {
-  const accountSet = jest.fn();
-  const accountList = [];
+it('opens the modal if isUnlocked not set on create click', () => {
+  const onWalletChange = jest.fn();
+  const walletList = [];
   const wrapper = mount(
     <BountyCreate url={'url'}
-      accountSet={accountSet}
-      accountList={accountList}
-      account={false}/>
+      onWalletChange={onWalletChange}
+      walletList={walletList}
+      isUnlocked={false}/>
   );
   const files = [
     {name: 'demo'},
@@ -416,9 +416,9 @@ it('opens the modal if account not set on create click', () => {
   expect(wrapper.find('.ModalContent')).toHaveLength(1);
 });
 
-it('calls create if account is set on create click', () => {
+it('calls create if isUnlocked is set on create click', () => {
   const createBounty = jest.spyOn(BountyCreate.prototype, 'createBounty');
-  const wrapper = mount(<BountyCreate url={'url'} account={true}/>);
+  const wrapper = mount(<BountyCreate url={'url'} isUnlocked={true}/>);
   const files = [
     {name: 'demo'},
     {name: 'omed'},
@@ -432,13 +432,13 @@ it('calls create if account is set on create click', () => {
 
 it('calls create after modal is successfully closed', () => {
   const createBounty = jest.spyOn(BountyCreate.prototype, 'createBounty');
-  const accountSet = jest.fn();
-  const accountList = [];
+  const onWalletChange = jest.fn();
+  const walletList = [];
   const wrapper = mount(
     <BountyCreate url={'url'}
-      accountSet={accountSet}
-      accountList={accountList}
-      account={false}/>
+      onWalletChange={onWalletChange}
+      walletList={walletList}
+      isUnlocked={false}/>
   );
   const files = [
     {name: 'demo'},
@@ -447,19 +447,19 @@ it('calls create after modal is successfully closed', () => {
   wrapper.setState({files: files, uploading: false});
   const instance = wrapper.instance();
 
-  instance.onAccountSetHandler(false);
+  instance.onWalletChangeHandler(false);
 
   expect(createBounty).toHaveBeenCalledTimes(1);
 });
 
-it('calls accountSet when modal closed and password checked', () => {
-  const accountSet = jest.fn();
-  const accountList = [];
+it('calls onWalletChange when modal closed and password checked', () => {
+  const onWalletChange = jest.fn();
+  const walletList = [];
   const wrapper = mount(
     <BountyCreate url={'url'}
-      accountSet={accountSet}
-      accountList={accountList}
-      account={false}/>
+      onWalletChange={onWalletChange}
+      walletList={walletList}
+      isUnlocked={false}/>
   );
   const files = [
     {name: 'demo'},
@@ -468,20 +468,20 @@ it('calls accountSet when modal closed and password checked', () => {
   wrapper.setState({files: files, uploading: false});
   const instance = wrapper.instance();
 
-  instance.onAccountSetHandler(true);
+  instance.onWalletChangeHandler(true);
 
-  expect(accountSet).toHaveBeenCalledTimes(1);
-  expect(accountSet).toHaveBeenCalledWith(true);
+  expect(onWalletChange).toHaveBeenCalledTimes(1);
+  expect(onWalletChange).toHaveBeenCalledWith(true);
 });
 
-it('calls accountSet when modal closed and password not checked', () => {
-  const accountSet = jest.fn();
-  const accountList = [];
+it('calls onWalletChange when modal closed and password not checked', () => {
+  const onWalletChange = jest.fn();
+  const walletList = [];
   const wrapper = mount(
     <BountyCreate url={'url'}
-      accountSet={accountSet}
-      accountList={accountList}
-      account={false}/>
+      onWalletChange={onWalletChange}
+      walletList={walletList}
+      isUnlocked={false}/>
   );
   const files = [
     {name: 'demo'},
@@ -490,13 +490,13 @@ it('calls accountSet when modal closed and password not checked', () => {
   wrapper.setState({files: files, uploading: false});
   const instance = wrapper.instance();
 
-  instance.onAccountSetHandler(false);
+  instance.onWalletChangeHandler(false);
 
-  expect(accountSet).toHaveBeenCalledTimes(1);
-  expect(accountSet).toHaveBeenCalledWith(false);
+  expect(onWalletChange).toHaveBeenCalledTimes(1);
+  expect(onWalletChange).toHaveBeenCalledWith(false);
 });
 
-it('calls accountSet with false when upload bounty returns 401', (done) => {
+it('calls onWalletChange with false when upload bounty returns 401', (done) => {
   const mockBadUploadBounty = jest.fn().mockImplementation(() => {
     return new Promise((resolve, reject) => {
       const error = {
@@ -513,14 +513,14 @@ it('calls accountSet with false when upload bounty returns 401', (done) => {
   });
 
   const addBounty = jest.fn();
-  const accountSet = jest.fn();
-  const accountList = [];
+  const onWalletChange = jest.fn();
+  const walletList = [];
   const wrapper = mount(
     <BountyCreate url={'url'}
-      accountList={accountList}
-      accountSet={accountSet}
+      walletList={walletList}
+      onWalletChange={onWalletChange}
       addBounty={addBounty}
-      account={true}/>
+      isUnlocked={true}/>
   );
   const files = [
     {name: 'demo'},
@@ -534,8 +534,8 @@ it('calls accountSet with false when upload bounty returns 401', (done) => {
   // assert
   setTimeout(() => {
     try {
-      expect(accountSet).toHaveBeenCalledTimes(1);
-      expect(accountSet).toHaveBeenCalledWith(false);
+      expect(onWalletChange).toHaveBeenCalledTimes(1);
+      expect(onWalletChange).toHaveBeenCalledWith(false);
       done();
     } catch (error) {
       done.fail(error);
