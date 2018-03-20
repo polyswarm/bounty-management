@@ -157,8 +157,52 @@ class App extends Component {
     }
   }
 
+  pullLocalBounties() {
+    const { state: { bounties } } = this;
+    return bounties;
+  };
+
+  updateOnAssertion(assertion) {
+    const { state: { bounties } } = this;
+    const guid = assertion.guid;
+    let index = -1;
+    bounties.forEach((bounty, i) => {
+      if (bounty.guid == guid) {
+        index = i;
+      }
+    });
+    if (index >= 0) {
+      const bounty = bounites[index];
+      const a = {};
+      a[assertion.author] = {
+        bid: assertion.bid,
+        metadata: assertion.metadata,
+        verdicts: assertion.verdicts,
+      };
+      bounty.assertsions.push(a);
+      const modified = bounty.artifacts.map((file, index) =>{
+        const f = file;
+        if (!a.verdicts[index]) {
+          f.good++;
+        }
+        f.total++;
+        file.assertions.push({
+          author: assertion.author,
+          bid: assertion.bid,
+          verdict: a.verdicts[index],
+          metadata: assertion.metadata
+        });
+      });
+      bounty.artifacts = modified;
+      bounty.update == true;
+    }
+    bounties[index] = bounty;
+    this.setState({bounties: bounties});
+  }
+
   getData() {
     const http = this.http;
+    http.listenForAssertions(pullLocalBounties, updateOnAssertion);
     const { state: { bounties } } = this;
     const promises = bounties.map((bounty) => {
       return http.getBounty(bounty)

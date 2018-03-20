@@ -45,15 +45,20 @@ class HttpApp {
       .then(bounty => {
         const assertions = bounty.assertions;
         let files = bounty.artifacts;
-        files.sort();
-        assertions.forEach((assertion) => {
-          asseertion.verdicts.forEach((verdict, index) => {
+        Object.keys(assertions).forEach((key) => {
+          const assertion = assertions[key];
+          assertion.verdicts.forEach((verdict, index) => {
             const file = files[index];
             if (!verdict) {
               file.good++;
             }
             file.total++;
-            file.assertions.push(assertion);
+            file.assertions.push({
+              author: key, 
+              bid: assertion.bid,
+              verdict: verdict,
+              metadata: assertion.metadata
+            });
             files[index] = file;
           });
         });
@@ -79,6 +84,7 @@ class HttpApp {
         });
       })
       .then(filenames => {
+        filesnames.sort();
         bounty.artifacts = filenames;
         return bounty;
       });
