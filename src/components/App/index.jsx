@@ -36,14 +36,14 @@ class App extends Component {
   componentDidUpdate(_, prevState) {
     const { state: { bounties } } = this;
     const { bounties: prevBounties } = prevState;
-    const needsRefresh =  bounties.length === prevBounties.length
+    const storageOutOfSync =  bounties.length === prevBounties.length
         && bounties.every((current, index) => {
           const keys = Object.keys(current);
           const prev = prevBounties[index];
           return keys.map((k) => current[k] === prev[k])
             .reduce((accumulator, v) => accumulator && v);
         });
-    if(needsRefresh) {
+    if(storageOutOfSync) {
       this.storeBounties(bounties);
     }
   }
