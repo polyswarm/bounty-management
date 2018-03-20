@@ -1,6 +1,6 @@
 import React from 'react';
 import {render, mount} from 'enzyme';
-import {renderToJson, mountToJson} from 'enzyme-to-json';
+import {renderToJson} from 'enzyme-to-json';
 import ModalPassword from '../ModalPassword';
 import HttpAccount from '../ModalPassword/http';
 
