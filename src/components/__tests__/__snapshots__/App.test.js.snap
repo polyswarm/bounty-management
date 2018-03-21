@@ -77,11 +77,13 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
-              <span
-                className="ListItem-Child"
-              >
-                asdf
-              </span>
+              <div>
+                <span
+                  className="ListItem-Child"
+                >
+                  asdf
+                </span>
+              </div>
             </li>
           </ListItem>
         </ul>
@@ -273,11 +275,13 @@ exports[`shows BountyInfo when at least one bounty & active selects it 1`] = `
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
-              <span
-                className="ListItem-Child"
-              >
-                asdf
-              </span>
+              <div>
+                <span
+                  className="ListItem-Child"
+                >
+                  asdf
+                </span>
+              </div>
             </li>
           </ListItem>
         </ul>

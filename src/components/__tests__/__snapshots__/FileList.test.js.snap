@@ -55,21 +55,23 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <span
-            className="ListItem-Child"
-          >
-            <FileResult>
-              <div
-                className="FileResult"
-              >
-                <span
-                  className="FileResult-Name"
+          <div>
+            <span
+              className="ListItem-Child"
+            >
+              <FileResult>
+                <div
+                  className="FileResult"
                 >
-                  asdf
-                </span>
-              </div>
-            </FileResult>
-          </span>
+                  <span
+                    className="FileResult-Name"
+                  >
+                    asdf
+                  </span>
+                </div>
+              </FileResult>
+            </span>
+          </div>
           <span
             className="ListItem-Remove"
           >
@@ -119,53 +121,59 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
     <li
       class="ListItem"
     >
-      <span
-        class="ListItem-Child"
-      >
-        <div
-          class="FileResult"
+      <div>
+        <span
+          class="ListItem-Child"
         >
-          <span
-            class="FileResult-Name"
+          <div
+            class="FileResult"
           >
-            asdf
-          </span>
-        </div>
-      </span>
+            <span
+              class="FileResult-Name"
+            >
+              asdf
+            </span>
+          </div>
+        </span>
+      </div>
     </li>
     <li
       class="ListItem"
     >
-      <span
-        class="ListItem-Child"
-      >
-        <div
-          class="FileResult"
+      <div>
+        <span
+          class="ListItem-Child"
         >
-          <span
-            class="FileResult-Name"
+          <div
+            class="FileResult"
           >
-            demo
-          </span>
-        </div>
-      </span>
+            <span
+              class="FileResult-Name"
+            >
+              demo
+            </span>
+          </div>
+        </span>
+      </div>
     </li>
     <li
       class="ListItem"
     >
-      <span
-        class="ListItem-Child"
-      >
-        <div
-          class="FileResult"
+      <div>
+        <span
+          class="ListItem-Child"
         >
-          <span
-            class="FileResult-Name"
+          <div
+            class="FileResult"
           >
-            test
-          </span>
-        </div>
-      </span>
+            <span
+              class="FileResult-Name"
+            >
+              test
+            </span>
+          </div>
+        </span>
+      </div>
     </li>
   </ul>
 </div>
@@ -229,21 +237,23 @@ exports[`does not mark the ListItem as alternate when active is negative. 1`] = 
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <span
-            className="ListItem-Child"
-          >
-            <FileResult>
-              <div
-                className="FileResult"
-              >
-                <span
-                  className="FileResult-Name"
+          <div>
+            <span
+              className="ListItem-Child"
+            >
+              <FileResult>
+                <div
+                  className="FileResult"
                 >
-                  asdf
-                </span>
-              </div>
-            </FileResult>
-          </span>
+                  <span
+                    className="FileResult-Name"
+                  >
+                    asdf
+                  </span>
+                </div>
+              </FileResult>
+            </span>
+          </div>
         </li>
       </ListItem>
       <ListItem
@@ -260,21 +270,23 @@ exports[`does not mark the ListItem as alternate when active is negative. 1`] = 
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <span
-            className="ListItem-Child"
-          >
-            <FileResult>
-              <div
-                className="FileResult"
-              >
-                <span
-                  className="FileResult-Name"
+          <div>
+            <span
+              className="ListItem-Child"
+            >
+              <FileResult>
+                <div
+                  className="FileResult"
                 >
-                  demo
-                </span>
-              </div>
-            </FileResult>
-          </span>
+                  <span
+                    className="FileResult-Name"
+                  >
+                    demo
+                  </span>
+                </div>
+              </FileResult>
+            </span>
+          </div>
         </li>
       </ListItem>
     </ul>
@@ -340,21 +352,23 @@ exports[`does not mark the ListItem as alternate when active is out of bounds. 1
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <span
-            className="ListItem-Child"
-          >
-            <FileResult>
-              <div
-                className="FileResult"
-              >
-                <span
-                  className="FileResult-Name"
+          <div>
+            <span
+              className="ListItem-Child"
+            >
+              <FileResult>
+                <div
+                  className="FileResult"
                 >
-                  asdf
-                </span>
-              </div>
-            </FileResult>
-          </span>
+                  <span
+                    className="FileResult-Name"
+                  >
+                    asdf
+                  </span>
+                </div>
+              </FileResult>
+            </span>
+          </div>
         </li>
       </ListItem>
       <ListItem
@@ -371,21 +385,23 @@ exports[`does not mark the ListItem as alternate when active is out of bounds. 1
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <span
-            className="ListItem-Child"
-          >
-            <FileResult>
-              <div
-                className="FileResult"
-              >
-                <span
-                  className="FileResult-Name"
+          <div>
+            <span
+              className="ListItem-Child"
+            >
+              <FileResult>
+                <div
+                  className="FileResult"
                 >
-                  demo
-                </span>
-              </div>
-            </FileResult>
-          </span>
+                  <span
+                    className="FileResult-Name"
+                  >
+                    demo
+                  </span>
+                </div>
+              </FileResult>
+            </span>
+          </div>
         </li>
       </ListItem>
     </ul>
@@ -451,21 +467,23 @@ exports[`marks the ListItem as alternate when active is set. 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <span
-            className="ListItem-Child"
-          >
-            <FileResult>
-              <div
-                className="FileResult"
-              >
-                <span
-                  className="FileResult-Name"
+          <div>
+            <span
+              className="ListItem-Child"
+            >
+              <FileResult>
+                <div
+                  className="FileResult"
                 >
-                  asdf
-                </span>
-              </div>
-            </FileResult>
-          </span>
+                  <span
+                    className="FileResult-Name"
+                  >
+                    asdf
+                  </span>
+                </div>
+              </FileResult>
+            </span>
+          </div>
         </li>
       </ListItem>
       <ListItem
@@ -482,21 +500,23 @@ exports[`marks the ListItem as alternate when active is set. 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <span
-            className="ListItem-Child"
-          >
-            <FileResult>
-              <div
-                className="FileResult"
-              >
-                <span
-                  className="FileResult-Name"
+          <div>
+            <span
+              className="ListItem-Child"
+            >
+              <FileResult>
+                <div
+                  className="FileResult"
                 >
-                  demo
-                </span>
-              </div>
-            </FileResult>
-          </span>
+                  <span
+                    className="FileResult-Name"
+                  >
+                    demo
+                  </span>
+                </div>
+              </FileResult>
+            </span>
+          </div>
         </li>
       </ListItem>
     </ul>
@@ -562,21 +582,23 @@ exports[`marks the ListItem as alternate when active is set. 2`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <span
-            className="ListItem-Child"
-          >
-            <FileResult>
-              <div
-                className="FileResult"
-              >
-                <span
-                  className="FileResult-Name"
+          <div>
+            <span
+              className="ListItem-Child"
+            >
+              <FileResult>
+                <div
+                  className="FileResult"
                 >
-                  asdf
-                </span>
-              </div>
-            </FileResult>
-          </span>
+                  <span
+                    className="FileResult-Name"
+                  >
+                    asdf
+                  </span>
+                </div>
+              </FileResult>
+            </span>
+          </div>
         </li>
       </ListItem>
       <ListItem
@@ -593,21 +615,23 @@ exports[`marks the ListItem as alternate when active is set. 2`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <span
-            className="ListItem-Child"
-          >
-            <FileResult>
-              <div
-                className="FileResult"
-              >
-                <span
-                  className="FileResult-Name"
+          <div>
+            <span
+              className="ListItem-Child"
+            >
+              <FileResult>
+                <div
+                  className="FileResult"
                 >
-                  demo
-                </span>
-              </div>
-            </FileResult>
-          </span>
+                  <span
+                    className="FileResult-Name"
+                  >
+                    demo
+                  </span>
+                </div>
+              </FileResult>
+            </span>
+          </div>
         </li>
       </ListItem>
     </ul>
@@ -657,21 +681,23 @@ exports[`prevents the remove button from showing when FileList has readonly prop
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <span
-            className="ListItem-Child"
-          >
-            <FileResult>
-              <div
-                className="FileResult"
-              >
-                <span
-                  className="FileResult-Name"
+          <div>
+            <span
+              className="ListItem-Child"
+            >
+              <FileResult>
+                <div
+                  className="FileResult"
                 >
-                  asdf
-                </span>
-              </div>
-            </FileResult>
-          </span>
+                  <span
+                    className="FileResult-Name"
+                  >
+                    asdf
+                  </span>
+                </div>
+              </FileResult>
+            </span>
+          </div>
         </li>
       </ListItem>
     </ul>

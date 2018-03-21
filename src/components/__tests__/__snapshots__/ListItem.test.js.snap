@@ -4,11 +4,13 @@ exports[`adds neither extra class when just alternate property is true 1`] = `
 <li
   class="ListItem"
 >
-  <span
-    class="ListItem-Child"
-  >
-    asdf
-  </span>
+  <div>
+    <span
+      class="ListItem-Child"
+    >
+      asdf
+    </span>
+  </div>
 </li>
 `;
 
@@ -16,11 +18,13 @@ exports[`adds the active class when active property is true 1`] = `
 <li
   class="ListItem active"
 >
-  <span
-    class="ListItem-Child"
-  >
-    asdf
-  </span>
+  <div>
+    <span
+      class="ListItem-Child"
+    >
+      asdf
+    </span>
+  </div>
 </li>
 `;
 
@@ -28,11 +32,13 @@ exports[`adds the alternate class when active and alternate properties are true 
 <li
   class="ListItem alternate"
 >
-  <span
-    class="ListItem-Child"
-  >
-    asdf
-  </span>
+  <div>
+    <span
+      class="ListItem-Child"
+    >
+      asdf
+    </span>
+  </div>
 </li>
 `;
 
@@ -40,11 +46,13 @@ exports[`renders the child I pass 1`] = `
 <li
   class="ListItem"
 >
-  <span
-    class="ListItem-Child"
-  >
-    asdf
-  </span>
+  <div>
+    <span
+      class="ListItem-Child"
+    >
+      asdf
+    </span>
+  </div>
 </li>
 `;
 
@@ -52,11 +60,13 @@ exports[`renders without crashing 1`] = `
 <li
   class="ListItem"
 >
-  <span
-    class="ListItem-Child"
-  >
-    asdf
-  </span>
+  <div>
+    <span
+      class="ListItem-Child"
+    >
+      asdf
+    </span>
+  </div>
 </li>
 `;
 
@@ -70,11 +80,13 @@ exports[`shows remove button when hovered 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <span
-      className="ListItem-Child"
-    >
-      asdf
-    </span>
+    <div>
+      <span
+        className="ListItem-Child"
+      >
+        asdf
+      </span>
+    </div>
     <span
       className="ListItem-Remove"
     >
@@ -101,15 +113,17 @@ exports[`shows the badge when alert is set 1`] = `
 <li
   class="ListItem active"
 >
-  <div
-    class="alert"
-  >
-    
+  <div>
+    <div
+      class="alert"
+    >
+      
+    </div>
+    <span
+      class="ListItem-Child"
+    >
+      asdf
+    </span>
   </div>
-  <span
-    class="ListItem-Child"
-  >
-    asdf
-  </span>
 </li>
 `;
