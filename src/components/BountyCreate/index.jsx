@@ -69,13 +69,13 @@ class BountyCreate extends Component {
   }
 
   onMultipleFilesSelected(files) {
-    const { state: { files: f } } = this;
+    const f = this.state.files.slice();
     const combined = f.concat(files);
     this.setState({ files: combined });
   }
 
   onFileRemoved(index) {
-    const { state: { files } } = this;
+    const files = this.state.files.slice();
     if (index >= 0 && index < files.length) {
       files.splice(index, 1);
       this.setState({ files: files, error: null, });
@@ -117,10 +117,9 @@ class BountyCreate extends Component {
   }
 
   createBounty() {
-    const {
-      props: { url, addBounty },
-      state: {files, uploading}
-    } = this;
+    const { props: { url, addBounty } } = this;
+    const { state: { uploading} } = this;
+    const files = this.state.files.slice();
 
     const http = this.http;
     if (url && !uploading && files && files.length > 0) {
