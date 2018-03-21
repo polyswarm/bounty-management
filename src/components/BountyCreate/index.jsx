@@ -42,6 +42,7 @@ class BountyCreate extends Component {
     return(
       <div className='Bounty-Create'>
         <ModalPassword ref={(modal) => this.modal = modal}
+          url={url}
           walletList={walletList}
           onWalletChange={this.onWalletChangeHandler} />
         <div className='Container'>

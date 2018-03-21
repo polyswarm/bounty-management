@@ -153,7 +153,7 @@ class ModalPassword extends Component {
     const { props: { url } } = this;
     if (url) {
       this.setState({unlocking: true, error: false});
-      const http = HttpAccount(url);
+      const http = new HttpAccount(url);
       http.unlockWallet(address, password)
         .then(success => {
           this.setState({unlocking: false, error: !success});
@@ -169,7 +169,7 @@ class ModalPassword extends Component {
     const { props: { url } } = this;
     if (url) {
       this.setState({unlocking: true, error: false});
-      const http = HttpAccount(url);
+      const http = new HttpAccount(url);
       http.createWallet(password)
         .then(success => {
           this.setState({unlocking: false, error: !success});
