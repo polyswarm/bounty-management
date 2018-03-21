@@ -27,7 +27,6 @@ class App extends Component {
     };
 
     this.onAddBounty = this.onAddBounty.bind(this);
-    this.onUpdateBounty = this.onUpdateBounty.bind(this);
     this.onRemoveBounty = this.onRemoveBounty.bind(this);
     this.onSelectBounty = this.onSelectBounty.bind(this);
     this.onCreateBounty = this.onCreateBounty.bind(this);
@@ -40,21 +39,32 @@ class App extends Component {
   componentDidUpdate(_, prevState) {
     const { state: { bounties } } = this;
     const { bounties: prevBounties } = prevState;
-    const storageOutOfSync =  bounties.length !== prevBounties.length
-        || bounties.every((current, index) => {
-          const keys = Object.keys(current);
-          const prev = prevBounties[index];
-          return keys.map((k) => current[k] === prev[k])
-            .reduce((accumulator, v) => accumulator && v);
-        });
+    const storageOutOfSync =  this.areArraysDifferent(bounties, prevBounties);
+
     if(storageOutOfSync) {
       this.storeBounties(bounties);
     }
   }
 
+  areArraysDifferent(first, second) {
+    return first.length !== second.length
+      || first.every((current, index) => {
+        const prev = second[index];
+        const keys = Object.keys(current);
+        const secondKeys = Object.keys(prev);
+        if (keys.length !== secondKeys.length) {
+          return true;
+        }
+        return keys.map((k) => current[k] !== prev[k])
+          .reduce((accumulator, v) => {
+            return accumulator || v;
+          }, false);
+      });
+  }
+
   componentDidMount() {
-    this.getWallets();
-    this.getData();
+    // this.getWallets();
+    // this.getData();
   }
 
   render() {
@@ -94,7 +104,7 @@ class App extends Component {
   }
 
   onAddBounty(guid) {
-    const { state: { bounties } } = this;
+    const bounties = this.state.bounties.slice();
     const bounty = {
       guid: guid,
       update: false,
@@ -106,7 +116,7 @@ class App extends Component {
       verdicts: '',
     };
     bounties.push(bounty);
-    this.setState({bounties});
+    this.setState({bounties: bounties});
   }
 
   onCreateBounty() {
@@ -119,7 +129,7 @@ class App extends Component {
   }
 
   onRemoveBounty(index) {
-    const { state: { bounties } } = this;
+    const bounties = this.state.bounties.slice();
     if (index !== null && index >= 0 && index < bounties.length) {
       bounties.splice(index, 1);
       this.setState({bounties: bounties});
@@ -127,7 +137,7 @@ class App extends Component {
   }
 
   onSelectBounty(index) {
-    const { state: { bounties } } = this;
+    const bounties = this.state.bounties.slice();
     if (index !== null && index >= 0 && index < bounties.length) {
       const bounty = bounties[index];
       bounty.updated = false;
@@ -136,42 +146,25 @@ class App extends Component {
     }
   }
 
-  onUpdateBounty(guid, author, amount, artifactURI, expirationBlock, resolved, verdicts) {
-    const { state: { bounties } } = this;
-    const index = bounties.findIndex((o) => o.guid === guid);
-    if (index >= 0) {
-      bounties[index] = {
-        guid: guid,
-        update: true,
-        author: author,
-        amount: amount,
-        artifactURI: artifactURI,
-        expirationBlock: expirationBlock,
-        resolved: resolved,
-        verdicts: verdicts,
-      };
-      this.setState({bounties: bounties});
-    }
-  }
-
   onWalletChangeHandler(store) {
     this.setState({isUnlocked: store});
   }
 
   pullLocalBounties() {
-    const { state: { bounties } } = this;
+    const bounties = this.state.bounties.slice();
     return bounties;
   };
 
   updateOnAssertion(assertion) {
-    const { state: { bounties } } = this;
+    const bounties = this.state.bounties.slice();
     const guid = assertion.guid;
-    let index = -1;
-    bounties.forEach((bounty, i) => {
-      if (bounty.guid === guid) {
-        index = i;
-      }
-    });
+    const index = bounties.findIndex((bounty) => bounty.guid === guid);
+    // let index = -1;
+    // bounties.forEach((bounty, i) => {
+    //   if (bounty.guid === guid) {
+    //     index = i;
+    //   }
+    // });
     if (index >= 0) {
       const bounty = bounties[index];
       const a = {};
@@ -205,7 +198,7 @@ class App extends Component {
   getData() {
     const http = this.http;
     http.listenForAssertions(this.pullLocalBounties, this.updateOnAssertion);
-    const { state: { bounties } } = this;
+    const bounties = this.state.bounties.slice();
     const promises = bounties.map((bounty) => {
       return http.getBounty(bounty)
         .then(b => {
