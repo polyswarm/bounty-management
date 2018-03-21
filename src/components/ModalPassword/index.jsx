@@ -120,7 +120,7 @@ class ModalPassword extends Component {
   }
 
   onChangeStore(event) {
-    this.setState({store: event.checked});
+    this.setState({store: event.target.checked});
   }
 
   onChangePassword(event) {
