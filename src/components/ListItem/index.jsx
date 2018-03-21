@@ -27,12 +27,14 @@ class ListItem extends Component {
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClickHandler}>
-        {alert && (
-          <div className='alert'/>
-        )}
-        <span className='ListItem-Child'>
-          {children}
-        </span>
+        <div>
+          {alert && (
+            <div className='alert'/>
+          )}
+          <span className='ListItem-Child'>
+            {children}
+          </span>
+        </div>
         {remove && hover && (
           <span className='ListItem-Remove'>
             <RemoveButton onClick={this.onRemoveHandler}>

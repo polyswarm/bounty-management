@@ -1,8 +1,11 @@
 .ListItem {
   background-clip: border-box;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
   height: 48px;
   line-height: 46px;
+  justify-content: space-between;
   position: relative;
   width: 100%;
 }
@@ -24,7 +27,7 @@
 
 .alert {
   background-color: rgb(46, 255, 109);
-  float: left;
+  display: inline-block;
   height: 100%;
   width: 10px;
 }
@@ -32,15 +35,13 @@
 .ListItem-Child {
   box-sizing: border-box;
   display: inline-block;
+  height: 100%;
+  left: 0;
   margin: 0;
-  padding: 0 10px;
-  width: 100%;
-}
-
-.ListItem-Remove {
+  padding: 0 20px;
   position: absolute;
-  top: 0;
   right: 0;
+  top: 0;
 }
 
 .redx {
