@@ -122,7 +122,10 @@ class App extends Component {
   onSelectBounty(index) {
     /*
      * Need a deep copy to edit a specific value on an object in the array
-     * without modifying state
+     * without modifying state.
+     *
+     * FIXME: The stringify stuff is temporary. Will probably change how selected works
+     * so that I can do a shallow copy of a different array.
      */
     const bounties = JSON.parse(JSON.stringify(this.state.bounties.slice()));
     if (index !== null && index >= 0 && index < bounties.length) {
