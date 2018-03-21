@@ -17,7 +17,7 @@ class ModalPassword extends Component {
       unlocking: false,
       error: false,
       password: '',
-      address: '',
+      address: 0,
     };
 
     this.onWalletChangeHandler = this.onWalletChangeHandler.bind(this);
@@ -53,7 +53,7 @@ class ModalPassword extends Component {
                       {strings.address}
                     </label>
                     <select id='address'
-                      value={address}
+                      value={walletList[address]}
                       onChange={this.onChangeAddress}>
                       {
                         walletList.map((wallet) => {
@@ -128,7 +128,10 @@ class ModalPassword extends Component {
   }
 
   onChangeAddress(event) {
-    this.setState({address: event.target.value});
+    const { props: { walletList } } = this;
+    const value = event.target.value;
+    const index = walletList.findIndex((v) => v === value);
+    this.setState({address: index});
   }
 
   onCloseClick() {
@@ -142,7 +145,7 @@ class ModalPassword extends Component {
     const { state: { address, password } } = this;
     const { props: { walletList } } = this;
     if (walletList && walletList.length > 0) {
-      this.onUnlock(address, password);
+      this.onUnlock(walletList[address], password);
     } else {
       this.createWallet(password);
     }
@@ -151,34 +154,30 @@ class ModalPassword extends Component {
 
   onUnlock(address, password) {
     const { props: { url } } = this;
-    if (url) {
-      this.setState({unlocking: true, error: false});
-      const http = new HttpAccount(url);
-      http.unlockWallet(address, password)
-        .then(success => {
-          this.setState({unlocking: false, error: !success});
-          if (success) {
-            this.onWalletChangeHandler();
-            this.close();
-          }
-        });
-    }
+    this.setState({unlocking: true, error: false});
+    const http = new HttpAccount(url);
+    http.unlockWallet(address, password)
+      .then(success => {
+        this.setState({unlocking: false, error: !success});
+        if (success) {
+          this.onWalletChangeHandler();
+          this.close();
+        }
+      });
   }
 
   createWallet(password) {
     const { props: { url } } = this;
-    if (url) {
-      this.setState({unlocking: true, error: false});
-      const http = new HttpAccount(url);
-      http.createWallet(password)
-        .then(success => {
-          this.setState({unlocking: false, error: !success});
-          if (success) {
-            this.onWalletChangeHandler();
-            this.close();
-          }
-        });
-    }
+    this.setState({unlocking: true, error: false});
+    const http = new HttpAccount(url);
+    http.createWallet(password)
+      .then(success => {
+        this.setState({unlocking: false, error: !success});
+        if (success) {
+          this.onWalletChangeHandler();
+          this.close();
+        }
+      });
   }
 
   open() {

@@ -28,7 +28,7 @@ class HttpApp {
         }
       })
       .then(response => response.json())
-      .then(json => json.accounts)
+      .then(json => json.result)
       .catch(() => []);
   }
 

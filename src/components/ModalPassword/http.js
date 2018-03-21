@@ -5,21 +5,13 @@ class HttpAccount {
 
   unlockWallet(address, password) {
     const url = this.url;
-    return new Promise(resolve => {
-      resolve(address, password);
+    return fetch(url+'/accounts/'+address+'/unlock', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({'password': password})
     })
-      .then((address, password) => {
-        fetch(url+'/unlock/'+address, {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: {
-            password: password
-          }
-        });
-      })
       .then(response => response.ok)
       .catch(() => false);
   }
