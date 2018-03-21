@@ -16,7 +16,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     const {bounties, first} = this.preloadLocalStorage();
-    this.http = new HttpApp(config.url);
+    this.http = new HttpApp(config.url, config.wsUrl);
     this.state = {
       isUnlocked: false,
       walletList: [],
@@ -40,8 +40,8 @@ class App extends Component {
   componentDidUpdate(_, prevState) {
     const { state: { bounties } } = this;
     const { bounties: prevBounties } = prevState;
-    const storageOutOfSync =  bounties.length === prevBounties.length
-        && bounties.every((current, index) => {
+    const storageOutOfSync =  bounties.length !== prevBounties.length
+        || bounties.every((current, index) => {
           const keys = Object.keys(current);
           const prev = prevBounties[index];
           return keys.map((k) => current[k] === prev[k])
@@ -91,10 +91,6 @@ class App extends Component {
         )}
       </div>
     );
-  }
-
-  onWalletChangeHandler(store) {
-    this.setState({isUnlocked: store});
   }
 
   onAddBounty(guid) {
@@ -156,6 +152,10 @@ class App extends Component {
       };
       this.setState({bounties: bounties});
     }
+  }
+
+  onWalletChangeHandler(store) {
+    this.setState({isUnlocked: store});
   }
 
   pullLocalBounties() {

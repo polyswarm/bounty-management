@@ -1,6 +1,7 @@
 class HttpApp {
-  constructor(url) {
+  constructor(url, ws) {
     this.url = url;
+    this.ws = ws;
   }
 
   getUnlockedWallet() {
@@ -105,10 +106,10 @@ class HttpApp {
       .then(assertions => {
         return assertions.map((assertion) => {
           const a = {};
-          a[assertion.author] = {
-            bid: assertion.bid,
-            verdicts: assertion.verdicts,
-            metadata: assertion.metadata,
+          a[assertion.Author] = {
+            bid: assertion.Bid,
+            verdicts: assertion.Verdicts,
+            metadata: assertion.Metadata,
           };
           return a;
         });
@@ -123,7 +124,28 @@ class HttpApp {
     // attach to websocket
     // anytime we get an assertion, check if it matchs a guid
     // if it does, add it to the assertions for that object
+    const ws = this.ws;
+    const websocket = new WebSocket(ws);
 
+    websocket.onMessage = (event) => {
+      const message = JSON.parse(event.data);
+
+      if (message.Type === 'Assertion') {
+        const body = message.Body;
+        const assertion = {
+          guid: body.BountyGuid,
+          bid: body.Bid,
+          verdicts: body.Verdicts,
+          metadata: body.Metadata,
+          author: body.Author,
+        };
+        const bounties = bountyListCallback();
+        const isFollowed = bounties.first((bounty) => bounty.guid === assertion.guid);
+        if (isFollowed) {
+          assertionAddedCallback(assertion);
+        }
+      }
+    };
   }
 }
 export default HttpApp;
