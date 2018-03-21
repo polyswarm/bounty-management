@@ -383,7 +383,6 @@ it('calls storeBounties after onRemoveBounty', () => {
 
 it('doesn\'t call storeBounties when setState called with identical set of bounties', (done) => {
   const storeBounties = jest.spyOn(App.prototype, 'storeBounties');
-  const wrapper = mount(<App />);
   const bounties = [{
     guid: 'existing',
     update: false,
@@ -394,8 +393,10 @@ it('doesn\'t call storeBounties when setState called with identical set of bount
     resolved: '',
     verdicts: '',
   }];
-  wrapper.setState({bounties: bounties});
+  localStorage.setItem('bounties', JSON.stringify(bounties));
+  const wrapper = mount(<App />);
   storeBounties.mockClear();
+
   wrapper.setState({bounties: bounties});
 
   setTimeout(() => {
@@ -410,7 +411,6 @@ it('doesn\'t call storeBounties when setState called with identical set of bount
 
 it('calls storeBounties when setState called with different set of bounties', (done) => {
   const storeBounties = jest.spyOn(App.prototype, 'storeBounties');
-  const wrapper = mount(<App />);
   const bounties = [{
     guid: 'existing',
     update: false,
@@ -421,7 +421,9 @@ it('calls storeBounties when setState called with different set of bounties', (d
     resolved: '',
     verdicts: '',
   }];
-  wrapper.setState({bounties: bounties});
+  localStorage.setItem('bounties', JSON.stringify(bounties));
+  const wrapper = mount(<App />);
+  storeBounties.mockClear();
   bounties.push({
     guid: 'demo',
     update: false,

@@ -39,32 +39,15 @@ class App extends Component {
   componentDidUpdate(_, prevState) {
     const { state: { bounties } } = this;
     const { bounties: prevBounties } = prevState;
-    const storageOutOfSync =  this.areArraysDifferent(bounties, prevBounties);
-
+    const storageOutOfSync =  JSON.stringify(bounties) !== JSON.stringify(prevBounties);
     if(storageOutOfSync) {
       this.storeBounties(bounties);
     }
   }
 
-  areArraysDifferent(first, second) {
-    return first.length !== second.length
-      || first.every((current, index) => {
-        const prev = second[index];
-        const keys = Object.keys(current);
-        const secondKeys = Object.keys(prev);
-        if (keys.length !== secondKeys.length) {
-          return true;
-        }
-        return keys.map((k) => current[k] !== prev[k])
-          .reduce((accumulator, v) => {
-            return accumulator || v;
-          }, false);
-      });
-  }
-
   componentDidMount() {
     // this.getWallets();
-    // this.getData();
+    this.getData();
   }
 
   render() {
@@ -210,7 +193,15 @@ class App extends Component {
         .catch(() => bounty);
     });
     Promise.all(promises).then((values) => {
-      this.setState({bounties: values});
+      // get updated state after download finishes
+      const bounties = this.state.bounties.slice();
+      values.forEach((value) => {
+        const foundIndex = bounties.findIndex((bounty) => bounty.guid === value.guid);
+        if (foundIndex >= 0) {
+          bounties[foundIndex] = value;
+        }
+      });
+      this.setState({bounties: bounties});
     });
   }
 
