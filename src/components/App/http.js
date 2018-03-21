@@ -13,7 +13,8 @@ class HttpApp {
         }
       })
       .then(response => response.json())
-      .then(json => json.unlocked);
+      .then(json => json.unlocked)
+      .catch(() => false);
   }
 
   getWallets() {
@@ -26,11 +27,12 @@ class HttpApp {
         }
       })
       .then(response => response.json())
-      .then(json => json.accounts);
+      .then(json => json.accounts)
+      .catch(() => []);
   }
 
   getBounty(bounty) {
-    fetch(this.url+'/bounties/'+bounty.guid)
+    return fetch(this.url+'/bounties/'+bounty.guid)
       .then(response => {
         if (response.ok) {
           return response;
@@ -40,8 +42,8 @@ class HttpApp {
       })
       .then(response => response.json())
       .then(json => json.bounty)
-      .then(bounty => getAssertionsForBounty(bounty))
-      .then(bountyAssertions => getArtifactsForBounty(bountyAssertions))
+      .then(bounty => this.getAssertionsForBounty(bounty))
+      .then(bountyAssertions => this.getArtifactsForBounty(bountyAssertions))
       .then(bounty => {
         const assertions = bounty.assertions;
         let files = bounty.artifacts;
@@ -54,7 +56,7 @@ class HttpApp {
             }
             file.total++;
             file.assertions.push({
-              author: key, 
+              author: key,
               bid: assertion.bid,
               verdict: verdict,
               metadata: assertion.metadata
@@ -84,7 +86,7 @@ class HttpApp {
         });
       })
       .then(filenames => {
-        filesnames.sort();
+        filenames.sort();
         bounty.artifacts = filenames;
         return bounty;
       });

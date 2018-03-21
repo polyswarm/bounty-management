@@ -7,6 +7,7 @@ import Sidebar from '../Sidebar';
 import Header from '../Header';
 import Welcome from '../Welcome';
 // Component imports
+import HttpApp from './http';
 import config from './config';
 import strings from './strings';
 import './styles.css';
@@ -167,12 +168,12 @@ class App extends Component {
     const guid = assertion.guid;
     let index = -1;
     bounties.forEach((bounty, i) => {
-      if (bounty.guid == guid) {
+      if (bounty.guid === guid) {
         index = i;
       }
     });
     if (index >= 0) {
-      const bounty = bounites[index];
+      const bounty = bounties[index];
       const a = {};
       a[assertion.author] = {
         bid: assertion.bid,
@@ -180,7 +181,7 @@ class App extends Component {
         verdicts: assertion.verdicts,
       };
       bounty.assertsions.push(a);
-      const modified = bounty.artifacts.map((file, index) =>{
+      const modified = bounty.artifacts.map((file, index) => {
         const f = file;
         if (!a.verdicts[index]) {
           f.good++;
@@ -192,17 +193,18 @@ class App extends Component {
           verdict: a.verdicts[index],
           metadata: assertion.metadata
         });
+        return f;
       });
       bounty.artifacts = modified;
-      bounty.update == true;
+      bounty.update = true;
+      bounties[index] = bounty;
     }
-    bounties[index] = bounty;
     this.setState({bounties: bounties});
   }
 
   getData() {
     const http = this.http;
-    http.listenForAssertions(pullLocalBounties, updateOnAssertion);
+    http.listenForAssertions(this.pullLocalBounties, this.updateOnAssertion);
     const { state: { bounties } } = this;
     const promises = bounties.map((bounty) => {
       return http.getBounty(bounty)
@@ -223,10 +225,11 @@ class App extends Component {
     const http = this.http;
     http.getWallets()
       .then(accounts => {
-        this.setState({walletList, accounts});
+        this.setState({walletList: accounts});
       });
+
     http.getUnlockedWallet()
-      .then(this.setState({isUnlocked: true}));
+      .then((success) => this.setState({isUnlocked: success}));
   }
 
   storeBounties(bounties) {
