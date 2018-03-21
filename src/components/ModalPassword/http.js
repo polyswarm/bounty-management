@@ -5,10 +5,7 @@ class HttpAccount {
 
   unlockWallet(address, password) {
     const url = this.url;
-    return new Promise((resolve, reject) => {
-      if (!url) {
-        reject('Invalid URI.');
-      }
+    return new Promise(resolve => {
       resolve(address, password);
     })
       .then((address, password) => {

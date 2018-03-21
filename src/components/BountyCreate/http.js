@@ -14,7 +14,7 @@ class Http {
   uploadFiles(files, progress) {
     return new Promise((resolve, reject) => {
       const url = this.url+'/artifacts';
-      if(this.url && files && files.length > 0) {
+      if(files && files.length > 0) {
         // Add files
         const formData = new FormData();
         files.forEach((file) => {
@@ -48,7 +48,7 @@ class Http {
   uploadBounty(amount, artifacts, duration) {
     const url = this.url + '/bounties';
     return new Promise((resolve, reject) => {
-      if(this.url && amount && duration && artifacts && artifacts.length > 0) {
+      if(amount && duration && artifacts && artifacts.length > 0) {
         const bounty = {
           amount: amount,
           duration: duration,

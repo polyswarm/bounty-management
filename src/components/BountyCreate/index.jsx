@@ -59,7 +59,7 @@ class BountyCreate extends Component {
           <Button
             cancel={uploading}
             className='Bounty-Create-Upload'
-            disabled={!url || !files || files.length === 0 }
+            disabled={!files || files.length === 0 }
             onClick={this.onClickHandler}>
             {uploading && (strings.cancel)}
             {!uploading && (strings.createBounty)}
