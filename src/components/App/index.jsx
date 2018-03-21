@@ -46,7 +46,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // this.getWallets();
+    this.getWallets();
     this.getData();
   }
 
