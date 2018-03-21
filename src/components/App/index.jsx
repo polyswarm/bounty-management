@@ -120,11 +120,13 @@ class App extends Component {
   }
 
   onSelectBounty(index) {
-    const bounties = this.state.bounties.slice();
+    /*
+     * Need a deep copy to edit a specific value on an object in the array
+     * without modifying state
+     */
+    const bounties = JSON.parse(JSON.stringify(this.state.bounties.slice()));
     if (index !== null && index >= 0 && index < bounties.length) {
-      const bounty = bounties[index];
-      bounty.updated = false;
-      bounties[index] = bounty;
+      bounties[index].updated = false;
       this.setState({active: index, create: false, bounties: bounties});
     }
   }
