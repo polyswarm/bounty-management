@@ -14,7 +14,7 @@ class HttpApp {
         }
       })
       .then(response => response.json())
-      .then(json => json.unlocked)
+      .then(json => !json.locked)
       .catch(() => false);
   }
 
