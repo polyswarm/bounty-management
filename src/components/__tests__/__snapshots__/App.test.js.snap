@@ -128,6 +128,7 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
         >
           <ModalPassword
             onWalletChange={[Function]}
+            url="https://localhost:8080"
             walletList={Array []}
           >
             <div
