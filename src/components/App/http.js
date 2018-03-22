@@ -42,7 +42,7 @@ class HttpApp {
         }
       })
       .then(response => response.json())
-      .then(json => json.bounty)
+      .then(json => json.result)
       .then(bounty => this.getAssertionsForBounty(bounty))
       .then(bountyAssertions => this.getArtifactsForBounty(bountyAssertions))
       .then(bounty => {
@@ -66,11 +66,12 @@ class HttpApp {
           });
         });
         bounty.artifacts = files;
+        return bounty;
       });
   }
 
   getArtifactsForBounty(bounty) {
-    fetch(this.url+'/artifacts/'+bounty.uri)
+    return fetch(this.url+'/artifacts/'+bounty.uri)
       .then(response => {
         if (response.ok) {
           return response;
@@ -79,22 +80,28 @@ class HttpApp {
         }
       })
       .then(response => response.json())
-      .then(json => json.links)
+      .then(json => json.result)
       .then(links => {
-        // I don't know how this works, tbh.
-        return links.map((link) => {
-          return {name: link};
+        return Promise.all(links.map((link, index) => {
+          return fetch(this.url+'/artifacts/'+bounty.uri+'/'+index)
+            .then(response => response.text());
+        }));
+      })
+      .then(filesnames => {
+        filesnames.sort();
+        return filesnames.map((name) => {
+          const trimmed = name.trim();
+          return {name: trimmed, good: 0, total: 0, assertions: []};
         });
       })
-      .then(filenames => {
-        filenames.sort();
-        bounty.artifacts = filenames;
+      .then(files => {
+        bounty.artifacts = files;
         return bounty;
       });
   }
 
   getAssertionsForBounty(bounty) {
-    fetch(this.url+'/bounties/'+bounty.guid+'/assertions')
+    return fetch(this.url+'/bounties/'+bounty.guid+'/assertions')
       .then(response => {
         if (response.ok) {
           return response;
@@ -103,6 +110,7 @@ class HttpApp {
         }
       })
       .then(response => response.json())
+      .then(json => json.result)
       .then(assertions => {
         return assertions.map((assertion) => {
           const a = {};

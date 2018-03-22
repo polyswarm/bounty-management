@@ -90,11 +90,11 @@ class App extends Component {
     const bounties = this.state.bounties.slice();
     const bounty = {
       guid: result.guid,
-      update: true,
+      updated: true,
       author: result.author,
       amount: result.amount,
-      artifactURI: result.uri,
-      expirationBlock: result.expiration,
+      uri: result.uri,
+      expiration: result.expiration,
       resolved: '',
       verdicts: '',
     };
@@ -190,12 +190,12 @@ class App extends Component {
     const promises = bounties.map((bounty) => {
       return http.getBounty(bounty)
         .then(b => {
-          if (Object.keys(b) !== Object.keys(bounty)) {
-            b.update = true;
+          b.updated = bounty.updated;
+          if (JSON.stringify(b) !== JSON.stringify(bounty) || bounty.updated) {
+            b.updated = true;
           }
           return b;
-        })
-        .catch(() => bounty);
+        });
     });
     Promise.all(promises).then((values) => {
       // get updated state after download finishes
