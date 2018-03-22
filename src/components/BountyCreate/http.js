@@ -18,14 +18,15 @@ class Http {
         // Add files
         const formData = new FormData();
         files.forEach((file) => {
-          formData.append(file.name, file, file.name);
+          formData.append('file', file, file.name);
         });
 
         // open connection
         const xhr = new XMLHttpRequest();
-
+        xhr.open('post', url);
+        
         // attach listeners
-        xhr.onerror = () => reject(xhr.statusText);
+        xhr.onerror = () => reject(Error('Are you connected to the internet?'));
         xhr.onload = () => resolve(xhr.response);
         xhr.onprogress = (event) => {
           if (event && event.loaded && event.total) {
@@ -34,15 +35,20 @@ class Http {
         };
 
         // send to server
-        xhr.open('post', url);
         xhr.send(formData);
         this.xhr = xhr;
       } else {
-        reject('No URL set');
+        reject(Error('No files passed.'));
       }
     })
-      .then(body => body.json)
-      .then(json => json.artifacts);
+      .then(response => JSON.parse(response))
+      .then(json => {
+        if (json.status === 'FAIL') {
+          throw Error('Unable to upload files.');
+        }
+        return json;
+      })
+      .then(json => json.result);
   }
 
   uploadBounty(amount, artifacts, duration) {

@@ -118,12 +118,12 @@ class BountyCreate extends Component {
   }
 
   createBounty() {
-    const { props: { url, addBounty } } = this;
+    const { props: { addBounty } } = this;
     const { state: { uploading} } = this;
     const files = this.state.files.slice();
 
     const http = this.http;
-    if (url && !uploading && files && files.length > 0) {
+    if (!uploading && files && files.length > 0) {
       this.setState({uploading: true, error: null});
       http.uploadFiles(files, this.onProgress)
         .then((artifacts) => http.uploadBounty(10, artifacts, 300))
@@ -141,7 +141,7 @@ class BountyCreate extends Component {
           } else if (!error || error.length === 0) {
             errorMessage = strings.error;
           } else {
-            errorMessage = error;
+            errorMessage = error.message;
           }
           this.setState({error: errorMessage});
         })
