@@ -44,6 +44,10 @@
   top: 0;
 }
 
+.ListItem-Remove {
+  z-index: 1;
+}
+
 .redx {
   background: url('/img/red-x.svg');
   height: 48px;

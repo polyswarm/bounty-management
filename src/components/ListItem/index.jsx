@@ -25,13 +25,13 @@ class ListItem extends Component {
     return(
       <li className={className}
         onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}
-        onClick={this.onClickHandler}>
+        onMouseLeave={this.onMouseLeave}>
         <div>
           {alert && (
             <div className='alert'/>
           )}
-          <span className='ListItem-Child'>
+          <span className='ListItem-Child'
+            onClick={this.onClickHandler}>
             {children}
           </span>
         </div>
