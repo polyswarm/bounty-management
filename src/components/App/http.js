@@ -38,7 +38,7 @@ class HttpApp {
         if (response.ok) {
           return response;
         } else {
-          throw new Error('Unable to access accounts');
+          throw new Error('Cannot get bounties.');
         }
       })
       .then(response => response.json())

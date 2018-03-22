@@ -134,11 +134,9 @@ class BountyCreate extends Component {
         })
         .catch((error) => {
           let errorMessage;
-          if (error && error.status && error.status === 401) {
-            const { props: { onWalletChange } } = this;
-            onWalletChange(false);
-            errorMessage = strings.locked;
-          } else if (!error || error.length === 0) {
+          const { props: { onWalletChange } } = this;
+          onWalletChange(false);
+          if (!error || error.length === 0) {
             errorMessage = strings.error;
           } else {
             errorMessage = error.message;
