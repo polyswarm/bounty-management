@@ -86,15 +86,15 @@ class App extends Component {
     );
   }
 
-  onAddBounty(guid) {
+  onAddBounty(result) {
     const bounties = this.state.bounties.slice();
     const bounty = {
-      guid: guid,
-      update: false,
-      author: '',
-      amount: '',
-      artifactURI: '',
-      expirationBlock: '',
+      guid: result.guid,
+      update: true,
+      author: result.author,
+      amount: result.amount,
+      artifactURI: result.uri,
+      expirationBlock: result.expiration,
       resolved: '',
       verdicts: '',
     };

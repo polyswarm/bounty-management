@@ -126,10 +126,10 @@ class BountyCreate extends Component {
     if (!uploading && files && files.length > 0) {
       this.setState({uploading: true, error: null});
       http.uploadFiles(files, this.onProgress)
-        .then((artifacts) => http.uploadBounty(10, artifacts, 300))
-        .then(guid => {
+        .then((artifact) => http.uploadBounty('6250000000000000000', artifact, 300))
+        .then(result => {
           if (addBounty) {
-            addBounty(guid);
+            addBounty(result);
           }
         })
         .catch((error) => {

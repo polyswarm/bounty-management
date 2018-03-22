@@ -23,16 +23,19 @@ class Http {
 
         // open connection
         const xhr = new XMLHttpRequest();
-        xhr.open('post', url);
-        
+
         // attach listeners
         xhr.onerror = () => reject(Error('Are you connected to the internet?'));
-        xhr.onload = () => resolve(xhr.response);
+        xhr.onload = () => {
+          progress(50);
+          resolve(xhr.response);
+        };
         xhr.onprogress = (event) => {
           if (event && event.loaded && event.total) {
-            progress(event.loaded/event.total);
+            progress(event.loaded/event.total/2);
           }
         };
+        xhr.open('post', url);
 
         // send to server
         xhr.send(formData);
@@ -51,23 +54,26 @@ class Http {
       .then(json => json.result);
   }
 
-  uploadBounty(amount, artifacts, duration) {
+  uploadBounty(amount, artifact, duration) {
     const url = this.url + '/bounties';
     return new Promise((resolve, reject) => {
-      if(amount && duration && artifacts && artifacts.length > 0) {
-        const bounty = {
+      if(amount && duration && artifact && artifact.length > 0) {
+        const bounty = JSON.stringify({
           amount: amount,
           duration: duration,
-          artifacts: artifacts
-        };
+          uri: artifact
+        });
         resolve(bounty);
       } else {
         reject('Invalid bounty.');
       }
     })
       .then(bounty => fetch(url, {
+        headers: {
+          'Content-Type':'application/json'
+        },
         method: 'post',
-        body: bounty,
+        body: bounty
       }))
       .then(response => {
         if (response.ok) {
@@ -76,7 +82,7 @@ class Http {
         throw new Error('Error response was not ok');
       })
       .then(response => response.json())
-      .then(body => body.guid);
+      .then(body => body.result);
   }
 }
 export default Http;
