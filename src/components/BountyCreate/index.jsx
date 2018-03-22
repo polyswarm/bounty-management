@@ -84,15 +84,16 @@ class BountyCreate extends Component {
   }
 
   onClickHandler() {
-    const { state: { uploading }, props: { isUnlocked } } = this;
+    const { state: { uploading } } = this;
     if (uploading) {
       this.cancel();
     } else {
-      if (!isUnlocked) {
-        this.modal.open();
-      } else {
-        this.createBounty();
-      }
+      this.modal.open();
+      // if (!isUnlocked) {
+      //   this.modal.open();
+      // } else {
+      //   this.createBounty();
+      // }
     }
   }
 
