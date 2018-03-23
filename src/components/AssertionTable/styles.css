@@ -21,12 +21,14 @@ tr {
 td {
   height: 40px;
   text-align: left;
+  padding-left: 10px;
 }
 
 th {
   box-sizing: border-box;
   height: 60px;
   padding-bottom: 5px;
+  padding-left: 10px;
   text-align: left;
   vertical-align: bottom;
 }
