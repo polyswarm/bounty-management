@@ -11,7 +11,7 @@ class AssertionTable extends Component {
   render() {
     const { props: { assertions } } = this;
     return (
-      <table className='AssertionTable'>
+      <table className='AssertionTable' cellPadding='10'>
         <thead>
           <tr>
             <th>{strings.author}</th>
