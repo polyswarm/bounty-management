@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:8080",
   "dependencies": {
+    "bignumber.js": "^6.0.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.0",
     "node-sass-chokidar": "^0.0.3",

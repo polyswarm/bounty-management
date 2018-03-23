@@ -33,7 +33,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 20px;
+  padding: 10px 20px 0 20px;
 }
 
 .ModalPassword > .ModalContentHeader {
@@ -63,7 +63,7 @@
   width: 110px;
 }
 
-.ModalPassword > .ModalError {
+.ModalError {
   color: #ff1a00;
 }
 
@@ -72,6 +72,18 @@
   font-size: 12px;
   margin: 0;
   padding: 0 20px;
+}
+
+.Balances {
+  border: 1px solid #a9a9a9;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.Balance {
+  color: black;
+  margin: 0;
+  padding: 0;
 }
 
 select {

@@ -1,6 +1,7 @@
 // Vendor imports
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import BigNumber from 'bignumber.js';
 // Bounty imports
 import Button from '../Button';
 // Component imports
@@ -18,6 +19,8 @@ class ModalPassword extends Component {
       error: false,
       password: '',
       address: 0,
+      eth: 0,
+      nct: 0,
     };
 
     this.onWalletChangeHandler = this.onWalletChangeHandler.bind(this);
@@ -30,11 +33,30 @@ class ModalPassword extends Component {
     this.createWallet = this.createWallet.bind(this);
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
+    this.updateBalance = this.updateBalance.bind(this);
+  }
+
+  componentWillMount() {
+    const { props: { walletList } } = this;
+    const { state: { address } } = this;
+    if (walletList && walletList.length > 0) {
+      this.updateBalance(walletList[address]);
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { props: { walletList } } = this;
+    const { state: { address } } = this;
+    const { address: prevAddr } = prevState;
+
+    if (prevAddr !== address && walletList && walletList.length > 0) {
+      this.updateBalance();
+    }
   }
 
   render() {
     const { props: { walletList } } = this;
-    const { state: { open, unlocking, error, password, address, store } } = this;
+    const { state: { open, unlocking, error, password, address, store, nct, eth } } = this;
     return (
       <div className='ModalPassword'>
         {open && (
@@ -66,6 +88,11 @@ class ModalPassword extends Component {
                         })
                       }
                     </select>
+                    <label>Balances</label>
+                    <div className='Balances'>
+                      <p className='Balance'>NCT: {nct}</p>
+                      <p className='Balance'>ETH: {eth}</p>
+                    </div>
                   </React.Fragment>
                 )}
                 <label htmlFor='password'>
@@ -95,8 +122,8 @@ class ModalPassword extends Component {
               <p className='ModalMessage'>{strings.background}</p>
               <span className='Modal-Button-Bar'>
                 <Button
-                  flat
                   disabled={unlocking}
+                  flat
                   onClick={this.onUnlockClick}>
                   {walletList.length > 0 ? strings.unlock : strings.create}
                 </Button>
@@ -189,6 +216,23 @@ class ModalPassword extends Component {
 
   close() {
     this.setState({open: false});
+  }
+
+  updateBalance(address) {
+    const { props: { url } } = this;
+    const http = new HttpAccount(url);
+    http.getEth(address)
+      .then(balance => {
+        const b = new BigNumber(balance)
+          .dividedBy(new BigNumber(1000000000000000000));
+        this.setState({eth: b.toNumber()});
+      });
+    http.getNct(address)
+      .then(balance => {
+        const b = new BigNumber(balance)
+          .dividedBy(new BigNumber(1000000000000000000));
+        this.setState({nct: b.toNumber()});
+      });
   }
 }
 
