@@ -146,6 +146,7 @@ it('calls uploadFiles when all parameters are met (files, addBounty, url)', () =
       addBounty={addBounty}
       isUnlocked={true}/>
   );
+  const instance = wrapper.instance();
   const files = [
     {name: 'demo'},
     {name: 'omed'},
@@ -153,7 +154,7 @@ it('calls uploadFiles when all parameters are met (files, addBounty, url)', () =
   wrapper.setState({files: files});
 
   // act
-  wrapper.find('.Bounty-Create-Upload').simulate('click');
+  instance.createBounty();
 
   // assert
   expect(mockUploadFiles).toHaveBeenCalledTimes(1);
@@ -161,9 +162,10 @@ it('calls uploadFiles when all parameters are met (files, addBounty, url)', () =
 
 it('doesn\'t call uploadFiles when parameters are missing', () => {
   const wrapper = mount(<BountyCreate />);
+  const instance = wrapper.instance();
 
   // act
-  wrapper.find('.Bounty-Create-Upload').simulate('click');
+  instance.createBounty();
   // assert
   expect(mockUploadFiles).toHaveBeenCalledTimes(0);
 });
@@ -189,6 +191,7 @@ it('doesn\'t call uploadBounty when uploadFiles fails', () => {
       addBounty={addBounty}
       isUnlocked={true}/>
   );
+  const instance = wrapper.instance();
   const files = [
     {name: 'demo'},
     {name: 'omed'},
@@ -196,7 +199,7 @@ it('doesn\'t call uploadBounty when uploadFiles fails', () => {
   wrapper.setState({files: files});
 
   // act
-  wrapper.find('.Bounty-Create-Upload').simulate('click');
+  instance.createBounty();
 
   // assert
   expect(mockUploadBounty).toHaveBeenCalledTimes(0);
@@ -223,6 +226,7 @@ it('calls uploadBounty when uploadFiles succeeds', (done) => {
       addBounty={addBounty}
       isUnlocked={true}/>
   );
+  const instance = wrapper.instance();
   const files = [
     {name: 'demo'},
     {name: 'omed'},
@@ -230,12 +234,12 @@ it('calls uploadBounty when uploadFiles succeeds', (done) => {
   wrapper.setState({files: files});
 
   // act
-  wrapper.find('.Bounty-Create-Upload').simulate('click');
+  instance.createBounty();
 
   // assert
   setTimeout(() => {
     try {
-      expect(mockUploadBounty).toHaveBeenCalledWith(10, ['demo', 'asdf'], 300);
+      expect(mockUploadBounty).toHaveBeenCalledWith('6250000000000000000', ['demo', 'asdf'], 300);
       expect(mockUploadBounty).toHaveBeenCalledTimes(1);
       done();
     } catch (error) {
@@ -270,6 +274,7 @@ it('calls addBounty when upload bounty is a success', (done) => {
       addBounty={addBounty}
       isUnlocked={true}/>
   );
+  const instance = wrapper.instance();
   const files = [
     {name: 'demo'},
     {name: 'omed'},
@@ -277,7 +282,7 @@ it('calls addBounty when upload bounty is a success', (done) => {
   wrapper.setState({files: files});
 
   // act
-  wrapper.find('.Bounty-Create-Upload').simulate('click');
+  instance.createBounty();
 
   // assert
   setTimeout(() => {
@@ -302,6 +307,7 @@ it('sets uploading to false when uploads complete', (done) => {
       addBounty={addBounty}
       isUnlocked={true}/>
   );
+  const instance = wrapper.instance();
   const files = [
     {name: 'demo'},
     {name: 'omed'},
@@ -309,7 +315,7 @@ it('sets uploading to false when uploads complete', (done) => {
   wrapper.setState({files});
   const setStateMock = jest.spyOn(BountyCreate.prototype, 'setState');
 
-  wrapper.find('.Bounty-Create-Upload').simulate('click');
+  instance.createBounty();
 
   // assert
   setTimeout(() => {
@@ -324,7 +330,7 @@ it('sets uploading to false when uploads complete', (done) => {
   }, 0);
 });
 
-it('has uploading true after clicking create button', () => {
+it('has uploading true after calling createBounty', () => {
   const addBounty = jest.fn();
   const walletList = [];
   const wrapper = mount(
@@ -333,6 +339,7 @@ it('has uploading true after clicking create button', () => {
       addBounty={addBounty}
       isUnlocked={true}/>
   );
+  const instance = wrapper.instance();
   const files = [
     {name: 'demo'},
     {name: 'omed'},
@@ -340,12 +347,12 @@ it('has uploading true after clicking create button', () => {
   wrapper.setState({files});
   const setStateMock = jest.spyOn(BountyCreate.prototype, 'setState');
 
-  wrapper.find('.Bounty-Create-Upload').simulate('click');
+  instance.createBounty();
 
   expect(setStateMock).toHaveBeenCalledWith({error: null, uploading: true});
 });
 
-it('stays enabled button when uploading but changes text and color', () => {
+it('button is disabled when uploading', () => {
   const wrapper = mount(<BountyCreate url={'url'}/>);
   const files = [
     {name: 'demo'},
@@ -354,20 +361,8 @@ it('stays enabled button when uploading but changes text and color', () => {
   wrapper.setState({files: files, uploading: true});
 
   const button = wrapper.find('.Bounty-Create-Upload');
-  expect(button.props().disabled).toBeFalsy();
-  expect(button.props().children[0]).toBe('Cancel');
+  expect(button.props().disabled).toBeTruthy();
 
-});
-
-it('disables button when there is no supplied url', () => {
-  const wrapper = mount(<BountyCreate />);
-  const files = [
-    {name: 'demo'},
-    {name: 'omed'},
-  ];
-  wrapper.setState({files: files, uploading: false});
-
-  expect(wrapper.find('.Bounty-Create-Upload').props().disabled).toBeTruthy();
 });
 
 it('disables button when there are no files', () => {
@@ -414,20 +409,6 @@ it('opens the modal if isUnlocked not set on create click', () => {
   wrapper.find('.Bounty-Create-Upload').simulate('click');
 
   expect(wrapper.find('.ModalContent')).toHaveLength(1);
-});
-
-it('calls create if isUnlocked is set on create click', () => {
-  const createBounty = jest.spyOn(BountyCreate.prototype, 'createBounty');
-  const wrapper = mount(<BountyCreate url={'url'} isUnlocked={true}/>);
-  const files = [
-    {name: 'demo'},
-    {name: 'omed'},
-  ];
-  wrapper.setState({files: files, uploading: false});
-
-  wrapper.find('.Bounty-Create-Upload').simulate('click');
-
-  expect(createBounty).toHaveBeenCalledTimes(1);
 });
 
 it('calls create after modal is successfully closed', () => {
@@ -522,6 +503,7 @@ it('calls onWalletChange with false when upload bounty returns 401', (done) => {
       addBounty={addBounty}
       isUnlocked={true}/>
   );
+  const instance = wrapper.instance();
   const files = [
     {name: 'demo'},
     {name: 'omed'},
@@ -529,13 +511,60 @@ it('calls onWalletChange with false when upload bounty returns 401', (done) => {
   wrapper.setState({files: files});
 
   // act
-  wrapper.find('.Bounty-Create-Upload').simulate('click');
+  instance.createBounty();
 
   // assert
   setTimeout(() => {
     try {
       expect(onWalletChange).toHaveBeenCalledTimes(1);
       expect(onWalletChange).toHaveBeenCalledWith(false);
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  }, 0);
+});
+
+it('calls on error when something goes wrong in the upload', () => {
+  const mockBadUploadBounty = jest.fn().mockImplementation(() => {
+    return new Promise(() => {
+      throw Error('Failed.');
+    });
+  });
+  Http.mockImplementation(() => {
+    return {
+      uploadFiles: mockUploadFiles,
+      uploadBounty: mockBadUploadBounty,
+    };
+  });
+
+  const addBounty = jest.fn();
+  const onWalletChange = jest.fn();
+  const onError = jest.fn();
+  const walletList = [];
+  const wrapper = mount(
+    <BountyCreate url={'url'}
+      walletList={walletList}
+      onWalletChange={onWalletChange}
+      addBounty={addBounty}
+      onError={onError}
+      isUnlocked={true}/>
+  );
+  const instance = wrapper.instance();
+  const files = [
+    {name: 'demo'},
+    {name: 'omed'},
+  ];
+  wrapper.setState({files: files});
+
+  // act
+  instance.createBounty();
+
+  // assert
+  setTimeout(() => {
+    try {
+      expect(onError).toHaveBeenCalledTimes(1);
+      expect(onError).toHaveBeenCalledWith('Failed.');
       done();
     } catch (error) {
       done.fail(error);

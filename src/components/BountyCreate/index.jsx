@@ -82,11 +82,6 @@ class BountyCreate extends Component {
       this.cancel();
     } else {
       this.modal.open();
-      // if (!isUnlocked) {
-      //   this.modal.open();
-      // } else {
-      //   this.createBounty();
-      // }
     }
   }
 
