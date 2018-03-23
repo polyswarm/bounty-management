@@ -11,7 +11,7 @@ class Http {
     }
   }
 
-  uploadFiles(files, progress) {
+  uploadFiles(files) {
     return new Promise((resolve, reject) => {
       const url = this.url+'/artifacts';
       if(files && files.length > 0) {
@@ -27,13 +27,7 @@ class Http {
         // attach listeners
         xhr.onerror = () => reject(Error('Are you connected to the internet?'));
         xhr.onload = () => {
-          progress(50);
           resolve(xhr.response);
-        };
-        xhr.onprogress = (event) => {
-          if (event && event.loaded && event.total) {
-            progress(event.loaded/event.total/2);
-          }
         };
         xhr.open('post', url);
 

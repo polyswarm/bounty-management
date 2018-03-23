@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import DropTarget from '../DropTarget';
 import FileList from '../FileList';
 import Button from '../Button';
-import Progressbar from '../Progressbar';
 import ModalPassword from '../ModalPassword';
 // Component imports
 import strings from './strings';
@@ -19,7 +18,6 @@ class BountyCreate extends Component {
       files: [],
       uploading: false,
       error: null,
-      progress: 0,
     };
     this.onMultipleFilesSelected = this.onMultipleFilesSelected.bind(this);
     this.onFileRemoved = this.onFileRemoved.bind(this);
@@ -27,7 +25,6 @@ class BountyCreate extends Component {
     this.onClickHandler = this.onClickHandler.bind(this);
     this.onClearAll = this.onClearAll.bind(this);
     this.cancel = this.cancel.bind(this);
-    this.onProgress = this.onProgress.bind(this);
     this.onWalletChangeHandler = this.onWalletChangeHandler.bind(this);
   }
 
@@ -37,7 +34,7 @@ class BountyCreate extends Component {
   }
 
   render() {
-    const { state: { files, uploading, error, progress } } = this;
+    const { state: { files, uploading, error } } = this;
     const { props: { url, walletList } } = this;
     return(
       <div className='Bounty-Create'>
@@ -50,16 +47,12 @@ class BountyCreate extends Component {
             clear={this.onClearAll}
             removeFile={this.onFileRemoved}/>
           <DropTarget onFilesSelected={this.onMultipleFilesSelected}/>
-          {uploading && !error && (
-            <Progressbar progress={progress}/>
-          )}
           {error && (
             <p className='Bounty-Create-Error'>{error}</p>
           )}
           <Button
-            cancel={uploading}
             className='Bounty-Create-Upload'
-            disabled={!files || files.length === 0 }
+            disabled={uploading || !files || files.length === 0 }
             onClick={this.onClickHandler}>
             {uploading && (strings.cancel)}
             {!uploading && (strings.createBounty)}
@@ -105,10 +98,6 @@ class BountyCreate extends Component {
     this.createBounty();
   }
 
-  onProgress(progress) {
-    this.setState({progress: progress});
-  }
-
   onClearAll() {
     this.setState({ files: [], error: null, });
   }
@@ -126,7 +115,7 @@ class BountyCreate extends Component {
     const http = this.http;
     if (!uploading && files && files.length > 0) {
       this.setState({uploading: true, error: null});
-      http.uploadFiles(files, this.onProgress)
+      http.uploadFiles(files)
         .then((artifact) => http.uploadBounty('6250000000000000000', artifact, 300))
         .then(result => {
           if (addBounty) {
