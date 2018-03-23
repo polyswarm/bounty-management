@@ -37,6 +37,7 @@ class App extends Component {
     this.getData = this.getData.bind(this);
     this.getWallets = this.getWallets.bind(this);
     this.onPostError = this.onPostError.bind(this);
+    this.updateOnAssertion = this.updateOnAssertion.bind(this);
   }
 
   componentDidUpdate(_, prevState) {
@@ -154,12 +155,6 @@ class App extends Component {
     const bounties = this.state.bounties.slice();
     const guid = assertion.guid;
     const index = bounties.findIndex((bounty) => bounty.guid === guid);
-    // let index = -1;
-    // bounties.forEach((bounty, i) => {
-    //   if (bounty.guid === guid) {
-    //     index = i;
-    //   }
-    // });
     if (index >= 0) {
       const bounty = bounties[index];
       const a = {

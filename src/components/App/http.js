@@ -133,7 +133,7 @@ class HttpApp {
     const ws = this.ws;
     const websocket = new WebSocket(ws);
 
-    websocket.onMessage = (event) => {
+    websocket.onmessage = (event) => {
       const message = JSON.parse(event.data);
 
       if (message.event === 'assertion') {
