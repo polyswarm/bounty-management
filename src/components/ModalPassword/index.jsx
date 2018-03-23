@@ -102,17 +102,6 @@ class ModalPassword extends Component {
                   type='password'
                   value={password}
                   onChange={this.onChangePassword}/>
-                {false && (
-                  <span>
-                    <input id='store'
-                      type='checkbox'
-                      value={store}
-                      onChange={this.onChangeStore}/>
-                    <label htmlFor='store'>
-                      {strings.store}
-                    </label>
-                  </span>
-                )}
                 <div className='ModalError'>
                   {error && (
                     strings.error
