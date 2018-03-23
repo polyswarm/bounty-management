@@ -25,7 +25,7 @@ class AssertionTable extends Component {
             assertions.map((assertion) => {
               return (
                 <AssertionRow
-                  key={assertion.author}
+                  key={assertion.author+assertion.bid+assertion.metadata+assertion.verdict}
                   assertion={assertion}/>
               );
             })
