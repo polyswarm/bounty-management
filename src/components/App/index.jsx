@@ -87,19 +87,14 @@ class App extends Component {
   }
 
   onAddBounty(result) {
-    const bounties = this.state.bounties.slice();
-    const bounty = {
-      guid: result.guid,
-      updated: true,
-      author: result.author,
-      amount: result.amount,
-      uri: result.uri,
-      expiration: result.expiration,
-      resolved: '',
-      verdicts: '',
-    };
-    bounties.push(bounty);
-    this.setState({bounties: bounties});
+    const http = this.http;
+    return http.getBounty(result)
+      .then(bounty => {
+        bounty.updated = true;
+        const bounties = this.state.bounties.slice();
+        bounties.push(bounty);
+        this.setState({bounties: bounties});
+      });
   }
 
   onCreateBounty() {
