@@ -192,6 +192,9 @@ class App extends Component {
     const promises = bounties.map((bounty) => {
       return http.getBounty(bounty)
         .then(b => {
+          if (b == null) {
+            return bounty;
+          }
           b.updated = bounty.updated;
           if (JSON.stringify(b) !== JSON.stringify(bounty) || bounty.updated) {
             b.updated = true;

@@ -38,7 +38,7 @@ class HttpApp {
         if (response.ok) {
           return response;
         } else {
-          throw new Error('Cannot get bounties.');
+          throw Error('Cannot get bounties.');
         }
       })
       .then(response => response.json())
@@ -66,7 +66,8 @@ class HttpApp {
         });
         bounty.artifacts = files;
         return bounty;
-      });
+      })
+      .catch(() => null);
   }
 
   getArtifactsForBounty(bounty) {
