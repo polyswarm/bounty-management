@@ -6,6 +6,7 @@ import BountyInfo from '../BountyInfo';
 import Sidebar from '../Sidebar';
 import Header from '../Header';
 import Welcome from '../Welcome';
+import Modal from '../Modal';
 // Component imports
 import HttpApp from './http';
 import config from './config';
@@ -24,6 +25,7 @@ class App extends Component {
       bounties: bounties,
       create: false,
       first: first,
+      errorMessage: '',
     };
 
     this.onAddBounty = this.onAddBounty.bind(this);
@@ -34,6 +36,7 @@ class App extends Component {
     this.onWalletChangeHandler = this.onWalletChangeHandler.bind(this);
     this.getData = this.getData.bind(this);
     this.getWallets = this.getWallets.bind(this);
+    this.onPostError = this.onPostError.bind(this);
   }
 
   componentDidUpdate(_, prevState) {
@@ -52,7 +55,8 @@ class App extends Component {
 
   render() {
     const {url} = config;
-    const { state: { active, bounties, create, first, isUnlocked, walletList } } = this;
+    const { state: { active, bounties, create, first, isUnlocked, walletList,
+      errorMessage } } = this;
 
     return (
       <div className='App'>
@@ -61,6 +65,9 @@ class App extends Component {
         )}
         {!first && (
           <React.Fragment>
+            <Modal ref={(modal) => {this.modal = modal;}}
+              title={strings.bountyError}
+              message={errorMessage}/>
             <Sidebar bounties={bounties}
               active={active}
               remove={this.onRemoveBounty}
@@ -74,6 +81,7 @@ class App extends Component {
                   isUnlocked={isUnlocked}
                   walletList={walletList}
                   onWalletChange={this.onWalletChangeHandler}
+                  onError={this.onPostError}
                   addBounty={this.onAddBounty}/>
               )}
               { !create && active >=0 && active < bounties.length && (
@@ -104,6 +112,14 @@ class App extends Component {
   onCloseWelcome() {
     this.setState({first: false});
     this.markSeen();
+  }
+
+  onPostError(message) {
+    this.setState({errorMessage: message});
+    const modal = this.modal;
+    if (modal) {
+      modal.open();
+    }
   }
 
   onRemoveBounty(index) {

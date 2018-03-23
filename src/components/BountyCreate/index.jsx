@@ -6,6 +6,7 @@ import DropTarget from '../DropTarget';
 import FileList from '../FileList';
 import Button from '../Button';
 import ModalPassword from '../ModalPassword';
+import Modal from '../Modal';
 // Component imports
 import strings from './strings';
 import './styles.css';
@@ -38,6 +39,9 @@ class BountyCreate extends Component {
     const { props: { url, walletList } } = this;
     return(
       <div className='Bounty-Create'>
+        <Modal ref={(alert) => {this.alert = alert;}}
+          title={strings.posting}
+          message={strings.background}/>
         <ModalPassword ref={(modal) => this.modal = modal}
           url={url}
           walletList={walletList}
@@ -114,6 +118,10 @@ class BountyCreate extends Component {
 
     const http = this.http;
     if (!uploading && files && files.length > 0) {
+      const alert = this.alert;
+      if (alert) {
+        alert.open();
+      }
       this.setState({uploading: true, error: null});
       http.uploadFiles(files)
         .then((artifact) => http.uploadBounty('6250000000000000000', artifact, 300))
@@ -124,14 +132,21 @@ class BountyCreate extends Component {
         })
         .catch((error) => {
           let errorMessage;
-          const { props: { onWalletChange } } = this;
-          onWalletChange(false);
           if (!error || error.length === 0) {
             errorMessage = strings.error;
           } else {
             errorMessage = error.message;
           }
           this.setState({error: errorMessage});
+
+          //Update app
+          const { props: { onWalletChange, onError } } = this;
+          if (onWalletChange) {
+            onWalletChange(false);
+          }
+          if (onError) {
+            onError(errorMessage);
+          }
         })
         .then(() => this.setState({
           uploading: false,
@@ -144,6 +159,7 @@ BountyCreate.propTypes = {
   isUnlocked: PropTypes.bool,
   walletList: PropTypes.array,
   onWalletChange: PropTypes.func,
+  onError: PropTypes.func,
   addBounty: PropTypes.func,
   url: PropTypes.string,
 };

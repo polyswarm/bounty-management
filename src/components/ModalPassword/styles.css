@@ -1,4 +1,4 @@
-.ModalBackground {
+.ModalPassword > .ModalBackground {
   background-color: #000000b0;
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@
   z-index: 1;
 }
 
-.ModalContent {
+.ModalPassword > .ModalContent {
   background-color: white;
   box-shadow: 0 0 10px black;
   box-sizing: border-box;
@@ -29,14 +29,14 @@
   z-index: 2;
 }
 
-.ModalContent > form {
+.ModalPassword > .ModalContent > form {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding: 20px;
 }
 
-.ModalContentHeader {
+.ModalPassword > .ModalContentHeader {
   background-color: #8500ff;
   box-sizing: border-box;
   color: white;
@@ -51,19 +51,19 @@
   width: 100%;
 }
 
-.Modal-Button-Bar {
+.ModalPassword > .Modal-Button-Bar {
   bottom: 0;
   position: absolute;
   width: 100%;
 }
 
-.Modal-Button-Bar > button{
+.ModalPassword > .Modal-Button-Bar > button{
   float: right;
   margin-bottom: 5px;
   width: 110px;
 }
 
-.ModalError {
+.ModalPassword > .ModalError {
   color: #ff1a00;
 }
 
