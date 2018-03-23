@@ -6,7 +6,6 @@ import DropTarget from '../DropTarget';
 import FileList from '../FileList';
 import Button from '../Button';
 import ModalPassword from '../ModalPassword';
-import Modal from '../Modal';
 // Component imports
 import strings from './strings';
 import './styles.css';
@@ -39,9 +38,6 @@ class BountyCreate extends Component {
     const { props: { url, walletList } } = this;
     return(
       <div className='Bounty-Create'>
-        <Modal ref={(alert) => {this.alert = alert;}}
-          title={strings.posting}
-          message={strings.background}/>
         <ModalPassword ref={(modal) => this.modal = modal}
           url={url}
           walletList={walletList}
@@ -118,10 +114,6 @@ class BountyCreate extends Component {
 
     const http = this.http;
     if (!uploading && files && files.length > 0) {
-      const alert = this.alert;
-      if (alert) {
-        alert.open();
-      }
       this.setState({uploading: true, error: null});
       http.uploadFiles(files)
         .then((artifact) => http.uploadBounty('6250000000000000000', artifact, 300))

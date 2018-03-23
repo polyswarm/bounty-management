@@ -67,6 +67,13 @@
   color: #ff1a00;
 }
 
+.ModalMessage {
+  color: #a5a5a5;
+  font-size: 12px;
+  margin: 0;
+  padding: 0 20px;
+}
+
 select {
   background-color: white;
   font-size: 16px;

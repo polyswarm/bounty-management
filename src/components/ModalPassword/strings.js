@@ -7,7 +7,8 @@ const strings = {
   header: 'Unlock your wallet.',
   createHeader: 'Create a wallet',
   create: 'Create',
-  address: 'Wallet Address'
+  address: 'Wallet Address',
+  background: 'Your bounty will post in the background. When it has been posted to the chain, it will appear on the sidebar. If there are any errors, we will let you know.',
 };
 
 export default strings;

@@ -44,7 +44,7 @@
   z-index: 2;
 }
 
-.ModalContent > p {
+.Modal > .ModalContent > p {
   padding: 20px;
 
 }

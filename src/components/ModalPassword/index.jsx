@@ -92,6 +92,7 @@ class ModalPassword extends Component {
                   )}
                 </div>
               </form>
+              <p className='ModalMessage'>{strings.background}</p>
               <span className='Modal-Button-Bar'>
                 <Button
                   flat
