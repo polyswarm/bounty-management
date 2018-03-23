@@ -1,4 +1,3 @@
-import BigNumber from 'bignumber.js';
 class HttpAccount {
   constructor(url) {
     this.url = url;
