@@ -48,8 +48,7 @@ class HttpApp {
       .then(bounty => {
         const assertions = bounty.assertions;
         let files = bounty.artifacts;
-        Object.keys(assertions).forEach((key) => {
-          const assertion = assertions[key];
+        assertions.forEach((assertion) => {
           assertion.verdicts.forEach((verdict, index) => {
             const file = files[index];
             if (!verdict) {
@@ -57,7 +56,7 @@ class HttpApp {
             }
             file.total++;
             file.assertions.push({
-              author: key,
+              author: assertion.author,
               bid: assertion.bid,
               verdict: verdict,
               metadata: assertion.metadata
@@ -112,15 +111,14 @@ class HttpApp {
       .then(response => response.json())
       .then(json => json.result)
       .then(assertions => {
-        const result = {};
-        assertions.forEach((assertion) => {
-          result[assertion.author] = {
+        return assertions.map((assertion) => {
+          return {
+            author: assertion.author,
             bid: assertion.bid,
             verdicts: assertion.verdicts,
             metadata: assertion.metadata,
           };
         });
-        return result;
       })
       .then(filtered => {
         bounty.assertions = filtered;
