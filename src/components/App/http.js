@@ -126,7 +126,7 @@ class HttpApp {
       });
   }
 
-  listenForAssertions(bountyListCallback, assertionAddedCallback) {
+  listenForAssertions(assertionAddedCallback) {
     // attach to websocket
     // anytime we get an assertion, check if it matchs a guid
     // if it does, add it to the assertions for that object
@@ -136,20 +136,16 @@ class HttpApp {
     websocket.onMessage = (event) => {
       const message = JSON.parse(event.data);
 
-      if (message.Type === 'Assertion') {
-        const body = message.Body;
+      if (message.event === 'assertion') {
+        const body = message.data;
         const assertion = {
-          guid: body.BountyGuid,
-          bid: body.Bid,
-          verdicts: body.Verdicts,
-          metadata: body.Metadata,
-          author: body.Author,
+          guid: body.bounty_guid,
+          bid: body.bid,
+          verdicts: body.verdicts,
+          metadata: body.metadata,
+          author: body.author,
         };
-        const bounties = bountyListCallback();
-        const isFollowed = bounties.first((bounty) => bounty.guid === assertion.guid);
-        if (isFollowed) {
-          assertionAddedCallback(assertion);
-        }
+        assertionAddedCallback(assertion);
       }
     };
   }

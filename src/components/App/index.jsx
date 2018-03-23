@@ -149,12 +149,8 @@ class App extends Component {
     this.setState({isUnlocked: store});
   }
 
-  pullLocalBounties() {
-    const bounties = this.state.bounties.slice();
-    return bounties;
-  };
-
   updateOnAssertion(assertion) {
+    console.info(assertion);
     const bounties = this.state.bounties.slice();
     const guid = assertion.guid;
     const index = bounties.findIndex((bounty) => bounty.guid === guid);
@@ -166,13 +162,13 @@ class App extends Component {
     // });
     if (index >= 0) {
       const bounty = bounties[index];
-      const a = {};
-      a[assertion.author] = {
+      const a = {
+        author: assertion.author,
         bid: assertion.bid,
         metadata: assertion.metadata,
         verdicts: assertion.verdicts,
       };
-      bounty.assertsions.push(a);
+      bounty.assertions.push(a);
       const modified = bounty.artifacts.map((file, index) => {
         const f = file;
         if (!a.verdicts[index]) {
@@ -196,7 +192,7 @@ class App extends Component {
 
   getData() {
     const http = this.http;
-    http.listenForAssertions(this.pullLocalBounties, this.updateOnAssertion);
+    http.listenForAssertions(this.updateOnAssertion);
     const bounties = this.state.bounties.slice();
     const promises = bounties.map((bounty) => {
       return http.getBounty(bounty)
