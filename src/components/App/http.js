@@ -112,15 +112,15 @@ class HttpApp {
       .then(response => response.json())
       .then(json => json.result)
       .then(assertions => {
-        return assertions.map((assertion) => {
-          const a = {};
-          a[assertion.Author] = {
-            bid: assertion.Bid,
-            verdicts: assertion.Verdicts,
-            metadata: assertion.Metadata,
+        const result = {};
+        assertions.forEach((assertion) => {
+          result[assertion.author] = {
+            bid: assertion.bid,
+            verdicts: assertion.verdicts,
+            metadata: assertion.metadata,
           };
-          return a;
         });
+        return result;
       })
       .then(filtered => {
         bounty.assertions = filtered;
