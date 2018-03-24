@@ -38,6 +38,13 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
   <div
     className="App"
   >
+    <Modal
+      message=""
+    >
+      <div
+        className="Modal"
+      />
+    </Modal>
     <Sidebar
       active={-1}
       bounties={
@@ -73,13 +80,13 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
           >
             <li
               className="ListItem"
-              onClick={[Function]}
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
               <div>
                 <span
                   className="ListItem-Child"
+                  onClick={[Function]}
                 >
                   asdf
                 </span>
@@ -119,8 +126,9 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
       <BountyCreate
         addBounty={[Function]}
         isUnlocked={false}
+        onError={[Function]}
         onWalletChange={[Function]}
-        url="https://localhost:8080"
+        url=""
         walletList={Array []}
       >
         <div
@@ -128,7 +136,7 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
         >
           <ModalPassword
             onWalletChange={[Function]}
-            url="https://localhost:8080"
+            url=""
             walletList={Array []}
           >
             <div
@@ -211,7 +219,6 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
               </div>
             </DropTarget>
             <Button
-              cancel={false}
               className="Bounty-Create-Upload"
               disabled={true}
               onClick={[Function]}
@@ -237,6 +244,13 @@ exports[`shows BountyInfo when at least one bounty & active selects it 1`] = `
   <div
     className="App"
   >
+    <Modal
+      message=""
+    >
+      <div
+        className="Modal"
+      />
+    </Modal>
     <Sidebar
       active={0}
       bounties={
@@ -272,13 +286,13 @@ exports[`shows BountyInfo when at least one bounty & active selects it 1`] = `
           >
             <li
               className="ListItem active"
-              onClick={[Function]}
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
               <div>
                 <span
                   className="ListItem-Child"
+                  onClick={[Function]}
                 >
                   asdf
                 </span>

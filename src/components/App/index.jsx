@@ -99,10 +99,12 @@ class App extends Component {
     const http = this.http;
     return http.getBounty(result)
       .then(bounty => {
-        bounty.updated = true;
-        const bounties = this.state.bounties.slice();
-        bounties.push(bounty);
-        this.setState({bounties: bounties});
+        if (bounty != null) {
+          bounty.updated = true;
+          const bounties = this.state.bounties.slice();
+          bounties.push(bounty);
+          this.setState({bounties: bounties});
+        }
       });
   }
 

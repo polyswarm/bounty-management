@@ -3,10 +3,68 @@ import {render, mount} from 'enzyme';
 import {renderToJson, mountToJson} from 'enzyme-to-json';
 import LocalStorage from '../__mocks__/localstorage';
 import App from '../App';
+import HttpApp from '../App/http';
+
+const mockUnlockWallet = jest.fn().mockImplementation(() => {
+  return new Promise(resolve => {
+    resolve(true);
+  });
+});
+
+const mockGetWallets = jest.fn().mockImplementation(() => {
+  return new Promise(resolve => {
+    resolve(['asdf','demo']);
+  });
+});
+
+const mockGetBounty = jest.fn().mockImplementation((bounty) => {
+  return new Promise(resolve => {
+    resolve({'amount':'6250000000000000000',
+      'author':'0xAF8302a3786A35abEDdF19758067adc9a23597e5',
+      'expiration':4563,
+      'guid':bounty.guid,
+      'resolved':false,
+      'uri':'QmTcKufUeYYdT4YYAZsv25FNdeJ9q2NyCKLW3CeN4H69fw',
+      'verdicts':[false],
+      'updated':false,
+      'assertions':[{'author':'0xAF8302a3786A35abEDdF19758067adc9a23597e5',
+        'bid':'.7',
+        'verdicts':[true],
+        'metadata':'malware'}]
+    });
+  });
+});
+
+const mockListenForAssertions = jest.fn().mockImplementation(() => {
+  return new Promise((resolve) => {
+    resolve();
+  });
+});
+
+jest.mock('../App/http', () => {
+  // Works and lets you check for constructor calls:
+  return jest.fn().mockImplementation(() => {
+    return {
+      getBounty: mockGetBounty,
+      getWallets: mockGetWallets,
+      getUnlockedWallet: mockUnlockWallet,
+      listenForAssertions: mockListenForAssertions
+    };
+  });
+});
 
 beforeEach(() => {
   localStorage.clear();
   jest.clearAllMocks();
+  HttpApp.mockClear();
+  HttpApp.mockImplementation(() => {
+    return {
+      getBounty: mockGetBounty,
+      getWallets: mockGetWallets,
+      getUnlockedWallet: mockUnlockWallet,
+      listenForAssertions: mockListenForAssertions
+    };
+  });
 });
 
 it('renders without crashing', () => {
@@ -104,7 +162,7 @@ it('calls select when a sidebar item is clicked', () => {
   const bounties = [{guid:'asdf'}, {guid:'demo'}];
   const active = 0;
   wrapper.setState({first: false, bounties: bounties, active: active});
-  wrapper.find('.item-0').simulate('click');
+  wrapper.find('.item-0').find('.ListItem-Child').simulate('click');
   expect(select).toHaveBeenCalledTimes(1);
   expect(select).toHaveBeenCalledWith(0);
 });
@@ -260,63 +318,79 @@ it('doesn\'t remove anything if onRemoveBounty called with out of bounds', () =>
   expect(setState).toHaveBeenCalledTimes(0);
 });
 
-it('calls setState during onAddBounty', () => {
-  const wrapper = mount(<App />);
-  const instance = wrapper.instance();
-
-  const setState = jest.spyOn(App.prototype, 'setState');
-  instance.onAddBounty('asdf');
-
-  expect(setState).toHaveBeenCalledWith({bounties: [{
-    guid: 'asdf',
-    update: false,
-    author: '',
-    amount: '',
-    artifactURI: '',
-    expirationBlock: '',
-    resolved: '',
-    verdicts: '',
-  }]});
-});
-
-it('calls setState during onAddBounty with existing values', () => {
+it('calls setState during onAddBounty', (done) => {
   const setState = jest.spyOn(App.prototype, 'setState');
   const wrapper = mount(<App />);
   const instance = wrapper.instance();
-  wrapper.setState({bounties: [{
-    guid: 'existing',
-    update: false,
-    author: '',
-    amount: '',
-    artifactURI: '',
-    expirationBlock: '',
-    resolved: '',
-    verdicts: '',
-  }]});
   setState.mockClear();
 
-  instance.onAddBounty('asdf');
+  instance.onAddBounty({guid: 'asdf'});
+  setTimeout(() => {
+    try {
+      expect(setState.mock.calls[3][0]).toEqual({bounties: [{'amount':'6250000000000000000',
+        'author':'0xAF8302a3786A35abEDdF19758067adc9a23597e5',
+        'expiration':4563,
+        'guid':'asdf',
+        'resolved':false,
+        'uri':'QmTcKufUeYYdT4YYAZsv25FNdeJ9q2NyCKLW3CeN4H69fw',
+        'verdicts':[false],
+        'updated':true,
+        'assertions':[{'author':'0xAF8302a3786A35abEDdF19758067adc9a23597e5',
+          'bid':'.7',
+          'verdicts':[true],
+          'metadata':'malware'}]
+      }]});
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  }, 0);
+});
 
-  expect(setState).toHaveBeenCalledWith({bounties: [{
-    guid: 'existing',
-    update: false,
-    author: '',
-    amount: '',
-    artifactURI: '',
-    expirationBlock: '',
-    resolved: '',
-    verdicts: '',
-  },
-  {
-    guid: 'asdf',
-    update: false,
-    author: '',
-    amount: '',
-    artifactURI: '',
-    expirationBlock: '',
-    resolved: '',
-    verdicts: '',
-  }]});
+it('calls setState during onAddBounty with existing values', (done) => {
+  const setState = jest.spyOn(App.prototype, 'setState');
+  const wrapper = mount(<App />);
+  const instance = wrapper.instance();
+  setState.mockClear();
+
+  instance.onAddBounty({guid: 'existing'});
+  instance.onAddBounty({guid: 'asdf'});
+
+  setTimeout(() => {
+    try {
+      expect(mockGetBounty).toHaveBeenCalledTimes(2);
+      expect(setState.mock.calls[4][0]).toEqual({bounties: [
+        {'amount':'6250000000000000000',
+          'author':'0xAF8302a3786A35abEDdF19758067adc9a23597e5',
+          'expiration':4563,
+          'guid':'existing',
+          'resolved':false,
+          'uri':'QmTcKufUeYYdT4YYAZsv25FNdeJ9q2NyCKLW3CeN4H69fw',
+          'verdicts':[false],
+          'updated':true,
+          'assertions':[{'author':'0xAF8302a3786A35abEDdF19758067adc9a23597e5',
+            'bid':'.7',
+            'verdicts':[true],
+            'metadata':'malware'}]
+        },
+        {'amount':'6250000000000000000',
+          'author':'0xAF8302a3786A35abEDdF19758067adc9a23597e5',
+          'expiration':4563,
+          'guid':'asdf',
+          'resolved':false,
+          'uri':'QmTcKufUeYYdT4YYAZsv25FNdeJ9q2NyCKLW3CeN4H69fw',
+          'verdicts':[false],
+          'updated':true,
+          'assertions':[{'author':'0xAF8302a3786A35abEDdF19758067adc9a23597e5',
+            'bid':'.7',
+            'verdicts':[true],
+            'metadata':'malware'}]
+        }]});
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  }, 0);
 });
 
 it('calls storeBounties after onAddBounty', () => {
@@ -327,16 +401,26 @@ it('calls storeBounties after onAddBounty', () => {
 
   instance.onAddBounty('asdf');
 
-  expect(storeBounties).toHaveBeenCalledWith([{
-    guid: 'asdf',
-    update: false,
-    author: '',
-    amount: '',
-    artifactURI: '',
-    expirationBlock: '',
-    resolved: '',
-    verdicts: '',
-  }]);
+  setTimeout(() => {
+    try {
+      expect(storeBounties.mock.calls[0][0]).toEqual({bounties: [{'amount':'6250000000000000000',
+        'author':'0xAF8302a3786A35abEDdF19758067adc9a23597e5',
+        'expiration':4563,
+        'guid':'asdf',
+        'resolved':false,
+        'uri':'QmTcKufUeYYdT4YYAZsv25FNdeJ9q2NyCKLW3CeN4H69fw',
+        'verdicts':[false],
+        'updated':true,
+        'assertions':[{'author':'0xAF8302a3786A35abEDdF19758067adc9a23597e5',
+          'bid':'.7',
+          'verdicts':[true],
+          'metadata':'malware'}]
+      }]});
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  }, 0);
 });
 
 it('calls setState during onRemoveBounty', () => {
@@ -382,6 +466,19 @@ it('calls storeBounties after onRemoveBounty', () => {
 });
 
 it('doesn\'t call storeBounties when setState called with identical set of bounties', (done) => {
+  const mockEmptyBounty = jest.fn().mockImplementation(() => {
+    return new Promise((resolve) => {
+      resolve();
+    });
+  });
+  HttpApp.mockImplementation(() => {
+    return ({
+      getBounty: mockEmptyBounty,
+      getWallets: mockGetWallets,
+      getUnlockedWallet: mockUnlockWallet,
+      listenForAssertions: mockListenForAssertions
+    });
+  });
   const storeBounties = jest.spyOn(App.prototype, 'storeBounties');
   const bounties = [{
     guid: 'existing',
@@ -410,6 +507,19 @@ it('doesn\'t call storeBounties when setState called with identical set of bount
 });
 
 it('calls storeBounties when setState called with different set of bounties', (done) => {
+  const mockEmptyBounty = jest.fn().mockImplementation(() => {
+    return new Promise((resolve) => {
+      resolve();
+    });
+  });
+  HttpApp.mockImplementation(() => {
+    return ({
+      getBounty: mockEmptyBounty,
+      getWallets: mockGetWallets,
+      getUnlockedWallet: mockUnlockWallet,
+      listenForAssertions: mockListenForAssertions
+    });
+  });
   const storeBounties = jest.spyOn(App.prototype, 'storeBounties');
   const bounties = [{
     guid: 'existing',
@@ -516,4 +626,35 @@ it('calls setState with account: false when calling onAccountSet(false)', () => 
 
   expect(setState).toHaveBeenCalledTimes(1);
   expect(setState).toHaveBeenCalledWith({isUnlocked: false});
+});
+
+// it('opens the modal when onPostError is called', (done) => {
+//   const setState = jest.spyOn(App.prototype, 'setState');
+//   const wrapper = mount(<App />);
+//   const instance = wrapper.instance();
+//   setState.mockClear();
+//
+//   instance.onPostError('error');
+//
+//   setTimeout(() => {
+//     try {
+//       expect(instance.modal.state).toEqual(null);
+//       expect(wrapper.find('.ModalBackground')).toHaveLength(1);
+//       done();
+//     } catch (error) {
+//       done.fail(error);
+//     }
+//   }, 0);
+// });
+
+it('sets the error message when onPostError is called', () => {
+  const setState = jest.spyOn(App.prototype, 'setState');
+  const wrapper = mount(<App />);
+  const instance = wrapper.instance();
+  setState.mockClear();
+
+  instance.onPostError('error');
+
+  expect(setState).toHaveBeenCalledTimes(1);
+  expect(setState).toHaveBeenCalledWith({errorMessage: 'error'});
 });
