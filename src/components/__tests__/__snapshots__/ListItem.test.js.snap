@@ -76,13 +76,13 @@ exports[`shows remove button when hovered 1`] = `
 >
   <li
     className="ListItem"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
     <div>
       <span
         className="ListItem-Child"
+        onClick={[Function]}
       >
         asdf
       </span>

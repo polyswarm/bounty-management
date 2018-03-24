@@ -43,7 +43,7 @@ it('selects the row that was clicked',() => {
   const wrapper = mount(<App/>);
   wrapper.setState({first: false, bounties: bounties, active: 0});
 
-  wrapper.find('.item-1').simulate('click');
+  wrapper.find('.item-1').find('.ListItem-Child').simulate('click');
 
   expect(select).toHaveBeenCalledWith(1);
   expect(wrapper.find('.item-1').props().active).toBeTruthy();

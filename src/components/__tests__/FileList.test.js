@@ -85,7 +85,7 @@ it('calls onClick when a row is clicked', () => {
   );
 
   //act
-  wrapper.find('.item-0').simulate('click');
+  wrapper.find('.item-0').find('.ListItem-Child').simulate('click');
 
   expect(onClick).toHaveBeenCalledTimes(1);
   expect(onClick).toHaveBeenCalledWith(0);

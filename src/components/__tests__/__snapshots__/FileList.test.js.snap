@@ -51,13 +51,13 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
       >
         <li
           className="ListItem"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div>
             <span
               className="ListItem-Child"
+              onClick={[Function]}
             >
               <FileResult>
                 <div
@@ -233,13 +233,13 @@ exports[`does not mark the ListItem as alternate when active is negative. 1`] = 
       >
         <li
           className="ListItem"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div>
             <span
               className="ListItem-Child"
+              onClick={[Function]}
             >
               <FileResult>
                 <div
@@ -266,13 +266,13 @@ exports[`does not mark the ListItem as alternate when active is negative. 1`] = 
       >
         <li
           className="ListItem"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div>
             <span
               className="ListItem-Child"
+              onClick={[Function]}
             >
               <FileResult>
                 <div
@@ -348,13 +348,13 @@ exports[`does not mark the ListItem as alternate when active is out of bounds. 1
       >
         <li
           className="ListItem"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div>
             <span
               className="ListItem-Child"
+              onClick={[Function]}
             >
               <FileResult>
                 <div
@@ -381,13 +381,13 @@ exports[`does not mark the ListItem as alternate when active is out of bounds. 1
       >
         <li
           className="ListItem"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div>
             <span
               className="ListItem-Child"
+              onClick={[Function]}
             >
               <FileResult>
                 <div
@@ -463,13 +463,13 @@ exports[`marks the ListItem as alternate when active is set. 1`] = `
       >
         <li
           className="ListItem alternate"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div>
             <span
               className="ListItem-Child"
+              onClick={[Function]}
             >
               <FileResult>
                 <div
@@ -496,13 +496,13 @@ exports[`marks the ListItem as alternate when active is set. 1`] = `
       >
         <li
           className="ListItem"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div>
             <span
               className="ListItem-Child"
+              onClick={[Function]}
             >
               <FileResult>
                 <div
@@ -578,13 +578,13 @@ exports[`marks the ListItem as alternate when active is set. 2`] = `
       >
         <li
           className="ListItem"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div>
             <span
               className="ListItem-Child"
+              onClick={[Function]}
             >
               <FileResult>
                 <div
@@ -611,13 +611,13 @@ exports[`marks the ListItem as alternate when active is set. 2`] = `
       >
         <li
           className="ListItem alternate"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div>
             <span
               className="ListItem-Child"
+              onClick={[Function]}
             >
               <FileResult>
                 <div
@@ -677,13 +677,13 @@ exports[`prevents the remove button from showing when FileList has readonly prop
       >
         <li
           className="ListItem"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
           <div>
             <span
               className="ListItem-Child"
+              onClick={[Function]}
             >
               <FileResult>
                 <div
