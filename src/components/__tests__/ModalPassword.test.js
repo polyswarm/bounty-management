@@ -569,7 +569,7 @@ it('sets unlocking:false, error:false when create succeeds', (done) => {
   const setState = jest.spyOn(ModalPassword.prototype, 'setState');
   const wrapper = mount(<ModalPassword walletList={walletList} url={url}/>);
   wrapper.setState({store: true});
-  setState.mockClear()
+  setState.mockClear();
   const instance = wrapper.instance();
 
   instance.createWallet('password');
