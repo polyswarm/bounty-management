@@ -12,7 +12,7 @@ exports[`renders without crashing 1`] = `
       <td
         class="Assertion-Malignant"
       >
-        Malignant
+        Malicious
       </td>
       <td>
         Some virus
@@ -37,7 +37,7 @@ exports[`shows Benign in the veridict column with false verdict 1`] = `
       <td
         class="Assertion-Benign"
       >
-        Benign
+        Safe
       </td>
       <td>
         
@@ -62,7 +62,7 @@ exports[`shows Malignant in the veridict column with true verdict 1`] = `
       <td
         class="Assertion-Malignant"
       >
-        Malignant
+        Malicious
       </td>
       <td>
         Some virus

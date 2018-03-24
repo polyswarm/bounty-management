@@ -30,7 +30,7 @@ exports[`renders the correct number of children 1`] = `
       <td
         class="Assertion-Benign"
       >
-        Benign
+        Safe
       </td>
       <td>
         Nothing
@@ -48,7 +48,7 @@ exports[`renders the correct number of children 1`] = `
       <td
         class="Assertion-Benign"
       >
-        Benign
+        Safe
       </td>
       <td>
         
@@ -66,7 +66,7 @@ exports[`renders the correct number of children 1`] = `
       <td
         class="Assertion-Malignant"
       >
-        Malignant
+        Malicious
       </td>
       <td>
         VIRUS

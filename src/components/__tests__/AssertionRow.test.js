@@ -43,7 +43,7 @@ it('shows Malignant in the veridict column with true verdict', () => {
     </table>
   );
 
-  expect(wrapper.find('.Assertion-Malignant').text()).toEqual('Malignant');
+  expect(wrapper.find('.Assertion-Malignant').text()).toEqual('Malicious');
   expect(renderToJson(wrapper)).toMatchSnapshot();
 });
 
@@ -60,6 +60,6 @@ it('shows Benign in the veridict column with false verdict', () => {
     </table>
   );
 
-  expect(wrapper.find('.Assertion-Benign').text()).toEqual('Benign');
+  expect(wrapper.find('.Assertion-Benign').text()).toEqual('Safe');
   expect(renderToJson(wrapper)).toMatchSnapshot();
 });
