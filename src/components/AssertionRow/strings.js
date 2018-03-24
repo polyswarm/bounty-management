@@ -1,6 +1,6 @@
 const strings = {
-  good: 'Benign',
-  bad: 'Malignant',
+  good: 'Safe',
+  bad: 'Malicious',
 };
 
 export default strings;
