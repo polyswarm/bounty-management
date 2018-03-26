@@ -13,7 +13,6 @@ class ModalPassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      store: false,
       open: false,
       unlocking: false,
       error: false,
@@ -48,15 +47,17 @@ class ModalPassword extends Component {
     const { props: { walletList } } = this;
     const { state: { address } } = this;
     const { address: prevAddr } = prevState;
+    const { walletList: prevWallets } = prevProps;
 
-    if (prevAddr !== address && walletList && walletList.length > 0) {
-      this.updateBalance();
+    if (walletList.length > 0 && (prevAddr !== address ||
+      JSON.stringify(walletList) !== JSON.stringify(prevWallets))) {
+      this.updateBalance(walletList[address]);
     }
   }
 
   render() {
     const { props: { walletList } } = this;
-    const { state: { open, unlocking, error, password, address, store, nct, eth } } = this;
+    const { state: { open, unlocking, error, password, address, nct, eth } } = this;
     return (
       <div className='ModalPassword'>
         {open && (
