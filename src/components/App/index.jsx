@@ -152,7 +152,6 @@ class App extends Component {
   }
 
   updateOnAssertion(assertion) {
-    console.info(assertion);
     const bounties = this.state.bounties.slice();
     const guid = assertion.guid;
     const index = bounties.findIndex((bounty) => bounty.guid === guid);
