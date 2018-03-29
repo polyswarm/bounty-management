@@ -41,6 +41,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: 470px;
+  word-wrap: break-word;
   z-index: 2;
 }
 

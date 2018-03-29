@@ -81,7 +81,12 @@ class Http {
         if (response.ok) {
           return response;
         }
-        throw new Error(response);
+        return new Promise(resolve => {
+          resolve(response.json());
+        })
+          .then(json => {
+            throw Error(json.message);
+          });
       })
       .then(response => response.json())
       .then(body => body.result);
