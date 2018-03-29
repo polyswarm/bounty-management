@@ -1,6 +1,12 @@
 import { app, BrowserWindow } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import { enableLiveReload } from 'electron-compile';
+import ChildProcess from 'child_process';
+import util from 'util';
+import DotEnv from 'dotenv';
+
+const exec = util.promisify(ChildProcess.exec);
+DotEnv.config();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -41,6 +47,7 @@ const createWindow = async () => {
 app.on('ready', () => {
   createWindow();
   // Launch the daemon
+  startBackend();  
 });
 
 // Quit when all windows are closed.
@@ -62,3 +69,40 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+const extractWindowsDaemon = () => {
+  return exec(`unzip backend/${process.env.BACKEND_DIR}-win.zip -d backend/`);
+};
+
+const extractLinuxDaemon = () => {
+  return exec(`tar -xf backend/${process.env.BACKEND_DIR}-x86_64-linux.tar.gz -C backend/`);
+};
+
+const startBackend = () => {
+  let extract;
+  const platform = process.platform;
+  switch (platform) {
+  case 'linux':
+    extract = extractLinuxDaemon();
+    break;
+  case 'win32':
+    extract = extractWindowsDaemon();
+    break;
+  case 'darwin':
+  default:
+    // We don't support these platforms. We should probably let the user know, though.
+    extract = new Promise(() => {
+      throw Error('Unsupported Platform.');
+    });
+  }
+
+  extract
+    .then(() => exec(`cp backend/polyswarmd.cfg backend/${process.env.BACKEND_DIR}/`))
+    .then(() => exec('./polyswarmd', {
+      cwd: `./backend/${process.env.BACKEND_DIR}/`
+    }))
+    .catch((error) => {
+      console.error(error);
+      // console.error('Failed to launch backend service.');
+      app.quit();
+    });
+};
