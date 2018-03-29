@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="249px" height="288px" viewBox="0 0 249 288" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Polygon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Polygon" stroke="#CD9DFF" stroke-width="5">
+            <polygon points="166 144 124.5 215.880109 41.5 215.880109 0 144 41.5 72.1198915 124.5 72.1198915"></polygon>
+            <polygon points="166 0 124.5 71.8801085 41.5 71.8801085 0 2.24445801e-14 41.5 71.8801085 69.7597656 71.8801085 92.2226562 71.8801085 124.5 71.8801085"></polygon>
+            <polygon points="166 288 124.5 216.119891 41.5 216.119891 0 288 41.5 216.119891 124.5 216.119891"></polygon>
+            <polygon points="165.5 143.880109 124 72 166.684082 -1.53466797 124 72 165.5 143.880109 248.5 143.880109"></polygon>
+            <polygon points="124 214.009766 165.5 285.889874 249 286.009766 165.5 285.889874 158.628248 274.317201 124 216 165.5 144.119891 249 144 165.5 144.119891"></polygon>
+        </g>
+    </g>
+</svg>
