@@ -37,23 +37,23 @@ class BountyCreate extends Component {
     const { state: { files, uploading, error } } = this;
     const { props: { url, walletList } } = this;
     return (
-      <div className="Bounty-Create">
+      <div className='Bounty-Create'>
         <ModalPassword
           ref={modal => (this.modal = modal)}
           url={url}
           walletList={walletList}
           onWalletChange={this.onWalletChangeHandler}
         />
-        <div className="Container">
+        <div className='Container'>
           <FileList
             files={files}
             clear={this.onClearAll}
             removeFile={this.onFileRemoved}
           />
           <DropTarget onFilesSelected={this.onMultipleFilesSelected} />
-          {error && <p className="Bounty-Create-Error">{error}</p>}
+          {error && <p className='Bounty-Create-Error'>{error}</p>}
           <Button
-            className="Bounty-Create-Upload"
+            className='Bounty-Create-Upload'
             disabled={uploading || !files || files.length === 0}
             onClick={this.onClickHandler}
           >
