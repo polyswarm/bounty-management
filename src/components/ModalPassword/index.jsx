@@ -65,20 +65,20 @@ class ModalPassword extends Component {
       state: { open, unlocking, error, password, address, nct, eth }
     } = this;
     return (
-      <div className="ModalPassword">
+      <div className='ModalPassword'>
         {open && (
           <React.Fragment>
-            <div className="ModalBackground" onClick={this.onCloseClick} />
-            <div className="ModalContent">
-              <header className="ModalContentHeader">
+            <div className='ModalBackground' onClick={this.onCloseClick} />
+            <div className='ModalContent'>
+              <header className='ModalContentHeader'>
                 {walletList.length > 0 ? strings.header : strings.createHeader}
               </header>
               <form>
                 {walletList.length > 0 && (
                   <React.Fragment>
-                    <label htmlFor="address">{strings.address}</label>
+                    <label htmlFor='address'>{strings.address}</label>
                     <select
-                      id="address"
+                      id='address'
                       value={walletList[address]}
                       onChange={this.onChangeAddress}
                     >
@@ -91,23 +91,23 @@ class ModalPassword extends Component {
                       })}
                     </select>
                     <label>Balances</label>
-                    <div className="Balances">
-                      <p className="Balance">NCT: {nct}</p>
-                      <p className="Balance">ETH: {eth}</p>
+                    <div className='Balances'>
+                      <p className='Balance'>NCT: {nct}</p>
+                      <p className='Balance'>ETH: {eth}</p>
                     </div>
                   </React.Fragment>
                 )}
-                <label htmlFor="password">{strings.password}</label>
+                <label htmlFor='password'>{strings.password}</label>
                 <input
-                  id="password"
-                  type="password"
+                  id='password'
+                  type='password'
                   value={password}
                   onChange={this.onChangePassword}
                 />
-                <div className="ModalError">{error && strings.error}</div>
+                <div className='ModalError'>{error && strings.error}</div>
               </form>
-              <p className="ModalMessage">{strings.background}</p>
-              <span className="Modal-Button-Bar">
+              <p className='ModalMessage'>{strings.background}</p>
+              <span className='Modal-Button-Bar'>
                 <Button disabled={unlocking} flat onClick={this.onUnlockClick}>
                   {walletList.length > 0 ? strings.unlock : strings.create}
                 </Button>
