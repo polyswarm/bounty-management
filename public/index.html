@@ -38,4 +38,19 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <script type="text/jsx">
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import {AppContainer} from 'react-hot-loader';
+    
+    const render = () => {
+      const App = require('../src/components/App').default;
+      ReactDOM.render(<AppContainer><App /></AppContainer>, document.getElementById('App'));
+    }
+    
+    render();
+    if (module.hot) {
+      module.hot.accept(render);
+    }
+    </script>
 </html>
