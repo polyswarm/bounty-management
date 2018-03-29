@@ -9,14 +9,31 @@
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/styles/app.css">
+    <link rel="stylesheet" type="text/css" href="/styles/assertion_row.css">
+    <link rel="stylesheet" type="text/css" href="/styles/assertion_table.css">
+    <link rel="stylesheet" type="text/css" href="/styles/bounty_create.css">
+    <link rel="stylesheet" type="text/css" href="/styles/bounty_info.css">
+    <link rel="stylesheet" type="text/css" href="/styles/button.css">
+    <link rel="stylesheet" type="text/css" href="/styles/drop_target.css">
+    <link rel="stylesheet" type="text/css" href="/styles/file_button.css">
+    <link rel="stylesheet" type="text/css" href="/styles/file_list.css">
+    <link rel="stylesheet" type="text/css" href="/styles/file_result.css">
+    <link rel="stylesheet" type="text/css" href="/styles/header.css">
+    <link rel="stylesheet" type="text/css" href="/styles/list_item.css">
+    <link rel="stylesheet" type="text/css" href="/styles/modal_password.css">
+    <link rel="stylesheet" type="text/css" href="/styles/modal.css">
+    <link rel="stylesheet" type="text/css" href="/styles/remove_button.css">
+    <link rel="stylesheet" type="text/css" href="/styles/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="/styles/welcome.css">
     <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
+      Notice the use of  in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
@@ -45,7 +62,7 @@
     
     const render = () => {
       const App = require('../src/components/App').default;
-      ReactDOM.render(<AppContainer><App /></AppContainer>, document.getElementById('App'));
+      ReactDOM.render(<AppContainer><App /></AppContainer>, document.getElementById('root'));
     }
     
     render();

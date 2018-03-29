@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import ListItem from '../ListItem';
 // Component Imports
 import strings from './strings';
-import './styles.css';
 
 class Sidebar extends Component {
   constructor(props) {

@@ -2,7 +2,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 // Component imports
-import './styles.css';
 import strings from './strings';
 
 class FileButton extends Component {

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import RemoveButton from '../RemoveButton';
 // Component imports
 import strings from './strings';
-import './styles.css';
 
 class ListItem extends Component {
   constructor(props) {

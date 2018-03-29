@@ -11,7 +11,6 @@ import Modal from '../Modal';
 import HttpApp from './http';
 import config from './config';
 import strings from './strings';
-import './styles.css';
 
 class App extends Component {
   constructor(props) {

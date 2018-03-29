@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import Button from '../Button';
 // Component Imports
 import strings from './strings';
-import './styles.css';
 
 class Welcome extends Component {
   constructor(props) {

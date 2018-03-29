@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import Button from '../Button';
 // Component imports
 import strings from './strings';
-import './styles.css';
 
 class Modal extends Component {
   constructor(props) {

@@ -4,7 +4,6 @@ import Button from '../Button';
 import PropTypes from 'prop-types';
 // Component imports
 import strings from './strings';
-import './styles.css';
 
 class Header extends Component {
   constructor(props) {

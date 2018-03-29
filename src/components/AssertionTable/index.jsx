@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import AssertionRow from '../AssertionRow';
 // Component imports
 import strings from './strings';
-import './styles.css';
 
 class AssertionTable extends Component {
 
