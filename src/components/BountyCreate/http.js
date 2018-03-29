@@ -12,12 +12,12 @@ class Http {
   }
 
   uploadFiles(files) {
-    return new Promise((resolve, reject) => {
-      const url = this.url+'/artifacts';
-      if(files && files.length > 0) {
+    return new Promise(resolve => {
+      const url = this.url + '/artifacts';
+      if (files && files.length > 0) {
         // Add files
         const formData = new FormData();
-        files.forEach((file) => {
+        files.forEach(file => {
           formData.append('file', file, file.name);
         });
 
@@ -25,7 +25,11 @@ class Http {
         const xhr = new XMLHttpRequest();
 
         // attach listeners
-        xhr.onerror = () => reject(Error('Are you connected to the internet?'));
+        xhr.onerror = () => {
+          throw Error(
+            'Check that IPFS is running and you have an active internet connection.'
+          );
+        };
         xhr.onload = () => {
           resolve(xhr.response);
         };
@@ -35,23 +39,25 @@ class Http {
         xhr.send(formData);
         this.xhr = xhr;
       } else {
-        reject(Error('No files passed.'));
+        throw Error('No files passed.');
       }
     })
       .then(response => JSON.parse(response))
       .then(json => {
-        if (json.status === 'FAIL') {
-          throw Error('Unable to upload files.');
+        if (json.result) {
+          return json.result;
+        } else {
+          throw Error(
+            'Check that IPFS is running and you have an active internet connection.'
+          );
         }
-        return json;
-      })
-      .then(json => json.result);
+      });
   }
 
   uploadBounty(amount, artifact, duration) {
     const url = this.url + '/bounties';
     return new Promise((resolve, reject) => {
-      if(amount && duration && artifact && artifact.length > 0) {
+      if (amount && duration && artifact && artifact.length > 0) {
         const bounty = JSON.stringify({
           amount: amount,
           duration: duration,
@@ -62,18 +68,20 @@ class Http {
         reject('Invalid bounty.');
       }
     })
-      .then(bounty => fetch(url, {
-        headers: {
-          'Content-Type':'application/json'
-        },
-        method: 'post',
-        body: bounty
-      }))
+      .then(bounty =>
+        fetch(url, {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          method: 'post',
+          body: bounty
+        })
+      )
       .then(response => {
         if (response.ok) {
           return response;
         }
-        throw new Error('Error response was not ok');
+        throw new Error(response);
       })
       .then(response => response.json())
       .then(body => body.result);
