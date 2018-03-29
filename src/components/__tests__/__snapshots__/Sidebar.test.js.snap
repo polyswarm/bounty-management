@@ -24,7 +24,7 @@ exports[`marks the selected row as .active 1`] = `
     >
       <img
         alt="Polyswarm logo"
-        src="/img/polyswarm.svg"
+        src="../public/img/polyswarm.svg"
       />
     </header>
     <ul
@@ -88,7 +88,7 @@ exports[`renders without crashing 1`] = `
   >
     <img
       alt="Polyswarm logo"
-      src="/img/polyswarm.svg"
+      src="../public/img/polyswarm.svg"
     >
       
     </img>
@@ -125,7 +125,7 @@ exports[`shows alert when bounty has updated: true 1`] = `
     >
       <img
         alt="Polyswarm logo"
-        src="/img/polyswarm.svg"
+        src="../public/img/polyswarm.svg"
       />
     </header>
     <ul

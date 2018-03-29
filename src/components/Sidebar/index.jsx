@@ -17,7 +17,7 @@ class Sidebar extends Component {
     return (
       <div className='Sidebar'>
         <header className='Sidebar-Header'>
-          <img src='/img/polyswarm.svg'
+          <img src='../public/img/polyswarm.svg'
             alt={strings.logo}/>
         </header>
         <ul className='Sidebar-Content'>

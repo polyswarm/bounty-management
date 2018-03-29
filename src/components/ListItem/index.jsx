@@ -37,7 +37,7 @@ class ListItem extends Component {
         {remove && hover && (
           <span className='ListItem-Remove'>
             <RemoveButton onClick={this.onRemoveHandler}>
-              <img className='redx' src='/img/red-x.svg' alt={strings.remove}/>
+              <img className='redx' src='../public/img/red-x.svg' alt={strings.remove}/>
             </RemoveButton>
           </span>
         )}
