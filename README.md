@@ -38,7 +38,7 @@ If you are running separately, edit the `.env` file to point to where you are ru
 
 ```
     REACT_APP_HOST=http://example.com:80
-    REACT_APP_WS_HOST=http://example.com:80/events
+    REACT_APP_WS_HOST=ws://example.com:80/events
 ```
 
 When running from source, you need node, and yarn installed. Run the following command
