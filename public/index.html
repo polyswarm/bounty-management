@@ -9,8 +9,8 @@
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="shortcut icon" href="./favicon.ico">
     <link rel="stylesheet" type="text/css" href="/styles/app.css">
     <link rel="stylesheet" type="text/css" href="/styles/assertion_row.css">
     <link rel="stylesheet" type="text/css" href="/styles/assertion_table.css">
@@ -59,12 +59,14 @@
     import React from 'react';
     import ReactDOM from 'react-dom';
     import {AppContainer} from 'react-hot-loader';
+    import DotEnv from 'dotenv';
     
     const render = () => {
       const App = require('../src/components/App').default;
       ReactDOM.render(<AppContainer><App /></AppContainer>, document.getElementById('root'));
     }
     
+    DotEnv.config();
     render();
     if (module.hot) {
       module.hot.accept(render);
