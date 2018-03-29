@@ -5,12 +5,14 @@ import ChildProcess from 'child_process';
 import util from 'util';
 import DotEnv from 'dotenv';
 
-const exec = util.promisify(ChildProcess.exec);
+const exec = ChildProcess.exec;
+const execP = util.promisify(ChildProcess.exec);
 DotEnv.config();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
+let backendProcess;
 
 const isDevMode = process.execPath.match(/[\\/]electron/);
 
@@ -38,6 +40,9 @@ const createWindow = async () => {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null;
+    if (backendProcess != null) {
+      backendProcess.kill('SIGINT');
+    }
   });
 };
 
@@ -70,11 +75,11 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 const extractWindowsDaemon = () => {
-  return exec(`unzip backend/${process.env.BACKEND_DIR}-win.zip -d backend/`);
+  return execP(`unzip backend/${process.env.BACKEND_DIR}-win.zip -d backend/`);
 };
 
 const extractLinuxDaemon = () => {
-  return exec(`tar -xf backend/${process.env.BACKEND_DIR}-x86_64-linux.tar.gz -C backend/`);
+  return execP(`tar -xf backend/${process.env.BACKEND_DIR}-x86_64-linux.tar.gz -C backend/`);
 };
 
 const startBackend = () => {
@@ -89,17 +94,18 @@ const startBackend = () => {
     break;
   case 'darwin':
   default:
-    // We don't support these platforms. We should probably let the user know, though.
+    // We don't support these platforms. We should probably let the user know.
     extract = new Promise(() => {
       throw Error('Unsupported Platform.');
     });
   }
 
   extract
-    .then(() => exec(`cp backend/polyswarmd.cfg backend/${process.env.BACKEND_DIR}/`))
-    .then(() => exec('./polyswarmd', {
-      cwd: `./backend/${process.env.BACKEND_DIR}/`
-    }))
+    .then(() => execP(`cp backend/polyswarmd.cfg backend/${process.env.BACKEND_DIR}/`))
+    .then(() => exec('./polyswarmd', {cwd: `./backend/${process.env.BACKEND_DIR}/`}))
+    .then((p) => {
+      backendProcess = p;
+    })
     .catch((error) => {
       console.error(error);
       // console.error('Failed to launch backend service.');
