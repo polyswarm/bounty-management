@@ -12,13 +12,12 @@ DotEnv.config();
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
-let backendProcess;
 
 const isDevMode = process.execPath.match(/[\\/]electron/);
 
 if (isDevMode) enableLiveReload({ strategy: 'react-hmr' });
 
-const createWindow = async () => {
+const createWindow = async (subProcess) => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
@@ -36,13 +35,13 @@ const createWindow = async () => {
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
+    if (subProcess != null) {
+      subProcess.kill('SIGINT');
+    }
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null;
-    if (backendProcess != null) {
-      backendProcess.kill('SIGINT');
-    }
   });
 };
 
@@ -50,9 +49,9 @@ const createWindow = async () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
-  createWindow();
   // Launch the daemon
-  startBackend();  
+  startBackend()
+    .then(p => createWindow(p));
 });
 
 // Quit when all windows are closed.
@@ -100,15 +99,11 @@ const startBackend = () => {
     });
   }
 
-  extract
+  return extract
     .then(() => execP(`cp backend/polyswarmd.cfg backend/${process.env.BACKEND_DIR}/`))
     .then(() => exec('./polyswarmd', {cwd: `./backend/${process.env.BACKEND_DIR}/`}))
-    .then((p) => {
-      backendProcess = p;
-    })
     .catch((error) => {
       console.error(error);
-      // console.error('Failed to launch backend service.');
       app.quit();
     });
 };
