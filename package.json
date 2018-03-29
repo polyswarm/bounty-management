@@ -1,5 +1,6 @@
 {
   "name": "bounty-management",
+  "description": "Tool to post and manage bounties on the PolySwarm Marketplace running on Ethereum.",
   "version": "0.2.0",
   "private": true,
   "proxy": "http://localhost:8080",
