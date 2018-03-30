@@ -4,13 +4,9 @@ This Bounty Management Application is used to post Bounties to the PolySwarm mar
 
 It lets the user select one or many suspicious files for analysis in the marketplace. 
 
-
-
 ## Managing Bounties
 
 On first login users will be greeted with a welcome screen. Click the 'Get Started' button to find the main screen. The Welcome screen is only displayed once.
-
-*If your browser does not support localStorage, you will see that screen every time you start. Also, all stored bounties will be tracked in the application.*
 
 ### Creating Bounties
 
@@ -32,20 +28,43 @@ When a user clicks a file, the scrolling table on the right populates with asser
 
 ## Running the Management Application
 
-If you used the packed application, run it and navigate to http://localhost:8080 in a browser that supports Javascript & localStorage.
+This application uses Electron to operate as a desktop application, no browser required. We provide .deb, .rpm and soon .exe versions of the application. Install the appropriate package for your platform. (Sorry, no macOS, yet). Before you run the application, make sure you have both geth and IPFS running.
 
-If you are running separately, edit the `.env` file to point to where you are running the PolySwarm daemon with geth and IPFS. We provide an example below. Please enter your own domain and instead of example.com:80.
+Start geth with `geth --rpc --rpcapi "eth,web3,personal,net,debug" --ws --wsaddr "0.0.0.0" --wsport 8546 --wsapi "eth,web3,personal,net,debug" --wsorigins "*"`
+
+You don't need to configure anything when using our package releases, but if you decide to customize the build, edit `.env` accordingly.
+
+* REACT_APP_HOST the domain and port for the polyswarm daemon. 
+* REACT_APP_WS_HOST the domain, port and route for polyswarm domain websockets. (Updated with bounties and assertions posted to the market)
+* ETH_URI the domain and port where geth is running.
+* IPFS_URI the domain and port where IPFS is running.
+* BACKEND_DIR the version name of the polyswarm daemon release.
 
 ```
-    REACT_APP_HOST=http://example.com:80
-    REACT_APP_WS_HOST=ws://example.com:80/events
+    REACT_APP_HOST=http://example.com:8080
+    REACT_APP_WS_HOST=ws://example.com:8080/events
+    ETH_URI=http://localhost:8545
+    IPFS_URI=http://localhost:5001
+    BACKEND_DIR=polyswarmd-v0.1
+
 ```
 
-When running from source, you need node, and yarn installed. Run the following command
+You shouldn't 
+Once everything is running & configured, run `bounty-management` to launch the application.
 
-```
-yarn install
-yarn start
+When running from source, you need node, and electron-forge installed. Run `electron-forge start`.
+
+## Running on Rinkeby
+
+If you want to deploy to Rinkeby for some tests, you need to edit a couple things. 
+
+1. Add the `--rinkeby` option to geth. 
+2. Edit the polyswarmd.cfg file (example below) with Rinkeby contract addresses (We don't provide any, but you can deploy with truffle).
+
+```polyswarm.cfg
+NECTAR_TOKEN_ADDRESS = '0x0000000000000000000000000000000000000000'
+BOUNTY_REGISTRY_ADDRESS = '0x0000000000000000000000000000000000000000'
+
 ```
 
 ## Cost
