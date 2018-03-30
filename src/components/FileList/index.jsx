@@ -7,7 +7,6 @@ import Button from '../Button';
 import FileResult from '../FileResult';
 // Component Imports
 import strings from './strings';
-import './styles.css';
 
 class FileList  extends React.Component {
   constructor(props) {

@@ -100,7 +100,7 @@ exports[`shows remove button when hovered 1`] = `
           <img
             alt="remove"
             className="redx"
-            src="/img/red-x.svg"
+            src="../public/img/red-x.svg"
           />
         </button>
       </RemoveButton>

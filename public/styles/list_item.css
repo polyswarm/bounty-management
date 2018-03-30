@@ -1,0 +1,55 @@
+.ListItem {
+  background-clip: border-box;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  font-size: 13px;
+  height: 48px;
+  line-height: 46px;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.ListItem:hover {
+  background-color: rgba(0, 0, 0, .1);
+}
+
+.active {
+  color: rgb(46, 255, 109);
+  font-weight: bold;
+}
+
+.alternate {
+  background-color: rgba(0, 0, 0, .2);
+  color: #8500ff;
+  font-weight: bold;
+}
+
+.alert {
+  background-color: rgb(46, 255, 109);
+  display: inline-block;
+  height: 100%;
+  width: 10px;
+}
+
+.ListItem-Child {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  padding: 0 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.ListItem-Remove {
+  z-index: 1;
+}
+
+.redx {
+  height: 48px;
+}

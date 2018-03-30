@@ -9,15 +9,14 @@ import Welcome from '../Welcome';
 import Modal from '../Modal';
 // Component imports
 import HttpApp from './http';
-import config from './config';
+import config from '../../config';
 import strings from './strings';
-import './styles.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     const {bounties, first} = this.preloadLocalStorage();
-    this.http = new HttpApp(config.url, config.wsUrl);
+    this.http = new HttpApp(config.host, config.websocket_host);
     this.state = {
       isUnlocked: false,
       walletList: [],
@@ -55,7 +54,7 @@ class App extends Component {
   }
 
   render() {
-    const {url} = config;
+    const {host: url} = config;
     const { state: { active, bounties, create, first, isUnlocked, walletList,
       errorMessage } } = this;
 
@@ -74,7 +73,7 @@ class App extends Component {
               remove={this.onRemoveBounty}
               select={this.onSelectBounty}/>
             <Header title={(bounties.length === 0 || create || active < 0) ? strings.create : bounties[active].guid}
-              create={create}
+              create={create || bounties.length === 0 || active < 0}
               onClick={this.onCreateBounty}/>
             <div className='App-Content'>
               { (bounties.length === 0 || create || active < 0 ) && (
@@ -153,7 +152,6 @@ class App extends Component {
   }
 
   updateOnAssertion(assertion) {
-    console.info(assertion);
     const bounties = this.state.bounties.slice();
     const guid = assertion.guid;
     const index = bounties.findIndex((bounty) => bounty.guid === guid);

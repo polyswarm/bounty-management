@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import FileButton from '../FileButton';
 // Component imports
 import strings from './strings';
-import './styles.css';
 
 class DropTarget extends Component {
   constructor(props) {

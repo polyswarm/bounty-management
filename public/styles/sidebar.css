@@ -1,0 +1,32 @@
+.Sidebar {
+  background-color: #8500ff;
+  border-right: 2px solid #9c38ff;
+  display: inline-block;
+  height: 100%;
+  left: 0;
+  max-width: 300px;
+  position: relative;
+  top: 0;
+}
+
+.Sidebar-Content {
+  color: white;
+  height: 100%;
+  overflow: auto;
+}
+
+.Sidebar-Header > img {
+  box-sizing: border-box;
+  height: inherit;
+  left: 0;
+  padding: 0 10px;
+  width: 75%;
+}
+
+.Sidebar-Header {
+  background-image: url('../img/hexgrid_2x.png');
+  background-size: 74px 85px;
+  border-bottom: 2px solid #9c38ff;
+  display: block;
+  height: 56px;
+}
