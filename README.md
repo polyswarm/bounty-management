@@ -40,13 +40,12 @@ You don't need to configure anything when using our package releases, but if you
 * IPFS_URI the domain and port where IPFS is running.
 * BACKEND_DIR the version name of the polyswarm daemon release.
 
-```
-    REACT_APP_HOST=http://example.com:8080
-    REACT_APP_WS_HOST=ws://example.com:8080/events
-    ETH_URI=http://localhost:8545
-    IPFS_URI=http://localhost:5001
-    BACKEND_DIR=polyswarmd-v0.1
-
+```.env
+REACT_APP_HOST=http://example.com:8080
+REACT_APP_WS_HOST=ws://example.com:8080/events
+ETH_URI=http://localhost:8545
+IPFS_URI=http://localhost:5001
+BACKEND_DIR=polyswarmd-v0.1
 ```
 
 You shouldn't 
@@ -64,7 +63,6 @@ If you want to deploy to Rinkeby for some tests, you need to edit a couple thing
 ```polyswarm.cfg
 NECTAR_TOKEN_ADDRESS = '0x0000000000000000000000000000000000000000'
 BOUNTY_REGISTRY_ADDRESS = '0x0000000000000000000000000000000000000000'
-
 ```
 
 ## Cost
