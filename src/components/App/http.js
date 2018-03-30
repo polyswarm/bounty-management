@@ -81,14 +81,7 @@ class HttpApp {
       })
       .then(response => response.json())
       .then(json => json.result)
-      .then(links => {
-        return Promise.all(links.map((link, index) => {
-          return fetch(this.url+'/artifacts/'+bounty.uri+'/'+index)
-            .then(response => response.text());
-        }));
-      })
       .then(filesnames => {
-        filesnames.sort();
         return filesnames.map((name) => {
           const trimmed = name.trim();
           return {name: trimmed, good: 0, total: 0, assertions: []};
