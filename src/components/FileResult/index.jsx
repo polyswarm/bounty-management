@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// Component Imports
-import './styles.css';
 
 class FileResult extends Component {
 

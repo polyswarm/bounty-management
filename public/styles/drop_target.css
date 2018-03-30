@@ -23,6 +23,6 @@
 }
 
 .drag {
-  background-image: url('/img/hexgrid_2x.png');
+  background-image: url('../img/hexgrid_2x.png');
   cursor: copy;
 }

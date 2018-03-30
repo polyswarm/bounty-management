@@ -8,7 +8,6 @@ import Button from '../Button';
 import ModalPassword from '../ModalPassword';
 // Component imports
 import strings from './strings';
-import './styles.css';
 import Http from './http';
 
 class BountyCreate extends Component {

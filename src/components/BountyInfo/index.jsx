@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 // Bounty imports
 import FileList from '../FileList';
 import AssertionTable from '../AssertionTable';
-// Component Imports
-import './styles.css';
 
 class BountyInfo extends Component {
   constructor(props) {

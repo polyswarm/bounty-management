@@ -4,7 +4,6 @@ import Button from '../Button';
 import PropTypes from 'prop-types';
 // Component imports
 import strings from './strings';
-import './styles.css';
 
 class Header extends Component {
   constructor(props) {
@@ -16,7 +15,7 @@ class Header extends Component {
     const { props: { title, create } } = this;
     return (
       <header className='Header'>
-        <h1>{title}</h1>
+        <h3>{title}</h3>
         {!create && (
           <Button className='Header-Button' onClick={this.onClickHandler}>
             {strings.newBounty}

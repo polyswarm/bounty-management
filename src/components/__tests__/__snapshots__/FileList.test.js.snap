@@ -85,7 +85,7 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
                 <img
                   alt="remove"
                   className="redx"
-                  src="/img/red-x.svg"
+                  src="../public/img/red-x.svg"
                 />
               </button>
             </RemoveButton>

@@ -8,6 +8,9 @@
 
 # production
 /build
+/out
+/backend
+/polyswarmd
 
 # misc
 .DS_Store

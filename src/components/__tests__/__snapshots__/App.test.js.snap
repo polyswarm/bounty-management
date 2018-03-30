@@ -65,7 +65,7 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
         >
           <img
             alt="Polyswarm logo"
-            src="/img/polyswarm.svg"
+            src="../public/img/polyswarm.svg"
           />
         </header>
         <ul
@@ -128,7 +128,7 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
         isUnlocked={false}
         onError={[Function]}
         onWalletChange={[Function]}
-        url=""
+        url="http://localhost:8080"
         walletList={Array []}
       >
         <div
@@ -136,7 +136,7 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
         >
           <ModalPassword
             onWalletChange={[Function]}
-            url=""
+            url="http://localhost:8080"
             walletList={Array []}
           >
             <div
@@ -271,7 +271,7 @@ exports[`shows BountyInfo when at least one bounty & active selects it 1`] = `
         >
           <img
             alt="Polyswarm logo"
-            src="/img/polyswarm.svg"
+            src="../public/img/polyswarm.svg"
           />
         </header>
         <ul

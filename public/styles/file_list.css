@@ -1,5 +1,4 @@
 .File-List-Header {
-  align-items: center;
   border-bottom: 2px solid #dfdfdf;
   color: #8500ff;
   display: flex;
@@ -28,9 +27,10 @@
 
 .File-List-Header > button {
   background-color: #ff1a00;
+  box-sizing: border-box;
   color: white;
-  float: right;
   margin-right: 15px;
+  margin-top: 10px;
   max-width: 120px;
   padding: 0;
 }

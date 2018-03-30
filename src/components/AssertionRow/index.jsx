@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // Component Imports
 import strings from './strings';
-import './styles.css';
 
 class AssertionRow extends Component {
 

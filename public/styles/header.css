@@ -1,7 +1,7 @@
 .Header {
   align-items: center;
   background-color: #f5f5f5;
-  background-image: url('/img/gray_hexgrid_2x.png');
+  background-image: url('../img/gray_hexgrid_2x.png');
   background-size: 74px 85px;
   border-bottom: 1px solid #dfdfdf;
   box-sizing: border-box;
@@ -9,6 +9,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
+  white-space: nowrap;
 }
 
 .Header > button {

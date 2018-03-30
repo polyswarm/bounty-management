@@ -7,7 +7,6 @@ import Button from '../Button';
 // Component imports
 import HttpAccount from './http';
 import strings from './strings';
-import './styles.css';
 
 class ModalPassword extends Component {
   constructor(props) {

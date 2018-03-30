@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import RemoveButton from '../RemoveButton';
 // Component imports
 import strings from './strings';
-import './styles.css';
 
 class ListItem extends Component {
   constructor(props) {
@@ -38,7 +37,7 @@ class ListItem extends Component {
         {remove && hover && (
           <span className='ListItem-Remove'>
             <RemoveButton onClick={this.onRemoveHandler}>
-              <img className='redx' src='/img/red-x.svg' alt={strings.remove}/>
+              <img className='redx' src='../public/img/red-x.svg' alt={strings.remove}/>
             </RemoveButton>
           </span>
         )}
