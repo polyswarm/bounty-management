@@ -1,23 +1,24 @@
 import { app, BrowserWindow } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import { enableLiveReload } from 'electron-compile';
-import ChildProcess from 'child_process';
+import { exec, spawn } from 'child_process';
 import util from 'util';
 import DotEnv from 'dotenv';
+import ps from 'ps-node';
 
-const exec = ChildProcess.exec;
-const execP = util.promisify(ChildProcess.exec);
+const execP = util.promisify(exec);
 DotEnv.config();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
+let pid;
 
 const isDevMode = process.execPath.match(/[\\/]electron/);
 
 if (isDevMode) enableLiveReload({ strategy: 'react-hmr' });
 
-const createWindow = async (subProcess) => {
+const createWindow = async () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
@@ -33,11 +34,21 @@ const createWindow = async (subProcess) => {
     mainWindow.webContents.openDevTools();
   }
 
+  mainWindow.on('close', (e) => {
+    if (pid != null) {
+      e.preventDefault();
+      ps.kill(pid, (err) => {
+        if (err) {
+          console.error(err);
+        }
+        pid = null;
+        mainWindow.close();
+      });
+    }
+  });
+
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
-    if (subProcess != null) {
-      subProcess.kill('SIGINT');
-    }
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
@@ -51,7 +62,10 @@ const createWindow = async (subProcess) => {
 app.on('ready', () => {
   // Launch the daemon
   startBackend()
-    .then(p => createWindow(p));
+    .then(p => {
+      pid = p;
+    })
+    .then(() => createWindow());
 });
 
 // Quit when all windows are closed.
@@ -74,11 +88,11 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 const extractWindowsDaemon = () => {
-  return execP(`unzip backend/${process.env.BACKEND_DIR}-win.zip -d backend/`);
+  return execP(`unzip ${__dirname}/../backend/${process.env.DAEMON_RELEASE}-win.zip -d ${__dirname}/../backend/`);
 };
 
 const extractLinuxDaemon = () => {
-  return execP(`tar -xf backend/${process.env.BACKEND_DIR}-x86_64-linux.tar.gz -C backend/`);
+  return execP(`tar -xf ${__dirname}/../backend/${process.env.DAEMON_RELEASE}-x86_64-linux.tar.gz -C ${__dirname}/../backend/`);
 };
 
 const startBackend = () => {
@@ -99,9 +113,17 @@ const startBackend = () => {
     });
   }
 
+  const spawnOptions = {
+    detached: true,
+    cwd: `${__dirname}/../backend/${process.env.BACKEND_DIR}/`,
+    env: process.env,
+    stdio: 'inherit',
+  };
+
   return extract
-    .then(() => execP(`cp backend/polyswarmd.cfg backend/${process.env.BACKEND_DIR}/`))
-    .then(() => exec('./polyswarmd', {cwd: `./backend/${process.env.BACKEND_DIR}/`}))
+    .then(() => execP(`cp ${__dirname}/../backend/polyswarmd.cfg ${__dirname}/../backend/${process.env.BACKEND_DIR}/`))
+    .then(() => spawn('./polyswarmd',[], spawnOptions))
+    .then((p) => p.pid)
     .catch((error) => {
       console.error(error);
       app.quit();
