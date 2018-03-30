@@ -9,14 +9,14 @@ import Welcome from '../Welcome';
 import Modal from '../Modal';
 // Component imports
 import HttpApp from './http';
-import config from './config';
+import config from '../../config';
 import strings from './strings';
 
 class App extends Component {
   constructor(props) {
     super(props);
     const {bounties, first} = this.preloadLocalStorage();
-    this.http = new HttpApp(config.url, config.wsUrl);
+    this.http = new HttpApp(config.host, config.websocket_host);
     this.state = {
       isUnlocked: false,
       walletList: [],
@@ -54,7 +54,7 @@ class App extends Component {
   }
 
   render() {
-    const {url} = config;
+    const {host: url} = config;
     const { state: { active, bounties, create, first, isUnlocked, walletList,
       errorMessage } } = this;
 

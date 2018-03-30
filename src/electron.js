@@ -3,11 +3,9 @@ import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-insta
 import { enableLiveReload } from 'electron-compile';
 import { exec, spawn } from 'child_process';
 import util from 'util';
-import DotEnv from 'dotenv';
 import ps from 'ps-node';
-
+import config from './config';
 const execP = util.promisify(exec);
-DotEnv.config();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -92,7 +90,7 @@ const extractWindowsDaemon = () => {
 };
 
 const extractLinuxDaemon = () => {
-  return execP(`tar -xf ${__dirname}/../backend/${process.env.DAEMON_RELEASE}-x86_64-linux.tar.gz -C ${__dirname}/../backend/`);
+  return execP(`tar -xf ${__dirname}/../backend/${config.archive}-x86_64-linux.tar.gz -C ${__dirname}/../backend/`);
 };
 
 const startBackend = () => {
@@ -115,13 +113,12 @@ const startBackend = () => {
 
   const spawnOptions = {
     detached: true,
-    cwd: `${__dirname}/../backend/${process.env.BACKEND_DIR}/`,
-    env: process.env,
-    stdio: 'inherit',
+    cwd: `${__dirname}/../backend/${config.daemon}/`,
+    env: process.env
   };
 
   return extract
-    .then(() => execP(`cp ${__dirname}/../backend/polyswarmd.cfg ${__dirname}/../backend/${process.env.BACKEND_DIR}/`))
+    .then(() => execP(`cp ${__dirname}/../backend/polyswarmd.cfg ${__dirname}/../backend/${config.daemon}/`))
     .then(() => spawn('./polyswarmd',[], spawnOptions))
     .then((p) => p.pid)
     .catch((error) => {
