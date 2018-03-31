@@ -15,7 +15,7 @@ class Header extends Component {
     const { props: { title, create } } = this;
     return (
       <header className='Header'>
-        <h1>{title}</h1>
+        <h3>{title}</h3>
         {!create && (
           <Button className='Header-Button' onClick={this.onClickHandler}>
             {strings.newBounty}
