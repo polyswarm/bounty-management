@@ -1,6 +1,6 @@
 {
   "name": "bounty-manager",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "proxy": "http://localhost:8080",
   "dependencies": {
@@ -38,9 +38,8 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
+    "start": "npm-run-all -p start-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-js",
     "test": "react-scripts test --env=jsdom",

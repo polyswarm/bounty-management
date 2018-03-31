@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: row;
   height: 48px;
-  line-height: 46px;
   justify-content: space-between;
   overflow: hidden;
   position: relative;
@@ -35,7 +34,9 @@
 
 .ListItem-Child {
   box-sizing: border-box;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   height: 100%;
   left: 0;
   margin: 0;
@@ -43,6 +44,7 @@
   position: absolute;
   right: 0;
   top: 0;
+  word-wrap: break-word;
 }
 
 .ListItem-Remove {
@@ -51,5 +53,6 @@
 
 .redx {
   background: url('/img/red-x.svg');
-  height: 48px;
+  height: 32px;
+  margin-right: -3px;
 }
