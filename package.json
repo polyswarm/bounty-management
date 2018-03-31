@@ -31,6 +31,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "csslint": "^1.0.5",
+    "deasync": "^0.1.12",
     "electron-forge": "^5.1.1",
     "electron-prebuilt-compile": "1.8.4",
     "enzyme": "^3.3.0",
@@ -50,21 +51,24 @@
     "lint-staged": "^7.0.0",
     "npm-run-all": "^4.1.2",
     "react-scripts": "1.1.1",
-    "react-test-renderer": "^16.2.0"
+    "react-test-renderer": "^16.2.0",
+    "rimraf": "^2.6.2",
+    "tar": "^4.4.1"
   },
   "scripts": {
     "precommit": "lint-staged",
     "start-js": "react-scripts start",
-    "start": "npm-run-all -p start-js",
+    "start": "npm-run-all -p daemon-extract electron-start",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "start-electron": "electron-forge start",
-    "package-electron": "electron-forge package",
-    "make-electron": "electron-forge make",
-    "publish-electron": "electron-forge publish",
-    "lint-electron": "eslint --cache --color --ext .jsx,.js src"
+    "daemon-extract": "node .buildDaemon.js",
+    "electron-start": "electron-forge start",
+    "electron-package": "electron-forge package",
+    "electron-make": "electron-forge make",
+    "electron-publice": "electron-forge publish",
+    "electron-list": "eslint --cache --color --ext .jsx,.js src"
   },
   "config": {
     "forge": {
@@ -81,7 +85,10 @@
         ]
       },
       "electronPackagerConfig": {
-        "packageManager": "yarn"
+        "packageManager": "yarn",
+        "afterCopy": [
+          "./.extractDaemon.js"
+        ]
       },
       "electronWinstallerConfig": {
         "name": "bounty_management"

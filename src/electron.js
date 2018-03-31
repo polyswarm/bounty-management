@@ -1,11 +1,9 @@
 import { app, BrowserWindow } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import { enableLiveReload } from 'electron-compile';
-import { exec, spawn } from 'child_process';
-import util from 'util';
+import { spawn } from 'child_process';
 import ps from 'ps-node';
 import config from './config';
-const execP = util.promisify(exec);
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -22,9 +20,6 @@ const createWindow = async () => {
     width: 800,
     height: 600,
   });
-
-  // and load the index.html of the app.
-  mainWindow.loadURL(`file:${__dirname}/../public/index.html`);
 
   // Open the DevTools.
   if (isDevMode) {
@@ -52,6 +47,9 @@ const createWindow = async () => {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+
+  // and load the index.html of the app.
+  mainWindow.loadURL(`file:${__dirname}/../public/index.html`);
 };
 
 // This method will be called when Electron has finished
@@ -63,7 +61,11 @@ app.on('ready', () => {
     .then(p => {
       pid = p;
     })
-    .then(() => createWindow());
+    .then(() => {
+      setTimeout(() => {
+        createWindow();
+      }, 100);
+    });
 });
 
 // Quit when all windows are closed.
@@ -85,44 +87,15 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
-const extractWindowsDaemon = () => {
-  return execP(`unzip ${__dirname}/../backend/${process.env.DAEMON_RELEASE}-win.zip -d ${__dirname}/../backend/`);
-};
-
-const extractLinuxDaemon = () => {
-  return execP(`tar -xf ${__dirname}/../backend/${config.archive}-x86_64-linux.tar.gz -C ${__dirname}/../backend/`);
-};
-
 const startBackend = () => {
-  let extract;
-  const platform = process.platform;
-  switch (platform) {
-  case 'linux':
-    extract = extractLinuxDaemon();
-    break;
-  case 'win32':
-    extract = extractWindowsDaemon();
-    break;
-  case 'darwin':
-  default:
-    // We don't support these platforms. We should probably let the user know.
-    extract = new Promise(() => {
-      throw Error('Unsupported Platform.');
-    });
-  }
-
-  const spawnOptions = {
-    detached: true,
-    cwd: `${__dirname}/../backend/${config.daemon}/`,
-    env: process.env
-  };
-
-  return extract
-    .then(() => execP(`cp ${__dirname}/../backend/polyswarmd.cfg ${__dirname}/../backend/${config.daemon}/`))
-    .then(() => spawn('./polyswarmd',[], spawnOptions))
-    .then((p) => p.pid)
-    .catch((error) => {
-      console.error(error);
-      app.quit();
-    });
+  return new Promise((resolve) => {
+    const spawnOptions = {
+      detached: true,
+      cwd: `${__dirname}/../${config.daemon}/`,
+      env: process.env,
+      stdio: 'inherit'
+    };
+    const daemon = spawn('./polyswarmd',[], spawnOptions);
+    resolve(daemon.pid);
+  });
 };
