@@ -3,6 +3,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
+  font-size: 13px;
   height: 48px;
   line-height: 46px;
   justify-content: space-between;
