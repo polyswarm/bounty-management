@@ -6,6 +6,7 @@ module.exports = (buildPath, electronVersion, platform, arch, callback) => {
     const deasync = require('deasync');
 
     const tarXSync = deasync(tar.x);
+    const rimrafSync = deasync(rimraf);
 
     let tail;
     switch (platform) {
@@ -18,10 +19,13 @@ module.exports = (buildPath, electronVersion, platform, arch, callback) => {
         throw Error(`Application does not support platform ${platform}`);
     }
 
+    
     const filename = 'polyswarmd-electron-x86_64-linux.tar.gz';
     const app = path.resolve(buildPath);
     const backend = path.resolve(app, 'backend');
     const polyswarmd = path.resolve(app,  'polyswarmd');
+
+    rimrafSync(polyswarmd);
     fs.mkdirSync(polyswarmd);
     tarXSync({
       file: path.resolve(backend, filename),
