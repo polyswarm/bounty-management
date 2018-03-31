@@ -11,7 +11,7 @@ it('renders without crashing', () => {
 it('shows title props', () => {
   const wrapper = render(<Header title={'Title'}/>);
 
-  expect(wrapper.find('h1').text()).toBe('Title');
+  expect(wrapper.find('h3').text()).toBe('Title');
 
   expect(renderToJson(wrapper)).toMatchSnapshot();
 });
