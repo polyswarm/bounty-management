@@ -4,9 +4,9 @@ exports[`renders without crashing 1`] = `
 <header
   class="Header"
 >
-  <h1>
+  <h3>
     
-  </h1>
+  </h3>
   <button
     class="Button"
   >
@@ -19,9 +19,9 @@ exports[`shows title props 1`] = `
 <header
   class="Header"
 >
-  <h1>
+  <h3>
     Title
-  </h1>
+  </h3>
   <button
     class="Button"
   >

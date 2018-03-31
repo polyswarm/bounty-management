@@ -40,6 +40,7 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
   >
     <Modal
       message=""
+      title="Error: Failed to Post Bounty"
     >
       <div
         className="Modal"
@@ -97,27 +98,16 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
       </div>
     </Sidebar>
     <Header
-      create={false}
+      create={true}
       onClick={[Function]}
       title="Create a Bounty"
     >
       <header
         className="Header"
       >
-        <h1>
+        <h3>
           Create a Bounty
-        </h1>
-        <Button
-          className="Header-Button"
-          onClick={[Function]}
-        >
-          <button
-            className="Button"
-            onClick={[Function]}
-          >
-            + Bounty
-          </button>
-        </Button>
+        </h3>
       </header>
     </Header>
     <div
@@ -246,6 +236,7 @@ exports[`shows BountyInfo when at least one bounty & active selects it 1`] = `
   >
     <Modal
       message=""
+      title="Error: Failed to Post Bounty"
     >
       <div
         className="Modal"
@@ -310,9 +301,9 @@ exports[`shows BountyInfo when at least one bounty & active selects it 1`] = `
       <header
         className="Header"
       >
-        <h1>
+        <h3>
           asdf
-        </h1>
+        </h3>
         <Button
           className="Header-Button"
           onClick={[Function]}
