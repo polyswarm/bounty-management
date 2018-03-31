@@ -17,6 +17,7 @@ if (isDevMode) enableLiveReload({ strategy: 'react-hmr' });
 const createWindow = async () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
+    show: false,
     width: 1400,
     height: 800,
   });
@@ -24,7 +25,6 @@ const createWindow = async () => {
   // Open the DevTools.
   if (isDevMode) {
     await installExtension(REACT_DEVELOPER_TOOLS);
-    mainWindow.webContents.openDevTools();
   }
 
   mainWindow.on('close', (e) => {
@@ -48,6 +48,11 @@ const createWindow = async () => {
     mainWindow = null;
   });
 
+  mainWindow.on('ready-to-show', () => {
+    mainWindow.show();
+    mainWindow.reload();
+  });
+
   // and load the index.html of the app.
   mainWindow.loadURL(`file:${__dirname}/../public/index.html`);
 };
@@ -56,16 +61,10 @@ const createWindow = async () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
-  // Launch the daemon
+  createWindow();
   startBackend()
-    .then(p => {
+    .then((p) => {
       pid = p;
-    })
-    .then(() => {
-      // Sometimes the window is not actually ready yet.
-      setTimeout(() => {
-        createWindow();
-      }, 100);
     });
 });
 
