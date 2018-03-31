@@ -14,11 +14,11 @@ The create bounties screen is the first screen after welcome on the first visit,
 
 This screen has a large drop target and list of files, and a button to create the bounty. The create button will remain disabled until the user adds some files to be uploaded.
 
-A user adds files by either dragging and dropping the files into the light-purple drop target, or selecting files with the button inside. When ready to create, click the create button. This will open a modal window for unlocking your account. Select your desired account from the drop down, enter your password and click unlock. If you do not have any accounts in geth, you will have the opportunity to create an account. Enter your desired password, and the account will be created for you. However, this account will not be able to post any bounties until it has been funded with ETH for gas, and NCT for the bounty. 
+A user adds files by either dragging and dropping the files into the light-purple drop target, or selecting files with the button inside. When ready to create, click the create button. This will open a modal window for unlocking the account. Select the desired account from the drop down, enter the password and click unlock. If there are no accounts in geth, the application will provide the opportunity to create an account. Enter the desired password, and the account will be created. However, this account will not be able to post any bounties until it has been funded with ETH for gas, and NCT for the bounty. 
 
-With a funded account, after it is unlocked it will upload the files and post the bounty. Due to the nature of blockchain, this will take a fair bit of time. During the wait you are free to look at any existing bounties you have created. When the bounty finishes posting, the sidebar will show the new bounty GUID. 
+With a funded account, after it is unlocked it will upload the files and post the bounty. Due to the nature of blockchain, this will take a fair bit of time. During the wait feel free to look at any existing bounties that been created. When the bounty finishes posting, the sidebar will show the new bounty GUID. 
 
-In the event of an error, a modal window will popup letting you know about the failure.
+In the event of an error, a modal window will popup letting the user know about the failure.
 
 ### Viewing Bounties
 
@@ -28,37 +28,27 @@ When a user clicks a file, the scrolling table on the right populates with asser
 
 ## Running the Management Application
 
-This application uses Electron to operate as a desktop application, no browser required. We provide .deb, .rpm and soon .exe versions of the application. Install the appropriate package for your platform. (Sorry, no macOS, yet). Before you run the application, make sure you have both geth and IPFS running.
+This application uses Electron to operate as a desktop application, no browser required. We provide .deb, .rpm and soon .exe versions of the application. Install the appropriate package for the host operating system. (Sorry, no macOS, yet). Before running the application, make sure  both geth and IPFS are running.
 
 Start geth with `geth --rpc --rpcapi "eth,web3,personal,net,debug" --ws --wsaddr "0.0.0.0" --wsport 8546 --wsapi "eth,web3,personal,net,debug" --wsorigins "*"`
 
-You don't need to configure anything when using our package releases, but if you decide to customize the build, edit `.env` accordingly.
-
-* REACT_APP_HOST the domain and port for the polyswarm daemon. 
-* REACT_APP_WS_HOST the domain, port and route for polyswarm domain websockets. (Updated with bounties and assertions posted to the market)
-* ETH_URI the domain and port where geth is running.
-* IPFS_URI the domain and port where IPFS is running.
-* BACKEND_DIR the version name of the polyswarm daemon release.
+We expect geth rpc top be on 8545 and IPFS on 5001. If  change those, please set the ETH_URI and IPFS_URL accordingly. Examples are below.
 
 ```.env
-REACT_APP_HOST=http://example.com:8080
-REACT_APP_WS_HOST=ws://example.com:8080/events
 ETH_URI=http://localhost:8545
 IPFS_URI=http://localhost:5001
-BACKEND_DIR=polyswarmd-v0.1
 ```
 
-You shouldn't 
 Once everything is running & configured, run `bounty-management` to launch the application.
 
-When running from source, you need node, and electron-forge installed. Run `electron-forge start`.
+When running from source, install node, and electron-forge. Run `electron-forge start` to launch.
 
 ## Running on Rinkeby
 
-If you want to deploy to Rinkeby for some tests, you need to edit a couple things. 
+If a user needs to run tests and need to deploy to Rinkeby for some tests, there are a couple things to change.
 
 1. Add the `--rinkeby` option to geth. 
-2. Edit the polyswarmd.cfg file (example below) with Rinkeby contract addresses (We don't provide any, but you can deploy with truffle).
+2. Edit the polyswarmd.cfg file (example below) with Rinkeby contract addresses (We don't provide any, but new contracts can be deployed with truffle).
 
 ```polyswarm.cfg
 NECTAR_TOKEN_ADDRESS = '0x0000000000000000000000000000000000000000'
