@@ -24,9 +24,7 @@ class HttpAccount {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       },
-      body: {
-        password: password
-      }
+      body: JSON.stringify({'password': password})
     })
       .then(response => response.ok)
       .catch(() => false);
