@@ -1,5 +1,8 @@
 const fs = require('fs');
 const path = require('path');
+const rimraf = require('rimraf');
+const deasync = require('deasync');
+const rimrafSync = deasync(rimraf);
 
 module.exports = (buildPath, electronVersion, platform, arch, callback) => {
   let tail;
@@ -8,19 +11,35 @@ module.exports = (buildPath, electronVersion, platform, arch, callback) => {
       breakoutLinux(buildPath);
       break;
     case 'win32':
+      breakoutWindows(buildPath);
+      break;
     case 'darwin':
     default:
       throw Error(`Application does not support platform ${platform}`);
   }
+  callback();
+}
+
+breakoutWindows = (buildPath) => {
+  const unzip = require('adm-zip');
+  const filename = 'polyswarmd-electron-win.zip';
+  const app = path.resolve(buildPath);
+  const backend = path.resolve(app, 'backend');
+  const polyswarmd = path.resolve(app,  'polyswarmd');
+
+  const zip = new unzip(path.resolve(backend, filename))
+
+  rimrafSync(polyswarmd);
+  fs.mkdirSync(polyswarmd);
+  const entries = zip.getEntries();
+  entries.forEach((e) => {
+    zip.extractEntryTo(e, polyswarmd, false, true);
+  });
 }
 
 breakoutLinux = (buildPath) => {
   const tar = require('tar');
-  const rimraf = require('rimraf');
-  const deasync = require('deasync');
-
   const tarXSync = deasync(tar.x);
-  const rimrafSync = deasync(rimraf);
 
   const filename = 'polyswarmd-electron-x86_64-linux.tar.gz';
   const app = path.resolve(buildPath);
@@ -39,8 +58,6 @@ breakoutLinux = (buildPath) => {
   const cfg = path.resolve(backend, 'polyswarmd.cfg');
   fs.copyFileSync(cfg, dest);
   if (buildPath.match(/[\\/]tmp/)) {
-    rimraf(backend, () => {
-      callback();
-    });
-  }
+    rimrafSync(backend)
+   }
 }

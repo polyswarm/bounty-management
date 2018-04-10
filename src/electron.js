@@ -4,6 +4,7 @@ import { enableLiveReload } from 'electron-compile';
 import { spawn } from 'child_process';
 import ps from 'ps-node';
 import config from './config';
+import path from 'path';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -62,7 +63,7 @@ const createWindow = async () => {
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
   createWindow();
-  startBackend()
+  startBackend(process.platform)
     .then((p) => {
       pid = p;
     });
@@ -87,15 +88,30 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
-const startBackend = () => {
+const startBackend = (platform) => {
   return new Promise((resolve) => {
     const spawnOptions = {
       detached: true,
-      cwd: `${__dirname}/../${config.daemon}/`,
+      cwd: path.resolve(`${__dirname}`, '..', `${config.daemon}/`),
       env: process.env,
       stdio: 'inherit'
     };
-    const daemon = spawn('./polyswarmd',[], spawnOptions);
+    let command;
+    const args = [];
+    switch (platform) {
+    case 'win32':
+      command = 'run';
+      args.push('polyswarmd.exe');
+      break;
+    case 'linux':
+      command = './polyswarmd';
+      break;
+    case 'darwin':
+    default:
+      throw Error(`Application does not support platform ${platform}`);
+    }
+    
+    const daemon = spawn(command,args, spawnOptions);
     resolve(daemon.pid);
   });
 };
