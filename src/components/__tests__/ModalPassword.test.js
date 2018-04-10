@@ -127,6 +127,8 @@ it('closes the modal on click outside the main content', () => {
   expect(wrapper.find('.ModalBackground')).toHaveLength(0);
 });
 
+
+
 it('hides the select when wallet list is empty', () => {
   const walletList = [];
   const wrapper = mount(<ModalPassword walletList={walletList} />);
@@ -247,6 +249,45 @@ it('starts unlocking when Unlock is pressed with wallets', () => {
   wrapper.find('.flat').simulate('click');
 
   expect(setState).toHaveBeenCalledWith({unlocking: true, error: false});
+});
+
+it('tries to unlock when enter is pressed inside the text field with wallets', () => {
+  const onUnlockClick = jest.spyOn(ModalPassword.prototype, 'onUnlockClick');
+  const url = 'https://localhost:8080';
+  const walletList = ['asdf','demo','omed'];
+  const wrapper = mount(<ModalPassword url={url} walletList={walletList}/>);
+  wrapper.setState({open: true, error: false});
+  onUnlockClick.mockClear();
+
+  wrapper.find('#password').simulate('keypress', {key: 'Enter'});
+
+  expect(onUnlockClick).toHaveBeenCalledTimes(1);
+});
+
+it('tries to create when enter is pressed inside the password field without wallets', () => {
+  const onUnlockClick = jest.spyOn(ModalPassword.prototype, 'onUnlockClick');
+  const url = 'https://localhost:8080';
+  const walletList = [];
+  const wrapper = mount(<ModalPassword url={url} walletList={walletList}/>);
+  wrapper.setState({open: true, error: false});
+  onUnlockClick.mockClear();
+
+  wrapper.find('#password').simulate('keypress', {key: 'Enter'});
+
+  expect(onUnlockClick).toHaveBeenCalledTimes(1);
+});
+
+it('does not call onUnlockAccount when a key other than enter is pressed', () => {
+  const onUnlockClick = jest.spyOn(ModalPassword.prototype, 'onUnlockClick');
+  const url = 'https://localhost:8080';
+  const walletList = [];
+  const wrapper = mount(<ModalPassword url={url} walletList={walletList}/>);
+  wrapper.setState({open: true, error: false});
+  onUnlockClick.mockClear();
+
+  wrapper.find('#password').simulate('keypress', {key: 'Shift'});
+
+  expect(onUnlockClick).toHaveBeenCalledTimes(0);
 });
 
 it('unlocks with the values entered in the state for unlockWallet', () => {
