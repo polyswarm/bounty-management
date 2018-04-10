@@ -26,6 +26,8 @@ class ModalPassword extends Component {
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangeAddress = this.onChangeAddress.bind(this);
     this.onCloseClick = this.onCloseClick.bind(this);
+    this.onCloseKeyPress = this.onCloseKeyPress.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
     this.onUnlockClick = this.onUnlockClick.bind(this);
     this.onUnlock = this.onUnlock.bind(this);
     this.createWallet = this.createWallet.bind(this);
@@ -80,6 +82,7 @@ class ModalPassword extends Component {
                       id='address'
                       value={walletList[address]}
                       onChange={this.onChangeAddress}
+                      onKeyPress={this.onKeyPress}
                     >
                       {walletList.map(wallet => {
                         return (
@@ -101,13 +104,17 @@ class ModalPassword extends Component {
                   id='password'
                   type='password'
                   value={password}
+                  onKeyPress={this.onKeyPress}
                   onChange={this.onChangePassword}
                 />
                 <div className='ModalError'>{error && strings.error}</div>
               </form>
               <p className='ModalMessage'>{strings.background}</p>
               <span className='Modal-Button-Bar'>
-                <Button disabled={unlocking} flat onClick={this.onUnlockClick}>
+                <Button flat
+                  disabled={unlocking} 
+                  onKeyPress={this.onKeyPress}
+                  onClick={this.onUnlockClick}>
                   {walletList.length > 0 ? strings.unlock : strings.create}
                 </Button>
                 <Button
@@ -115,7 +122,7 @@ class ModalPassword extends Component {
                   cancel
                   disabled={unlocking}
                   onClick={this.onCloseClick}
-                >
+                  onKeyPress={this.onCloseKeyPress}>
                   {strings.cancel}
                 </Button>
               </span>
@@ -152,6 +159,20 @@ class ModalPassword extends Component {
     const { state: { unlocking } } = this;
     if (!unlocking) {
       this.close();
+    }
+  }
+
+  onCloseKeyPress(e) {
+    if (e.key == 'Enter') {
+      e.preventDefault();
+      this.onCloseClick();
+    }
+  }
+
+  onKeyPress(e) {
+    if (e.key == 'Enter') {
+      e.preventDefault();
+      this.onUnlockClick();
     }
   }
 
