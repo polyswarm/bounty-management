@@ -89,7 +89,7 @@ it('sets state open to true when open is called', () => {
   expect(setState).toHaveBeenCalledWith({open: true});
 });
 
-it('sets state open to false when close is called', () => {
+it('sets state open to false and password empty when close is called', () => {
   const walletList = [];
   const wrapper = mount(<ModalPassword walletList={walletList} />);
   const instance = wrapper.instance();
@@ -98,7 +98,7 @@ it('sets state open to false when close is called', () => {
   instance.close();
 
   expect(setState).toHaveBeenCalledTimes(1);
-  expect(setState).toHaveBeenCalledWith({open: false});
+  expect(setState).toHaveBeenCalledWith({open: false, password: ''});
 });
 
 it('hides the Modal when closed', () => {
@@ -126,8 +126,6 @@ it('closes the modal on click outside the main content', () => {
 
   expect(wrapper.find('.ModalBackground')).toHaveLength(0);
 });
-
-
 
 it('hides the select when wallet list is empty', () => {
   const walletList = [];
@@ -226,7 +224,7 @@ it('does not show error message when error is false', () => {
   expect(wrapper.find('.ModalError').text()).toHaveLength(0);
 });
 
-it('closes the modal when Cancel is pressed', () => {
+it('closes the modal and clears password when Cancel is pressed', () => {
   const walletList = ['asdf','demo','omed'];
   const wrapper = mount(<ModalPassword walletList={walletList}/>);
   wrapper.setState({open: true, error: false});
@@ -235,7 +233,7 @@ it('closes the modal when Cancel is pressed', () => {
 
   wrapper.find('.flat-cancel').simulate('click');
 
-  expect(setState).toHaveBeenCalledWith({open: false});
+  expect(setState).toHaveBeenCalledWith({open: false, password: ''});
 });
 
 it('starts unlocking when Unlock is pressed with wallets', () => {
