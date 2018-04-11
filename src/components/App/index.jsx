@@ -1,5 +1,6 @@
 // Vendor imports
 import React, { Component } from 'react';
+import Uuid from 'uuid/v4';
 // Bounty imports
 import BountyCreate from '../BountyCreate';
 import BountyInfo from '../BountyInfo';
@@ -25,7 +26,7 @@ class App extends Component {
       create: false,
       first: first,
       errorMessage: '',
-      requestsInProgress: 0
+      requestsInProgress: []
     };
 
     this.onAddBounty = this.onAddBounty.bind(this);
@@ -33,11 +34,10 @@ class App extends Component {
     this.onSelectBounty = this.onSelectBounty.bind(this);
     this.onCreateBounty = this.onCreateBounty.bind(this);
     this.onCloseWelcome = this.onCloseWelcome.bind(this);
-    this.onModifyRequest = this.onModifyRequest.bind(this);
     this.onPostError = this.onPostError.bind(this);
     this.onWalletChangeHandler = this.onWalletChangeHandler.bind(this);
-    this.decrementRequests = this.decrementRequests.bind(this);
-    this.incrementRequests = this.incrementRequests.bind(this);
+    this.addRequest = this.addRequest.bind(this);
+    this.removeRequest = this.removeRequest.bind(this);
     this.getData = this.getData.bind(this);
     this.getWallets = this.getWallets.bind(this);
     this.updateOnAssertion = this.updateOnAssertion.bind(this);
@@ -101,7 +101,7 @@ class App extends Component {
   onAddBounty(result) {
     const http = this.http;
 
-    this.incrementRequests();
+    this.addRequest({title:'Getting Bounty', id: result.guid});
     return http.getBounty(result)
       .then(bounty => {
         if (bounty != null) {
@@ -112,7 +112,10 @@ class App extends Component {
         }
       })
       .then(() => {
-        this.decrementRequests();
+        this.removeRequest({title:'Getting Bounty', id: result.guid});
+      })
+      .catch(() => {
+        this.removeRequest({title:'Getting Bounty', id: result.guid});
       });
   }
 
@@ -123,14 +126,6 @@ class App extends Component {
   onCloseWelcome() {
     this.setState({first: false});
     this.markSeen();
-  }
-
-  onModifyRequest(increment) {
-    if (increment) {
-      this.incrementRequests();
-    } else {
-      this.decrementRequests();
-    }
   }
 
   onPostError(message) {
@@ -169,15 +164,19 @@ class App extends Component {
     this.setState({isUnlocked: store});
   }
 
-  decrementRequests() {
-    let { requestsInProgress } = this.state;
-    requestsInProgress -= 1;
-    this.setState({requestsInProgress: requestsInProgress});
+  removeRequest(request/*, success*/) {
+    const requestsInProgress = this.state.requestsInProgress.slice();
+    const index = requestsInProgress.findIndex((obj) => obj.id == request.id);
+    if (index >= 0 ) {
+      requestsInProgress.splice(index, 1);
+      this.setState({requestsInProgress: requestsInProgress});
+      // TODO notify users of the success of the request
+    }
   }
 
-  incrementRequests() {
-    let { requestsInProgress } = this.state;
-    requestsInProgress += 1;
+  addRequest(request) {
+    const requestsInProgress = this.state.requestsInProgress.slice();
+    requestsInProgress.push(request);
     this.setState({requestsInProgress: requestsInProgress});
   }
 
@@ -217,8 +216,8 @@ class App extends Component {
 
   getData() {
     const http = this.http;
-
-    this.incrementRequests();
+    const uuid = Uuid();
+    this.addRequest({title:'Refreshing bounties', id: uuid});
     http.listenForAssertions(this.updateOnAssertion);
     const bounties = this.state.bounties.slice();
     const promises = bounties.map((bounty) => {
@@ -244,14 +243,15 @@ class App extends Component {
         }
       });
       this.setState({bounties: bounties});
-      this.decrementRequests();
+      this.removeRequest({title:'Refreshing bounties', guid: uuid});
     });
   }
 
   getWallets() {
     const http = this.http;
-    this.incrementRequests();
 
+    const uuid = Uuid();
+    this.addRequest({title:'Updating Wallets', id: uuid});
     const promises = [];
     const w = http.getWallets()
       .then(accounts => {
@@ -264,7 +264,9 @@ class App extends Component {
     promises.push(u);
 
     return Promise.all(promises)
-      .then(this.decrementRequests());
+      .then(() => {
+        this.removeRequest({title:'Updating Wallets', id: uuid});
+      });
   }
 
   storeBounties(bounties) {
