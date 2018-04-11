@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow, render, mount} from 'enzyme';
-import {renderToJson, mountToJson} from 'enzyme-to-json';
+import {renderToJson, shallowToJson} from 'enzyme-to-json';
 import LocalStorage from '../__mocks__/localstorage';
 import App from '../App';
 import HttpApp from '../App/http';
@@ -80,7 +80,7 @@ it('shows create when no bounties found', () => {
 });
 
 it('calls setState with create:true when onCreateBounty is called', () => {
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const instance = wrapper.instance();
   const bounties = [{guid:'asdf'}];
   const active = 0;
@@ -132,7 +132,7 @@ it('shows BountyInfo when at least one bounty & active selects it', () => {
   const active = 0;
   wrapper.setState({first: false, bounties: bounties, active: active});
   expect(wrapper.find('.Bounty-Info')).toHaveLength(1);
-  expect(mountToJson(wrapper)).toMatchSnapshot();
+  expect(shallowToJson(wrapper)).toMatchSnapshot();
 });
 
 it('shows BountyInfo when at least one bounty & active is negative', () => {
@@ -142,7 +142,7 @@ it('shows BountyInfo when at least one bounty & active is negative', () => {
   wrapper.setState({first: false, bounties: bounties, active: active});
 
   expect(wrapper.find('.Bounty-Create')).toHaveLength(1);
-  expect(mountToJson(wrapper)).toMatchSnapshot();
+  expect(shallowToJson(wrapper)).toMatchSnapshot();
 });
 
 it('shows welcome screen on first load', () => {
@@ -168,7 +168,7 @@ it('calls select when a sidebar item is clicked', () => {
 });
 
 it('updates the state when onSelectBounty called',() => {
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const bounties = [{guid:'asdf', updated: true}, {guid:'demo', updated: true}];
   const active = 0;
   wrapper.setState({bounties: bounties, active: active});
@@ -192,12 +192,22 @@ it('updates the state when onSelectBounty called',() => {
 });
 
 it('sets updated to false on bounty when onSelectBounty clicked', () => {
+  const setState = jest.spyOn(App.prototype, 'setState');
+  const wrapper = shallow(<App />);
+  const bounties = [{guid:'asdf', updated: true}, {guid:'demo', updated:true}];
+  const active = 0;
+  wrapper.setState({bounties: bounties, active: active});
+  setState.mockClear();
 
+  const instance = wrapper.instance();
+  instance.onSelectBounty(0);
+
+  expect(setState).toHaveBeenCalledWith({active: 0, create: false, bounties: [{guid:'asdf', updated: false}, {guid:'demo', updated:true}]});
 });
 
 it('does not update the state when onSelectBounty called with negative',() => {
   const setState = jest.spyOn(App.prototype, 'setState');
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const bounties = [{guid:'asdf'}, {guid:'demo'}];
   const active = 0;
   wrapper.setState({bounties: bounties, active: active});
@@ -211,7 +221,7 @@ it('does not update the state when onSelectBounty called with negative',() => {
 
 it('does not update the state when onSelectBounty called with null',() => {
   const setState = jest.spyOn(App.prototype, 'setState');
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const bounties = [{guid:'asdf'}, {guid:'demo'}];
   const active = 0;
   wrapper.setState({bounties: bounties, active: active});
@@ -225,7 +235,7 @@ it('does not update the state when onSelectBounty called with null',() => {
 
 it('does not update the state when onSelectBounty called with out of bounds',() => {
   const setState = jest.spyOn(App.prototype, 'setState');
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const bounties = [{guid:'asdf'}, {guid:'demo'}];
   const active = 0;
   wrapper.setState({bounties: bounties, active: active});
@@ -251,7 +261,7 @@ it('calls remove when a sidebar item remove is clicked', () => {
 
 it('updates the state when onRemoveBounty called',() => {
   const setState = jest.spyOn(App.prototype, 'setState');
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const bounties = [{guid:'asdf'}, {guid:'demo'}];
   const active = 0;
   wrapper.setState({first: false, bounties: bounties, active: active});
@@ -265,7 +275,7 @@ it('updates the state when onRemoveBounty called',() => {
 
 it('removes the value at the index passed in onRemoveBounty', () => {
   const setState = jest.spyOn(App.prototype, 'setState');
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const bounties = [{guid:'asdf'}, {guid:'demo'}];
   const active = 0;
   wrapper.setState({bounties: bounties, active: active});
@@ -278,7 +288,7 @@ it('removes the value at the index passed in onRemoveBounty', () => {
 
 it('doesn\'t remove anything if onRemoveBounty called with negative', () => {
   const setState = jest.spyOn(App.prototype, 'setState');
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const bounties = [{guid:'asdf'}, {guid:'demo'}];
   const active = 0;
   wrapper.setState({bounties: bounties, active: active});
@@ -292,7 +302,7 @@ it('doesn\'t remove anything if onRemoveBounty called with negative', () => {
 
 it('doesn\'t remove anything if onRemoveBounty called with null', () => {
   const setState = jest.spyOn(App.prototype, 'setState');
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const bounties = [{guid:'asdf'}, {guid:'demo'}];
   const active = 0;
   wrapper.setState({bounties: bounties, active: active});
@@ -306,7 +316,7 @@ it('doesn\'t remove anything if onRemoveBounty called with null', () => {
 
 it('doesn\'t remove anything if onRemoveBounty called with out of bounds', () => {
   const setState = jest.spyOn(App.prototype, 'setState');
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const bounties = [{guid:'asdf'}, {guid:'demo'}];
   const active = 0;
   wrapper.setState({bounties: bounties, active: active});
@@ -320,7 +330,7 @@ it('doesn\'t remove anything if onRemoveBounty called with out of bounds', () =>
 
 it('calls setState during onAddBounty', (done) => {
   const setState = jest.spyOn(App.prototype, 'setState');
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const instance = wrapper.instance();
   setState.mockClear();
 
@@ -557,7 +567,7 @@ it('sets state with increment requestsInProgress when incrementRequests called',
 
 it('calls decrementRequests when onModifyRequests called with false', () => {
   const decrementRequests = jest.spyOn(App.prototype, 'decrementRequests');
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const instance = wrapper.instance();
   decrementRequests.mockClear();
 
@@ -568,7 +578,7 @@ it('calls decrementRequests when onModifyRequests called with false', () => {
 
 it('calls incrementRequests when onModifyRequests called with true', () => {
   const incrementRequests = jest.spyOn(App.prototype, 'incrementRequests');
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const instance = wrapper.instance();
   incrementRequests.mockClear();
 
@@ -579,7 +589,7 @@ it('calls incrementRequests when onModifyRequests called with true', () => {
 
 it('calls setState during onRemoveBounty', () => {
   const setState = jest.spyOn(App.prototype, 'setState');
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const instance = wrapper.instance();
   wrapper.setState({bounties: [{
     guid: 'existing',
@@ -645,7 +655,7 @@ it('doesn\'t call storeBounties when setState called with identical set of bount
     verdicts: '',
   }];
   localStorage.setItem('bounties', JSON.stringify(bounties));
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   storeBounties.mockClear();
 
   wrapper.setState({bounties: bounties}, () => {
@@ -708,7 +718,7 @@ it('calls storeBounties when setState called with different set of bounties', (d
 
 it('stores bounties into localstore when storeBounties is called', () => {
   const setItem = jest.spyOn(LocalStorage.prototype, 'setItem');
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const instance = wrapper.instance();
   const bounties = [{
     guid: 'existing',
@@ -740,7 +750,7 @@ it('reads bounties from localStorage and puts into state on startup', () => {
   }]);
   localStorage.setItem('bounties', bounties);
 
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const instance = wrapper.instance();
 
   expect(instance.state.bounties).toEqual(JSON.parse(bounties));
@@ -748,7 +758,7 @@ it('reads bounties from localStorage and puts into state on startup', () => {
 
 it('reads seen from localStorage and puts it into state as first on startup', () => {
   localStorage.setItem('seen', JSON.stringify(true));
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const instance = wrapper.instance();
 
   expect(instance.state.first).toBeFalsy();
@@ -756,7 +766,7 @@ it('reads seen from localStorage and puts it into state as first on startup', ()
 
 it('calls setState with account: true when calling onAccountSet(true)', () => {
   const setState = jest.spyOn(App.prototype, 'setState');
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const instance = wrapper.instance();
   setState.mockClear();
 
@@ -768,7 +778,7 @@ it('calls setState with account: true when calling onAccountSet(true)', () => {
 
 it('calls setState with account: false when calling onAccountSet(false)', () => {
   const setState = jest.spyOn(App.prototype, 'setState');
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const instance = wrapper.instance();
   setState.mockClear();
 
@@ -799,7 +809,7 @@ it('calls setState with account: false when calling onAccountSet(false)', () => 
 
 it('sets the error message when onPostError is called', () => {
   const setState = jest.spyOn(App.prototype, 'setState');
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   const instance = wrapper.instance();
   setState.mockClear();
 
