@@ -25,6 +25,7 @@ class App extends Component {
       create: false,
       first: first,
       errorMessage: '',
+      requestsInProgress: 0
     };
 
     this.onAddBounty = this.onAddBounty.bind(this);
@@ -32,10 +33,13 @@ class App extends Component {
     this.onSelectBounty = this.onSelectBounty.bind(this);
     this.onCreateBounty = this.onCreateBounty.bind(this);
     this.onCloseWelcome = this.onCloseWelcome.bind(this);
+    this.onModifyRequest = this.onModifyRequest.bind(this);
+    this.onPostError = this.onPostError.bind(this);
     this.onWalletChangeHandler = this.onWalletChangeHandler.bind(this);
+    this.decrementRequests = this.decrementRequests.bind(this);
+    this.incrementRequests = this.incrementRequests.bind(this);
     this.getData = this.getData.bind(this);
     this.getWallets = this.getWallets.bind(this);
-    this.onPostError = this.onPostError.bind(this);
     this.updateOnAssertion = this.updateOnAssertion.bind(this);
   }
 
@@ -96,6 +100,8 @@ class App extends Component {
 
   onAddBounty(result) {
     const http = this.http;
+
+    this.incrementRequests();
     return http.getBounty(result)
       .then(bounty => {
         if (bounty != null) {
@@ -104,6 +110,9 @@ class App extends Component {
           bounties.push(bounty);
           this.setState({bounties: bounties});
         }
+      })
+      .then(() => {
+        this.decrementRequests();
       });
   }
 
@@ -116,12 +125,21 @@ class App extends Component {
     this.markSeen();
   }
 
-  onPostError(message) {
-    this.setState({errorMessage: message});
-    const modal = this.modal;
-    if (modal) {
-      modal.open();
+  onModifyRequest(increment) {
+    if (increment) {
+      this.incrementRequests();
+    } else {
+      this.decrementRequests();
     }
+  }
+
+  onPostError(message) {
+    this.setState({errorMessage: message}, () => {
+      const modal = this.modal;
+      if (modal) {
+        modal.open();
+      }
+    });
   }
 
   onRemoveBounty(index) {
@@ -149,6 +167,18 @@ class App extends Component {
 
   onWalletChangeHandler(store) {
     this.setState({isUnlocked: store});
+  }
+
+  decrementRequests() {
+    let { requestsInProgress } = this.state;
+    requestsInProgress -= 1;
+    this.setState({requestsInProgress: requestsInProgress});
+  }
+
+  incrementRequests() {
+    let { requestsInProgress } = this.state;
+    requestsInProgress += 1;
+    this.setState({requestsInProgress: requestsInProgress});
   }
 
   updateOnAssertion(assertion) {
@@ -187,6 +217,8 @@ class App extends Component {
 
   getData() {
     const http = this.http;
+
+    this.incrementRequests();
     http.listenForAssertions(this.updateOnAssertion);
     const bounties = this.state.bounties.slice();
     const promises = bounties.map((bounty) => {
@@ -202,7 +234,7 @@ class App extends Component {
           return b;
         });
     });
-    Promise.all(promises).then((values) => {
+    return Promise.all(promises).then((values) => {
       // get updated state after download finishes
       const bounties = this.state.bounties.slice();
       values.forEach((value) => {
@@ -212,18 +244,27 @@ class App extends Component {
         }
       });
       this.setState({bounties: bounties});
+      this.decrementRequests();
     });
   }
 
   getWallets() {
     const http = this.http;
-    http.getWallets()
+    this.incrementRequests();
+
+    const promises = [];
+    const w = http.getWallets()
       .then(accounts => {
         this.setState({walletList: accounts});
       });
 
-    http.getUnlockedWallet()
+    const u = http.getUnlockedWallet()
       .then((success) => this.setState({isUnlocked: success}));
+    promises.push(w);
+    promises.push(u);
+
+    return Promise.all(promises)
+      .then(this.decrementRequests());
   }
 
   storeBounties(bounties) {
