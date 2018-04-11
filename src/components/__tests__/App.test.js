@@ -330,14 +330,14 @@ it('doesn\'t remove anything if onRemoveBounty called with out of bounds', () =>
 
 it('calls setState during onAddBounty', (done) => {
   const setState = jest.spyOn(App.prototype, 'setState');
-  const wrapper = shallow(<App />);
+  const wrapper = shallow(<App />, {disableLifecycleMethods: true});
   const instance = wrapper.instance();
   setState.mockClear();
 
   const promise = instance.onAddBounty({guid: 'asdf'});
   promise.then(() => {
     try {
-      expect(setState.mock.calls[5][0]).toEqual({bounties: [{'amount':'6250000000000000000',
+      expect(setState.mock.calls[1][0]).toEqual({bounties: [{'amount':'6250000000000000000',
         'author':'0xAF8302a3786A35abEDdF19758067adc9a23597e5',
         'expiration':4563,
         'guid':'asdf',
@@ -435,17 +435,18 @@ it('calls storeBounties after onAddBounty', (done) => {
   });
 });
 
-it('calls increments when onAddBounty is called', (done) => {
-  const incrementRequests = jest.spyOn(App.prototype, 'incrementRequests');
+it('calls addRequest when onAddBounty is called', (done) => {
+  const addRequest = jest.spyOn(App.prototype, 'addRequest');
   const wrapper = shallow(<App />, {disableLifecycleMethods: true});
   const instance = wrapper.instance();
-  incrementRequests.mockClear();
+  addRequest.mockClear();
 
   const promise = instance.onAddBounty({guid: 'asdf'});
 
   promise.then(() =>{
     try {
-      expect(incrementRequests).toHaveBeenCalledTimes(1);
+      expect(addRequest).toHaveBeenCalledTimes(1);
+      expect(addRequest).toHaveBeenCalledWith({title: 'Getting Bounty', id: 'asdf'});
       done();
     } catch (error) {
       done.fail(error);
@@ -453,17 +454,18 @@ it('calls increments when onAddBounty is called', (done) => {
   });
 });
 
-it('calls decrement when onAddBounty finishes', (done) => {
-  const decrementRequests = jest.spyOn(App.prototype, 'decrementRequests');
+it('calls removeRequest when onAddBounty finishes', (done) => {
+  const removeRequest = jest.spyOn(App.prototype, 'removeRequest');
   const wrapper = shallow(<App />, {disableLifecycleMethods: true});
   const instance = wrapper.instance();
-  decrementRequests.mockClear();
+  removeRequest.mockClear();
 
   const promise = instance.onAddBounty({guid: 'asdf'});
 
   promise.then(() => {
     try {
-      expect(decrementRequests).toHaveBeenCalledTimes(1);
+      expect(removeRequest).toHaveBeenCalledTimes(1);
+      expect(removeRequest).toHaveBeenCalledWith({title: 'Getting Bounty', id: 'asdf'});
       done();
     } catch (error) {
       done.fail(error);
@@ -471,17 +473,18 @@ it('calls decrement when onAddBounty finishes', (done) => {
   });
 });
 
-it('calls increments when getData is called', (done) => {
-  const incrementRequests = jest.spyOn(App.prototype, 'incrementRequests');
+it('calls addRequest when getData is called', (done) => {
+  const addRequest = jest.spyOn(App.prototype, 'addRequest');
   const wrapper = shallow(<App />, {disableLifecycleMethods: true});
   const instance = wrapper.instance();
-  incrementRequests.mockClear();
+  addRequest.mockClear();
 
   const promise = instance.getData();
 
   promise.then(() =>{
     try {
-      expect(incrementRequests).toHaveBeenCalledTimes(1);
+      expect(addRequest).toHaveBeenCalledTimes(1);
+      expect(addRequest.mock.calls[0][0].title).toEqual('Refreshing bounties');
       done();
     } catch (error) {
       done.fail(error);
@@ -489,17 +492,18 @@ it('calls increments when getData is called', (done) => {
   });
 });
 
-it('calls decrement when getData finishes', (done) => {
-  const decrementRequests = jest.spyOn(App.prototype, 'decrementRequests');
+it('calls removeRequest when getData finishes', (done) => {
+  const removeRequest = jest.spyOn(App.prototype, 'removeRequest');
   const wrapper = shallow(<App />, {disableLifecycleMethods: true});
   const instance = wrapper.instance();
-  decrementRequests.mockClear();
+  removeRequest.mockClear();
 
   const promise = instance.getData();
 
   promise.then(() =>{
     try {
-      expect(decrementRequests).toHaveBeenCalledTimes(1);
+      expect(removeRequest).toHaveBeenCalledTimes(1);
+      expect(removeRequest.mock.calls[0][0].title).toEqual('Refreshing bounties');
       done();
     } catch (error) {
       done.fail(error);
@@ -508,16 +512,17 @@ it('calls decrement when getData finishes', (done) => {
 });
 
 it('calls increments when getWallets is called', (done) => {
-  const incrementRequests = jest.spyOn(App.prototype, 'incrementRequests');
+  const addRequest = jest.spyOn(App.prototype, 'addRequest');
   const wrapper = shallow(<App />, {disableLifecycleMethods: true});
   const instance = wrapper.instance();
-  incrementRequests.mockClear();
+  addRequest.mockClear();
 
   const promise = instance.getWallets();
 
   promise.then(() =>{
     try {
-      expect(incrementRequests).toHaveBeenCalledTimes(1);
+      expect(addRequest).toHaveBeenCalledTimes(1);
+      expect(addRequest.mock.calls[0][0].title).toEqual('Updating Wallets');
       done();
     } catch (error) {
       done.fail(error);
@@ -525,17 +530,18 @@ it('calls increments when getWallets is called', (done) => {
   });
 });
 
-it('calls decrement twice when getWallets finishes', (done) => {
-  const decrementRequests = jest.spyOn(App.prototype, 'decrementRequests');
+it('calls decrement when getWallets finishes', (done) => {
+  const removeRequest = jest.spyOn(App.prototype, 'removeRequest');
   const wrapper = shallow(<App />, {disableLifecycleMethods: true});
   const instance = wrapper.instance();
-  decrementRequests.mockClear();
+  removeRequest.mockClear();
 
   const promise = instance.getWallets();
 
   promise.then(() =>{
     try {
-      expect(decrementRequests).toHaveBeenCalledTimes(1);
+      expect(removeRequest).toHaveBeenCalledTimes(1);
+      expect(removeRequest.mock.calls[0][0].title).toEqual('Updating Wallets');
       done();
     } catch (error) {
       done.fail(error);
@@ -543,48 +549,131 @@ it('calls decrement twice when getWallets finishes', (done) => {
   });
 });
 
-it('sets state with decremented requestsInProgress when decrementRequests called', () => {
+it('does nothing when remove request called with no existing request', () => {
   const setState = jest.spyOn(App.prototype, 'setState');
   const wrapper = shallow(<App />, {disableLifecycleMethods: true});
   const instance = wrapper.instance();
   setState.mockClear();
 
-  instance.decrementRequests();
+  instance.removeRequest({title: 'asdf', id:'notHere'});
 
-  expect(setState.mock.calls[0][0]).toEqual({requestsInProgress: -1});
+  expect(setState).toHaveBeenCalledTimes(0);
 });
 
-it('sets state with increment requestsInProgress when incrementRequests called', () => {
+it('does nothing when remove request called with id not in the requests', (done) => {
+  const setState = jest.spyOn(App.prototype, 'setState');
+  const wrapper = shallow(<App />, {disableLifecycleMethods: true});
+  const instance = wrapper.instance();
+  wrapper.setState({requestsInProgress: [{title: 'demo', id: 'demo'}]}, () =>{
+    setState.mockClear();
+    //act
+    instance.removeRequest({title: 'asdf', id:'notHere'});
+
+    //assert
+    try {
+      expect(setState).toHaveBeenCalledTimes(0);
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  });
+});
+
+it('removes the requests when it is the only existing request', (done) => {
+  const setState = jest.spyOn(App.prototype, 'setState');
+  const wrapper = shallow(<App />, {disableLifecycleMethods: true});
+  const instance = wrapper.instance();
+  wrapper.setState({requestsInProgress: [{title: 'demo', id: 'demo'}]}, () =>{
+    setState.mockClear();
+
+    //act
+    instance.removeRequest({title: 'demo', id:'demo'});
+
+    //assert
+    try {
+      expect(setState).toHaveBeenCalledTimes(1);
+      expect(setState).toHaveBeenCalledWith({requestsInProgress: []});
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  });
+});
+
+it('removes the requests from the list of existing requests', (done) => {
+  const setState = jest.spyOn(App.prototype, 'setState');
+  const wrapper = shallow(<App />, {disableLifecycleMethods: true});
+  const instance = wrapper.instance();
+  const requests = [
+    {title: 'demo', id: 'demo'},
+    {title: 'asdf', id: 'asdf'},
+  ];
+  wrapper.setState({requestsInProgress: requests}, () =>{
+    setState.mockClear();
+
+    //act
+    instance.removeRequest({title: 'demo', id:'demo'});
+
+    //assert
+    try {
+      expect(setState).toHaveBeenCalledTimes(1);
+      expect(setState).toHaveBeenCalledWith({requestsInProgress: [{title: 'asdf', id: 'asdf'}]});
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  });
+});
+
+it('removes the requests from the last index of existing requests', (done) => {
+  const setState = jest.spyOn(App.prototype, 'setState');
+  const wrapper = shallow(<App />, {disableLifecycleMethods: true});
+  const instance = wrapper.instance();
+  const requests = [
+    {title: 'demo', id: 'demo'},
+    {title: 'asdf', id: 'asdf'},
+  ];
+  wrapper.setState({requestsInProgress: requests}, () =>{
+    setState.mockClear();
+
+    //act
+    instance.removeRequest({title: 'asdf', id:'asdf'});
+
+    //assert
+    try {
+      expect(setState).toHaveBeenCalledTimes(1);
+      expect(setState).toHaveBeenCalledWith({requestsInProgress: [{title: 'demo', id: 'demo'}]});
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  });
+});
+
+it('sets state with added request when addRequest called', () => {
   const setState = jest.spyOn(App.prototype, 'setState');
   const wrapper = shallow(<App />, {disableLifecycleMethods: true});
   const instance = wrapper.instance();
   setState.mockClear();
 
-  instance.incrementRequests();
+  instance.addRequest({title: 'asdf', id: 'asdf'});
 
-  expect(setState).toHaveBeenCalledWith({requestsInProgress: 1});
+  expect(setState).toHaveBeenCalledWith({requestsInProgress: [{title: 'asdf', id: 'asdf'}]});
 });
 
-it('calls decrementRequests when onModifyRequests called with false', () => {
-  const decrementRequests = jest.spyOn(App.prototype, 'decrementRequests');
-  const wrapper = shallow(<App />);
+it('adds request to existing request when addRequest called', () => {
+  const setState = jest.spyOn(App.prototype, 'setState');
+  const wrapper = shallow(<App />, {disableLifecycleMethods: true});
   const instance = wrapper.instance();
-  decrementRequests.mockClear();
+  instance.addRequest({title: 'asdf', id: 'asdf'});
+  setState.mockClear();
 
-  instance.onModifyRequest(false);
+  instance.addRequest({title: 'fdsa', id: 'fdsa'});
 
-  expect(decrementRequests).toHaveBeenCalledTimes(1);
-});
-
-it('calls incrementRequests when onModifyRequests called with true', () => {
-  const incrementRequests = jest.spyOn(App.prototype, 'incrementRequests');
-  const wrapper = shallow(<App />);
-  const instance = wrapper.instance();
-  incrementRequests.mockClear();
-
-  instance.onModifyRequest(true);
-
-  expect(incrementRequests).toHaveBeenCalledTimes(1);
+  expect(setState).toHaveBeenCalledWith({requestsInProgress: [
+    {title: 'asdf', id: 'asdf'},
+    {title: 'fdsa', id: 'fdsa'}
+  ]});
 });
 
 it('calls setState during onRemoveBounty', () => {
