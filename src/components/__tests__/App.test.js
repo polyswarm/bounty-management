@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, mount} from 'enzyme';
+import {shallow, render, mount} from 'enzyme';
 import {renderToJson, mountToJson} from 'enzyme-to-json';
 import LocalStorage from '../__mocks__/localstorage';
 import App from '../App';
@@ -324,10 +324,10 @@ it('calls setState during onAddBounty', (done) => {
   const instance = wrapper.instance();
   setState.mockClear();
 
-  instance.onAddBounty({guid: 'asdf'});
-  setTimeout(() => {
+  const promise = instance.onAddBounty({guid: 'asdf'});
+  promise.then(() => {
     try {
-      expect(setState.mock.calls[3][0]).toEqual({bounties: [{'amount':'6250000000000000000',
+      expect(setState.mock.calls[5][0]).toEqual({bounties: [{'amount':'6250000000000000000',
         'author':'0xAF8302a3786A35abEDdF19758067adc9a23597e5',
         'expiration':4563,
         'guid':'asdf',
@@ -344,19 +344,21 @@ it('calls setState during onAddBounty', (done) => {
     } catch (error) {
       done.fail(error);
     }
-  }, 0);
+  });
 });
 
 it('calls setState during onAddBounty with existing values', (done) => {
   const setState = jest.spyOn(App.prototype, 'setState');
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />, {disableLifecycleMethods: true});
   const instance = wrapper.instance();
   setState.mockClear();
 
-  instance.onAddBounty({guid: 'existing'});
-  instance.onAddBounty({guid: 'asdf'});
+  const promise = instance.onAddBounty({guid: 'existing'})
+    .then(() => {
+      return instance.onAddBounty({guid: 'asdf'});  
+    });
 
-  setTimeout(() => {
+  promise.then(() => {
     try {
       expect(mockGetBounty).toHaveBeenCalledTimes(2);
       expect(setState.mock.calls[4][0]).toEqual({bounties: [
@@ -390,20 +392,20 @@ it('calls setState during onAddBounty with existing values', (done) => {
     } catch (error) {
       done.fail(error);
     }
-  }, 0);
+  });
 });
 
-it('calls storeBounties after onAddBounty', () => {
+it('calls storeBounties after onAddBounty', (done) => {
   const storeBounties = jest.spyOn(App.prototype, 'storeBounties');
   const wrapper = mount(<App />);
   const instance = wrapper.instance();
   wrapper.setState();
 
-  instance.onAddBounty('asdf');
+  const promise = instance.onAddBounty({guid: 'asdf'});
 
-  setTimeout(() => {
+  promise.then(() => {
     try {
-      expect(storeBounties.mock.calls[0][0]).toEqual({bounties: [{'amount':'6250000000000000000',
+      expect(storeBounties.mock.calls[0][0]).toEqual([{'amount':'6250000000000000000',
         'author':'0xAF8302a3786A35abEDdF19758067adc9a23597e5',
         'expiration':4563,
         'guid':'asdf',
@@ -415,12 +417,164 @@ it('calls storeBounties after onAddBounty', () => {
           'bid':'.7',
           'verdicts':[true],
           'metadata':'malware'}]
-      }]});
+      }]);
       done();
     } catch (error) {
       done.fail(error);
     }
-  }, 0);
+  });
+});
+
+it('calls increments when onAddBounty is called', (done) => {
+  const incrementRequests = jest.spyOn(App.prototype, 'incrementRequests');
+  const wrapper = shallow(<App />, {disableLifecycleMethods: true});
+  const instance = wrapper.instance();
+  incrementRequests.mockClear();
+
+  const promise = instance.onAddBounty({guid: 'asdf'});
+
+  promise.then(() =>{
+    try {
+      expect(incrementRequests).toHaveBeenCalledTimes(1);
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  });
+});
+
+it('calls decrement when onAddBounty finishes', (done) => {
+  const decrementRequests = jest.spyOn(App.prototype, 'decrementRequests');
+  const wrapper = shallow(<App />, {disableLifecycleMethods: true});
+  const instance = wrapper.instance();
+  decrementRequests.mockClear();
+
+  const promise = instance.onAddBounty({guid: 'asdf'});
+
+  promise.then(() => {
+    try {
+      expect(decrementRequests).toHaveBeenCalledTimes(1);
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  });
+});
+
+it('calls increments when getData is called', (done) => {
+  const incrementRequests = jest.spyOn(App.prototype, 'incrementRequests');
+  const wrapper = shallow(<App />, {disableLifecycleMethods: true});
+  const instance = wrapper.instance();
+  incrementRequests.mockClear();
+
+  const promise = instance.getData();
+
+  promise.then(() =>{
+    try {
+      expect(incrementRequests).toHaveBeenCalledTimes(1);
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  });
+});
+
+it('calls decrement when getData finishes', (done) => {
+  const decrementRequests = jest.spyOn(App.prototype, 'decrementRequests');
+  const wrapper = shallow(<App />, {disableLifecycleMethods: true});
+  const instance = wrapper.instance();
+  decrementRequests.mockClear();
+
+  const promise = instance.getData();
+
+  promise.then(() =>{
+    try {
+      expect(decrementRequests).toHaveBeenCalledTimes(1);
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  });
+});
+
+it('calls increments when getWallets is called', (done) => {
+  const incrementRequests = jest.spyOn(App.prototype, 'incrementRequests');
+  const wrapper = shallow(<App />, {disableLifecycleMethods: true});
+  const instance = wrapper.instance();
+  incrementRequests.mockClear();
+
+  const promise = instance.getWallets();
+
+  promise.then(() =>{
+    try {
+      expect(incrementRequests).toHaveBeenCalledTimes(1);
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  });
+});
+
+it('calls decrement twice when getWallets finishes', (done) => {
+  const decrementRequests = jest.spyOn(App.prototype, 'decrementRequests');
+  const wrapper = shallow(<App />, {disableLifecycleMethods: true});
+  const instance = wrapper.instance();
+  decrementRequests.mockClear();
+
+  const promise = instance.getWallets();
+
+  promise.then(() =>{
+    try {
+      expect(decrementRequests).toHaveBeenCalledTimes(1);
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  });
+});
+
+it('sets state with decremented requestsInProgress when decrementRequests called', () => {
+  const setState = jest.spyOn(App.prototype, 'setState');
+  const wrapper = shallow(<App />, {disableLifecycleMethods: true});
+  const instance = wrapper.instance();
+  setState.mockClear();
+
+  instance.decrementRequests();
+
+  expect(setState.mock.calls[0][0]).toEqual({requestsInProgress: -1});
+});
+
+it('sets state with increment requestsInProgress when incrementRequests called', () => {
+  const setState = jest.spyOn(App.prototype, 'setState');
+  const wrapper = shallow(<App />, {disableLifecycleMethods: true});
+  const instance = wrapper.instance();
+  setState.mockClear();
+
+  instance.incrementRequests();
+
+  expect(setState).toHaveBeenCalledWith({requestsInProgress: 1});
+});
+
+it('calls decrementRequests when onModifyRequests called with false', () => {
+  const decrementRequests = jest.spyOn(App.prototype, 'decrementRequests');
+  const wrapper = mount(<App />);
+  const instance = wrapper.instance();
+  decrementRequests.mockClear();
+
+  instance.onModifyRequest(false);
+
+  expect(decrementRequests).toHaveBeenCalledTimes(1);
+});
+
+it('calls incrementRequests when onModifyRequests called with true', () => {
+  const incrementRequests = jest.spyOn(App.prototype, 'incrementRequests');
+  const wrapper = mount(<App />);
+  const instance = wrapper.instance();
+  incrementRequests.mockClear();
+
+  instance.onModifyRequest(true);
+
+  expect(incrementRequests).toHaveBeenCalledTimes(1);
 });
 
 it('calls setState during onRemoveBounty', () => {
@@ -494,16 +648,14 @@ it('doesn\'t call storeBounties when setState called with identical set of bount
   const wrapper = mount(<App />);
   storeBounties.mockClear();
 
-  wrapper.setState({bounties: bounties});
-
-  setTimeout(() => {
+  wrapper.setState({bounties: bounties}, () => {
     try{
       expect(storeBounties).toHaveBeenCalledTimes(0);
       done();
     } catch (error) {
       done.fail(error);
     }
-  }, 0);
+  });
 });
 
 it('calls storeBounties when setState called with different set of bounties', (done) => {
@@ -544,16 +696,14 @@ it('calls storeBounties when setState called with different set of bounties', (d
     resolved: '',
     verdicts: '',
   });
-  wrapper.setState({bounties: bounties});
-
-  setTimeout(() => {
+  wrapper.setState({bounties: bounties}, () => {
     try{
       expect(storeBounties).toHaveBeenCalledTimes(1);
       done();
     } catch (error) {
       done.fail(error);
     }
-  }, 0);
+  });
 });
 
 it('stores bounties into localstore when storeBounties is called', () => {
@@ -656,5 +806,5 @@ it('sets the error message when onPostError is called', () => {
   instance.onPostError('error');
 
   expect(setState).toHaveBeenCalledTimes(1);
-  expect(setState).toHaveBeenCalledWith({errorMessage: 'error'});
+  expect(setState.mock.calls[0][0].errorMessage).toEqual('error');
 });
