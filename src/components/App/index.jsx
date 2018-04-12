@@ -244,7 +244,7 @@ class App extends Component {
         }
       });
       this.setState({bounties: bounties});
-      this.removeRequest({title:'Refreshing bounties', guid: uuid});
+      this.removeRequest({title:'Refreshing bounties', id: uuid});
     });
   }
 
