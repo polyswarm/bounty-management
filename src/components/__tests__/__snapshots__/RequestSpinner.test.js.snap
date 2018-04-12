@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render without error 1`] = `<React.Fragment />`;
+
+exports[`shows the icon when there are requests 1`] = `
+<RequestSpinner
+  requests={
+    Array [
+      Object {
+        "id": "test",
+        "title": "demo",
+      },
+    ]
+  }
+>
+  <img
+    className="Request-Spinner"
+    src="img/nct-coin.svg"
+  />
+</RequestSpinner>
+`;

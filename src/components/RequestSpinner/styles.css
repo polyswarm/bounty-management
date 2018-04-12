@@ -1,0 +1,8 @@
+@keyframes Nectar-Token-Spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.Request-Spinner {
+  animation: Nectar-Token-Spin infinite 20s linear;
+}
