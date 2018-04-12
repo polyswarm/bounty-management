@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // Bounty Imports
 import ListItem from '../ListItem';
+import RequestSpinner from '../RequestSpinner';
 // Component Imports
 import strings from './strings';
 
@@ -13,12 +14,14 @@ class Sidebar extends Component {
   }
 
   render() {
-    const { props: { bounties, active } } = this;
+    const { props: { bounties, active, requests } } = this;
     return (
       <div className='Sidebar'>
         <header className='Sidebar-Header'>
-          <img src='../public/img/polyswarm.svg'
+          <img className='Sidebar-Header-Logo'
+            src='../public/img/polyswarm.svg'
             alt={strings.logo}/>
+          <RequestSpinner requests={requests}/>
         </header>
         <ul className='Sidebar-Content'>
           {bounties && bounties.length > 0 && (

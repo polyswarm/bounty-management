@@ -60,7 +60,7 @@ class App extends Component {
   render() {
     const {host: url} = config;
     const { state: { active, bounties, create, first, isUnlocked, walletList,
-      errorMessage } } = this;
+      errorMessage, requestsInProgress } } = this;
 
     return (
       <div className='App'>
@@ -74,6 +74,7 @@ class App extends Component {
               message={errorMessage}/>
             <Sidebar bounties={bounties}
               active={active}
+              requests={requestsInProgress}
               remove={this.onRemoveBounty}
               select={this.onSelectBounty}/>
             <Header title={(bounties.length === 0 || create || active < 0) ? strings.create : bounties[active].guid}
@@ -141,7 +142,9 @@ class App extends Component {
     const bounties = this.state.bounties.slice();
     if (index !== null && index >= 0 && index < bounties.length) {
       bounties.splice(index, 1);
-      this.setState({bounties: bounties});
+      setTimeout(() => {
+        this.setState({bounties: bounties});  
+      }, 1000);
     }
   }
 

@@ -1,6 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should render without error 1`] = `<React.Fragment />`;
+exports[`Should render without error 1`] = `
+<div
+  className="RequestSpinner"
+/>
+`;
 
 exports[`shows the icon when there are requests 1`] = `
 <RequestSpinner
@@ -13,9 +17,13 @@ exports[`shows the icon when there are requests 1`] = `
     ]
   }
 >
-  <img
-    className="Request-Spinner"
-    src="img/nct-coin.svg"
-  />
+  <div
+    className="RequestSpinner"
+  >
+    <img
+      className="RequestSpinner-Icon"
+      src="img/nct-coin.svg"
+    />
+  </div>
 </RequestSpinner>
 `;
