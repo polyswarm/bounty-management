@@ -64,10 +64,17 @@ exports[`shows BountyInfo when at least one bounty & active is negative 1`] = `
         <header
           className="Sidebar-Header"
         >
-          <img
-            alt="Polyswarm logo"
-            src="../public/img/polyswarm.svg"
-          />
+          <span>
+            <img
+              alt="Polyswarm logo"
+              src="../public/img/polyswarm.svg"
+            />
+            <RequestSpinner>
+              <div
+                className="RequestSpinner"
+              />
+            </RequestSpinner>
+          </span>
         </header>
         <ul
           className="Sidebar-Content"
@@ -260,10 +267,17 @@ exports[`shows BountyInfo when at least one bounty & active selects it 1`] = `
         <header
           className="Sidebar-Header"
         >
-          <img
-            alt="Polyswarm logo"
-            src="../public/img/polyswarm.svg"
-          />
+          <span>
+            <img
+              alt="Polyswarm logo"
+              src="../public/img/polyswarm.svg"
+            />
+            <RequestSpinner>
+              <div
+                className="RequestSpinner"
+              />
+            </RequestSpinner>
+          </span>
         </header>
         <ul
           className="Sidebar-Content"

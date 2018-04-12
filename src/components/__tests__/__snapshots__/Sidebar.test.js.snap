@@ -22,10 +22,17 @@ exports[`marks the selected row as .active 1`] = `
     <header
       className="Sidebar-Header"
     >
-      <img
-        alt="Polyswarm logo"
-        src="../public/img/polyswarm.svg"
-      />
+      <span>
+        <img
+          alt="Polyswarm logo"
+          src="../public/img/polyswarm.svg"
+        />
+        <RequestSpinner>
+          <div
+            className="RequestSpinner"
+          />
+        </RequestSpinner>
+      </span>
     </header>
     <ul
       className="Sidebar-Content"
@@ -86,12 +93,19 @@ exports[`renders without crashing 1`] = `
   <header
     class="Sidebar-Header"
   >
-    <img
-      alt="Polyswarm logo"
-      src="../public/img/polyswarm.svg"
-    >
-      
-    </img>
+    <span>
+      <img
+        alt="Polyswarm logo"
+        src="../public/img/polyswarm.svg"
+      >
+        
+      </img>
+      <div
+        class="RequestSpinner"
+      >
+        
+      </div>
+    </span>
   </header>
   <ul
     class="Sidebar-Content"
@@ -123,10 +137,17 @@ exports[`shows alert when bounty has updated: true 1`] = `
     <header
       className="Sidebar-Header"
     >
-      <img
-        alt="Polyswarm logo"
-        src="../public/img/polyswarm.svg"
-      />
+      <span>
+        <img
+          alt="Polyswarm logo"
+          src="../public/img/polyswarm.svg"
+        />
+        <RequestSpinner>
+          <div
+            className="RequestSpinner"
+          />
+        </RequestSpinner>
+      </span>
     </header>
     <ul
       className="Sidebar-Content"
