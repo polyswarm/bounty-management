@@ -142,9 +142,7 @@ class App extends Component {
     const bounties = this.state.bounties.slice();
     if (index !== null && index >= 0 && index < bounties.length) {
       bounties.splice(index, 1);
-      setTimeout(() => {
-        this.setState({bounties: bounties});  
-      }, 1000);
+      this.setState({bounties: bounties});
     }
   }
 
