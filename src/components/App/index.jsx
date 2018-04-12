@@ -87,7 +87,9 @@ class App extends Component {
                   walletList={walletList}
                   onWalletChange={this.onWalletChangeHandler}
                   onError={this.onPostError}
-                  addBounty={this.onAddBounty}/>
+                  addBounty={this.onAddBounty}
+                  addRequest={this.addRequest}
+                  removeRequest={this.removeRequest}/>
               )}
               { !create && active >=0 && active < bounties.length && (
                 <BountyInfo bounty={bounties[active]}/>
