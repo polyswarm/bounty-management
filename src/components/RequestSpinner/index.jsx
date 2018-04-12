@@ -3,19 +3,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // Bounty Manager imports
 // Component imports
-import './styles.css';
+import strings from './strings.js';
 
 class RequestSpinner extends Component {
   render() {
     const { requests } = this.props;
 
     return (
-      <React.Fragment>
+      <span className='RequestSpinner'>
         {requests && requests.length > 0 && (
-          <img className='Request-Spinner'
-            src='img/nct-coin.svg'/>
+          <img className='RequestSpinner-Icon'
+            src='../public/img/nct-coin.svg'
+            alt={strings.token}/>
         )}
-      </React.Fragment>
+      </span>
     );
   }
 

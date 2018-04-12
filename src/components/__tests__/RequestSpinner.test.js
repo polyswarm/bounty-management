@@ -14,6 +14,6 @@ it('shows the icon when there are requests', () => {
   ];
   const wrapper = mount(<RequestSpinner requests={request}/>);
 
-  expect(wrapper.find('.Request-Spinner')).toHaveLength(1);
+  expect(wrapper.find('.RequestSpinner-Icon')).toHaveLength(1);
   expect(mountToJson(wrapper)).toMatchSnapshot();
 });
