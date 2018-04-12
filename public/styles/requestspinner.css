@@ -1,0 +1,13 @@
+@keyframes Nectar-Token-Spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.RequestSpinner-Icon {
+  animation: Nectar-Token-Spin infinite 2s linear;
+  stroke:rgb(46, 255, 108);
+  max-height: 48px;
+  margin-top: 4px;
+  margin-right: 10px;
+
+}
