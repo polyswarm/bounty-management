@@ -221,14 +221,14 @@ class ModalPassword extends Component {
   addAccountRequest(title, id) {
     const { addRequest } = this.props;
     if (addRequest) {
-      addRequest({title: title, id: id});
+      addRequest(title, id);
     }
   }
 
   removeAccountRequest(title, id) {
     const { removeRequest } = this.props;
     if (removeRequest) {
-      removeRequest({title: title, id: id});
+      removeRequest(title, id);
     }
   }
 

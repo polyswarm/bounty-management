@@ -104,7 +104,7 @@ class App extends Component {
   onAddBounty(result) {
     const http = this.http;
 
-    this.addRequest({title:'Getting Bounty', id: result.guid});
+    this.addRequest('Getting Bounty', result.guid);
     return http.getBounty(result)
       .then(bounty => {
         if (bounty != null) {
@@ -115,10 +115,10 @@ class App extends Component {
         }
       })
       .then(() => {
-        this.removeRequest({title:'Getting Bounty', id: result.guid});
+        this.removeRequest('Getting Bounty', result.guid);
       })
       .catch(() => {
-        this.removeRequest({title:'Getting Bounty', id: result.guid});
+        this.removeRequest('Getting Bounty', result.guid);
       });
   }
 
@@ -167,9 +167,9 @@ class App extends Component {
     this.setState({isUnlocked: store});
   }
 
-  removeRequest(request/*, success*/) {
+  removeRequest(title, id/*, success*/) {
     const requestsInProgress = this.state.requestsInProgress.slice();
-    const index = requestsInProgress.findIndex((obj) => obj.id == request.id);
+    const index = requestsInProgress.findIndex((obj) => obj.id == id);
     if (index >= 0 ) {
       requestsInProgress.splice(index, 1);
       this.setState({requestsInProgress: requestsInProgress});
@@ -177,9 +177,9 @@ class App extends Component {
     }
   }
 
-  addRequest(request) {
+  addRequest(title, id) {
     const requestsInProgress = this.state.requestsInProgress.slice();
-    requestsInProgress.push(request);
+    requestsInProgress.push({title: title, id: id});
     this.setState({requestsInProgress: requestsInProgress});
   }
 
@@ -220,7 +220,7 @@ class App extends Component {
   getData() {
     const http = this.http;
     const uuid = Uuid();
-    this.addRequest({title: strings.requestAllData, id: uuid});
+    this.addRequest(strings.requestAllData, uuid);
     http.listenForAssertions(this.updateOnAssertion);
     const bounties = this.state.bounties.slice();
     const promises = bounties.map((bounty) => {
@@ -246,14 +246,14 @@ class App extends Component {
         }
       });
       this.setState({bounties: bounties});
-      this.removeRequest({title: strings.requestAllData, id: uuid});
+      this.removeRequest(strings.requestAllData, uuid);
     });
   }
 
   getWallets() {
     const http = this.http;
     const uuid = Uuid();
-    this.addRequest({title: strings.requestWallets, id: uuid});
+    this.addRequest(strings.requestWallets, uuid);
     const w = http.getWallets()
       .then(accounts => {
         this.setState({walletList: accounts});
@@ -264,7 +264,7 @@ class App extends Component {
     const promises = [w, u];
     return Promise.all(promises)
       .then(() => {
-        this.removeRequest({title: strings.requestWallets, id: uuid});
+        this.removeRequest(strings.requestWallets, uuid);
       });
   }
 
