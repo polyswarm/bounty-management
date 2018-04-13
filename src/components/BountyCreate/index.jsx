@@ -36,14 +36,16 @@ class BountyCreate extends Component {
 
   render() {
     const { state: { files, error } } = this;
-    const { props: { url, walletList } } = this;
+    const { props: { url, walletList, addRequest, removeRequest } } = this;
     return (
       <div className='Bounty-Create'>
         <ModalPassword
           ref={modal => (this.modal = modal)}
           url={url}
           walletList={walletList}
-          onWalletChange={this.onWalletChangeHandler}/>
+          onWalletChange={this.onWalletChangeHandler}
+          addRequest={addRequest}
+          removeRequest={removeRequest}/>
         <div className='Container'>
           <FileList
             files={files}
@@ -143,12 +145,16 @@ class BountyCreate extends Component {
 
   addCreateBountyRequest(id) {
     const { addRequest } = this.props;
-    addRequest({title: 'Creating Bounty', id: id});
+    if (addRequest) {
+      addRequest({title: 'Creating Bounty', id: id});
+    }
   }
 
   removeCreateBountyRequest(id) {
     const { removeRequest } = this.props;
-    removeRequest({title: 'Creating Bounty', id: id});
+    if (removeRequest) {
+      removeRequest({title: 'Creating Bounty', id: id});
+    }
   }
 }
 

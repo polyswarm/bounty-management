@@ -296,7 +296,7 @@ it('calls addBounty when upload bounty is a success', (done) => {
   }, 0);
 });
 
-it('sets uploading to false when uploads complete', (done) => {
+it('sets errors to null when uploads complete', (done) => {
   const addBounty = jest.fn();
   const onWalletChange = jest.fn();
   const walletList = [];
@@ -315,22 +315,21 @@ it('sets uploading to false when uploads complete', (done) => {
   wrapper.setState({files});
   const setStateMock = jest.spyOn(BountyCreate.prototype, 'setState');
 
-  instance.createBounty();
+  instance.createBounty().then(() => {
 
-  // assert
-  setTimeout(() => {
+    // assert
     try {
-      expect(setStateMock).toHaveBeenCalledWith({error: null, uploading: true});
-      expect(setStateMock).toHaveBeenLastCalledWith({uploading: false});
-      expect(setStateMock).toHaveBeenCalledTimes(2);
+      expect(setStateMock).toHaveBeenLastCalledWith({error: null, files: []});
+      expect(setStateMock).toHaveBeenCalledTimes(1);
       done();
     } catch (error) {
       done.fail(error);
     }
-  }, 0);
+  });
 });
 
-it('has uploading true after calling createBounty', () => {
+it('has uploading true after calling createBounty', (done) => {
+  const setState = jest.spyOn(BountyCreate.prototype, 'setState');
   const addBounty = jest.fn();
   const walletList = [];
   const wrapper = mount(
@@ -345,24 +344,19 @@ it('has uploading true after calling createBounty', () => {
     {name: 'omed'},
   ];
   wrapper.setState({files});
-  const setStateMock = jest.spyOn(BountyCreate.prototype, 'setState');
+  setState.mockClear();
 
-  instance.createBounty();
+  // act
+  instance.createBounty().then(() => {
 
-  expect(setStateMock).toHaveBeenCalledWith({error: null, uploading: true});
-});
-
-it('button is disabled when uploading', () => {
-  const wrapper = mount(<BountyCreate url={'url'}/>);
-  const files = [
-    {name: 'demo'},
-    {name: 'omed'},
-  ];
-  wrapper.setState({files: files, uploading: true});
-
-  const button = wrapper.find('.Bounty-Create-Upload');
-  expect(button.props().disabled).toBeTruthy();
-
+  // assert
+    try {
+      expect(setState.mock.calls[0][0]).toEqual({error: null, files:[]});
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  });
 });
 
 it('disables button when there are no files', () => {
@@ -570,4 +564,68 @@ it('calls on error when something goes wrong in the upload', () => {
       done.fail(error);
     }
   }, 0);
+});
+
+it('should call addCreateBountyRequest and removeCreateBountyRequest in createBounty', (done) => {
+  const addCreateBountyRequest = jest.spyOn(BountyCreate.prototype, 'addCreateBountyRequest');
+  const removeCreateBountyRequest = jest.spyOn(BountyCreate.prototype, 'removeCreateBountyRequest');
+  const walletList = [];
+  const wrapper = mount(
+    <BountyCreate url={'url'}
+      walletList={walletList}
+      isUnlocked={true}/>
+  );
+  const instance = wrapper.instance();
+  const files = [
+    {name: 'demo'},
+    {name: 'omed'},
+  ];
+  wrapper.setState({files: files});
+
+  // act
+  instance.createBounty()
+    .then(() => {
+
+      // assert
+      try {
+        expect(addCreateBountyRequest).toHaveBeenCalledTimes(1);
+        expect(removeCreateBountyRequest).toHaveBeenCalledTimes(1);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
+});
+
+it('should call addRequest and removeRequest in createBounty', (done) => {
+  const addRequest = jest.fn();
+  const removeRequest = jest.fn();
+  const walletList = [];
+  const wrapper = mount(
+    <BountyCreate url={'url'}
+      walletList={walletList}
+      addRequest={addRequest}
+      removeRequest={removeRequest}
+      isUnlocked={true}/>
+  );
+  const instance = wrapper.instance();
+  const files = [
+    {name: 'demo'},
+    {name: 'omed'},
+  ];
+  wrapper.setState({files: files});
+
+  // act
+  instance.createBounty()
+    .then(() => {
+
+      // assert
+      try {
+        expect(addRequest).toHaveBeenCalledTimes(1);
+        expect(removeRequest).toHaveBeenCalledTimes(1);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
 });
