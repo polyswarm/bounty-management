@@ -82,12 +82,14 @@ class BountyCreate extends Component {
     this.modal.open();
   }
 
-  onWalletChangeHandler(store) {
+  onWalletChangeHandler(didUnlock, store) {
     const { props: { onWalletChange } } = this;
     if (onWalletChange) {
       onWalletChange(store);
     }
-    this.createBounty();
+    if (didUnlock) {
+      this.createBounty();
+    }
   }
 
   onClearAll() {

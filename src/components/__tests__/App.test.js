@@ -859,8 +859,7 @@ it('calls setState with account: true when calling onAccountSet(true)', () => {
 
   instance.onWalletChangeHandler(true);
 
-  expect(setState).toHaveBeenCalledTimes(1);
-  expect(setState).toHaveBeenCalledWith({isUnlocked: true});
+  expect(setState.mock.calls[0][0]).toEqual({isUnlocked: true});
 });
 
 it('calls setState with account: false when calling onAccountSet(false)', () => {
@@ -871,8 +870,7 @@ it('calls setState with account: false when calling onAccountSet(false)', () => 
 
   instance.onWalletChangeHandler(false);
 
-  expect(setState).toHaveBeenCalledTimes(1);
-  expect(setState).toHaveBeenCalledWith({isUnlocked: false});
+  expect(setState.mock.calls[0][0]).toEqual({isUnlocked: false});
 });
 
 // it('opens the modal when onPostError is called', (done) => {
