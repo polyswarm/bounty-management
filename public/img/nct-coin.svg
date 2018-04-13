@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="218px" height="242px" viewBox="0 0 218 242" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="218px" height="242px" viewBox="-7 19 218 242" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
     <title>coin</title>
     <desc>Created with Sketch.</desc>
@@ -14,50 +14,38 @@
                         <use xlink:href="#path-1"></use>
                     </mask>
                     <g id="Shape"></g>
-                    <g id="Group" mask="url(#mask-2)" stroke="#FFFFFF" stroke-width="4">
+                    <g id="Group" mask="url(#mask-2)" stroke="rgb(46, 255, 108)" stroke-width="4">
                         <g transform="translate(-9.000000, 0.000000)" id="Shape">
-                            <polyline points="0.8491 0.6045 213.2402 0.6045 213.2402 0.6045"></polyline>
-                            <polyline points="0.8491 7.502 213.2402 7.502 213.2402 7.502"></polyline>
-                            <polyline points="0.8491 14.3975 213.2402 14.3975 213.2402 14.3975"></polyline>
-                            <polyline points="0.8491 21.2939 213.2402 21.2939 213.2402 21.2939"></polyline>
-                            <polyline points="0.8491 28.1914 213.2402 28.1914 213.2402 28.1914"></polyline>
-                            <polyline points="0.8491 35.0879 213.2402 35.0879 213.2402 35.0879"></polyline>
-                            <polyline points="0.8491 41.9834 213.2402 41.9834 213.2402 41.9834"></polyline>
-                            <polyline points="0.8491 48.8809 213.2402 48.8809 213.2402 48.8809"></polyline>
-                            <polyline points="0.8491 55.7773 213.2402 55.7773 213.2402 55.7773"></polyline>
-                            <polyline points="0.8491 62.6738 213.2402 62.6738 213.2402 62.6738"></polyline>
-                            <polyline points="0.8491 69.5703 213.2402 69.5703 213.2402 69.5703"></polyline>
-                            <polyline points="0.8491 76.4668 213.2402 76.4668 213.2402 76.4668"></polyline>
-                            <polyline points="0.8491 83.3633 213.2402 83.3633 213.2402 83.3633"></polyline>
-                            <polyline points="0.8491 90.2598 213.2402 90.2598 213.2402 90.2598"></polyline>
-                            <polyline points="0.8491 97.1563 213.2402 97.1563 213.2402 97.1563"></polyline>
-                            <polyline points="0.8491 104.0527 213.2402 104.0527 213.2402 104.0527"></polyline>
-                            <polyline points="0.8491 110.9492 213.2402 110.9492 213.2402 110.9492"></polyline>
-                            <polyline points="0.8491 117.8457 213.2402 117.8457 213.2402 117.8457"></polyline>
-                            <polyline points="0.8491 124.7422 213.2402 124.7422 213.2402 124.7422"></polyline>
-                            <polyline points="0.8491 131.6387 213.2402 131.6387 213.2402 131.6387"></polyline>
-                            <polyline points="0.8491 138.5352 213.2402 138.5352 213.2402 138.5352"></polyline>
-                            <polyline points="0.8491 145.4316 213.2402 145.4316 213.2402 145.4316"></polyline>
-                            <polyline points="0.8491 152.3281 213.2402 152.3281 213.2402 152.3281"></polyline>
-                            <polyline points="0.8491 159.2246 213.2402 159.2246 213.2402 159.2246"></polyline>
-                            <polyline points="0.8491 166.1221 213.2402 166.1221 213.2402 166.1221"></polyline>
-                            <polyline points="0.8491 173.0186 213.2402 173.0186 213.2402 173.0186"></polyline>
-                            <polyline points="0.8491 179.915 213.2402 179.915 213.2402 179.915"></polyline>
-                            <polyline points="0.8491 186.8115 213.2402 186.8115 213.2402 186.8115"></polyline>
-                            <polyline points="0.8491 193.708 213.2402 193.708 213.2402 193.708"></polyline>
-                            <polyline points="0.8491 200.6045 213.2402 200.6045 213.2402 200.6045"></polyline>
+                            <polyline points="0.8491 0.6045 0.6045 0.6045"></polyline>
+                            <polyline points="0.8491 7.502 7.502 7.502"></polyline>
+                            <polyline points="0.8491 14.3975 14.3975 14.3975"></polyline>
+                            <polyline points="0.8491 21.2939 21.2939 21.2939"></polyline>
+                            <polyline points="0.8491 35.0879 35.0879 35.0879"></polyline>
+                            <polyline points="0.8491 41.9834 41.9834 41.9834"></polyline>
+                            <polyline points="0.8491 48.8809 48.8809 48.8809"></polyline>
+                            <polyline points="0.8491 55.7773 55.7773 55.7773"></polyline>
+                            <polyline points="0.8491 62.6738 62.6738 62.6738"></polyline>
+                            <polyline points="0.8491 69.5703 69.5703 69.5703"></polyline>
+                            <polyline points="0.8491 76.4668 76.4668 76.4668"></polyline>
+                            <polyline points="0.8491 83.3633 83.3633 83.3633"></polyline>
+                            <polyline points="0.8491 90.2598 90.2598 90.2598"></polyline>
+                            <polyline points="0.8491 97.1563 97.1563 97.1563"></polyline>
+                            <polyline points="0.8491 104.0527 104.0527 104.0527"></polyline>
+                            <polyline points="0.8491 110.9492 110.9492 110.9492"></polyline>
+                            <polyline points="0.8491 117.8457 117.8457 117.8457"></polyline>
+                            <polyline points="0.8491 124.7422 124.7422 124.7422"></polyline>
+                            <polyline points="0.8491 131.6387 131.6387 131.6387"></polyline>
+                            <polyline points="0.8491 138.5352 138.5352 138.5352"></polyline>
+                            <polyline points="0.8491 145.4316 145.4316 145.4316"></polyline>
+                            <polyline points="0.8491 152.3281 152.3281 152.3281"></polyline>
                         </g>
                     </g>
                 </g>
                 <path d="M60.6948,139.6064 L89.5132,89.6943 L128.6133,89.6943 L157.4258,139.6064 L128.6133,189.5195 L89.5132,189.5195 L60.6948,139.6064 Z M100.5659,39.6055 C45.3379,39.6055 0.5679,84.376 0.5679,139.6064 C0.5679,194.832 45.3379,239.6045 100.5659,239.6045 L115.4326,239.6045 C170.6611,239.6045 215.4336,194.832 215.4336,139.6064 C215.4336,84.376 170.6611,39.6055 115.4326,39.6055 L100.5659,39.6055 Z" id="Shape"></path>
-                <path d="M115.4336,39.6055 L100.5664,39.6055 C45.3384,39.6055 0.5664,84.375 0.5664,139.6064 C0.5664,194.832 45.3384,239.6055 100.5664,239.6055 L115.4336,239.6055 C170.6621,239.6055 215.4336,194.832 215.4336,139.6064 C215.4336,84.375 170.6621,39.6055 115.4336,39.6055 Z M129.3828,189.5176 L89.5132,189.5176 L60.6953,139.6064 L89.5132,89.6943 L129.3828,89.6943 L158.2002,139.6064 L129.3828,189.5176 Z" id="Shape" stroke="#FFFFFF" stroke-width="4"></path>
                 <path d="M100.5664,39.6055 C45.3384,39.6055 0.5664,84.375 0.5664,139.6064 C0.5664,194.832 45.3384,239.6055 100.5664,239.6055 C155.7949,239.6055 200.5664,194.832 200.5664,139.6064 C200.5664,84.375 155.7949,39.6055 100.5664,39.6055 Z M129.3828,189.5176 L71.75,189.5176 L42.9321,139.6064 L71.75,89.6943 L129.3828,89.6943 L158.2002,139.6064 L129.3828,189.5176 Z" id="Shape" stroke="#FFFFFF" stroke-width="4"></path>
                 <path d="M100.5664,52.7246 C52.5835,52.7246 13.6875,91.6211 13.6875,139.6064 C13.6875,187.5859 52.5835,226.4844 100.5664,226.4844 C148.5498,226.4844 187.4453,187.5859 187.4453,139.6064 C187.4453,91.6211 148.5498,52.7246 100.5664,52.7246 Z" id="Shape" stroke="#FFFFFF" stroke-width="4"></path>
                 <polygon id="Shape" stroke="#FFFFFF" stroke-width="4" points="129.3828 189.5176 71.75 189.5176 42.9321 139.6064 71.75 89.6943 129.3828 89.6943 158.2002 139.6064"></polygon>
                 <path d="M100.5664,39.6045 C45.3384,39.6045 0.5664,84.376 0.5664,139.6064 C0.5664,194.833 45.3384,239.6045 100.5664,239.6045 C155.7949,239.6045 200.5664,194.833 200.5664,139.6064 C200.5664,84.376 155.7949,39.6045 100.5664,39.6045 Z" id="Shape" stroke="#FFFFFF" stroke-width="4"></path>
-                <polyline id="Shape" stroke="#FFFFFF" stroke-width="4" points="107.5361 16.8535 107.5361 0.749 107.5361 0.749"></polyline>
-                <polyline id="Shape" stroke="#FFFFFF" stroke-width="4" points="134.0664 19.7813 138.6807 5.1406 138.6807 5.1406"></polyline>
-                <polyline id="Shape" stroke="#FFFFFF" stroke-width="4" points="81.0059 19.7813 76.3921 5.1406 76.3921 5.1406"></polyline>
             </g>
         </g>
     </g>

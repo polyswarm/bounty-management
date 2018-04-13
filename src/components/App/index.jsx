@@ -60,7 +60,7 @@ class App extends Component {
   render() {
     const {host: url} = config;
     const { state: { active, bounties, create, first, isUnlocked, walletList,
-      errorMessage } } = this;
+      errorMessage, requestsInProgress } } = this;
 
     return (
       <div className='App'>
@@ -74,6 +74,7 @@ class App extends Component {
               message={errorMessage}/>
             <Sidebar bounties={bounties}
               active={active}
+              requests={requestsInProgress}
               remove={this.onRemoveBounty}
               select={this.onSelectBounty}/>
             <Header title={(bounties.length === 0 || create || active < 0) ? strings.create : bounties[active].guid}
@@ -86,7 +87,9 @@ class App extends Component {
                   walletList={walletList}
                   onWalletChange={this.onWalletChangeHandler}
                   onError={this.onPostError}
-                  addBounty={this.onAddBounty}/>
+                  addBounty={this.onAddBounty}
+                  addRequest={this.addRequest}
+                  removeRequest={this.removeRequest}/>
               )}
               { !create && active >=0 && active < bounties.length && (
                 <BountyInfo bounty={bounties[active]}/>
@@ -243,16 +246,14 @@ class App extends Component {
         }
       });
       this.setState({bounties: bounties});
-      this.removeRequest({title:'Refreshing bounties', guid: uuid});
+      this.removeRequest({title:'Refreshing bounties', id: uuid});
     });
   }
 
   getWallets() {
     const http = this.http;
-
     const uuid = Uuid();
     this.addRequest({title:'Updating Wallets', id: uuid});
-    const promises = [];
     const w = http.getWallets()
       .then(accounts => {
         this.setState({walletList: accounts});
@@ -260,9 +261,7 @@ class App extends Component {
 
     const u = http.getUnlockedWallet()
       .then((success) => this.setState({isUnlocked: success}));
-    promises.push(w);
-    promises.push(u);
-
+    const promises = [w, u];
     return Promise.all(promises)
       .then(() => {
         this.removeRequest({title:'Updating Wallets', id: uuid});
