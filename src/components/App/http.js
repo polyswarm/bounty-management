@@ -1,3 +1,4 @@
+import BigNumber from 'bignumber.js';
 class HttpApp {
   constructor(url, ws) {
     this.url = url;
@@ -106,9 +107,10 @@ class HttpApp {
       .then(json => json.result)
       .then(assertions => {
         return assertions.map((assertion) => {
+          const bid = new BigNumber(assertion.bid).dividedBy(new BigNumber('1000000000000000000'));
           return {
             author: assertion.author,
-            bid: assertion.bid,
+            bid: bid,
             verdicts: assertion.verdicts,
             metadata: assertion.metadata,
           };
@@ -122,7 +124,7 @@ class HttpApp {
 
   listenForAssertions(assertionAddedCallback) {
     // attach to websocket
-    // anytime we get an assertion, check if it matchs a guid
+    // anytime we get an assertion, check if it matches a guid
     // if it does, add it to the assertions for that object
     const ws = this.ws;
     const websocket = new WebSocket(ws);
@@ -132,9 +134,10 @@ class HttpApp {
 
       if (message.event === 'assertion') {
         const body = message.data;
+        const bid = new BigNumber(body.bid).dividedBy(new BigNumber('1000000000000000000'));
         const assertion = {
           guid: body.bounty_guid,
-          bid: body.bid,
+          bid: bid,
           verdicts: body.verdicts,
           metadata: body.metadata,
           author: body.author,
