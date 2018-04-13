@@ -146,14 +146,14 @@ class BountyCreate extends Component {
   addCreateBountyRequest(id) {
     const { addRequest } = this.props;
     if (addRequest) {
-      addRequest({title: 'Creating Bounty', id: id});
+      addRequest({title: strings.requestCreateBounty, id: id});
     }
   }
 
   removeCreateBountyRequest(id) {
     const { removeRequest } = this.props;
     if (removeRequest) {
-      removeRequest({title: 'Creating Bounty', id: id});
+      removeRequest({title: strings.requestCreateBounty, id: id});
     }
   }
 }
