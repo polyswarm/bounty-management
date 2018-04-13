@@ -53,8 +53,17 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getWallets();
     this.getData();
+    this.timer = setInterval(() => {
+      this.getWallets();
+    }, 5000);
+  }
+
+  componentWillUnmount() {
+    if (this.timer) {
+      this.timer.clearInterval();
+      this.timer = null;
+    }
   }
 
   render() {
