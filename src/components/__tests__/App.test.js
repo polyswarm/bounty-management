@@ -444,7 +444,7 @@ it('calls addRequest when onAddBounty is called', (done) => {
   promise.then(() =>{
     try {
       expect(addRequest).toHaveBeenCalledTimes(1);
-      expect(addRequest).toHaveBeenCalledWith({title: 'Getting Bounty', id: 'asdf'});
+      expect(addRequest).toHaveBeenCalledWith('Getting Bounty', 'asdf');
       done();
     } catch (error) {
       done.fail(error);
@@ -463,7 +463,7 @@ it('calls removeRequest when onAddBounty finishes', (done) => {
   promise.then(() => {
     try {
       expect(removeRequest).toHaveBeenCalledTimes(1);
-      expect(removeRequest).toHaveBeenCalledWith({title: 'Getting Bounty', id: 'asdf'});
+      expect(removeRequest).toHaveBeenCalledWith('Getting Bounty', 'asdf');
       done();
     } catch (error) {
       done.fail(error);
@@ -482,7 +482,7 @@ it('calls addRequest when getData is called', (done) => {
   promise.then(() =>{
     try {
       expect(addRequest).toHaveBeenCalledTimes(1);
-      expect(addRequest.mock.calls[0][0].title).toEqual('Refreshing bounties');
+      expect(addRequest.mock.calls[0][0]).toEqual('Refreshing bounties');
       done();
     } catch (error) {
       done.fail(error);
@@ -501,7 +501,7 @@ it('calls removeRequest when getData finishes', (done) => {
   promise.then(() =>{
     try {
       expect(removeRequest).toHaveBeenCalledTimes(1);
-      expect(removeRequest.mock.calls[0][0].title).toEqual('Refreshing bounties');
+      expect(removeRequest.mock.calls[0][0]).toEqual('Refreshing bounties');
       done();
     } catch (error) {
       done.fail(error);
@@ -520,7 +520,7 @@ it('calls increments when getWallets is called', (done) => {
   promise.then(() =>{
     try {
       expect(addRequest).toHaveBeenCalledTimes(1);
-      expect(addRequest.mock.calls[0][0].title).toEqual('Updating Wallets');
+      expect(addRequest.mock.calls[0][0]).toEqual('Updating Wallets');
       done();
     } catch (error) {
       done.fail(error);
@@ -539,7 +539,7 @@ it('calls decrement when getWallets finishes', (done) => {
   promise.then(() =>{
     try {
       expect(removeRequest).toHaveBeenCalledTimes(1);
-      expect(removeRequest.mock.calls[0][0].title).toEqual('Updating Wallets');
+      expect(removeRequest.mock.calls[0][0]).toEqual('Updating Wallets');
       done();
     } catch (error) {
       done.fail(error);
@@ -553,7 +553,7 @@ it('does nothing when remove request called with no existing request', () => {
   const instance = wrapper.instance();
   setState.mockClear();
 
-  instance.removeRequest({title: 'asdf', id:'notHere'});
+  instance.removeRequest('asdf','notHere');
 
   expect(setState).toHaveBeenCalledTimes(0);
 });
@@ -565,7 +565,7 @@ it('does nothing when remove request called with id not in the requests', (done)
   wrapper.setState({requestsInProgress: [{title: 'demo', id: 'demo'}]}, () =>{
     setState.mockClear();
     //act
-    instance.removeRequest({title: 'asdf', id:'notHere'});
+    instance.removeRequest('asdf', 'notHere');
 
     //assert
     try {
@@ -585,7 +585,7 @@ it('removes the requests when it is the only existing request', (done) => {
     setState.mockClear();
 
     //act
-    instance.removeRequest({title: 'demo', id:'demo'});
+    instance.removeRequest('demo', 'demo');
 
     //assert
     try {
@@ -610,7 +610,7 @@ it('removes the requests from the list of existing requests', (done) => {
     setState.mockClear();
 
     //act
-    instance.removeRequest({title: 'demo', id:'demo'});
+    instance.removeRequest('demo','demo');
 
     //assert
     try {
@@ -635,7 +635,7 @@ it('removes the requests from the last index of existing requests', (done) => {
     setState.mockClear();
 
     //act
-    instance.removeRequest({title: 'asdf', id:'asdf'});
+    instance.removeRequest('asdf', 'asdf');
 
     //assert
     try {
@@ -654,7 +654,7 @@ it('sets state with added request when addRequest called', () => {
   const instance = wrapper.instance();
   setState.mockClear();
 
-  instance.addRequest({title: 'asdf', id: 'asdf'});
+  instance.addRequest('asdf', 'asdf');
 
   expect(setState).toHaveBeenCalledWith({requestsInProgress: [{title: 'asdf', id: 'asdf'}]});
 });
@@ -663,10 +663,10 @@ it('adds request to existing request when addRequest called', () => {
   const setState = jest.spyOn(App.prototype, 'setState');
   const wrapper = shallow(<App />, {disableLifecycleMethods: true});
   const instance = wrapper.instance();
-  instance.addRequest({title: 'asdf', id: 'asdf'});
+  instance.addRequest('asdf', 'asdf');
   setState.mockClear();
 
-  instance.addRequest({title: 'fdsa', id: 'fdsa'});
+  instance.addRequest('fdsa','fdsa');
 
   expect(setState).toHaveBeenCalledWith({requestsInProgress: [
     {title: 'asdf', id: 'asdf'},
