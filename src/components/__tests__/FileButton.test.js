@@ -26,3 +26,24 @@ it('calls the provided fileSelected function', () => {
   // assert
   expect(fileSelected).toHaveBeenCalled();
 });
+
+it('clears the input of all files when done', () => {
+  // arramnge
+  const fileSelected = jest.fn();
+  const wrapper = mount(
+    <FileButton onFileSelected={fileSelected}/>
+  );
+  const instance = wrapper.instance();
+  const event = {
+    target: {
+      files: ['newFile']
+    }
+  };
+  instance.input.value = 'fileName';
+  
+  wrapper.find('input').simulate('change', event);
+
+  // assert
+  expect(fileSelected).toHaveBeenCalled();
+  expect(instance.input.value).toBe('');
+});
