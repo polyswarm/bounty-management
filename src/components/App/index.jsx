@@ -104,7 +104,7 @@ class App extends Component {
   onAddBounty(result) {
     const http = this.http;
 
-    this.addRequest('Getting Bounty', result.guid);
+    this.addRequest(strings.requestGetBounty, result.guid);
     return http.getBounty(result)
       .then(bounty => {
         if (bounty != null) {
@@ -114,11 +114,9 @@ class App extends Component {
           this.setState({bounties: bounties});
         }
       })
+      .catch(() => {})
       .then(() => {
-        this.removeRequest('Getting Bounty', result.guid);
-      })
-      .catch(() => {
-        this.removeRequest('Getting Bounty', result.guid);
+        this.removeRequest(strings.requestGetBounty, result.guid);
       });
   }
 
