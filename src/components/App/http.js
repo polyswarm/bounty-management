@@ -82,6 +82,11 @@ class HttpApp {
       })
       .then(response => response.json())
       .then(json => json.result)
+      .then(files => {
+        return files.map((file) => {
+          return file.name;
+        });
+      })
       .then(filesnames => {
         return filesnames.map((name) => {
           const trimmed = name.trim();
