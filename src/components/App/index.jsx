@@ -252,10 +252,8 @@ class App extends Component {
 
   getWallets() {
     const http = this.http;
-
     const uuid = Uuid();
     this.addRequest({title:'Updating Wallets', id: uuid});
-    const promises = [];
     const w = http.getWallets()
       .then(accounts => {
         this.setState({walletList: accounts});
@@ -263,9 +261,7 @@ class App extends Component {
 
     const u = http.getUnlockedWallet()
       .then((success) => this.setState({isUnlocked: success}));
-    promises.push(w);
-    promises.push(u);
-
+    const promises = [w, u];
     return Promise.all(promises)
       .then(() => {
         this.removeRequest({title:'Updating Wallets', id: uuid});
