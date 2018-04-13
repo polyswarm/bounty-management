@@ -239,7 +239,7 @@ it('calls uploadBounty when uploadFiles succeeds', (done) => {
 
     // assert
       try {
-        expect(mockUploadBounty).toHaveBeenCalledWith('6250000000000000000', ['demo', 'asdf'], 300);
+        expect(mockUploadBounty).toHaveBeenCalledWith('62500000000000000', ['demo', 'asdf'], 300);
         expect(mockUploadBounty).toHaveBeenCalledTimes(1);
         done();
       } catch (error) {
