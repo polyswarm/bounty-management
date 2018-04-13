@@ -132,7 +132,6 @@ it('shows BountyInfo when at least one bounty & active selects it', () => {
   const active = 0;
   wrapper.setState({first: false, bounties: bounties, active: active});
   expect(wrapper.find('.Bounty-Info')).toHaveLength(1);
-  expect(shallowToJson(wrapper)).toMatchSnapshot();
 });
 
 it('shows BountyInfo when at least one bounty & active is negative', () => {
@@ -142,7 +141,6 @@ it('shows BountyInfo when at least one bounty & active is negative', () => {
   wrapper.setState({first: false, bounties: bounties, active: active});
 
   expect(wrapper.find('.Bounty-Create')).toHaveLength(1);
-  expect(shallowToJson(wrapper)).toMatchSnapshot();
 });
 
 it('shows welcome screen on first load', () => {
