@@ -156,7 +156,7 @@ it('calls onWalletChange with true when store is true', () => {
   instance.onWalletChangeHandler();
 
   expect(onWalletChange).toHaveBeenCalledTimes(1);
-  expect(onWalletChange).toHaveBeenCalledWith(true);
+  expect(onWalletChange.mock.calls[0][0]).toEqual(false, true);
 });
 
 it('call onWalletChange with false when store is false', () => {
@@ -172,7 +172,39 @@ it('call onWalletChange with false when store is false', () => {
   instance.onWalletChangeHandler();
 
   expect(onWalletChange).toHaveBeenCalledTimes(1);
-  expect(onWalletChange).toHaveBeenCalledWith(false);
+  expect(onWalletChange).toHaveBeenCalledWith(false, false);
+});
+
+it('passes didUnlock parameter in onWalletChangeHandler to onWalletChange', () => {
+  const onWalletChange = jest.fn();
+  const walletList = [];
+  const wrapper = mount(
+    <ModalPassword walletList={walletList}
+      onWalletChange={onWalletChange} />
+  );
+  wrapper.setState({store: false});
+  const instance = wrapper.instance();
+
+  instance.onWalletChangeHandler(true);
+
+  expect(onWalletChange).toHaveBeenCalledTimes(1);
+  expect(onWalletChange).toHaveBeenCalledWith(true, false);
+});
+
+it('passes didUnlock parameter in onWalletChangeHandler to onWalletChange', () => {
+  const onWalletChange = jest.fn();
+  const walletList = [];
+  const wrapper = mount(
+    <ModalPassword walletList={walletList}
+      onWalletChange={onWalletChange} />
+  );
+  wrapper.setState({store: false});
+  const instance = wrapper.instance();
+
+  instance.onWalletChangeHandler(false);
+
+  expect(onWalletChange).toHaveBeenCalledTimes(1);
+  expect(onWalletChange).toHaveBeenCalledWith(false, false);
 });
 
 it('shows given walletList as options in dropdown', () => {
