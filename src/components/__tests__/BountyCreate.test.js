@@ -405,7 +405,7 @@ it('opens the modal if isUnlocked not set on create click', () => {
   expect(wrapper.find('.ModalContent')).toHaveLength(1);
 });
 
-it('calls create after modal is successfully closed', () => {
+it('calls create after modal is successfully closed & returns unlocked', () => {
   const createBounty = jest.spyOn(BountyCreate.prototype, 'createBounty');
   const onWalletChange = jest.fn();
   const walletList = [];
@@ -422,7 +422,7 @@ it('calls create after modal is successfully closed', () => {
   wrapper.setState({files: files, uploading: false});
   const instance = wrapper.instance();
 
-  instance.onWalletChangeHandler(false);
+  instance.onWalletChangeHandler(true, false);
 
   expect(createBounty).toHaveBeenCalledTimes(1);
 });
@@ -443,7 +443,7 @@ it('calls onWalletChange when modal closed and password checked', () => {
   wrapper.setState({files: files, uploading: false});
   const instance = wrapper.instance();
 
-  instance.onWalletChangeHandler(true);
+  instance.onWalletChangeHandler(true, true);
 
   expect(onWalletChange).toHaveBeenCalledTimes(1);
   expect(onWalletChange).toHaveBeenCalledWith(true);
@@ -465,7 +465,7 @@ it('calls onWalletChange when modal closed and password not checked', () => {
   wrapper.setState({files: files, uploading: false});
   const instance = wrapper.instance();
 
-  instance.onWalletChangeHandler(false);
+  instance.onWalletChangeHandler(false, false);
 
   expect(onWalletChange).toHaveBeenCalledTimes(1);
   expect(onWalletChange).toHaveBeenCalledWith(false);

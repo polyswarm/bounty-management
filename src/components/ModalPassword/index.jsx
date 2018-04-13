@@ -129,10 +129,10 @@ class ModalPassword extends Component {
     );
   }
 
-  onWalletChangeHandler() {
+  onWalletChangeHandler(didUnlock = false) {
     const { props: { onWalletChange }, state: { store } } = this;
     if (onWalletChange) {
-      onWalletChange(store);
+      onWalletChange(didUnlock, store);
     }
   }
 
@@ -184,7 +184,7 @@ class ModalPassword extends Component {
     return http.unlockWallet(address, password).then(success => {
       this.setState({ unlocking: false, error: !success });
       if (success) {
-        this.onWalletChangeHandler();
+        this.onWalletChangeHandler(true);
         this.close();
       }
       this.removeAccountRequest(strings.requestUnlockWallet, uuid);
@@ -200,7 +200,7 @@ class ModalPassword extends Component {
     return http.createWallet(password).then(success => {
       this.setState({ unlocking: false, error: !success });
       if (success) {
-        this.onWalletChangeHandler();
+        this.onWalletChangeHandler(false);
         this.close();
       }
       this.removeAccountRequest(strings.requestCreateWallet, uuid);

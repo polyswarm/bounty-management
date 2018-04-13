@@ -163,6 +163,7 @@ class App extends Component {
 
   onWalletChangeHandler(store) {
     this.setState({isUnlocked: store});
+    this.getWallets();
   }
 
   removeRequest(title, id/*, success*/) {
