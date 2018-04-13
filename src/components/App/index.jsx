@@ -61,7 +61,7 @@ class App extends Component {
 
   componentWillUnmount() {
     if (this.timer) {
-      this.timer.clearInterval();
+      clearInterval(this.timer);
       this.timer = null;
     }
   }
