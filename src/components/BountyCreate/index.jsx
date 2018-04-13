@@ -116,7 +116,7 @@ class BountyCreate extends Component {
       http
         .uploadFiles(files)
         .then(artifact =>
-          http.uploadBounty('6250000000000000000', artifact, 300)
+          http.uploadBounty('625000000000000000', artifact, 300)
         )
         .then(result => {
           if (addBounty) {
