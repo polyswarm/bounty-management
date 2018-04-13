@@ -19,7 +19,7 @@ const mockGetWallets = jest.fn().mockImplementation(() => {
 
 const mockGetBounty = jest.fn().mockImplementation((bounty) => {
   return new Promise(resolve => {
-    resolve({'amount':'6250000000000000000',
+    resolve({'amount':'62500000000000000',
       'author':'0xAF8302a3786A35abEDdF19758067adc9a23597e5',
       'expiration':4563,
       'guid':bounty.guid,
@@ -335,7 +335,7 @@ it('calls setState during onAddBounty', (done) => {
   const promise = instance.onAddBounty({guid: 'asdf'});
   promise.then(() => {
     try {
-      expect(setState.mock.calls[1][0]).toEqual({bounties: [{'amount':'6250000000000000000',
+      expect(setState.mock.calls[1][0]).toEqual({bounties: [{'amount':'62500000000000000',
         'author':'0xAF8302a3786A35abEDdF19758067adc9a23597e5',
         'expiration':4563,
         'guid':'asdf',
@@ -370,7 +370,7 @@ it('calls setState during onAddBounty with existing values', (done) => {
     try {
       expect(mockGetBounty).toHaveBeenCalledTimes(2);
       expect(setState.mock.calls[4][0]).toEqual({bounties: [
-        {'amount':'6250000000000000000',
+        {'amount':'62500000000000000',
           'author':'0xAF8302a3786A35abEDdF19758067adc9a23597e5',
           'expiration':4563,
           'guid':'existing',
@@ -383,7 +383,7 @@ it('calls setState during onAddBounty with existing values', (done) => {
             'verdicts':[true],
             'metadata':'malware'}]
         },
-        {'amount':'6250000000000000000',
+        {'amount':'62500000000000000',
           'author':'0xAF8302a3786A35abEDdF19758067adc9a23597e5',
           'expiration':4563,
           'guid':'asdf',
@@ -413,7 +413,7 @@ it('calls storeBounties after onAddBounty', (done) => {
 
   promise.then(() => {
     try {
-      expect(storeBounties.mock.calls[0][0]).toEqual([{'amount':'6250000000000000000',
+      expect(storeBounties.mock.calls[0][0]).toEqual([{'amount':'62500000000000000',
         'author':'0xAF8302a3786A35abEDdF19758067adc9a23597e5',
         'expiration':4563,
         'guid':'asdf',
