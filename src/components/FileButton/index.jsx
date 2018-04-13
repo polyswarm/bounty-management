@@ -14,6 +14,7 @@ class FileButton extends Component {
     return(
       <form>
         <input id='file'
+          ref={((input)=> this.input = input)}
           className='hidden'
           type='file'
           onChange={this.onFileChanged}
@@ -32,6 +33,7 @@ class FileButton extends Component {
       }
       onFileSelected(files);
     }
+    this.input.value = null;
   }
 }
 
