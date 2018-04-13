@@ -39,10 +39,19 @@ class ModalPassword extends Component {
   }
 
   componentWillMount() {
-    const { props: { walletList } } = this;
-    const { state: { address } } = this;
-    if (walletList && walletList.length > 0) {
-      this.updateBalance(walletList[address]);
+    this.timer = setInterval(() => {
+      const { props: { walletList } } = this;
+      const { state: { address } } = this;
+      if (walletList && walletList.length > 0) {
+        this.updateBalance(walletList[address]);
+      }
+    }, 5000);
+  }
+
+  componentWillUnmount() {
+    if (this.timer) {
+      this.timer.clearInterval();
+      this.timer = null;
     }
   }
 
