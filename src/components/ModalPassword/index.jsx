@@ -180,14 +180,14 @@ class ModalPassword extends Component {
     this.setState({ unlocking: true, error: false });
     const http = new HttpAccount(url);
     const uuid = Uuid();
-    this.addAccountRequest('Unlocking Wallet', uuid);
+    this.addAccountRequest(strings.requestUnlockWallet, uuid);
     return http.unlockWallet(address, password).then(success => {
       this.setState({ unlocking: false, error: !success });
       if (success) {
         this.onWalletChangeHandler();
         this.close();
       }
-      this.removeAccountRequest('Unlocking Wallet', uuid);
+      this.removeAccountRequest(strings.requestUnlockWallet, uuid);
     });
   }
 
@@ -196,14 +196,14 @@ class ModalPassword extends Component {
     this.setState({ unlocking: true, error: false });
     const http = new HttpAccount(url);
     const uuid = Uuid();
-    this.addAccountRequest('Creating Wallet', uuid);
+    this.addAccountRequest(strings.requestCreateWallet, uuid);
     return http.createWallet(password).then(success => {
       this.setState({ unlocking: false, error: !success });
       if (success) {
         this.onWalletChangeHandler();
         this.close();
       }
-      this.removeAccountRequest('Creating Wallet', uuid);
+      this.removeAccountRequest(strings.requestCreateWallet, uuid);
     });
   }
 
@@ -236,21 +236,21 @@ class ModalPassword extends Component {
     const { props: { url } } = this;
     const http = new HttpAccount(url);
     const uuid = Uuid();
-    this.addAccountRequest('Retrieving Balances', uuid);
+    this.addAccountRequest(strings.requestBalance, uuid);
     
     const e = http.getEth(address).then(balance => {
       return new BigNumber(balance).dividedBy(new BigNumber(1000000000000000000));
-    }).then((b) =>{
+    }).then((b) => {
       this.setState({ eth: b.toNumber() });
     });
     const n = http.getNct(address).then(balance => {
       return new BigNumber(balance).dividedBy(new BigNumber(1000000000000000000));
-    }).then((b) =>{
+    }).then((b) => {
       this.setState({ nct: b.toNumber() });
     });
     const promises = [e, n];
     return Promise.all(promises).then(() => {
-      this.removeAccountRequest('Retrieving Balances', uuid);
+      this.removeAccountRequest(strings.requestBalance, uuid);
     });
   }
 }

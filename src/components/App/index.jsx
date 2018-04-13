@@ -220,7 +220,7 @@ class App extends Component {
   getData() {
     const http = this.http;
     const uuid = Uuid();
-    this.addRequest({title:'Refreshing bounties', id: uuid});
+    this.addRequest({title: strings.requestAllData, id: uuid});
     http.listenForAssertions(this.updateOnAssertion);
     const bounties = this.state.bounties.slice();
     const promises = bounties.map((bounty) => {
@@ -246,14 +246,14 @@ class App extends Component {
         }
       });
       this.setState({bounties: bounties});
-      this.removeRequest({title:'Refreshing bounties', id: uuid});
+      this.removeRequest({title: strings.requestAllData, id: uuid});
     });
   }
 
   getWallets() {
     const http = this.http;
     const uuid = Uuid();
-    this.addRequest({title:'Updating Wallets', id: uuid});
+    this.addRequest({title: strings.requestWallets, id: uuid});
     const w = http.getWallets()
       .then(accounts => {
         this.setState({walletList: accounts});
@@ -264,7 +264,7 @@ class App extends Component {
     const promises = [w, u];
     return Promise.all(promises)
       .then(() => {
-        this.removeRequest({title:'Updating Wallets', id: uuid});
+        this.removeRequest({title: strings.requestWallets, id: uuid});
       });
   }
 
