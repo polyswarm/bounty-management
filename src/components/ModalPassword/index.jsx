@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import BigNumber from 'bignumber.js';
+import Uuid from 'uuid/v4';
 // Bounty imports
 import Button from '../Button';
 // Component imports
@@ -33,6 +34,8 @@ class ModalPassword extends Component {
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
     this.updateBalance = this.updateBalance.bind(this);
+    this.addAccountRequest = this.addAccountRequest.bind(this);
+    this.removeAccountRequest = this.removeAccountRequest.bind(this);
   }
 
   componentWillMount() {
@@ -49,12 +52,10 @@ class ModalPassword extends Component {
     const { address: prevAddr } = prevState;
     const { walletList: prevWallets } = prevProps;
 
-    if (
-      walletList &&
-      walletList.length > 0 &&
-      (prevAddr !== address ||
-        JSON.stringify(walletList) !== JSON.stringify(prevWallets))
-    ) {
+    if (walletList
+      && walletList.length > 0 
+      && (prevAddr !== address 
+      || JSON.stringify(walletList) !== JSON.stringify(prevWallets))) {
       this.updateBalance(walletList[address]);
     }
   }
@@ -178,12 +179,15 @@ class ModalPassword extends Component {
     const { props: { url } } = this;
     this.setState({ unlocking: true, error: false });
     const http = new HttpAccount(url);
-    http.unlockWallet(address, password).then(success => {
+    const uuid = Uuid();
+    this.addAccountRequest('Unlocking Wallet', uuid);
+    return http.unlockWallet(address, password).then(success => {
       this.setState({ unlocking: false, error: !success });
       if (success) {
         this.onWalletChangeHandler();
         this.close();
       }
+      this.removeAccountRequest('Unlocking Wallet', uuid);
     });
   }
 
@@ -191,12 +195,15 @@ class ModalPassword extends Component {
     const { props: { url } } = this;
     this.setState({ unlocking: true, error: false });
     const http = new HttpAccount(url);
-    http.createWallet(password).then(success => {
+    const uuid = Uuid();
+    this.addAccountRequest('Creating Wallet', uuid);
+    return http.createWallet(password).then(success => {
       this.setState({ unlocking: false, error: !success });
       if (success) {
         this.onWalletChangeHandler();
         this.close();
       }
+      this.removeAccountRequest('Creating Wallet', uuid);
     });
   }
 
@@ -211,20 +218,39 @@ class ModalPassword extends Component {
     });
   }
 
+  addAccountRequest(title, id) {
+    const { addRequest } = this.props;
+    if (addRequest) {
+      addRequest({title: title, id: id});
+    }
+  }
+
+  removeAccountRequest(title, id) {
+    const { removeRequest } = this.props;
+    if (removeRequest) {
+      removeRequest({title: title, id: id});
+    }
+  }
+
   updateBalance(address) {
     const { props: { url } } = this;
     const http = new HttpAccount(url);
-    http.getEth(address).then(balance => {
-      const b = new BigNumber(balance).dividedBy(
-        new BigNumber(1000000000000000000)
-      );
+    const uuid = Uuid();
+    this.addAccountRequest('Retrieving Balances', uuid);
+    
+    const e = http.getEth(address).then(balance => {
+      return new BigNumber(balance).dividedBy(new BigNumber(1000000000000000000));
+    }).then((b) =>{
       this.setState({ eth: b.toNumber() });
     });
-    http.getNct(address).then(balance => {
-      const b = new BigNumber(balance).dividedBy(
-        new BigNumber(1000000000000000000)
-      );
+    const n = http.getNct(address).then(balance => {
+      return new BigNumber(balance).dividedBy(new BigNumber(1000000000000000000));
+    }).then((b) =>{
       this.setState({ nct: b.toNumber() });
+    });
+    const promises = [e, n];
+    return Promise.all(promises).then(() => {
+      this.removeAccountRequest('Retrieving Balances', uuid);
     });
   }
 }
@@ -232,6 +258,8 @@ class ModalPassword extends Component {
 ModalPassword.proptypes = {
   url: PropTypes.string,
   walletList: PropTypes.array,
-  onWalletChange: PropTypes.func
+  onWalletChange: PropTypes.func,
+  addRequest: PropTypes.func,
+  removeRequest: PropTypes.func
 };
 export default ModalPassword;

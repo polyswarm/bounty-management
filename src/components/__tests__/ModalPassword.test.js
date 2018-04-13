@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, mount} from 'enzyme';
+import {render, mount, shallow} from 'enzyme';
 import {renderToJson, mountToJson} from 'enzyme-to-json';
 import ModalPassword from '../ModalPassword';
 import HttpAccount from '../ModalPassword/http';
@@ -327,17 +327,16 @@ it('does call onWalletChange with false when store is false after unlocking', (d
   wrapper.setState({store: false});
   const instance = wrapper.instance();
 
-  instance.onUnlock('address', 'password');
-
-  setTimeout(() => {
-    try {
-      expect(onWalletChange).toHaveBeenCalledTimes(1);
-      expect(mockUnlockWallet).toHaveBeenCalledTimes(1);
-      done();
-    } catch(error) {
-      done.fail(error);
-    }
-  },0);
+  instance.onUnlock('address', 'password')
+    .then(() => {
+      try {
+        expect(onWalletChange).toHaveBeenCalledTimes(1);
+        expect(mockUnlockWallet).toHaveBeenCalledTimes(1);
+        done();
+      } catch(error) {
+        done.fail(error);
+      }
+    });
 });
 
 it('does call onWalletChange when store is true after unlocking', (done) => {
@@ -352,17 +351,16 @@ it('does call onWalletChange when store is true after unlocking', (done) => {
   wrapper.setState({store: true});
   const instance = wrapper.instance();
 
-  instance.onUnlock('address', 'password');
-
-  setTimeout(() => {
-    try {
-      expect(mockUnlockWallet).toHaveBeenCalledTimes(1);
-      expect(onWalletChange).toHaveBeenCalledTimes(1);
-      done();
-    } catch (error) {
-      done.fail(error);
-    }
-  }, 0);
+  instance.onUnlock('address', 'password')
+    .then(() => {
+      try {
+        expect(mockUnlockWallet).toHaveBeenCalledTimes(1);
+        expect(onWalletChange).toHaveBeenCalledTimes(1);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
 });
 
 it('closes the modal when unlock succeeds', (done) => {
@@ -373,17 +371,16 @@ it('closes the modal when unlock succeeds', (done) => {
   wrapper.setState({store: true});
   const instance = wrapper.instance();
 
-  instance.onUnlock('address', 'password');
-
-  setTimeout(() => {
-    try {
-      expect(mockUnlockWallet).toHaveBeenCalledTimes(1);
-      expect(close).toHaveBeenCalledTimes(1);
-      done();
-    } catch (error) {
-      done.fail(error);
-    }
-  }, 0);
+  instance.onUnlock('address', 'password')
+    .then(() => {
+      try {
+        expect(mockUnlockWallet).toHaveBeenCalledTimes(1);
+        expect(close).toHaveBeenCalledTimes(1);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
 });
 
 it('does not close when unlock fails', (done) => {
@@ -404,17 +401,16 @@ it('does not close when unlock fails', (done) => {
   wrapper.setState({store: true});
   const instance = wrapper.instance();
 
-  instance.onUnlock('address', 'password');
-
-  setTimeout(() => {
-    try {
-      expect(mockBadUnlock).toHaveBeenCalledTimes(1);
-      expect(close).toHaveBeenCalledTimes(0);
-      done();
-    } catch (error) {
-      done.fail(error);
-    }
-  }, 0);
+  instance.onUnlock('address', 'password')
+    .then(() => {
+      try {
+        expect(mockBadUnlock).toHaveBeenCalledTimes(1);
+        expect(close).toHaveBeenCalledTimes(0);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
 });
 
 it('sets unlocking:true, error: false when unlock starts', () => {
@@ -434,21 +430,20 @@ it('sets unlocking:false, error:false when unlock succeeds', (done) => {
   const url = 'https://localhost:8080';
   const walletList = ['asdf'];
   const setState = jest.spyOn(ModalPassword.prototype, 'setState');
-  const wrapper = mount(<ModalPassword walletList={walletList} url={url}/>);
+  const wrapper = shallow(<ModalPassword walletList={walletList} url={url}/>);
   wrapper.setState({store: true});
   setState.mockClear();
   const instance = wrapper.instance();
 
-  instance.onUnlock('address', 'password');
-
-  setTimeout(() => {
-    try{
-      expect(setState.mock.calls[3][0]).toEqual({unlocking: false, error: false});
-      done();
-    } catch (error) {
-      done.fail(error);
-    }
-  }, 0);
+  instance.onUnlock('address', 'password')
+    .then(() => {
+      try{
+        expect(setState.mock.calls[1][0]).toEqual({unlocking: false, error: false});
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
 });
 
 it('does not call onWalletChange when unlock fails', (done) => {
@@ -474,17 +469,16 @@ it('does not call onWalletChange when unlock fails', (done) => {
   wrapper.setState({store: true});
   const instance = wrapper.instance();
 
-  instance.onUnlock('address', 'password');
-
-  setTimeout(() => {
-    try {
-      expect(mockBadUnlock).toHaveBeenCalledTimes(1);
-      expect(onWalletChange).toHaveBeenCalledTimes(0);
-      done();
-    } catch (error) {
-      done.fail(error);
-    }
-  }, 0);
+  instance.onUnlock('address', 'password')
+    .then(() => {
+      try {
+        expect(mockBadUnlock).toHaveBeenCalledTimes(1);
+        expect(onWalletChange).toHaveBeenCalledTimes(0);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
 });
 
 it('does call onWalletChange with false when store is false after creating', (done) => {
@@ -499,17 +493,16 @@ it('does call onWalletChange with false when store is false after creating', (do
   wrapper.setState({store: false});
   const instance = wrapper.instance();
 
-  instance.createWallet('password');
-
-  setTimeout(() => {
-    try {
-      expect(onWalletChange).toHaveBeenCalledTimes(1);
-      expect(mockCreateWallet).toHaveBeenCalledTimes(1);
-      done();
-    } catch (error) {
-      done.fail();
-    }
-  });
+  instance.createWallet('password')
+    .then(() => {
+      try {
+        expect(onWalletChange).toHaveBeenCalledTimes(1);
+        expect(mockCreateWallet).toHaveBeenCalledTimes(1);
+        done();
+      } catch (error) {
+        done.fail();
+      }
+    });
 });
 
 it('does call onWalletChange when store is true after create', (done) => {
@@ -524,17 +517,16 @@ it('does call onWalletChange when store is true after create', (done) => {
   wrapper.setState({store: true});
   const instance = wrapper.instance();
 
-  instance.createWallet('password');
-
-  setTimeout(() => {
-    try {
-      expect(mockCreateWallet).toHaveBeenCalledTimes(1);
-      expect(onWalletChange).toHaveBeenCalledTimes(1);
-      done();
-    } catch (error) {
-      done.fail(error);
-    }
-  }, 0);
+  instance.createWallet('password')
+    .then(() => {
+      try {
+        expect(mockCreateWallet).toHaveBeenCalledTimes(1);
+        expect(onWalletChange).toHaveBeenCalledTimes(1);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
 });
 
 it('closes the modal when create succeeds', (done) => {
@@ -545,17 +537,16 @@ it('closes the modal when create succeeds', (done) => {
   wrapper.setState({store: true});
   const instance = wrapper.instance();
 
-  instance.createWallet('password');
-
-  setTimeout(() => {
-    try {
-      expect(mockCreateWallet).toHaveBeenCalledTimes(1);
-      expect(close).toHaveBeenCalledTimes(1);
-      done();
-    } catch (error) {
-      done.fail(error);
-    }
-  }, 0);
+  instance.createWallet('password')
+    .then(() => {
+      try {
+        expect(mockCreateWallet).toHaveBeenCalledTimes(1);
+        expect(close).toHaveBeenCalledTimes(1);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
 });
 
 it('does not close when create fails', (done) => {
@@ -576,17 +567,16 @@ it('does not close when create fails', (done) => {
   wrapper.setState({store: true});
   const instance = wrapper.instance();
 
-  instance.createWallet('password');
-
-  setTimeout(() => {
-    try {
-      expect(mockBadCreate).toHaveBeenCalledTimes(1);
-      expect(close).toHaveBeenCalledTimes(0);
-      done();
-    } catch (error) {
-      done.fail(error);
-    }
-  }, 0);
+  instance.createWallet('password')
+    .then(() => {
+      try {
+        expect(mockBadCreate).toHaveBeenCalledTimes(1);
+        expect(close).toHaveBeenCalledTimes(0);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
 });
 
 it('sets unlocking:true, error: false when create starts', () => {
@@ -611,16 +601,15 @@ it('sets unlocking:false, error:false when create succeeds', (done) => {
   setState.mockClear();
   const instance = wrapper.instance();
 
-  instance.createWallet('password');
-
-  setTimeout(() => {
-    try{
-      expect(setState.mock.calls[1][0]).toEqual({unlocking: false, error: false});
-      done();
-    } catch (error) {
-      done.fail(error);
-    }
-  }, 0);
+  instance.createWallet('password')
+    .then(() =>{
+      try{
+        expect(setState.mock.calls[1][0]).toEqual({unlocking: false, error: false});
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
 });
 
 it('does not call onWalletChange when create fails', (done) => {
@@ -646,17 +635,16 @@ it('does not call onWalletChange when create fails', (done) => {
   wrapper.setState({store: true});
   const instance = wrapper.instance();
 
-  instance.createWallet('password');
-
-  setTimeout(() => {
-    try {
-      expect(mockBadCreate).toHaveBeenCalledTimes(1);
-      expect(onWalletChange).toHaveBeenCalledTimes(0);
-      done();
-    } catch (error) {
-      done.fail(error);
-    }
-  }, 0);
+  instance.createWallet('password')
+    .then(() =>{
+      try {
+        expect(mockBadCreate).toHaveBeenCalledTimes(1);
+        expect(onWalletChange).toHaveBeenCalledTimes(0);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
 });
 
 it('sets eth & nct to 1.2 when getETh/getNct succeed', (done) => {
@@ -671,17 +659,173 @@ it('sets eth & nct to 1.2 when getETh/getNct succeed', (done) => {
   setState.mockClear();
   const instance = wrapper.instance();
 
-  instance.updateBalance('address');
-
-  setTimeout(() => {
-    try {
-      expect(mockGetEth).toHaveBeenCalledTimes(1);
-      expect(mockGetNct).toHaveBeenCalledTimes(1);
-      expect(setState.mock.calls[0][0]).toEqual({eth: 1.2});
-      expect(setState.mock.calls[1][0]).toEqual({nct: 1.2});
-      done();
-    } catch (error) {
-      done.fail(error);
-    }
-  }, 0);
+  instance.updateBalance('address')
+    .then(() => {
+      try {
+        expect(mockGetEth).toHaveBeenCalledTimes(1);
+        expect(mockGetNct).toHaveBeenCalledTimes(1);
+        expect(setState.mock.calls[0][0]).toEqual({eth: 1.2});
+        expect(setState.mock.calls[1][0]).toEqual({nct: 1.2});
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
 });
+
+it('should call addCreateBountyRequest and removeCreateBountyRequest in updateBalance', (done) => {
+  const addAccountRequest = jest.spyOn(ModalPassword.prototype, 'addAccountRequest');
+  const removeAccountRequest = jest.spyOn(ModalPassword.prototype, 'removeAccountRequest');
+  const url = 'https://localhost:8080';
+  const walletList = [];
+  const wrapper = shallow(
+    <ModalPassword walletList={walletList}
+      url={url}/>
+  );
+  const instance = wrapper.instance();
+
+  // act
+  instance.updateBalance()
+    .then(() => {
+      // assert
+      try {
+        expect(addAccountRequest).toHaveBeenCalledTimes(1);
+        expect(removeAccountRequest).toHaveBeenCalledTimes(1);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
+});
+
+it('should call addRequest and removeRequest in updateBalance', (done) => {
+  const addRequest = jest.fn();
+  const removeRequest = jest.fn();
+  const url = 'https://localhost:8080';
+  const walletList = [];
+  const wrapper = shallow(
+    <ModalPassword walletList={walletList}
+      addRequest={addRequest}
+      removeRequest={removeRequest}
+      url={url}/>
+  );
+  const instance = wrapper.instance();
+
+  // act
+  instance.updateBalance()
+    .then(() => {
+      // assert
+      try {
+        expect(addRequest).toHaveBeenCalledTimes(1);
+        expect(removeRequest).toHaveBeenCalledTimes(1);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
+});
+
+it('should call addCreateBountyRequest and removeCreateBountyRequest in createWallet', (done) => {
+  const addAccountRequest = jest.spyOn(ModalPassword.prototype, 'addAccountRequest');
+  const removeAccountRequest = jest.spyOn(ModalPassword.prototype, 'removeAccountRequest');
+  const url = 'https://localhost:8080';
+  const walletList = [];
+  const wrapper = shallow(
+    <ModalPassword walletList={walletList}
+      url={url}/>
+  );
+  const instance = wrapper.instance();
+
+  // act
+  instance.createWallet()
+    .then(() => {
+      // assert
+      try {
+        expect(addAccountRequest).toHaveBeenCalledTimes(1);
+        expect(removeAccountRequest).toHaveBeenCalledTimes(1);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
+});
+
+it('should call addRequest and removeRequest in createWallet', (done) => {
+  const addRequest = jest.fn();
+  const removeRequest = jest.fn();
+  const url = 'https://localhost:8080';
+  const walletList = [];
+  const wrapper = shallow(
+    <ModalPassword walletList={walletList}
+      addRequest={addRequest}
+      removeRequest={removeRequest}
+      url={url}/>
+  );
+  const instance = wrapper.instance();
+
+  // act
+  instance.createWallet()
+    .then(() => {
+      // assert
+      try {
+        expect(addRequest).toHaveBeenCalledTimes(1);
+        expect(removeRequest).toHaveBeenCalledTimes(1);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
+});
+
+it('should call addCreateBountyRequest and removeCreateBountyRequest in unlockWallet', (done) => {
+  const addAccountRequest = jest.spyOn(ModalPassword.prototype, 'addAccountRequest');
+  const removeAccountRequest = jest.spyOn(ModalPassword.prototype, 'removeAccountRequest');
+  const url = 'https://localhost:8080';
+  const walletList = [];
+  const wrapper = shallow(
+    <ModalPassword walletList={walletList}
+      url={url}/>
+  );
+  const instance = wrapper.instance();
+
+  // act
+  instance.onUnlock()
+    .then(() => {
+      // assert
+      try {
+        expect(addAccountRequest).toHaveBeenCalledTimes(1);
+        expect(removeAccountRequest).toHaveBeenCalledTimes(1);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
+});
+
+it('should call addRequest and removeRequest in unlockWallet', (done) => {
+  const addRequest = jest.fn();
+  const removeRequest = jest.fn();
+  const url = 'https://localhost:8080';
+  const walletList = [];
+  const wrapper = shallow(
+    <ModalPassword walletList={walletList}
+      addRequest={addRequest}
+      removeRequest={removeRequest}
+      url={url}/>
+  );
+  const instance = wrapper.instance();
+
+  // act
+  instance.onUnlock()
+    .then(() => {
+      // assert
+      try {
+        expect(addRequest).toHaveBeenCalledTimes(1);
+        expect(removeRequest).toHaveBeenCalledTimes(1);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
+});
+

@@ -24,8 +24,14 @@ exports[`marks the selected row as .active 1`] = `
     >
       <img
         alt="Polyswarm logo"
+        className="Sidebar-Header-Logo"
         src="../public/img/polyswarm.svg"
       />
+      <RequestSpinner>
+        <span
+          className="RequestSpinner"
+        />
+      </RequestSpinner>
     </header>
     <ul
       className="Sidebar-Content"
@@ -88,10 +94,16 @@ exports[`renders without crashing 1`] = `
   >
     <img
       alt="Polyswarm logo"
+      class="Sidebar-Header-Logo"
       src="../public/img/polyswarm.svg"
     >
       
     </img>
+    <span
+      class="RequestSpinner"
+    >
+      
+    </span>
   </header>
   <ul
     class="Sidebar-Content"
@@ -125,8 +137,14 @@ exports[`shows alert when bounty has updated: true 1`] = `
     >
       <img
         alt="Polyswarm logo"
+        className="Sidebar-Header-Logo"
         src="../public/img/polyswarm.svg"
       />
+      <RequestSpinner>
+        <span
+          className="RequestSpinner"
+        />
+      </RequestSpinner>
     </header>
     <ul
       className="Sidebar-Content"

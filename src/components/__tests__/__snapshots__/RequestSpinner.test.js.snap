@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render without error 1`] = `
+<span
+  className="RequestSpinner"
+/>
+`;
+
+exports[`shows the icon when there are requests 1`] = `
+<RequestSpinner
+  requests={
+    Array [
+      Object {
+        "id": "test",
+        "title": "demo",
+      },
+    ]
+  }
+>
+  <span
+    className="RequestSpinner"
+  >
+    <img
+      alt="Request in progress"
+      className="RequestSpinner-Icon"
+      src="../public/img/nct-coin.svg"
+    />
+  </span>
+</RequestSpinner>
+`;

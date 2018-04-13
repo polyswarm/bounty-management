@@ -1,6 +1,7 @@
 // Vendor imports
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Uuid from 'uuid/v4';
 // Bounty imports
 import DropTarget from '../DropTarget';
 import FileList from '../FileList';
@@ -15,7 +16,6 @@ class BountyCreate extends Component {
     super(props);
     this.state = {
       files: [],
-      uploading: false,
       error: null
     };
     this.onMultipleFilesSelected = this.onMultipleFilesSelected.bind(this);
@@ -25,6 +25,8 @@ class BountyCreate extends Component {
     this.onClearAll = this.onClearAll.bind(this);
     this.cancel = this.cancel.bind(this);
     this.onWalletChangeHandler = this.onWalletChangeHandler.bind(this);
+    this.addCreateBountyRequest = this.addCreateBountyRequest.bind(this);
+    this.removeCreateBountyRequest = this.removeCreateBountyRequest.bind(this);
   }
 
   componentDidMount() {
@@ -33,8 +35,8 @@ class BountyCreate extends Component {
   }
 
   render() {
-    const { state: { files, uploading, error } } = this;
-    const { props: { url, walletList } } = this;
+    const { state: { files, error } } = this;
+    const { props: { url, walletList, addRequest, removeRequest } } = this;
     return (
       <div className='Bounty-Create'>
         <ModalPassword
@@ -42,22 +44,20 @@ class BountyCreate extends Component {
           url={url}
           walletList={walletList}
           onWalletChange={this.onWalletChangeHandler}
-        />
+          addRequest={addRequest}
+          removeRequest={removeRequest}/>
         <div className='Container'>
           <FileList
             files={files}
             clear={this.onClearAll}
-            removeFile={this.onFileRemoved}
-          />
+            removeFile={this.onFileRemoved}/>
           <DropTarget onFilesSelected={this.onMultipleFilesSelected} />
           {error && <p className='Bounty-Create-Error'>{error}</p>}
           <Button
             className='Bounty-Create-Upload'
-            disabled={uploading || !files || files.length === 0}
-            onClick={this.onClickHandler}
-          >
-            {uploading && strings.cancel}
-            {!uploading && strings.createBounty}
+            disabled={!files || files.length === 0}
+            onClick={this.onClickHandler}>
+            {strings.createBounty}
           </Button>
         </div>
       </div>
@@ -79,12 +79,7 @@ class BountyCreate extends Component {
   }
 
   onClickHandler() {
-    const { state: { uploading } } = this;
-    if (uploading) {
-      this.cancel();
-    } else {
-      this.modal.open();
-    }
+    this.modal.open();
   }
 
   onWalletChangeHandler(store) {
@@ -106,14 +101,14 @@ class BountyCreate extends Component {
 
   createBounty() {
     const { props: { addBounty } } = this;
-    const { state: { uploading } } = this;
     const files = this.state.files.slice();
 
     const http = this.http;
-    if (!uploading && files && files.length > 0) {
-      this.setState({ uploading: true, error: null });
-      http
-        .uploadFiles(files)
+    if (files && files.length > 0) {
+      const uuid = Uuid();
+      this.addCreateBountyRequest(uuid);
+      this.setState({ files: [], error: null });
+      return http.uploadFiles(files)
         .then(artifact =>
           http.uploadBounty('6250000000000000000', artifact, 300)
         )
@@ -140,11 +135,25 @@ class BountyCreate extends Component {
             onError(errorMessage);
           }
         })
-        .then(() =>
-          this.setState({
-            uploading: false
-          })
-        );
+        .then(() => {
+          this.removeCreateBountyRequest(uuid);
+        });
+    } else {
+      return null;
+    }
+  }
+
+  addCreateBountyRequest(id) {
+    const { addRequest } = this.props;
+    if (addRequest) {
+      addRequest({title: 'Creating Bounty', id: id});
+    }
+  }
+
+  removeCreateBountyRequest(id) {
+    const { removeRequest } = this.props;
+    if (removeRequest) {
+      removeRequest({title: 'Creating Bounty', id: id});
     }
   }
 }
@@ -155,6 +164,8 @@ BountyCreate.propTypes = {
   onWalletChange: PropTypes.func,
   onError: PropTypes.func,
   addBounty: PropTypes.func,
+  addRequest: PropTypes.func,
+  removeRequest: PropTypes.func,
   url: PropTypes.string
 };
 export default BountyCreate;
