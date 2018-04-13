@@ -234,18 +234,18 @@ it('calls uploadBounty when uploadFiles succeeds', (done) => {
   wrapper.setState({files: files});
 
   // act
-  instance.createBounty();
+  instance.createBounty()
+    .then(() => {
 
-  // assert
-  setTimeout(() => {
-    try {
-      expect(mockUploadBounty).toHaveBeenCalledWith('6250000000000000000', ['demo', 'asdf'], 300);
-      expect(mockUploadBounty).toHaveBeenCalledTimes(1);
-      done();
-    } catch (error) {
-      done.fail(error);
-    }
-  }, 0);
+    // assert
+      try {
+        expect(mockUploadBounty).toHaveBeenCalledWith('6250000000000000000', ['demo', 'asdf'], 300);
+        expect(mockUploadBounty).toHaveBeenCalledTimes(1);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
 });
 
 it('calls addBounty when upload bounty is a success', (done) => {
@@ -282,18 +282,17 @@ it('calls addBounty when upload bounty is a success', (done) => {
   wrapper.setState({files: files});
 
   // act
-  instance.createBounty();
-
-  // assert
-  setTimeout(() => {
-    try {
-      expect(addBounty).toHaveBeenCalledWith('asdf');
-      expect(addBounty).toHaveBeenCalledTimes(1);
-      done();
-    } catch (error) {
-      done.fail(error);
-    }
-  }, 0);
+  instance.createBounty()
+    .then(() => {
+    // assert
+      try {
+        expect(addBounty).toHaveBeenCalledWith('asdf');
+        expect(addBounty).toHaveBeenCalledTimes(1);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
 });
 
 it('sets errors to null when uploads complete', (done) => {
@@ -315,17 +314,18 @@ it('sets errors to null when uploads complete', (done) => {
   wrapper.setState({files});
   const setStateMock = jest.spyOn(BountyCreate.prototype, 'setState');
 
-  instance.createBounty().then(() => {
+  instance.createBounty()
+    .then(() => {
 
-    // assert
-    try {
-      expect(setStateMock).toHaveBeenLastCalledWith({error: null, files: []});
-      expect(setStateMock).toHaveBeenCalledTimes(1);
-      done();
-    } catch (error) {
-      done.fail(error);
-    }
-  });
+      // assert
+      try {
+        expect(setStateMock).toHaveBeenLastCalledWith({error: null, files: []});
+        expect(setStateMock).toHaveBeenCalledTimes(1);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
 });
 
 it('has uploading true after calling createBounty', (done) => {
@@ -505,21 +505,20 @@ it('calls onWalletChange with false when upload bounty returns 401', (done) => {
   wrapper.setState({files: files});
 
   // act
-  instance.createBounty();
-
-  // assert
-  setTimeout(() => {
-    try {
-      expect(onWalletChange).toHaveBeenCalledTimes(1);
-      expect(onWalletChange).toHaveBeenCalledWith(false);
-      done();
-    } catch (error) {
-      done.fail(error);
-    }
-  }, 0);
+  instance.createBounty()
+    .then(() => {
+      // assert
+      try {
+        expect(onWalletChange).toHaveBeenCalledTimes(1);
+        expect(onWalletChange).toHaveBeenCalledWith(false);
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
 });
 
-it('calls on error when something goes wrong in the upload', () => {
+it('calls on error when something goes wrong in the upload', (done) => {
   const mockBadUploadBounty = jest.fn().mockImplementation(() => {
     return new Promise(() => {
       throw Error('Failed.');
@@ -552,18 +551,18 @@ it('calls on error when something goes wrong in the upload', () => {
   wrapper.setState({files: files});
 
   // act
-  instance.createBounty();
+  instance.createBounty()
+    .then(() => {
 
-  // assert
-  setTimeout(() => {
-    try {
-      expect(onError).toHaveBeenCalledTimes(1);
-      expect(onError).toHaveBeenCalledWith('Failed.');
-      done();
-    } catch (error) {
-      done.fail(error);
-    }
-  }, 0);
+    // assert
+      try {
+        expect(onError).toHaveBeenCalledTimes(1);
+        expect(onError).toHaveBeenCalledWith('Failed.');
+        done();
+      } catch (error) {
+        done.fail(error);
+      }
+    });
 });
 
 it('should call addCreateBountyRequest and removeCreateBountyRequest in createBounty', (done) => {
