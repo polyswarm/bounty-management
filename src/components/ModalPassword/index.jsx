@@ -29,7 +29,7 @@ class ModalPassword extends Component {
     this.onCloseClick = this.onCloseClick.bind(this);
     this.onKeyPress = this.onKeyPress.bind(this);
     this.onUnlockClick = this.onUnlockClick.bind(this);
-    this.onUnlock = this.onUnlock.bind(this);
+    this.unlockWallet = this.unlockWallet.bind(this);
     this.createWallet = this.createWallet.bind(this);
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
@@ -169,13 +169,13 @@ class ModalPassword extends Component {
     const { state: { address, password } } = this;
     const { props: { walletList } } = this;
     if (walletList && walletList.length > 0) {
-      this.onUnlock(walletList[address], password);
+      this.unlockWallet(walletList[address], password);
     } else {
       this.createWallet(password);
     }
   }
 
-  onUnlock(address, password) {
+  unlockWallet(address, password) {
     const { props: { url } } = this;
     this.setState({ unlocking: true, error: false });
     const http = new HttpAccount(url);
