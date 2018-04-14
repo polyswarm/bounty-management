@@ -7,7 +7,7 @@ import BountyInfo from '../BountyInfo';
 import Sidebar from '../Sidebar';
 import Header from '../Header';
 import Welcome from '../Welcome';
-import Modal from '../Modal';
+import Snackbar from '../Snackbar';
 // Component imports
 import HttpApp from './http';
 import config from '../../config';
@@ -25,7 +25,7 @@ class App extends Component {
       bounties: bounties,
       create: false,
       first: first,
-      errorMessage: '',
+      errorMessage: null,
       requestsInProgress: []
     };
 
@@ -78,9 +78,6 @@ class App extends Component {
         )}
         {!first && (
           <React.Fragment>
-            <Modal ref={(modal) => {this.modal = modal;}}
-              title={strings.bountyError}
-              message={errorMessage}/>
             <Sidebar bounties={bounties}
               active={active}
               requests={requestsInProgress}
@@ -104,6 +101,9 @@ class App extends Component {
                 <BountyInfo bounty={bounties[active]}/>
               )}
             </div>
+            {errorMessage && errorMessage.length > 0 && (
+              <Snackbar message={errorMessage}/>
+            )}
           </React.Fragment>
         )}
       </div>
@@ -139,12 +139,7 @@ class App extends Component {
   }
 
   onPostError(message) {
-    this.setState({errorMessage: message}, () => {
-      const modal = this.modal;
-      if (modal) {
-        modal.open();
-      }
-    });
+    this.setState({errorMessage: message});
   }
 
   onRemoveBounty(index) {

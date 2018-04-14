@@ -1,0 +1,16 @@
+.Snackbar {
+  background: #323232;
+  border-radius: 3px;
+  bottom: 0;
+  box-shadow: #000000 0px 1px 1px;
+  color: white;
+  display: block;
+  font-size: 14px;
+  height: 14px;
+  line-height: 14px;
+  margin: 0 0 24px 324px;
+  max-width: 568px;
+  min-width: 288px;
+  padding: 14px 24px 14px 24px;
+  position: absolute;
+}
