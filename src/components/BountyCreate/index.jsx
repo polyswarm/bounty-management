@@ -15,8 +15,7 @@ class BountyCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      files: [],
-      error: null
+      files: []
     };
     this.onMultipleFilesSelected = this.onMultipleFilesSelected.bind(this);
     this.onFileRemoved = this.onFileRemoved.bind(this);
@@ -35,7 +34,7 @@ class BountyCreate extends Component {
   }
 
   render() {
-    const { state: { files, error } } = this;
+    const { state: { files } } = this;
     const { props: { url, walletList, addRequest, removeRequest } } = this;
     return (
       <div className='Bounty-Create'>
@@ -52,7 +51,6 @@ class BountyCreate extends Component {
             clear={this.onClearAll}
             removeFile={this.onFileRemoved}/>
           <DropTarget onFilesSelected={this.onMultipleFilesSelected} />
-          {error && <p className='Bounty-Create-Error'>{error}</p>}
           <Button
             className='Bounty-Create-Upload'
             disabled={!files || files.length === 0}
