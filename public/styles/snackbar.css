@@ -4,13 +4,31 @@
   bottom: 0;
   box-shadow: #000000 0px 1px 1px;
   color: white;
-  display: block;
-  font-size: 14px;
+  display: flex;
+  flex-direction: row;
   height: 14px;
-  line-height: 14px;
+  justify-content: flex-end;
   margin: 0 0 24px 324px;
   max-width: 568px;
   min-width: 288px;
   padding: 14px 24px 14px 24px;
   position: absolute;
+}
+
+.Snackbar > p {
+  line-height: 14px;
+  font-size: 14px;
+  margin: 0;
+  width: 100%;
+}
+
+.Snackbar > button {
+  color: rgb(46, 255, 109);
+  display: inline;
+  height: 14px;
+  line-height: 14px;
+  font-size: 14px;
+  margin: 0 0 0 48px;
+  padding: 0;
+  width: max-content;
 }
