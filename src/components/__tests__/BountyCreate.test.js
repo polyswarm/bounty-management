@@ -378,13 +378,6 @@ it('enables button when there are files, a url and not uploading ', () => {
   expect(wrapper.find('.Bounty-Create-Upload').props().disabled).toBeFalsy();
 });
 
-it('shows the error when state has an error', () => {
-  const wrapper = mount(<BountyCreate url={'url'}/>);
-  wrapper.setState({error: 'Error'});
-
-  expect(wrapper.find('.Bounty-Create-Error').props().children).toBe('Error');
-});
-
 it('opens the modal if isUnlocked not set on create click', () => {
   const onWalletChange = jest.fn();
   const walletList = [];
