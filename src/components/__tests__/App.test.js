@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow, render, mount} from 'enzyme';
-import {renderToJson, shallowToJson} from 'enzyme-to-json';
+import {renderToJson, shallowToJson, mountToJson} from 'enzyme-to-json';
 import LocalStorage from '../__mocks__/localstorage';
 import App from '../App';
 import HttpApp from '../App/http';
@@ -902,4 +902,18 @@ it('sets the error message when onPostError is called', () => {
 
   expect(setState).toHaveBeenCalledTimes(1);
   expect(setState.mock.calls[0][0].errorMessage).toEqual('error');
+});
+
+it('shows a Snackbar when there is an error', (done) => {
+  const wrapper = mount(<App />);
+
+  wrapper.setState({first: false, create:false, errorMessage: 'error'}, () =>{
+    try {
+      expect(wrapper.find('.Snackbar')).toHaveLength(1);
+      expect(wrapper.find('.Snackbar').find('p').text()).toEqual('error');
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  });
 });

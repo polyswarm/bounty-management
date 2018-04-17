@@ -7,7 +7,7 @@ import BountyInfo from '../BountyInfo';
 import Sidebar from '../Sidebar';
 import Header from '../Header';
 import Welcome from '../Welcome';
-import Modal from '../Modal';
+import Snackbar from '../Snackbar';
 // Component imports
 import HttpApp from './http';
 import config from '../../config';
@@ -25,7 +25,7 @@ class App extends Component {
       bounties: bounties,
       create: false,
       first: first,
-      errorMessage: '',
+      errorMessage: null,
       requestsInProgress: []
     };
 
@@ -34,6 +34,7 @@ class App extends Component {
     this.onSelectBounty = this.onSelectBounty.bind(this);
     this.onCreateBounty = this.onCreateBounty.bind(this);
     this.onCloseWelcome = this.onCloseWelcome.bind(this);
+    this.onErrorDismissed = this.onErrorDismissed.bind(this);
     this.onPostError = this.onPostError.bind(this);
     this.onWalletChangeHandler = this.onWalletChangeHandler.bind(this);
     this.addRequest = this.addRequest.bind(this);
@@ -78,9 +79,6 @@ class App extends Component {
         )}
         {!first && (
           <React.Fragment>
-            <Modal ref={(modal) => {this.modal = modal;}}
-              title={strings.bountyError}
-              message={errorMessage}/>
             <Sidebar bounties={bounties}
               active={active}
               requests={requestsInProgress}
@@ -104,6 +102,10 @@ class App extends Component {
                 <BountyInfo bounty={bounties[active]}/>
               )}
             </div>
+            {errorMessage && errorMessage.length > 0 && (
+              <Snackbar message={errorMessage}
+                onDismiss={this.onErrorDismissed}/>
+            )}
           </React.Fragment>
         )}
       </div>
@@ -138,13 +140,12 @@ class App extends Component {
     this.markSeen();
   }
 
+  onErrorDismissed() {
+    this.setState({errorMessage: null});
+  }
+
   onPostError(message) {
-    this.setState({errorMessage: message}, () => {
-      const modal = this.modal;
-      if (modal) {
-        modal.open();
-      }
-    });
+    this.setState({errorMessage: message});
   }
 
   onRemoveBounty(index) {
