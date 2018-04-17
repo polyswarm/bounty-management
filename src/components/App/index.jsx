@@ -34,6 +34,7 @@ class App extends Component {
     this.onSelectBounty = this.onSelectBounty.bind(this);
     this.onCreateBounty = this.onCreateBounty.bind(this);
     this.onCloseWelcome = this.onCloseWelcome.bind(this);
+    this.onErrorDismissed = this.onErrorDismissed.bind(this);
     this.onPostError = this.onPostError.bind(this);
     this.onWalletChangeHandler = this.onWalletChangeHandler.bind(this);
     this.addRequest = this.addRequest.bind(this);
@@ -102,7 +103,8 @@ class App extends Component {
               )}
             </div>
             {errorMessage && errorMessage.length > 0 && (
-              <Snackbar message={errorMessage}/>
+              <Snackbar message={errorMessage}
+                onDismiss={this.onErrorDismissed}/>
             )}
           </React.Fragment>
         )}
@@ -136,6 +138,10 @@ class App extends Component {
   onCloseWelcome() {
     this.setState({first: false});
     this.markSeen();
+  }
+
+  onErrorDismissed() {
+    this.setState({errorMessage: null});
   }
 
   onPostError(message) {
