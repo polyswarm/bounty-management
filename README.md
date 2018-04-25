@@ -4,6 +4,12 @@ This Bounty Management Application is used to post Bounties to the PolySwarm mar
 
 It lets the user select one or many suspicious files for analysis in the marketplace. 
 
+## Prerequisites
+
+To use the Bounty Management app a user needs an ERC20 compatible Ethereum wallet with Nectar, and some Eth for gas.
+
+If the user doesn't have a wallet, the application will create one for them on the first attempt to post a bounty. A popup will open prompting for a password. Enter one, and a new wallet will be created with that password. However, the account won't have any Nectar or ETH, so it can't post a bounty. Transfer some ETH and Nectar from a funded wallet to get started.
+
 ## Managing Bounties
 
 On first login users will be greeted with a welcome screen. Click the 'Get Started' button to find the main screen. The Welcome screen is only displayed once.
