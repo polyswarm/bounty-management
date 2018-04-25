@@ -112,7 +112,7 @@ class HttpApp {
       .then(json => json.result)
       .then(assertions => {
         return assertions.map((assertion) => {
-          const bid = new BigNumber(assertion.bid).dividedBy(new BigNumber('1000000000000000000'));
+          const bid = new BigNumber(assertion.bid).dividedBy(new BigNumber('1000000000000000000')).toNumber();
           return {
             author: assertion.author,
             bid: bid,
@@ -139,7 +139,7 @@ class HttpApp {
 
       if (message.event === 'assertion') {
         const body = message.data;
-        const bid = new BigNumber(body.bid).dividedBy(new BigNumber('1000000000000000000'));
+        const bid = new BigNumber(body.bid).dividedBy(new BigNumber('1000000000000000000')).toNumber();
         const assertion = {
           guid: body.bounty_guid,
           bid: bid,

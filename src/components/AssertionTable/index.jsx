@@ -21,10 +21,14 @@ class AssertionTable extends Component {
         </thead>
         <tbody>
           {
-            assertions.map((assertion) => {
+            /*
+             * FIXME We need some sort of time/block number for the assertions.
+             * Using index in the key, is bad form (and issues warnings.)
+             */
+            assertions.map((assertion, index) => {
               return (
                 <AssertionRow
-                  key={assertion.author+assertion.bid+assertion.metadata+assertion.verdict}
+                  key={assertion.author+assertion.bid+assertion.metadata+assertion.verdict+index}
                   assertion={assertion}/>
               );
             })
