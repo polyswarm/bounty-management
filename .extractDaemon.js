@@ -11,7 +11,7 @@ module.exports = (buildPath, electronVersion, platform, arch, callback) => {
     let tail;
     switch (platform) {
       case 'linux':
-        tail = '-x86_64-linux.tar.gz'
+        tail = '.tar.gz'
         break;
       case 'win32':
       case 'darwin':
@@ -20,7 +20,7 @@ module.exports = (buildPath, electronVersion, platform, arch, callback) => {
     }
 
     
-    const filename = 'polyswarmd-electron-x86_64-linux.tar.gz';
+    const filename = 'polyswarmd.tar.gz';
     const app = path.resolve(buildPath);
     const backend = path.resolve(app, 'backend');
     const polyswarmd = path.resolve(app,  'polyswarmd');
