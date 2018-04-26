@@ -42,6 +42,7 @@ jest.mock('../ModalPassword/http', () => {
 
 beforeEach(() => {
   jest.clearAllMocks();
+  jest.setMock('react-transition-group', require('../__mocks__/react-transition-group'));
   HttpAccount.mockClear();
   mockUnlockWallet.mockClear();
   mockCreateWallet.mockClear();
