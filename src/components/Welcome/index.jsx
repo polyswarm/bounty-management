@@ -17,9 +17,10 @@ class Welcome extends Component {
       <div className='Welcome'>
         <div className='Welcome-Jumbo'>
           <h1>{strings.welcome}</h1>
-          <h2>The first <em>decentralized</em> antivirus marketplace.</h2>
-          <p>{strings.moreInfo}</p>
-          <Button className='Welcome-Close' onClick={this.onClickHandler}>
+          <h2>{strings.moreInfo}</h2>
+          <Button className='Welcome-Close'
+            cancel
+            onClick={this.onClickHandler}>
             {strings.getStarted}
           </Button>
         </div>

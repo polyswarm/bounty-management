@@ -843,14 +843,6 @@ it('reads bounties from localStorage and puts into state on startup', () => {
   expect(instance.state.bounties).toEqual(JSON.parse(bounties));
 });
 
-it('reads seen from localStorage and puts it into state as first on startup', () => {
-  localStorage.setItem('seen', JSON.stringify(true));
-  const wrapper = shallow(<App />);
-  const instance = wrapper.instance();
-
-  expect(instance.state.first).toBeFalsy();
-});
-
 it('calls setState with account: true when calling onAccountSet(true)', () => {
   const setState = jest.spyOn(App.prototype, 'setState');
   const wrapper = shallow(<App />);

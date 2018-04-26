@@ -16,7 +16,7 @@ import strings from './strings';
 class App extends Component {
   constructor(props) {
     super(props);
-    const {bounties, first} = this.preloadLocalStorage();
+    const {bounties} = this.preloadLocalStorage();
     this.http = new HttpApp(config.host, config.websocket_host);
     this.state = {
       isUnlocked: false,
@@ -24,7 +24,7 @@ class App extends Component {
       active: 0,
       bounties: bounties,
       create: false,
-      first: first,
+      first: true,
       errorMessage: null,
       requestsInProgress: []
     };
