@@ -27,8 +27,9 @@
 .Welcome-Jumbo > button {
   background-color: white;
   color: #ff1a00;
+  display: block;
   margin: 10px 0;
-  max-width: 400px;
+  max-width: 180px;
   padding: 0;
 }
 
