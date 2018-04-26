@@ -17,6 +17,11 @@ class CSSTransition extends Component {
     );
   }
 
+  onExited() {
+    const {props: {onExited}} = this;
+    onExited();
+  }
+
 }
 CSSTransition.proptypes = {
   children: PropTypes.func
