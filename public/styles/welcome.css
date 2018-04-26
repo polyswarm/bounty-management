@@ -24,6 +24,13 @@
   font-size: 1.5em;
 }
 
+.Welcome-Jumbo > pre {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+  padding: 20px;
+  scroll-behavior: auto
+}
+
 .Welcome-Jumbo > button {
   background-color: white;
   color: #ff1a00;

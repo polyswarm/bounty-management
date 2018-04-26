@@ -23,6 +23,7 @@ class Welcome extends Component {
         <div className='Welcome-Jumbo'>
           <h1>{strings.welcome}</h1>
           <h2>{strings.moreInfo}</h2>
+          <pre>{strings.disclaimer}</pre>
           <form>
             <input type="checkbox"
               id="accept"
