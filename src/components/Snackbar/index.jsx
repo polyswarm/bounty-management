@@ -1,6 +1,7 @@
 // Vendor imports
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {CSSTransition} from 'react-transition-group';
 // Bounty Manager imports
 import Button from '../Button';
 // Component imports
@@ -8,22 +9,39 @@ import strings from './strings';
 class Snackbar extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      show: true,
+    };
     this.dismiss = this.dismiss.bind(this);
+    this.hide = this.hide.bind(this);
   }
 
   render() {
-    const { message } = this.props;
+    const { props: {message}, state: {show} } = this;
     return(
-      <div className='Snackbar'>
-        <p>
-          {message}
-        </p>
-        <Button flat
-          onClick={this.dismiss}>
-          {strings.dismiss}
-        </Button>
-      </div>
+      <CSSTransition
+        in={show}
+        appear
+        timeout={300}
+        onExited={this.dismiss}
+        classNames='snackbar'>
+        {() =>(
+          <div className='Snackbar'>
+            <p>
+              {message}
+            </p>
+            <Button flat
+              onClick={this.hide}>
+              {strings.dismiss}
+            </Button>
+          </div>
+        )}
+      </CSSTransition>
     );
+  }
+
+  hide() {
+    this.setState({show: false});
   }
 
   dismiss() {
@@ -31,6 +49,7 @@ class Snackbar extends Component {
     if (onDismiss) {
       onDismiss();
     }
+    this.setState({show: true});
   }
 }
 Snackbar.proptypes = {

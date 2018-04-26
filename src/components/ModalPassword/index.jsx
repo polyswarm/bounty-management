@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import BigNumber from 'bignumber.js';
 import Uuid from 'uuid/v4';
+import {CSSTransition} from 'react-transition-group';
 // Bounty imports
 import Button from '../Button';
 // Component imports
@@ -76,64 +77,79 @@ class ModalPassword extends Component {
     } = this;
     return (
       <div className='ModalPassword'>
-        {open && (
-          <React.Fragment>
-            <div className='ModalBackground' onClick={this.onCloseClick} />
-            <div className='ModalContent'>
-              <header className='ModalContentHeader'>
-                {walletList.length > 0 ? strings.header : strings.createHeader}
-              </header>
-              <form>
-                {walletList.length > 0 && (
-                  <React.Fragment>
-                    <label htmlFor='address'>{strings.address}</label>
-                    <select
-                      id='address'
-                      value={walletList[address]}
-                      onChange={this.onChangeAddress}>
-                      {walletList.map(wallet => {
-                        return (
-                          <option key={wallet} value={wallet}>
-                            {wallet}
-                          </option>
-                        );
-                      })}
-                    </select>
-                    <label>Balances</label>
-                    <div className='Balances'>
-                      <p className='Balance'>NCT: {nct}</p>
-                      <p className='Balance'>ETH: {eth}</p>
-                    </div>
-                  </React.Fragment>
+        <CSSTransition
+          in={open}
+          timeout={300}
+          mountOnEnter
+          unmountOnExit
+          classNames='open'>
+          {state => (
+            <React.Fragment>
+              <div key='background' className='ModalBackground' onClick={this.onCloseClick}/>
+              <CSSTransition
+                in={open && state !== 'exited'}
+                timeout={300}
+                unmountOnExit
+                classNames='slide'>
+                {() => (
+                  <div className='ModalContent' key='content'>
+                    <header className='ModalContentHeader'>
+                      {walletList.length > 0 ? strings.header : strings.createHeader}
+                    </header>
+                    <form>
+                      {walletList.length > 0 && (
+                        <React.Fragment>
+                          <label htmlFor='address'>{strings.address}</label>
+                          <select
+                            id='address'
+                            value={walletList[address]}
+                            onChange={this.onChangeAddress}>
+                            {walletList.map(wallet => {
+                              return (
+                                <option key={wallet} value={wallet}>
+                                  {wallet}
+                                </option>
+                              );
+                            })}
+                          </select>
+                          <label>Balances</label>
+                          <div className='Balances'>
+                            <p className='Balance'>NCT: {nct}</p>
+                            <p className='Balance'>ETH: {eth}</p>
+                          </div>
+                        </React.Fragment>
+                      )}
+                      <label htmlFor='password'>{strings.password}</label>
+                      <input
+                        id='password'
+                        type='password'
+                        value={password}
+                        onKeyPress={this.onKeyPress}
+                        onChange={this.onChangePassword}
+                      />
+                      <div className='ModalError'>{error && strings.error}</div>
+                    </form>
+                    <p className='ModalMessage'>{strings.background}</p>
+                    <span className='Modal-Button-Bar'>
+                      <Button flat
+                        disabled={unlocking} 
+                        onClick={this.onUnlockClick}>
+                        {walletList.length > 0 ? strings.unlock : strings.create}
+                      </Button>
+                      <Button
+                        flat
+                        cancel
+                        disabled={unlocking}
+                        onClick={this.onCloseClick}>
+                        {strings.cancel}
+                      </Button>
+                    </span>
+                  </div>
                 )}
-                <label htmlFor='password'>{strings.password}</label>
-                <input
-                  id='password'
-                  type='password'
-                  value={password}
-                  onKeyPress={this.onKeyPress}
-                  onChange={this.onChangePassword}
-                />
-                <div className='ModalError'>{error && strings.error}</div>
-              </form>
-              <p className='ModalMessage'>{strings.background}</p>
-              <span className='Modal-Button-Bar'>
-                <Button flat
-                  disabled={unlocking} 
-                  onClick={this.onUnlockClick}>
-                  {walletList.length > 0 ? strings.unlock : strings.create}
-                </Button>
-                <Button
-                  flat
-                  cancel
-                  disabled={unlocking}
-                  onClick={this.onCloseClick}>
-                  {strings.cancel}
-                </Button>
-              </span>
-            </div>
-          </React.Fragment>
-        )}
+              </CSSTransition>
+            </React.Fragment>
+          )}
+        </CSSTransition>
       </div>
     );
   }

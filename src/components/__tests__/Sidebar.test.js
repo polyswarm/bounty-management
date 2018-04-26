@@ -67,7 +67,7 @@ it('calls remove when RemoveButton clicked for a row',() => {
 
   const wrapper = mount(<Sidebar select={select} remove={remove} bounties={bounties} />);
 
-  wrapper.find('.item-1').simulate('mouseEnter');
+  wrapper.find('.item-1').find('li').simulate('mouseEnter');
   wrapper.find('.item-1').find('.Remove-Button').simulate('click');
 
   expect(remove).toHaveBeenCalledWith(1);

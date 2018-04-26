@@ -7,7 +7,9 @@ exports[`renders without crashing 1`] = `
   <div
     class="ModalPassword"
   >
-    
+    <div>
+      
+    </div>
   </div>
   <div
     class="Container"
@@ -33,7 +35,9 @@ exports[`renders without crashing 1`] = `
       <ul
         class="List"
       >
-        
+        <div>
+          
+        </div>
       </ul>
     </div>
     <div

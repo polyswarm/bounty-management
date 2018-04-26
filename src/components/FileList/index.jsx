@@ -1,6 +1,7 @@
 // Vendor imports
 import React from 'react';
 import PropTypes from 'prop-types';
+import {TransitionGroup, CSSTransition} from 'react-transition-group';
 // Bounty imports
 import ListItem from '../ListItem';
 import Button from '../Button';
@@ -32,8 +33,8 @@ class FileList  extends React.Component {
           )}
         </header>
         <ul className='List'>
-          {files && files.length > 0 && (
-            files.map((f, index) => {
+          <TransitionGroup>
+            {files.map((f, index) => {
               const name = f.name;
               let remove = () => {this.onRemoveClickHandler(index);};
               const onClick = () => {this.onClickHandler(index);};
@@ -41,20 +42,26 @@ class FileList  extends React.Component {
                 remove = null;
               }
               return(
-                <ListItem
-                  alternate
-                  active={index === active}
-                  className={`item-${index}`}
+                <CSSTransition
                   key={name}
-                  onClick={onClick}
-                  remove={remove}>
-                  <FileResult good={f.good} total={f.total}>
-                    {name}
-                  </FileResult>
-                </ListItem>
+                  timeout={300}
+                  classNames='item'>
+                  {() => (
+                    <ListItem
+                      alternate
+                      active={index === active}
+                      className={`item-${index}`}
+                      onClick={onClick}
+                      remove={remove}>
+                      <FileResult good={f.good} total={f.total}>
+                        {name}
+                      </FileResult>
+                    </ListItem>
+                  )}
+                </CSSTransition>
               );
-            })
-          )}
+            })}
+          </TransitionGroup>
         </ul>
       </div>
     );
