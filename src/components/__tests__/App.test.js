@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow, render, mount} from 'enzyme';
-import {renderToJson, shallowToJson, mountToJson} from 'enzyme-to-json';
+import {renderToJson} from 'enzyme-to-json';
 import LocalStorage from '../__mocks__/localstorage';
 import App from '../App';
 import HttpApp from '../App/http';
