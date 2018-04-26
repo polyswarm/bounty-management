@@ -9,7 +9,7 @@ class CSSTransition extends Component {
 
   render() {
     const show = this.props.in;
-    const {children} = this.props;
+    const {props: {children}} = this;
     return (
       <div>
         {show && (
@@ -25,4 +25,15 @@ class CSSTransition extends Component {
 CSSTransition.proptypes = {
   children: PropTypes.func
 };
-export {CSSTransition};
+
+class TransitionGroup extends Component {
+  render() {
+    const {props: {children}} = this;
+    return(
+      <div>
+        {children}
+      </div>
+    );
+  }
+}
+export {CSSTransition, TransitionGroup};

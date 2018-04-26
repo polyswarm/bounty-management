@@ -41,57 +41,27 @@ exports[`calls remove when FileProgress remove button clicked 1`] = `
     <ul
       className="List"
     >
-      <ListItem
-        active={false}
-        alternate={true}
-        className="item-0"
-        key="asdf"
-        onClick={[Function]}
-        remove={[Function]}
-      >
-        <li
-          className="ListItem"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div>
-            <span
-              className="ListItem-Child"
-              onClick={[Function]}
-            >
-              <FileResult>
-                <div
-                  className="FileResult"
-                >
-                  <span
-                    className="FileResult-Name"
-                  >
-                    asdf
-                  </span>
-                </div>
-              </FileResult>
-            </span>
-          </div>
-          <span
-            className="ListItem-Remove"
+      <TransitionGroup>
+        <div>
+          <ListItem
+            active={false}
+            alternate={true}
+            className="item-0"
+            key="asdf"
+            onClick={[Function]}
+            remove={[Function]}
           >
-            <RemoveButton
-              onClick={[Function]}
+            <CSSTransition
+              classNames="item"
+              in={false}
+              timeout={300}
+              unmountOnExit={true}
             >
-              <button
-                className="Remove-Button"
-                onClick={[Function]}
-              >
-                <img
-                  alt="remove"
-                  className="redx"
-                  src="../public/img/red-x.svg"
-                />
-              </button>
-            </RemoveButton>
-          </span>
-        </li>
-      </ListItem>
+              <div />
+            </CSSTransition>
+          </ListItem>
+        </div>
+      </TransitionGroup>
     </ul>
   </div>
 </FileList>
@@ -118,63 +88,77 @@ exports[`contains 3 FileProgress when 3 added 1`] = `
   <ul
     class="List"
   >
-    <li
-      class="ListItem"
-    >
+    <div>
       <div>
-        <span
-          class="ListItem-Child"
-        >
-          <div
-            class="FileResult"
+        <div>
+          <li
+            class="ListItem"
           >
-            <span
-              class="FileResult-Name"
-            >
-              asdf
-            </span>
-          </div>
-        </span>
+            <div>
+              <span
+                class="ListItem-Child"
+              >
+                <div
+                  class="FileResult"
+                >
+                  <span
+                    class="FileResult-Name"
+                  >
+                    asdf
+                  </span>
+                </div>
+              </span>
+            </div>
+          </li>
+        </div>
       </div>
-    </li>
-    <li
-      class="ListItem"
-    >
       <div>
-        <span
-          class="ListItem-Child"
-        >
-          <div
-            class="FileResult"
+        <div>
+          <li
+            class="ListItem"
           >
-            <span
-              class="FileResult-Name"
-            >
-              demo
-            </span>
-          </div>
-        </span>
+            <div>
+              <span
+                class="ListItem-Child"
+              >
+                <div
+                  class="FileResult"
+                >
+                  <span
+                    class="FileResult-Name"
+                  >
+                    demo
+                  </span>
+                </div>
+              </span>
+            </div>
+          </li>
+        </div>
       </div>
-    </li>
-    <li
-      class="ListItem"
-    >
       <div>
-        <span
-          class="ListItem-Child"
-        >
-          <div
-            class="FileResult"
+        <div>
+          <li
+            class="ListItem"
           >
-            <span
-              class="FileResult-Name"
-            >
-              test
-            </span>
-          </div>
-        </span>
+            <div>
+              <span
+                class="ListItem-Child"
+              >
+                <div
+                  class="FileResult"
+                >
+                  <span
+                    class="FileResult-Name"
+                  >
+                    test
+                  </span>
+                </div>
+              </span>
+            </div>
+          </li>
+        </div>
       </div>
-    </li>
+    </div>
   </ul>
 </div>
 `;
@@ -223,72 +207,98 @@ exports[`does not mark the ListItem as alternate when active is negative. 1`] = 
     <ul
       className="List"
     >
-      <ListItem
-        active={false}
-        alternate={true}
-        className="item-0"
-        key="asdf"
-        onClick={[Function]}
-        remove={[Function]}
-      >
-        <li
-          className="ListItem"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div>
-            <span
-              className="ListItem-Child"
-              onClick={[Function]}
+      <TransitionGroup>
+        <div>
+          <ListItem
+            active={false}
+            alternate={true}
+            className="item-0"
+            key="asdf"
+            onClick={[Function]}
+            remove={[Function]}
+          >
+            <CSSTransition
+              classNames="item"
+              in={true}
+              timeout={300}
+              unmountOnExit={true}
             >
-              <FileResult>
-                <div
-                  className="FileResult"
-                >
-                  <span
-                    className="FileResult-Name"
+              <div>
+                <div>
+                  <li
+                    className="ListItem"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
                   >
-                    asdf
-                  </span>
+                    <div>
+                      <span
+                        className="ListItem-Child"
+                        onClick={[Function]}
+                      >
+                        <FileResult>
+                          <div
+                            className="FileResult"
+                          >
+                            <span
+                              className="FileResult-Name"
+                            >
+                              asdf
+                            </span>
+                          </div>
+                        </FileResult>
+                      </span>
+                    </div>
+                  </li>
                 </div>
-              </FileResult>
-            </span>
-          </div>
-        </li>
-      </ListItem>
-      <ListItem
-        active={false}
-        alternate={true}
-        className="item-1"
-        key="demo"
-        onClick={[Function]}
-        remove={[Function]}
-      >
-        <li
-          className="ListItem"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div>
-            <span
-              className="ListItem-Child"
-              onClick={[Function]}
+              </div>
+            </CSSTransition>
+          </ListItem>
+          <ListItem
+            active={false}
+            alternate={true}
+            className="item-1"
+            key="demo"
+            onClick={[Function]}
+            remove={[Function]}
+          >
+            <CSSTransition
+              classNames="item"
+              in={true}
+              timeout={300}
+              unmountOnExit={true}
             >
-              <FileResult>
-                <div
-                  className="FileResult"
-                >
-                  <span
-                    className="FileResult-Name"
+              <div>
+                <div>
+                  <li
+                    className="ListItem"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
                   >
-                    demo
-                  </span>
+                    <div>
+                      <span
+                        className="ListItem-Child"
+                        onClick={[Function]}
+                      >
+                        <FileResult>
+                          <div
+                            className="FileResult"
+                          >
+                            <span
+                              className="FileResult-Name"
+                            >
+                              demo
+                            </span>
+                          </div>
+                        </FileResult>
+                      </span>
+                    </div>
+                  </li>
                 </div>
-              </FileResult>
-            </span>
-          </div>
-        </li>
-      </ListItem>
+              </div>
+            </CSSTransition>
+          </ListItem>
+        </div>
+      </TransitionGroup>
     </ul>
   </div>
 </FileList>
@@ -338,72 +348,98 @@ exports[`does not mark the ListItem as alternate when active is out of bounds. 1
     <ul
       className="List"
     >
-      <ListItem
-        active={false}
-        alternate={true}
-        className="item-0"
-        key="asdf"
-        onClick={[Function]}
-        remove={[Function]}
-      >
-        <li
-          className="ListItem"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div>
-            <span
-              className="ListItem-Child"
-              onClick={[Function]}
+      <TransitionGroup>
+        <div>
+          <ListItem
+            active={false}
+            alternate={true}
+            className="item-0"
+            key="asdf"
+            onClick={[Function]}
+            remove={[Function]}
+          >
+            <CSSTransition
+              classNames="item"
+              in={true}
+              timeout={300}
+              unmountOnExit={true}
             >
-              <FileResult>
-                <div
-                  className="FileResult"
-                >
-                  <span
-                    className="FileResult-Name"
+              <div>
+                <div>
+                  <li
+                    className="ListItem"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
                   >
-                    asdf
-                  </span>
+                    <div>
+                      <span
+                        className="ListItem-Child"
+                        onClick={[Function]}
+                      >
+                        <FileResult>
+                          <div
+                            className="FileResult"
+                          >
+                            <span
+                              className="FileResult-Name"
+                            >
+                              asdf
+                            </span>
+                          </div>
+                        </FileResult>
+                      </span>
+                    </div>
+                  </li>
                 </div>
-              </FileResult>
-            </span>
-          </div>
-        </li>
-      </ListItem>
-      <ListItem
-        active={false}
-        alternate={true}
-        className="item-1"
-        key="demo"
-        onClick={[Function]}
-        remove={[Function]}
-      >
-        <li
-          className="ListItem"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div>
-            <span
-              className="ListItem-Child"
-              onClick={[Function]}
+              </div>
+            </CSSTransition>
+          </ListItem>
+          <ListItem
+            active={false}
+            alternate={true}
+            className="item-1"
+            key="demo"
+            onClick={[Function]}
+            remove={[Function]}
+          >
+            <CSSTransition
+              classNames="item"
+              in={true}
+              timeout={300}
+              unmountOnExit={true}
             >
-              <FileResult>
-                <div
-                  className="FileResult"
-                >
-                  <span
-                    className="FileResult-Name"
+              <div>
+                <div>
+                  <li
+                    className="ListItem"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
                   >
-                    demo
-                  </span>
+                    <div>
+                      <span
+                        className="ListItem-Child"
+                        onClick={[Function]}
+                      >
+                        <FileResult>
+                          <div
+                            className="FileResult"
+                          >
+                            <span
+                              className="FileResult-Name"
+                            >
+                              demo
+                            </span>
+                          </div>
+                        </FileResult>
+                      </span>
+                    </div>
+                  </li>
                 </div>
-              </FileResult>
-            </span>
-          </div>
-        </li>
-      </ListItem>
+              </div>
+            </CSSTransition>
+          </ListItem>
+        </div>
+      </TransitionGroup>
     </ul>
   </div>
 </FileList>
@@ -453,72 +489,98 @@ exports[`marks the ListItem as alternate when active is set. 1`] = `
     <ul
       className="List"
     >
-      <ListItem
-        active={true}
-        alternate={true}
-        className="item-0"
-        key="asdf"
-        onClick={[Function]}
-        remove={[Function]}
-      >
-        <li
-          className="ListItem alternate"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div>
-            <span
-              className="ListItem-Child"
-              onClick={[Function]}
+      <TransitionGroup>
+        <div>
+          <ListItem
+            active={true}
+            alternate={true}
+            className="item-0"
+            key="asdf"
+            onClick={[Function]}
+            remove={[Function]}
+          >
+            <CSSTransition
+              classNames="item"
+              in={true}
+              timeout={300}
+              unmountOnExit={true}
             >
-              <FileResult>
-                <div
-                  className="FileResult"
-                >
-                  <span
-                    className="FileResult-Name"
+              <div>
+                <div>
+                  <li
+                    className="ListItem alternate"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
                   >
-                    asdf
-                  </span>
+                    <div>
+                      <span
+                        className="ListItem-Child"
+                        onClick={[Function]}
+                      >
+                        <FileResult>
+                          <div
+                            className="FileResult"
+                          >
+                            <span
+                              className="FileResult-Name"
+                            >
+                              asdf
+                            </span>
+                          </div>
+                        </FileResult>
+                      </span>
+                    </div>
+                  </li>
                 </div>
-              </FileResult>
-            </span>
-          </div>
-        </li>
-      </ListItem>
-      <ListItem
-        active={false}
-        alternate={true}
-        className="item-1"
-        key="demo"
-        onClick={[Function]}
-        remove={[Function]}
-      >
-        <li
-          className="ListItem"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div>
-            <span
-              className="ListItem-Child"
-              onClick={[Function]}
+              </div>
+            </CSSTransition>
+          </ListItem>
+          <ListItem
+            active={false}
+            alternate={true}
+            className="item-1"
+            key="demo"
+            onClick={[Function]}
+            remove={[Function]}
+          >
+            <CSSTransition
+              classNames="item"
+              in={true}
+              timeout={300}
+              unmountOnExit={true}
             >
-              <FileResult>
-                <div
-                  className="FileResult"
-                >
-                  <span
-                    className="FileResult-Name"
+              <div>
+                <div>
+                  <li
+                    className="ListItem"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
                   >
-                    demo
-                  </span>
+                    <div>
+                      <span
+                        className="ListItem-Child"
+                        onClick={[Function]}
+                      >
+                        <FileResult>
+                          <div
+                            className="FileResult"
+                          >
+                            <span
+                              className="FileResult-Name"
+                            >
+                              demo
+                            </span>
+                          </div>
+                        </FileResult>
+                      </span>
+                    </div>
+                  </li>
                 </div>
-              </FileResult>
-            </span>
-          </div>
-        </li>
-      </ListItem>
+              </div>
+            </CSSTransition>
+          </ListItem>
+        </div>
+      </TransitionGroup>
     </ul>
   </div>
 </FileList>
@@ -568,72 +630,98 @@ exports[`marks the ListItem as alternate when active is set. 2`] = `
     <ul
       className="List"
     >
-      <ListItem
-        active={false}
-        alternate={true}
-        className="item-0"
-        key="asdf"
-        onClick={[Function]}
-        remove={[Function]}
-      >
-        <li
-          className="ListItem"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div>
-            <span
-              className="ListItem-Child"
-              onClick={[Function]}
+      <TransitionGroup>
+        <div>
+          <ListItem
+            active={false}
+            alternate={true}
+            className="item-0"
+            key="asdf"
+            onClick={[Function]}
+            remove={[Function]}
+          >
+            <CSSTransition
+              classNames="item"
+              in={true}
+              timeout={300}
+              unmountOnExit={true}
             >
-              <FileResult>
-                <div
-                  className="FileResult"
-                >
-                  <span
-                    className="FileResult-Name"
+              <div>
+                <div>
+                  <li
+                    className="ListItem"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
                   >
-                    asdf
-                  </span>
+                    <div>
+                      <span
+                        className="ListItem-Child"
+                        onClick={[Function]}
+                      >
+                        <FileResult>
+                          <div
+                            className="FileResult"
+                          >
+                            <span
+                              className="FileResult-Name"
+                            >
+                              asdf
+                            </span>
+                          </div>
+                        </FileResult>
+                      </span>
+                    </div>
+                  </li>
                 </div>
-              </FileResult>
-            </span>
-          </div>
-        </li>
-      </ListItem>
-      <ListItem
-        active={true}
-        alternate={true}
-        className="item-1"
-        key="demo"
-        onClick={[Function]}
-        remove={[Function]}
-      >
-        <li
-          className="ListItem alternate"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div>
-            <span
-              className="ListItem-Child"
-              onClick={[Function]}
+              </div>
+            </CSSTransition>
+          </ListItem>
+          <ListItem
+            active={true}
+            alternate={true}
+            className="item-1"
+            key="demo"
+            onClick={[Function]}
+            remove={[Function]}
+          >
+            <CSSTransition
+              classNames="item"
+              in={true}
+              timeout={300}
+              unmountOnExit={true}
             >
-              <FileResult>
-                <div
-                  className="FileResult"
-                >
-                  <span
-                    className="FileResult-Name"
+              <div>
+                <div>
+                  <li
+                    className="ListItem alternate"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
                   >
-                    demo
-                  </span>
+                    <div>
+                      <span
+                        className="ListItem-Child"
+                        onClick={[Function]}
+                      >
+                        <FileResult>
+                          <div
+                            className="FileResult"
+                          >
+                            <span
+                              className="FileResult-Name"
+                            >
+                              demo
+                            </span>
+                          </div>
+                        </FileResult>
+                      </span>
+                    </div>
+                  </li>
                 </div>
-              </FileResult>
-            </span>
-          </div>
-        </li>
-      </ListItem>
+              </div>
+            </CSSTransition>
+          </ListItem>
+        </div>
+      </TransitionGroup>
     </ul>
   </div>
 </FileList>
@@ -667,39 +755,54 @@ exports[`prevents the remove button from showing when FileList has readonly prop
     <ul
       className="List"
     >
-      <ListItem
-        active={false}
-        alternate={true}
-        className="item-0"
-        key="asdf"
-        onClick={[Function]}
-        remove={null}
-      >
-        <li
-          className="ListItem"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div>
-            <span
-              className="ListItem-Child"
-              onClick={[Function]}
+      <TransitionGroup>
+        <div>
+          <ListItem
+            active={false}
+            alternate={true}
+            className="item-0"
+            key="asdf"
+            onClick={[Function]}
+            remove={null}
+          >
+            <CSSTransition
+              classNames="item"
+              in={true}
+              timeout={300}
+              unmountOnExit={true}
             >
-              <FileResult>
-                <div
-                  className="FileResult"
-                >
-                  <span
-                    className="FileResult-Name"
+              <div>
+                <div>
+                  <li
+                    className="ListItem"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
                   >
-                    asdf
-                  </span>
+                    <div>
+                      <span
+                        className="ListItem-Child"
+                        onClick={[Function]}
+                      >
+                        <FileResult>
+                          <div
+                            className="FileResult"
+                          >
+                            <span
+                              className="FileResult-Name"
+                            >
+                              asdf
+                            </span>
+                          </div>
+                        </FileResult>
+                      </span>
+                    </div>
+                  </li>
                 </div>
-              </FileResult>
-            </span>
-          </div>
-        </li>
-      </ListItem>
+              </div>
+            </CSSTransition>
+          </ListItem>
+        </div>
+      </TransitionGroup>
     </ul>
   </div>
 </FileList>
@@ -727,7 +830,9 @@ exports[`renders without crashing 1`] = `
   <ul
     class="List"
   >
-    
+    <div>
+      
+    </div>
   </ul>
 </div>
 `;

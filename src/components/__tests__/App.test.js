@@ -251,7 +251,7 @@ it('calls remove when a sidebar item remove is clicked', () => {
   const bounties = [{guid:'asdf'}, {guid:'demo'}];
   const active = 0;
   wrapper.setState({first: false, bounties: bounties, active: active});
-  wrapper.find('.item-0').simulate('mouseEnter');
+  wrapper.find('.item-0').find('li').simulate('mouseEnter');
   wrapper.find('.Remove-Button').simulate('click');
   expect(remove).toHaveBeenCalledTimes(1);
   expect(remove).toHaveBeenCalledWith(0);

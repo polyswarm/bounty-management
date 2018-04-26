@@ -43,20 +43,31 @@ exports[`marks the selected row as .active 1`] = `
         onClick={[Function]}
         remove={[Function]}
       >
-        <li
-          className="ListItem"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
+        <CSSTransition
+          classNames="item"
+          in={true}
+          timeout={300}
+          unmountOnExit={true}
         >
           <div>
-            <span
-              className="ListItem-Child"
-              onClick={[Function]}
-            >
-              asdf
-            </span>
+            <div>
+              <li
+                className="ListItem"
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div>
+                  <span
+                    className="ListItem-Child"
+                    onClick={[Function]}
+                  >
+                    asdf
+                  </span>
+                </div>
+              </li>
+            </div>
           </div>
-        </li>
+        </CSSTransition>
       </ListItem>
       <ListItem
         active={true}
@@ -65,20 +76,31 @@ exports[`marks the selected row as .active 1`] = `
         onClick={[Function]}
         remove={[Function]}
       >
-        <li
-          className="ListItem active"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
+        <CSSTransition
+          classNames="item"
+          in={true}
+          timeout={300}
+          unmountOnExit={true}
         >
           <div>
-            <span
-              className="ListItem-Child"
-              onClick={[Function]}
-            >
-              demo
-            </span>
+            <div>
+              <li
+                className="ListItem active"
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div>
+                  <span
+                    className="ListItem-Child"
+                    onClick={[Function]}
+                  >
+                    demo
+                  </span>
+                </div>
+              </li>
+            </div>
           </div>
-        </li>
+        </CSSTransition>
       </ListItem>
     </ul>
   </div>
@@ -157,23 +179,34 @@ exports[`shows alert when bounty has updated: true 1`] = `
         onClick={[Function]}
         remove={[Function]}
       >
-        <li
-          className="ListItem"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
+        <CSSTransition
+          classNames="item"
+          in={true}
+          timeout={300}
+          unmountOnExit={true}
         >
           <div>
-            <div
-              className="alert"
-            />
-            <span
-              className="ListItem-Child"
-              onClick={[Function]}
-            >
-              asdf
-            </span>
+            <div>
+              <li
+                className="ListItem"
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div>
+                  <div
+                    className="alert"
+                  />
+                  <span
+                    className="ListItem-Child"
+                    onClick={[Function]}
+                  >
+                    asdf
+                  </span>
+                </div>
+              </li>
+            </div>
           </div>
-        </li>
+        </CSSTransition>
       </ListItem>
       <ListItem
         active={false}
@@ -182,20 +215,31 @@ exports[`shows alert when bounty has updated: true 1`] = `
         onClick={[Function]}
         remove={[Function]}
       >
-        <li
-          className="ListItem"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
+        <CSSTransition
+          classNames="item"
+          in={true}
+          timeout={300}
+          unmountOnExit={true}
         >
           <div>
-            <span
-              className="ListItem-Child"
-              onClick={[Function]}
-            >
-              demo
-            </span>
+            <div>
+              <li
+                className="ListItem"
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+              >
+                <div>
+                  <span
+                    className="ListItem-Child"
+                    onClick={[Function]}
+                  >
+                    demo
+                  </span>
+                </div>
+              </li>
+            </div>
           </div>
-        </li>
+        </CSSTransition>
       </ListItem>
     </ul>
   </div>

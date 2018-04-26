@@ -56,3 +56,18 @@
   height: 32px;
   margin-right: -3px;
 }
+
+.item-enter {
+  opacity: 0.01;
+}
+.item-enter-active {
+  opacity: 1;
+  transition: all 300ms ease-out;
+}
+.item-exit {
+  opacity: 1;
+}
+.item-exit-active {
+  opacity: 0.01;
+  transition: all 300ms ease-out;
+}

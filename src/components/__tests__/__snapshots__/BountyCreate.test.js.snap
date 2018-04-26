@@ -35,7 +35,9 @@ exports[`renders without crashing 1`] = `
       <ul
         class="List"
       >
-        
+        <div>
+          
+        </div>
       </ul>
     </div>
     <div

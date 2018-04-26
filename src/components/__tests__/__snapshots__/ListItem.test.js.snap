@@ -1,129 +1,164 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`adds neither extra class when just alternate property is true 1`] = `
-<li
-  class="ListItem"
->
+<div>
   <div>
-    <span
-      class="ListItem-Child"
+    <li
+      class="ListItem"
     >
-      asdf
-    </span>
+      <div>
+        <span
+          class="ListItem-Child"
+        >
+          asdf
+        </span>
+      </div>
+    </li>
   </div>
-</li>
+</div>
 `;
 
 exports[`adds the active class when active property is true 1`] = `
-<li
-  class="ListItem active"
->
+<div>
   <div>
-    <span
-      class="ListItem-Child"
+    <li
+      class="ListItem active"
     >
-      asdf
-    </span>
+      <div>
+        <span
+          class="ListItem-Child"
+        >
+          asdf
+        </span>
+      </div>
+    </li>
   </div>
-</li>
+</div>
 `;
 
 exports[`adds the alternate class when active and alternate properties are true 1`] = `
-<li
-  class="ListItem alternate"
->
+<div>
   <div>
-    <span
-      class="ListItem-Child"
+    <li
+      class="ListItem alternate"
     >
-      asdf
-    </span>
+      <div>
+        <span
+          class="ListItem-Child"
+        >
+          asdf
+        </span>
+      </div>
+    </li>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders the child I pass 1`] = `
-<li
-  class="ListItem"
->
+<div>
   <div>
-    <span
-      class="ListItem-Child"
+    <li
+      class="ListItem"
     >
-      asdf
-    </span>
+      <div>
+        <span
+          class="ListItem-Child"
+        >
+          asdf
+        </span>
+      </div>
+    </li>
   </div>
-</li>
+</div>
 `;
 
 exports[`renders without crashing 1`] = `
-<li
-  class="ListItem"
->
+<div>
   <div>
-    <span
-      class="ListItem-Child"
+    <li
+      class="ListItem"
     >
-      asdf
-    </span>
+      <div>
+        <span
+          class="ListItem-Child"
+        >
+          asdf
+        </span>
+      </div>
+    </li>
   </div>
-</li>
+</div>
 `;
 
 exports[`shows remove button when hovered 1`] = `
 <ListItem
   remove={[Function]}
 >
-  <li
-    className="ListItem"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
+  <CSSTransition
+    classNames="item"
+    in={true}
+    timeout={300}
+    unmountOnExit={true}
   >
     <div>
-      <span
-        className="ListItem-Child"
-        onClick={[Function]}
-      >
-        asdf
-      </span>
-    </div>
-    <span
-      className="ListItem-Remove"
-    >
-      <RemoveButton
-        onClick={[Function]}
-      >
-        <button
-          className="Remove-Button"
-          onClick={[Function]}
+      <div>
+        <li
+          className="ListItem"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
-          <img
-            alt="remove"
-            className="redx"
-            src="../public/img/red-x.svg"
-          />
-        </button>
-      </RemoveButton>
-    </span>
-  </li>
+          <div>
+            <span
+              className="ListItem-Child"
+              onClick={[Function]}
+            >
+              asdf
+            </span>
+          </div>
+          <span
+            className="ListItem-Remove"
+          >
+            <RemoveButton
+              onClick={[Function]}
+            >
+              <button
+                className="Remove-Button"
+                onClick={[Function]}
+              >
+                <img
+                  alt="remove"
+                  className="redx"
+                  src="../public/img/red-x.svg"
+                />
+              </button>
+            </RemoveButton>
+          </span>
+        </li>
+      </div>
+    </div>
+  </CSSTransition>
 </ListItem>
 `;
 
 exports[`shows the badge when alert is set 1`] = `
-<li
-  class="ListItem active"
->
+<div>
   <div>
-    <div
-      class="alert"
+    <li
+      class="ListItem active"
     >
-      
-    </div>
-    <span
-      class="ListItem-Child"
-    >
-      asdf
-    </span>
+      <div>
+        <div
+          class="alert"
+        >
+          
+        </div>
+        <span
+          class="ListItem-Child"
+        >
+          asdf
+        </span>
+      </div>
+    </li>
   </div>
-</li>
+</div>
 `;

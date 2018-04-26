@@ -1,6 +1,7 @@
 // Vendor imports
 import React from 'react';
 import PropTypes from 'prop-types';
+import {TransitionGroup} from 'react-transition-group';
 // Bounty imports
 import ListItem from '../ListItem';
 import Button from '../Button';
@@ -32,29 +33,31 @@ class FileList  extends React.Component {
           )}
         </header>
         <ul className='List'>
-          {files && files.length > 0 && (
-            files.map((f, index) => {
-              const name = f.name;
-              let remove = () => {this.onRemoveClickHandler(index);};
-              const onClick = () => {this.onClickHandler(index);};
-              if (readonly) {
-                remove = null;
-              }
-              return(
-                <ListItem
-                  alternate
-                  active={index === active}
-                  className={`item-${index}`}
-                  key={name}
-                  onClick={onClick}
-                  remove={remove}>
-                  <FileResult good={f.good} total={f.total}>
-                    {name}
-                  </FileResult>
-                </ListItem>
-              );
-            })
-          )}
+          <TransitionGroup>
+            {files && files.length > 0 && (
+              files.map((f, index) => {
+                const name = f.name;
+                let remove = () => {this.onRemoveClickHandler(index);};
+                const onClick = () => {this.onClickHandler(index);};
+                if (readonly) {
+                  remove = null;
+                }
+                return(
+                  <ListItem
+                    alternate
+                    active={index === active}
+                    className={`item-${index}`}
+                    key={name}
+                    onClick={onClick}
+                    remove={remove}>
+                    <FileResult good={f.good} total={f.total}>
+                      {name}
+                    </FileResult>
+                  </ListItem>
+                );
+              })
+            )}
+          </TransitionGroup>
         </ul>
       </div>
     );
