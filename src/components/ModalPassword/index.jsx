@@ -82,7 +82,7 @@ class ModalPassword extends Component {
           timeout={300}
           mountOnEnter
           unmountOnExit
-          classNames="open">
+          classNames='open'>
           {state => (
             <React.Fragment>
               <div key='background' className='ModalBackground' onClick={this.onCloseClick}/>
@@ -90,7 +90,7 @@ class ModalPassword extends Component {
                 in={open && state !== 'exited'}
                 timeout={300}
                 unmountOnExit
-                classNames="slide">
+                classNames='slide'>
                 {() => (
                   <div className='ModalContent' key='content'>
                     <header className='ModalContentHeader'>
