@@ -41,12 +41,7 @@ jest.mock('../ModalPassword/http', () => {
 });
 
 beforeEach(() => {
-  jest.clearAllMocks();
-  jest.setMock('react-transition-group', require('../__mocks__/react-transition-group'));
-  HttpAccount.mockClear();
-  mockUnlockWallet.mockClear();
-  mockCreateWallet.mockClear();
-
+//   jest.setMock('react-transition-group', require('../__mocks__/react-transition-group'));
   HttpAccount.mockImplementation(() => {
     return {
       unlockWallet: mockUnlockWallet,
@@ -55,6 +50,13 @@ beforeEach(() => {
       getNct: mockGetNct,
     };
   });
+});
+
+afterEach(() => {
+  jest.clearAllMocks();
+  HttpAccount.mockClear();
+  mockUnlockWallet.mockClear();
+  mockCreateWallet.mockClear();
 });
 
 it('renders without crashing', () => {

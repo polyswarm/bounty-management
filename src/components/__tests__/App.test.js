@@ -56,6 +56,7 @@ jest.mock('../App/http', () => {
 beforeEach(() => {
   localStorage.clear();
   jest.clearAllMocks();
+  jest.setMock('react-transition-group', require('../__mocks__/react-transition-group'));
   HttpApp.mockClear();
   HttpApp.mockImplementation(() => {
     return {
@@ -160,6 +161,7 @@ it('calls select when a sidebar item is clicked', () => {
   const bounties = [{guid:'asdf'}, {guid:'demo'}];
   const active = 0;
   wrapper.setState({first: false, bounties: bounties, active: active});
+
   wrapper.find('.item-0').find('.ListItem-Child').simulate('click');
   expect(select).toHaveBeenCalledTimes(1);
   expect(select).toHaveBeenCalledWith(0);

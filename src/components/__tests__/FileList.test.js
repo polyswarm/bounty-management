@@ -3,6 +3,10 @@ import {render, mount} from 'enzyme';
 import {renderToJson, mountToJson} from 'enzyme-to-json';
 import FileList from '../FileList';
 
+beforeEach(() => {
+  jest.setMock('react-transition-group', require('../__mocks__/react-transition-group'));
+});
+
 it('throws when created without files', () => {
   expect(() => { render(<FileList />);  }).toThrow();
 });

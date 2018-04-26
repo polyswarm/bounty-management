@@ -38,21 +38,20 @@ exports[`marks the selected row as .active 1`] = `
     >
       <TransitionGroup>
         <div>
-          <ListItem
-            active={false}
-            className="item-0"
-            key="asdf"
-            onClick={[Function]}
-            remove={[Function]}
+          <CSSTransition
+            classNames="item"
+            in={true}
+            key=".$asdf"
+            timeout={300}
           >
-            <CSSTransition
-              classNames="item"
-              in={true}
-              timeout={300}
-              unmountOnExit={true}
-            >
+            <div>
               <div>
-                <div>
+                <ListItem
+                  active={false}
+                  className="item-0"
+                  onClick={[Function]}
+                  remove={[Function]}
+                >
                   <li
                     className="ListItem"
                     onMouseEnter={[Function]}
@@ -67,25 +66,24 @@ exports[`marks the selected row as .active 1`] = `
                       </span>
                     </div>
                   </li>
-                </div>
+                </ListItem>
               </div>
-            </CSSTransition>
-          </ListItem>
-          <ListItem
-            active={true}
-            className="item-1"
-            key="demo"
-            onClick={[Function]}
-            remove={[Function]}
+            </div>
+          </CSSTransition>
+          <CSSTransition
+            classNames="item"
+            in={true}
+            key=".$demo"
+            timeout={300}
           >
-            <CSSTransition
-              classNames="item"
-              in={true}
-              timeout={300}
-              unmountOnExit={true}
-            >
+            <div>
               <div>
-                <div>
+                <ListItem
+                  active={true}
+                  className="item-1"
+                  onClick={[Function]}
+                  remove={[Function]}
+                >
                   <li
                     className="ListItem active"
                     onMouseEnter={[Function]}
@@ -100,10 +98,10 @@ exports[`marks the selected row as .active 1`] = `
                       </span>
                     </div>
                   </li>
-                </div>
+                </ListItem>
               </div>
-            </CSSTransition>
-          </ListItem>
+            </div>
+          </CSSTransition>
         </div>
       </TransitionGroup>
     </ul>
@@ -179,22 +177,21 @@ exports[`shows alert when bounty has updated: true 1`] = `
     >
       <TransitionGroup>
         <div>
-          <ListItem
-            active={false}
-            alert={true}
-            className="item-0"
-            key="asdf"
-            onClick={[Function]}
-            remove={[Function]}
+          <CSSTransition
+            classNames="item"
+            in={true}
+            key=".$asdf"
+            timeout={300}
           >
-            <CSSTransition
-              classNames="item"
-              in={true}
-              timeout={300}
-              unmountOnExit={true}
-            >
+            <div>
               <div>
-                <div>
+                <ListItem
+                  active={false}
+                  alert={true}
+                  className="item-0"
+                  onClick={[Function]}
+                  remove={[Function]}
+                >
                   <li
                     className="ListItem"
                     onMouseEnter={[Function]}
@@ -212,25 +209,24 @@ exports[`shows alert when bounty has updated: true 1`] = `
                       </span>
                     </div>
                   </li>
-                </div>
+                </ListItem>
               </div>
-            </CSSTransition>
-          </ListItem>
-          <ListItem
-            active={false}
-            className="item-1"
-            key="demo"
-            onClick={[Function]}
-            remove={[Function]}
+            </div>
+          </CSSTransition>
+          <CSSTransition
+            classNames="item"
+            in={true}
+            key=".$demo"
+            timeout={300}
           >
-            <CSSTransition
-              classNames="item"
-              in={true}
-              timeout={300}
-              unmountOnExit={true}
-            >
+            <div>
               <div>
-                <div>
+                <ListItem
+                  active={false}
+                  className="item-1"
+                  onClick={[Function]}
+                  remove={[Function]}
+                >
                   <li
                     className="ListItem"
                     onMouseEnter={[Function]}
@@ -245,10 +241,10 @@ exports[`shows alert when bounty has updated: true 1`] = `
                       </span>
                     </div>
                   </li>
-                </div>
+                </ListItem>
               </div>
-            </CSSTransition>
-          </ListItem>
+            </div>
+          </CSSTransition>
         </div>
       </TransitionGroup>
     </ul>
