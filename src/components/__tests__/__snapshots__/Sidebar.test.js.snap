@@ -36,72 +36,76 @@ exports[`marks the selected row as .active 1`] = `
     <ul
       className="Sidebar-Content"
     >
-      <ListItem
-        active={false}
-        className="item-0"
-        key="asdf"
-        onClick={[Function]}
-        remove={[Function]}
-      >
-        <CSSTransition
-          classNames="item"
-          in={true}
-          timeout={300}
-          unmountOnExit={true}
-        >
-          <div>
-            <div>
-              <li
-                className="ListItem"
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-              >
+      <TransitionGroup>
+        <div>
+          <ListItem
+            active={false}
+            className="item-0"
+            key="asdf"
+            onClick={[Function]}
+            remove={[Function]}
+          >
+            <CSSTransition
+              classNames="item"
+              in={true}
+              timeout={300}
+              unmountOnExit={true}
+            >
+              <div>
                 <div>
-                  <span
-                    className="ListItem-Child"
-                    onClick={[Function]}
+                  <li
+                    className="ListItem"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
                   >
-                    asdf
-                  </span>
+                    <div>
+                      <span
+                        className="ListItem-Child"
+                        onClick={[Function]}
+                      >
+                        asdf
+                      </span>
+                    </div>
+                  </li>
                 </div>
-              </li>
-            </div>
-          </div>
-        </CSSTransition>
-      </ListItem>
-      <ListItem
-        active={true}
-        className="item-1"
-        key="demo"
-        onClick={[Function]}
-        remove={[Function]}
-      >
-        <CSSTransition
-          classNames="item"
-          in={true}
-          timeout={300}
-          unmountOnExit={true}
-        >
-          <div>
-            <div>
-              <li
-                className="ListItem active"
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-              >
+              </div>
+            </CSSTransition>
+          </ListItem>
+          <ListItem
+            active={true}
+            className="item-1"
+            key="demo"
+            onClick={[Function]}
+            remove={[Function]}
+          >
+            <CSSTransition
+              classNames="item"
+              in={true}
+              timeout={300}
+              unmountOnExit={true}
+            >
+              <div>
                 <div>
-                  <span
-                    className="ListItem-Child"
-                    onClick={[Function]}
+                  <li
+                    className="ListItem active"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
                   >
-                    demo
-                  </span>
+                    <div>
+                      <span
+                        className="ListItem-Child"
+                        onClick={[Function]}
+                      >
+                        demo
+                      </span>
+                    </div>
+                  </li>
                 </div>
-              </li>
-            </div>
-          </div>
-        </CSSTransition>
-      </ListItem>
+              </div>
+            </CSSTransition>
+          </ListItem>
+        </div>
+      </TransitionGroup>
     </ul>
   </div>
 </Sidebar>
@@ -130,7 +134,9 @@ exports[`renders without crashing 1`] = `
   <ul
     class="Sidebar-Content"
   >
-    
+    <div>
+      
+    </div>
   </ul>
 </div>
 `;
@@ -171,76 +177,80 @@ exports[`shows alert when bounty has updated: true 1`] = `
     <ul
       className="Sidebar-Content"
     >
-      <ListItem
-        active={false}
-        alert={true}
-        className="item-0"
-        key="asdf"
-        onClick={[Function]}
-        remove={[Function]}
-      >
-        <CSSTransition
-          classNames="item"
-          in={true}
-          timeout={300}
-          unmountOnExit={true}
-        >
-          <div>
-            <div>
-              <li
-                className="ListItem"
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-              >
+      <TransitionGroup>
+        <div>
+          <ListItem
+            active={false}
+            alert={true}
+            className="item-0"
+            key="asdf"
+            onClick={[Function]}
+            remove={[Function]}
+          >
+            <CSSTransition
+              classNames="item"
+              in={true}
+              timeout={300}
+              unmountOnExit={true}
+            >
+              <div>
                 <div>
-                  <div
-                    className="alert"
-                  />
-                  <span
-                    className="ListItem-Child"
-                    onClick={[Function]}
+                  <li
+                    className="ListItem"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
                   >
-                    asdf
-                  </span>
+                    <div>
+                      <div
+                        className="alert"
+                      />
+                      <span
+                        className="ListItem-Child"
+                        onClick={[Function]}
+                      >
+                        asdf
+                      </span>
+                    </div>
+                  </li>
                 </div>
-              </li>
-            </div>
-          </div>
-        </CSSTransition>
-      </ListItem>
-      <ListItem
-        active={false}
-        className="item-1"
-        key="demo"
-        onClick={[Function]}
-        remove={[Function]}
-      >
-        <CSSTransition
-          classNames="item"
-          in={true}
-          timeout={300}
-          unmountOnExit={true}
-        >
-          <div>
-            <div>
-              <li
-                className="ListItem"
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-              >
+              </div>
+            </CSSTransition>
+          </ListItem>
+          <ListItem
+            active={false}
+            className="item-1"
+            key="demo"
+            onClick={[Function]}
+            remove={[Function]}
+          >
+            <CSSTransition
+              classNames="item"
+              in={true}
+              timeout={300}
+              unmountOnExit={true}
+            >
+              <div>
                 <div>
-                  <span
-                    className="ListItem-Child"
-                    onClick={[Function]}
+                  <li
+                    className="ListItem"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
                   >
-                    demo
-                  </span>
+                    <div>
+                      <span
+                        className="ListItem-Child"
+                        onClick={[Function]}
+                      >
+                        demo
+                      </span>
+                    </div>
+                  </li>
                 </div>
-              </li>
-            </div>
-          </div>
-        </CSSTransition>
-      </ListItem>
+              </div>
+            </CSSTransition>
+          </ListItem>
+        </div>
+      </TransitionGroup>
     </ul>
   </div>
 </Sidebar>
