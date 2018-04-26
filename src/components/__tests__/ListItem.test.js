@@ -38,21 +38,21 @@ it('adds the active class when active property is true', () => {
   const remove = jest.fn();
   const item = 'asdf';
   const wrapper = render(<ListItem remove={remove} active>{item}</ListItem>);
-  expect(wrapper.find('li').hasClass('active')).toBeTruthy();
+  expect(wrapper.hasClass('active')).toBeTruthy();
   expect(renderToJson(wrapper)).toMatchSnapshot();
 });
 
 it('adds the alternate class when active and alternate properties are true', () => {
   const item = 'asdf';
   const wrapper = render(<ListItem active alternate>{item}</ListItem>);
-  expect(wrapper.find('li').hasClass('alternate')).toBeTruthy();
+  expect(wrapper.hasClass('alternate')).toBeTruthy();
   expect(renderToJson(wrapper)).toMatchSnapshot();
 });
 
 it('adds neither extra class when just alternate property is true', () => {
   const item = 'asdf';
   const wrapper = render(<ListItem alternate>{item}</ListItem>);
-  expect(wrapper.find('li').hasClass('alternate')).toBeFalsy();
+  expect(wrapper.hasClass('alternate')).toBeFalsy();
   expect(renderToJson(wrapper)).toMatchSnapshot();
 });
 

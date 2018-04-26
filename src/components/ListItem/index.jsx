@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {CSSTransition} from 'react-transition-group';
 // Bounty imports
 import RemoveButton from '../RemoveButton';
 // Component imports
@@ -11,7 +10,6 @@ class ListItem extends Component {
     super(props);
     this.state = {
       hover: false,
-      show: true,
     };
 
     this.onClickHandler = this.onClickHandler.bind(this);
@@ -21,37 +19,29 @@ class ListItem extends Component {
   }
 
   render () {
-    const { props: { children, remove, active, alert, alternate }, state: { hover, show } } = this;
+    const { props: { children, remove, active, alert, alternate }, state: { hover } } = this;
     const className = ListItem.computeClassName(active, alternate);
     return(
-      <CSSTransition
-        in={show}
-        timeout={300}
-        unmountOnExit
-        classNames='item'>
-        {() => (
-          <li className={className}
-            onMouseEnter={this.onMouseEnter}
-            onMouseLeave={this.onMouseLeave}>
-            <div>
-              {alert && (
-                <div className='alert'/>
-              )}
-              <span className='ListItem-Child'
-                onClick={this.onClickHandler}>
-                {children}
-              </span>
-            </div>
-            {remove && hover && (
-              <span className='ListItem-Remove'>
-                <RemoveButton onClick={this.onRemoveHandler}>
-                  <img className='redx' src='../public/img/red-x.svg' alt={strings.remove}/>
-                </RemoveButton>
-              </span>
-            )}
-          </li>
+      <li className={className}
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}>
+        <div>
+          {alert && (
+            <div className='alert'/>
+          )}
+          <span className='ListItem-Child'
+            onClick={this.onClickHandler}>
+            {children}
+          </span>
+        </div>
+        {remove && hover && (
+          <span className='ListItem-Remove'>
+            <RemoveButton onClick={this.onRemoveHandler}>
+              <img className='redx' src='../public/img/red-x.svg' alt={strings.remove}/>
+            </RemoveButton>
+          </span>
         )}
-      </CSSTransition>
+      </li>
     );
   }
 
@@ -63,7 +53,6 @@ class ListItem extends Component {
   }
 
   onRemoveHandler() {
-    this.setState({show: false});
     const { props: { remove } } = this;
     if (remove) {
       remove();

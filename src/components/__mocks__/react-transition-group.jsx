@@ -3,10 +3,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class CSSTransition extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const show = this.props.in;
     const {props: {children}} = this;
@@ -29,9 +25,19 @@ CSSTransition.proptypes = {
 class TransitionGroup extends Component {
   render() {
     const {props: {children}} = this;
+    let modified;
+    if (children != null) {
+      modified = React.Children.map(children, child => {
+        if (child != null) {
+          return React.cloneElement(child, {in: true});
+        } else {
+          return child;
+        }
+      });
+    }
     return(
       <div>
-        {children}
+        {modified}
       </div>
     );
   }
