@@ -13,8 +13,23 @@ exports[`renders without crashing 1`] = `
     <h2>
       Use at your own risk: Bugs may result in a permanent loss of Nectar (NCT).
     </h2>
+    <form>
+      <input
+        id="accept"
+        type="checkbox"
+        value="false"
+      >
+        
+      </input>
+      <label
+        for="accept"
+      >
+        I understand and accept the risks involved in using the alpha product.
+      </label>
+    </form>
     <button
       class="Button cancel"
+      disabled=""
     >
       I understand the risk. Get to it!
     </button>

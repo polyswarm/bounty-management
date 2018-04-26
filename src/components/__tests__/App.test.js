@@ -150,6 +150,7 @@ it('shows welcome screen on first load', () => {
 
 it('stores seen true when welcome closed', () => {
   const wrapper = mount(<App />);
+  wrapper.find('.Welcome').find('input').simulate('change', { target: { checked: true } });
   wrapper.find('.Welcome').find('button').simulate('click');
   expect(JSON.parse(localStorage.getItem('seen'))).toBeTruthy();
 });
