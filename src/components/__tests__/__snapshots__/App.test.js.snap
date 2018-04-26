@@ -4,30 +4,34 @@ exports[`renders without crashing 1`] = `
 <div
   class="App"
 >
-  <div
-    class="Welcome"
-  >
-    <div
-      class="Welcome-Jumbo"
-    >
-      <h1>
-        Welcome to Polyswarm,
-      </h1>
-      <h2>
-        The first 
-        <em>
-          decentralized
-        </em>
-         antivirus marketplace.
-      </h2>
-      <p>
-        Simply upload files to create your own bounties and then let the microengines on Polyswarm analyze your file.
-      </p>
-      <button
-        class="Button"
+  <div>
+    <div>
+      <div
+        class="Welcome"
       >
-        Get Started!
-      </button>
+        <div
+          class="Welcome-Jumbo"
+        >
+          <h1>
+            Welcome to Polyswarm,
+          </h1>
+          <h2>
+            The first 
+            <em>
+              decentralized
+            </em>
+             antivirus marketplace.
+          </h2>
+          <p>
+            Simply upload files to create your own bounties and then let the microengines on Polyswarm analyze your file.
+          </p>
+          <button
+            class="Button"
+          >
+            Get Started!
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
