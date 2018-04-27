@@ -25,11 +25,11 @@ class Welcome extends Component {
           <h2>{strings.moreInfo}</h2>
           <pre>{strings.disclaimer}</pre>
           <form>
-            <input type="checkbox"
-              id="accept"
+            <input type='checkbox'
+              id='accept'
               onChange={this.onCheckedHandler}
               value={accepted}/>
-            <label htmlFor="accept">{strings.accept}</label>
+            <label htmlFor='accept'>{strings.accept}</label>
           </form>
           <Button className='Welcome-Close'
             disabled={!accepted}
