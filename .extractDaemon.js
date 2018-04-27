@@ -35,6 +35,13 @@ breakoutWindows = (buildPath) => {
   entries.forEach((e) => {
     zip.extractEntryTo(e, polyswarmd, false, true);
   });
+
+  const dest = path.resolve(polyswarmd, 'polyswarmd.cfg');
+  const cfg = path.resolve(backend, 'polyswarmd.cfg');
+  fs.copyFileSync(cfg, dest);
+  if (buildPath.match(/[\\/]tmp/)) {
+    rimrafSync(backend)
+   }
 }
 
 breakoutLinux = (buildPath) => {
