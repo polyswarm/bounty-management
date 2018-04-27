@@ -21,6 +21,7 @@ const createWindow = async () => {
     show: false,
     width: 1400,
     height: 800,
+    icon: path.resolve(__dirname, '..', 'public', 'favicon.ico'),
   });
 
   // Open the DevTools.
