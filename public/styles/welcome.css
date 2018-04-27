@@ -45,3 +45,18 @@
   background-color: #dedede;
   color: #ff1a00;
 }
+
+.fade-enter {
+  opacity: 0.01;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: all 300ms ease-out;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0.01;
+  transition: all 300ms ease-out;
+}

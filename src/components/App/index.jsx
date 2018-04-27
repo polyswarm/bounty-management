@@ -1,6 +1,7 @@
 // Vendor imports
 import React, { Component } from 'react';
 import Uuid from 'uuid/v4';
+import {CSSTransition} from 'react-transition-group';
 // Bounty imports
 import BountyCreate from '../BountyCreate';
 import BountyInfo from '../BountyInfo';
@@ -74,9 +75,16 @@ class App extends Component {
 
     return (
       <div className='App'>
-        {first && (
-          <Welcome onClick={this.onCloseWelcome}/>
-        )}
+        <CSSTransition
+          in={first}
+          timeout={200}
+          mountonEnter
+          unmountOnExit
+          classNames='fade'>
+          {() => (
+            <Welcome onClick={this.onCloseWelcome}/>
+          )}
+        </CSSTransition>
         {!first && (
           <React.Fragment>
             <Sidebar bounties={bounties}

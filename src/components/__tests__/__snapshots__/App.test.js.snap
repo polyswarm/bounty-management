@@ -4,50 +4,54 @@ exports[`renders without crashing 1`] = `
 <div
   class="App"
 >
-  <div
-    class="Welcome"
-  >
-    <div
-      class="Welcome-Jumbo"
-    >
-      <h1>
-        Welcome to the Polyswarm Alpha,
-      </h1>
-      <h2>
-        Use at your own risk: Bugs may result in a permanent loss of Nectar (NCT).
-      </h2>
-      <pre>
-        I understand that Swarm Technologies is unable to assist in recovering lost Nectar.
-        
-        THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE
-        LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR
-        OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER
-        EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
-        OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS
-        TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM
-        PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR
-        CORRECTION.
-      </pre>
-      <form>
-        <input
-          id="accept"
-          type="checkbox"
-          value="false"
-        >
-          
-        </input>
-        <label
-          for="accept"
-        >
-          I understand the terms above and accept the risks involved in using the alpha product.
-        </label>
-      </form>
-      <button
-        class="Button cancel"
-        disabled=""
+  <div>
+    <div>
+      <div
+        class="Welcome"
       >
-        Get Started!
-      </button>
+        <div
+          class="Welcome-Jumbo"
+        >
+          <h1>
+            Welcome to the Polyswarm Alpha,
+          </h1>
+          <h2>
+            Use at your own risk: Bugs may result in a permanent loss of Nectar (NCT).
+          </h2>
+          <pre>
+            I understand that Swarm Technologies is unable to assist in recovering lost Nectar.
+            
+            THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE
+            LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR
+            OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER
+            EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+            OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS
+            TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM
+            PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR
+            CORRECTION.
+          </pre>
+          <form>
+            <input
+              id="accept"
+              type="checkbox"
+              value="false"
+            >
+              
+            </input>
+            <label
+              for="accept"
+            >
+              I understand the terms above and accept the risks involved in using the alpha product.
+            </label>
+          </form>
+          <button
+            class="Button cancel"
+            disabled=""
+          >
+            Get Started!
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

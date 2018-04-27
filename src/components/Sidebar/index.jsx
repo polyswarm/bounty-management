@@ -1,6 +1,7 @@
 // Vendor imports
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {TransitionGroup, CSSTransition} from 'react-transition-group';
 // Bounty Imports
 import ListItem from '../ListItem';
 import RequestSpinner from '../RequestSpinner';
@@ -24,20 +25,28 @@ class Sidebar extends Component {
           <RequestSpinner requests={requests}/>
         </header>
         <ul className='Sidebar-Content'>
-          {bounties && bounties.length > 0 && (
-            bounties.map((bounty, index) => {
-              return(
-                <ListItem className={`item-${index}`}
-                  active={index === active}
-                  alert={bounty.updated}
-                  key={bounty.guid}
-                  onClick={() => {this.onSelectBounty(index);}}
-                  remove={() => {this.onBountyRemoved(index);}}>
-                  {bounty.guid}
-                </ListItem>
-              );
-            })
-          )}
+          <TransitionGroup>
+            {bounties && bounties.length > 0 && (
+              bounties.map((bounty, index) => {
+                return(
+                  <CSSTransition
+                    key={bounty.guid}
+                    timeout={300}
+                    classNames='item'>
+                    {() => (
+                      <ListItem className={`item-${index}`}
+                        active={index === active}
+                        alert={bounty.updated}
+                        onClick={() => {this.onSelectBounty(index);}}
+                        remove={() => {this.onBountyRemoved(index);}}>
+                        {bounty.guid}
+                      </ListItem>
+                    )}
+                  </CSSTransition>
+                );
+              })
+            )}
+          </TransitionGroup>
         </ul>
       </div>
     );
