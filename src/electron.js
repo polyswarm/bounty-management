@@ -1,9 +1,10 @@
 import { app, BrowserWindow } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import { enableLiveReload } from 'electron-compile';
-import { spawn } from 'child_process';
+import { spawn, execFile } from 'child_process';
 import ps from 'ps-node';
 import config from './config';
+import path from 'path';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -20,6 +21,7 @@ const createWindow = async () => {
     show: false,
     width: 1400,
     height: 800,
+    icon: path.resolve(__dirname, '..', 'public', 'favicon.ico'),
   });
 
   // Open the DevTools.
@@ -30,13 +32,19 @@ const createWindow = async () => {
   mainWindow.on('close', (e) => {
     if (pid != null) {
       e.preventDefault();
-      ps.kill(pid, (err) => {
-        if (err) {
-          console.error(err);
-        }
+      if (process.platform === 'win32') {
+        spawn('taskkill', ['/pid', pid, '/F', '/T']);
         pid = null;
         mainWindow.close();
-      });
+      } else {
+        ps.kill(pid, (err) => {
+          if (err) {
+            console.error(err);
+          }
+          pid = null;
+          mainWindow.close();
+        });
+      }
     }
   });
 
@@ -62,7 +70,7 @@ const createWindow = async () => {
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
   createWindow();
-  startBackend()
+  startBackend(process.platform)
     .then((p) => {
       pid = p;
     });
@@ -87,15 +95,31 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
-const startBackend = () => {
+const startBackend = (platform) => {
   return new Promise((resolve) => {
     const spawnOptions = {
       detached: true,
-      cwd: `${__dirname}/../${config.daemon}/`,
+      cwd: path.resolve(`${__dirname}`, '..', `${config.daemon}/`),
       env: process.env,
       stdio: 'inherit'
     };
-    const daemon = spawn('./polyswarmd',[], spawnOptions);
+    let command;
+    const args = [];
+    switch (platform) {
+    case 'win32':
+      command = 'cmd';
+      args.push('/K');
+      args.push('polyswarmd.exe');
+      break;
+    case 'linux':
+      command = './polyswarmd';
+      break;
+    case 'darwin':
+    default:
+      throw Error(`Application does not support platform ${platform}`);
+    }
+    
+    const daemon = spawn(command, args, spawnOptions);
     resolve(daemon.pid);
   });
 };
