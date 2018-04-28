@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import { enableLiveReload } from 'electron-compile';
-import { spawn } from 'child_process';
+import { spawn, execFile } from 'child_process';
 import ps from 'ps-node';
 import config from './config';
 import path from 'path';
@@ -32,13 +32,19 @@ const createWindow = async () => {
   mainWindow.on('close', (e) => {
     if (pid != null) {
       e.preventDefault();
-      ps.kill(pid, (err) => {
-        if (err) {
-          console.error(err);
-        }
+      if (process.platform === 'win32') {
+        spawn('taskkill', ['/pid', pid, '/F', '/T']);
         pid = null;
         mainWindow.close();
-      });
+      } else {
+        ps.kill(pid, (err) => {
+          if (err) {
+            console.error(err);
+          }
+          pid = null;
+          mainWindow.close();
+        });
+      }
     }
   });
 
@@ -101,7 +107,8 @@ const startBackend = (platform) => {
     const args = [];
     switch (platform) {
     case 'win32':
-      command = 'run';
+      command = 'cmd';
+      args.push('/K');
       args.push('polyswarmd.exe');
       break;
     case 'linux':
@@ -112,7 +119,7 @@ const startBackend = (platform) => {
       throw Error(`Application does not support platform ${platform}`);
     }
     
-    const daemon = spawn(command,args, spawnOptions);
+    const daemon = spawn(command, args, spawnOptions);
     resolve(daemon.pid);
   });
 };
