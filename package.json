@@ -1,6 +1,7 @@
 {
   "name": "bounty-management",
   "description": "Tool to post and manage bounties on the PolySwarm Marketplace running on Ethereum.",
+  "authors": "Rob Lathrop <rl@polyswarm.io>",
   "version": "0.2.0",
   "private": true,
   "license": "MIT",
@@ -11,15 +12,16 @@
     "infosec"
   ],
   "dependencies": {
-    "adm-zip": "^0.4.7",
     "bignumber.js": "^6.0.0",
     "electron-compile": "^6.4.2",
     "electron-devtools-installer": "^2.1.0",
     "electron-squirrel-startup": "^1.0.0",
+    "mv": "^2.1.1",
     "ps-node": "^0.1.6",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-hot-loader": "^3.0.0-beta.6"
+    "react-hot-loader": "^3.0.0-beta.6",
+    "unzip": "^0.1.11"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
