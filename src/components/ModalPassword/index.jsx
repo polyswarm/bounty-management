@@ -260,8 +260,6 @@ class ModalPassword extends Component {
   updateBalance(address) {
     const { props: { url } } = this;
     const http = new HttpAccount(url);
-    const uuid = Uuid();
-    this.addAccountRequest(strings.requestBalance, uuid);
     
     const e = http.getEth(address).then(balance => {
       return new BigNumber(balance).dividedBy(new BigNumber(1000000000000000000));
@@ -274,9 +272,7 @@ class ModalPassword extends Component {
       this.setState({ nct: b.toNumber() });
     });
     const promises = [e, n];
-    return Promise.all(promises).then(() => {
-      this.removeAccountRequest(strings.requestBalance, uuid);
-    });
+    return Promise.all(promises);
   }
 }
 
