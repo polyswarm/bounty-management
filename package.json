@@ -74,7 +74,7 @@
     "electron-package": "electron-forge package",
     "electron-make": "electron-forge make",
     "electron-publish": "electron-forge publish",
-    "electron-list": "eslint --cache --color --ext .jsx,.js src"
+    "electron-lint": "eslint --cache --color --ext .jsx,.js src"
   },
   "config": {
     "forge": {
