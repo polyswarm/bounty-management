@@ -23,7 +23,7 @@ exports[`marks the selected row as .active 1`] = `
       className="Sidebar-Header"
     >
       <img
-        alt="Polyswarm logo"
+        alt="PolySwarm logo"
         className="Sidebar-Header-Logo"
         src="../public/img/polyswarm.svg"
       />
@@ -117,7 +117,7 @@ exports[`renders without crashing 1`] = `
     class="Sidebar-Header"
   >
     <img
-      alt="Polyswarm logo"
+      alt="PolySwarm logo"
       class="Sidebar-Header-Logo"
       src="../public/img/polyswarm.svg"
     >
@@ -162,7 +162,7 @@ exports[`shows alert when bounty has updated: true 1`] = `
       className="Sidebar-Header"
     >
       <img
-        alt="Polyswarm logo"
+        alt="PolySwarm logo"
         className="Sidebar-Header-Logo"
         src="../public/img/polyswarm.svg"
       />

@@ -1,4 +1,4 @@
 const strings = {
-  logo: 'Polyswarm logo',
+  logo: 'PolySwarm logo',
 };
 export default strings;

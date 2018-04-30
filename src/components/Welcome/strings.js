@@ -26,7 +26,7 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.`,
   getStarted: 'Get Started!',
   moreInfo: 'Use at your own risk: Bugs may result in a permanent loss of Nectar (NCT).',
-  welcome: 'Welcome to the Polyswarm Alpha,',
+  welcome: 'Welcome to the PolySwarm Alpha,',
 };
 
 export default strings;
