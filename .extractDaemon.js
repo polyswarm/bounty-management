@@ -18,8 +18,8 @@ module.exports = (buildPath, electronVersion, platform, arch, callback) => {
     case 'darwin':
     default:
       throw Error(`Application does not support platform ${platform}`);
+      callback();
   }
-  callback();
 }
 
 breakoutWindows = (buildPath, callback) => {
