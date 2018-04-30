@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import { enableLiveReload } from 'electron-compile';
-import { spawn, execFile } from 'child_process';
+import { spawn } from 'child_process';
 import ps from 'ps-node';
 import config from './config';
 import path from 'path';
@@ -57,12 +57,13 @@ const createWindow = async () => {
   });
 
   mainWindow.on('ready-to-show', () => {
-    mainWindow.show();
     mainWindow.reload();
+    mainWindow.show();
   });
 
   // and load the index.html of the app.
-  mainWindow.loadURL(`file:${__dirname}/../public/index.html`);
+  const file = path.resolve(__dirname, '..', 'public', 'index.html');
+  mainWindow.loadURL(`file:${file}`);
 };
 
 // This method will be called when Electron has finished
