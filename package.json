@@ -1,6 +1,7 @@
 {
   "name": "bounty-management",
   "description": "Tool to post and manage bounties on the PolySwarm Marketplace running on Ethereum.",
+  "author": "Swarm Technologies",
   "version": "0.2.0",
   "private": true,
   "license": "MIT",
@@ -16,11 +17,13 @@
     "electron-compile": "^6.4.2",
     "electron-devtools-installer": "^2.1.0",
     "electron-squirrel-startup": "^1.0.0",
+    "mv": "^2.1.1",
     "ps-node": "^0.1.6",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-hot-loader": "^3.0.0-beta.6",
     "react-transition-group": "^2.3.1",
+    "unzip": "^0.1.11",
     "uuid": "^3.2.1"
   },
   "lint-staged": {
@@ -71,7 +74,7 @@
     "electron-package": "electron-forge package",
     "electron-make": "electron-forge make",
     "electron-publish": "electron-forge publish",
-    "electron-list": "eslint --cache --color --ext .jsx,.js src"
+    "electron-lint": "eslint --cache --color --ext .jsx,.js src"
   },
   "config": {
     "forge": {
@@ -88,13 +91,18 @@
         ]
       },
       "electronPackagerConfig": {
+        "icon": "./public/favicon.ico",
+        "win32metadata": {
+          "CompanyName": "PolySwarm",
+          "ProductName": "Bounty Management"
+        },
         "packageManager": "yarn",
         "afterCopy": [
           "./.extractDaemon.js"
         ]
       },
       "electronWinstallerConfig": {
-        "name": "bounty_management"
+        "name": "BountyManagement"
       },
       "electronInstallerDebian": {},
       "electronInstallerRedhat": {},
