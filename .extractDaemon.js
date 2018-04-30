@@ -18,7 +18,6 @@ module.exports = (buildPath, electronVersion, platform, arch, callback) => {
     case 'darwin':
     default:
       throw Error(`Application does not support platform ${platform}`);
-      callback();
   }
 }
 
@@ -29,6 +28,14 @@ breakoutWindows = (buildPath, callback) => {
   const backend = path.resolve(app, 'backend');
   const polyswarmd = path.resolve(app,  'polyswarmd');
   const temp = path.resolve(app, 'temp');
+
+
+  // Gracefully handle case where user did not add polyswarmd. (Maybe it is a dev environment)
+  if (!fs.existsSync(path.resolve(backend, filename))) {
+    console.error("Did not find the daemon in backend/. Expecting you to run it separately.");
+    callback();
+    return;
+  }
 
   rimrafSync(polyswarmd);
 
@@ -62,6 +69,13 @@ breakoutLinux = (buildPath, callback) => {
   const app = path.resolve(buildPath);
   const backend = path.resolve(app, 'backend');
   const polyswarmd = path.resolve(app,  'polyswarmd');
+
+  // Gracefully handle case where user did not add polyswarmd. (Maybe it is a dev environment)
+  if (!fs.existsSync(path.resolve(backend, filename))) {
+    console.error("Did not find the daemon in backend/. Expecting you to run it separately.");
+    callback();
+    return;
+  }
 
   rimrafSync(polyswarmd);
   fs.mkdirSync(polyswarmd);
