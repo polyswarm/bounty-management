@@ -13,7 +13,7 @@ exports[`renders without crashing 1`] = `
           class="Welcome-Jumbo"
         >
           <h1>
-            Welcome to Polyswarm,
+            Welcome to PolySwarm,
           </h1>
           <h2>
             The first 
@@ -23,7 +23,7 @@ exports[`renders without crashing 1`] = `
              antivirus marketplace.
           </h2>
           <p>
-            Simply upload files to create your own bounties and then let the microengines on Polyswarm analyze your file.
+            Simply upload files to create your own bounties and then let the microengines on PolySwarm analyze your file.
           </p>
           <button
             class="Button"
