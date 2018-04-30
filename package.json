@@ -92,7 +92,7 @@
       },
       "electronPackagerConfig": {
         "icon": "./public/favicon.ico",
-	"win32metadata": {
+        "win32metadata": {
           "CompanyName": "PolySwarm",
           "ProductName": "Bounty Management"
         },
