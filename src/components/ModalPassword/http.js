@@ -21,7 +21,6 @@ class HttpAccount {
     return fetch(url + '/accounts', {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({'password': password})
