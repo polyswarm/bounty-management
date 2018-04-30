@@ -2,7 +2,7 @@
   "name": "bounty-management",
   "description": "Tool to post and manage bounties on the PolySwarm Marketplace running on Ethereum.",
   "author": "Swarm Technologies",
-  "version": "0.2.0",
+  "version": "0.1",
   "private": true,
   "license": "MIT",
   "main": "src/electron.js",
@@ -25,11 +25,6 @@
     "react-transition-group": "^2.3.1",
     "unzip": "^0.1.11",
     "uuid": "^3.2.1"
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
-      "git add"
-    ]
   },
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.24.1",
@@ -62,7 +57,6 @@
     "tar": "^4.4.1"
   },
   "scripts": {
-    "precommit": "lint-staged",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p daemon-extract electron-start",
     "build-js": "react-scripts build",
