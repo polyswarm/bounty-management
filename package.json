@@ -1,7 +1,7 @@
 {
   "name": "bounty-management",
   "description": "Tool to post and manage bounties on the PolySwarm Marketplace running on Ethereum.",
-  "authors": "Rob Lathrop <rl@polyswarm.io>",
+  "author": "Swarm Technologies",
   "version": "0.2.0",
   "private": true,
   "license": "MIT",
@@ -23,8 +23,8 @@
     "react-dom": "^16.2.0",
     "react-hot-loader": "^3.0.0-beta.6",
     "react-transition-group": "^2.3.1",
-    "uuid": "^3.2.1",
-    "unzip": "^0.1.11"
+    "unzip": "^0.1.11",
+    "uuid": "^3.2.1"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
@@ -91,13 +91,18 @@
         ]
       },
       "electronPackagerConfig": {
+        "icon": "./public/favicon.ico",
+	"win32metadata": {
+          "CompanyName": "PolySwarm",
+          "ProductName": "Bounty Management"
+        },
         "packageManager": "yarn",
         "afterCopy": [
           "./.extractDaemon.js"
         ]
       },
       "electronWinstallerConfig": {
-        "name": "bounty_management"
+        "name": "BountyManagement"
       },
       "electronInstallerDebian": {},
       "electronInstallerRedhat": {},
