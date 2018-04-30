@@ -2,7 +2,7 @@
   "name": "bounty-management",
   "description": "Tool to post and manage bounties on the PolySwarm Marketplace running on Ethereum.",
   "author": "Swarm Technologies",
-  "version": "0.1",
+  "version": "0.1.0",
   "private": true,
   "license": "MIT",
   "main": "src/electron.js",
