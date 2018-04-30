@@ -39,10 +39,7 @@ const createWindow = async () => {
         pid = null;
         mainWindow.close();
       } else {
-        ps.kill(pid, (err) => {
-          if (err) {
-            console.error(err);
-          }
+        ps.kill(pid, () => {
           pid = null;
           mainWindow.close();
         });
