@@ -708,7 +708,7 @@ it('sets eth & nct to 1.2 when getETh/getNct succeed', (done) => {
     });
 });
 
-it('should call addCreateBountyRequest and removeCreateBountyRequest in updateBalance', (done) => {
+it('doesn\'t call addCreateBountyRequest and removeCreateBountyRequest in updateBalance', (done) => {
   const addAccountRequest = jest.spyOn(ModalPassword.prototype, 'addAccountRequest');
   const removeAccountRequest = jest.spyOn(ModalPassword.prototype, 'removeAccountRequest');
   const url = 'https://localhost:8080';
@@ -724,8 +724,8 @@ it('should call addCreateBountyRequest and removeCreateBountyRequest in updateBa
     .then(() => {
       // assert
       try {
-        expect(addAccountRequest).toHaveBeenCalledTimes(1);
-        expect(removeAccountRequest).toHaveBeenCalledTimes(1);
+        expect(addAccountRequest).toHaveBeenCalledTimes(0);
+        expect(removeAccountRequest).toHaveBeenCalledTimes(0);
         done();
       } catch (error) {
         done.fail(error);
@@ -733,7 +733,7 @@ it('should call addCreateBountyRequest and removeCreateBountyRequest in updateBa
     });
 });
 
-it('should call addRequest and removeRequest in updateBalance', (done) => {
+it('should not call addRequest and removeRequest in updateBalance', (done) => {
   const addRequest = jest.fn();
   const removeRequest = jest.fn();
   const url = 'https://localhost:8080';
@@ -751,8 +751,8 @@ it('should call addRequest and removeRequest in updateBalance', (done) => {
     .then(() => {
       // assert
       try {
-        expect(addRequest).toHaveBeenCalledTimes(1);
-        expect(removeRequest).toHaveBeenCalledTimes(1);
+        expect(addRequest).toHaveBeenCalledTimes(0);
+        expect(removeRequest).toHaveBeenCalledTimes(0);
         done();
       } catch (error) {
         done.fail(error);
