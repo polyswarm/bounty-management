@@ -512,7 +512,7 @@ it('calls removeRequest when getData finishes', (done) => {
   });
 });
 
-it('calls increments when getWallets is called', (done) => {
+it('doesn\'t call increments when getWallets is called', (done) => {
   const addRequest = jest.spyOn(App.prototype, 'addRequest');
   const wrapper = shallow(<App />, {disableLifecycleMethods: true});
   const instance = wrapper.instance();
@@ -522,8 +522,7 @@ it('calls increments when getWallets is called', (done) => {
 
   promise.then(() =>{
     try {
-      expect(addRequest).toHaveBeenCalledTimes(1);
-      expect(addRequest.mock.calls[0][0]).toEqual('Updating Wallets');
+      expect(addRequest).toHaveBeenCalledTimes(0);
       done();
     } catch (error) {
       done.fail(error);
@@ -531,7 +530,7 @@ it('calls increments when getWallets is called', (done) => {
   });
 });
 
-it('calls decrement when getWallets finishes', (done) => {
+it('doesn\'t call decrement when getWallets finishes', (done) => {
   const removeRequest = jest.spyOn(App.prototype, 'removeRequest');
   const wrapper = shallow(<App />, {disableLifecycleMethods: true});
   const instance = wrapper.instance();
@@ -541,8 +540,7 @@ it('calls decrement when getWallets finishes', (done) => {
 
   promise.then(() =>{
     try {
-      expect(removeRequest).toHaveBeenCalledTimes(1);
-      expect(removeRequest.mock.calls[0][0]).toEqual('Updating Wallets');
+      expect(removeRequest).toHaveBeenCalledTimes(0);
       done();
     } catch (error) {
       done.fail(error);
