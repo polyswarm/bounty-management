@@ -31,6 +31,12 @@
       "git add"
     ]
   },
+  "resolutions": {
+    "electron-prebuilt-compile/**/hoek": "5.0.3",
+    "electron-forge/**/hoek": "5.0.3",
+    "jest/**/hoek": "5.0.3",
+    "lint-staged/**/hoek": "5.0.3"
+  },
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-es2015-classes": "^6.24.1",
